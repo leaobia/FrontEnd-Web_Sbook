@@ -1,0 +1,38 @@
+.Header{
+    background-color: #FFFF;
+    width: 100%;
+    height: 15vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.headerLinksContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vh;
+    -webkit-box-shadow: 5px 5px 10px 0px rgba(211, 211, 211, 1);
+    -moz-box-shadow: 5px 5px 10px 0px rgba(211, 211, 211, 1);
+    box-shadow: 5px 5px 10px 0px rgba(211, 211, 211, 1);
+       font-family: 'Inter', sans-serif;
+}
+
+ li{
+    list-style: none;
+}
+
+.link{
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    text-decoration: none;
+    color: #1B1E23;
+}
+
+.link:hover{
+    font-weight: 700;
+}
+
+ul{
+    display: flex;
+    gap: 2vw;
+  }
+
