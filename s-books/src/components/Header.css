@@ -9,22 +9,38 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1vh;
+    height: 50%;
     -webkit-box-shadow: 5px 5px 10px 0px rgba(211, 211, 211, 1);
     -moz-box-shadow: 5px 5px 10px 0px rgba(211, 211, 211, 1);
     box-shadow: 5px 5px 10px 0px rgba(211, 211, 211, 1);
        font-family: 'Inter', sans-serif;
 }
 
- li{
-    list-style: none;
+img{
+    padding-left: 1vw;
 }
+
+.divborda{
+    border: .5px solid darkgrey;
+}
+
 
 .link{
     cursor: pointer;
     transition: .3s ease-in-out;
     text-decoration: none;
     color: #1B1E23;
+}
+
+.userMenuContainer{
+    display: flex;
+    height: 100%;
+}
+
+.userMenuContainer .userMenu{
+    display: grid;
+    place-self: center;
+    padding-right: 1vw;
 }
 
 .link:hover{
@@ -36,3 +52,11 @@ ul{
     gap: 2vw;
   }
 
+.userProfileButton{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: transparent;
+    border: none;
+}
