@@ -1,7 +1,9 @@
+import Filtragem from "../components/Filtragem"
+
 function Home() {
     return (
         <div>
-            <p>Home</p>
+            <Filtragem/>
         </div>
     )
 }
