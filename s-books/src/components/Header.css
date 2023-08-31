@@ -62,3 +62,8 @@ ul{
     background-color: transparent;
     border: none;
 }
+
+.userMenuIcons{
+    display: flex;
+    align-self: center;
+}

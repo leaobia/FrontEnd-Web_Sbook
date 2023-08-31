@@ -27,10 +27,10 @@
     text-transform: uppercase;
 }
 
-.searchBook{
-   height: 4vh;
-   margin-right: 1vw;
-   padding: 13px 25px;
-   border-radius: 10px;
-   border: none;
+.stackSearch{
+    margin-right: 1vw;
+}
+
+.inputGroupSearch{
+    margin-right: 4vw;
 }
