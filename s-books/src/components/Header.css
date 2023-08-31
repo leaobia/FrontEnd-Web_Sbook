@@ -67,3 +67,15 @@ ul{
     display: flex;
     align-self: center;
 }
+
+@media (max-width:520px) {
+    img{
+        padding-left: 0;
+    }
+    .userMenuContainer .userMenu{
+        padding-right: 0;
+    }
+    .userProfileButton img{
+        display: none;
+    }
+}
