@@ -3,10 +3,9 @@
     width: 100%;
     height: 8vh;
     font-family: 'Inter', sans-serif;
-    background-color: #FFFF;
+    background-color: white;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .menuLocalContainer{
@@ -33,4 +32,13 @@
 
 .inputGroupSearch{
     margin-right: 4vw;
+}
+
+.sideBar{
+    background-color: #FFFF;
+    position: absolute;
+    left: 0;
+    top: 8vh;
+    height: 92vh;
+    width: 20vw;
 }
