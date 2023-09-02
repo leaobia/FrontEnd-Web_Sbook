@@ -1,6 +1,7 @@
 import Filtragem from "../components/Filtragem"
 import SecaoLivro from "../components/SecaoLivro";
 import '../components/css/Home.css'
+import Footer from "../components/Footer";
 
 function Home() {
 
@@ -31,6 +32,7 @@ function Home() {
                 <span id="quantidadeDeLivros">{quantidadeFormatada} livros encontrados</span>
             </div>
             <SecaoLivro/>
+            <Footer/>
         </div>
     )
 }
