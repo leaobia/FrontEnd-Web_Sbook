@@ -54,6 +54,7 @@ ul{
     gap: 2vw;
   }
 
+
 .userProfileButton{
     cursor: pointer;
     display: flex;
@@ -69,7 +70,7 @@ ul{
 }
 
 @media (max-width:520px) {
-    img{
+    .logo{
         padding-left: 0;
     }
     .userMenuContainer .userMenu{
@@ -77,5 +78,10 @@ ul{
     }
     .userProfileButton img{
         display: none;
+    }
+
+
+    ul li {
+        font-size: 13px;
     }
 }

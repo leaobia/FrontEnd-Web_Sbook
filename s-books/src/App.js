@@ -8,6 +8,7 @@ import Anunciar from './pages/Anunciar';
 import Login from './pages/Login';
 import Favoritos from './pages/Favoritos';
 import Chat from './pages/Chat';
+import Livro from './pages/Livro';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/favoritos" element={<Favoritos />} />
             <Route path="/chat" element={<Chat />} />
+            <Route path="/livro" element={<Livro />} />
           </Routes>
         </div>
 

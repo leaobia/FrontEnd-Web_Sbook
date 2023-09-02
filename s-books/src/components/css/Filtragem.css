@@ -8,6 +8,8 @@
     align-items: center;
 }
 
+
+
 .menuLocalContainer{
     display: flex;
     align-items: center;
@@ -41,4 +43,26 @@
     top: 8vh;
     height: 92vh;
     width: 20vw;
+}
+
+@media (max-width:520px) {
+    img{
+        padding-left: 0;
+    }
+
+    .stackSearch{
+        margin-right: 0vw;
+    }
+    
+    .inputGroupSearch{
+        margin-right: 0vw;
+    }
+
+    .nomeDaCidade{
+        padding: 5px 10px;
+        font-size: .5rem;
+    }
+    .sideBar{
+        width: 80vw;
+    }
 }

@@ -4,14 +4,14 @@ import userProfile from './Vector.png'
 import userFavorites from './coracao.png'
 import userChats from './chat.png'
 
-import './Header.css'
+import './css/Header.css'
 import { Link } from "react-router-dom"       
 
 function Header() {
     return (
         <div className="Header">
             <div className="headerLinksContainer">
-                <img src={logo} alt="logotipo da empresa" />
+                <img src={logo} alt="logotipo da empresa" className='logo' />
                 <nav>
                     <ul>
                     <li><Link to='/' className='link'>Home</Link></li>

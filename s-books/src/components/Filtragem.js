@@ -1,4 +1,4 @@
-import './Filtragem.css';
+import './css/Filtragem.css';
 
 import { Input, Stack, InputGroup, InputLeftElement} from '@chakra-ui/react'; 
 import { SearchIcon } from '@chakra-ui/icons';
@@ -22,12 +22,13 @@ function Filtragem() {
             </Sidebar>
 
 
-            <Stack spacing={4} className='stackSearch'>
+            <Stack className='stackSearch' spacing={2}>
                 <InputGroup className='inputGroupSearch' >
                     <InputLeftElement pointerEvents='none'>
                         <SearchIcon color='black' />
                     </InputLeftElement>
-                    <Input type='tel' placeholder='Digite o nome do livro'/>
+                    <Input type='tel' placeholder='Digite o nome do livro' className='inputField' fontSize={['sm', 'md', 'lg']}
+                    />
                 </InputGroup>
             </Stack>
 
