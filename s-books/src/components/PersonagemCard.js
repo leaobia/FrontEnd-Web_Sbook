@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Link } from "react-router-dom"   
+import imagemCarrinho from './img/carrinho.png'
 
 function PersonagemCard({ personagem }) {
   return (
@@ -11,7 +12,7 @@ function PersonagemCard({ personagem }) {
       <p>Status: {personagem.status}</p>
       <p>Espécie: {personagem.species}</p>
       </div>
-      <Link to= '/livro' className='botaoLinkLivro'><button>Comprar</button></Link>
+      <Link to= '/livro' className='botaoLinkLivro'><button className='botaoContainer'>Comprar <img src={imagemCarrinho} alt='icone de carrinho' /></button></Link>
     </div>
   );
 }

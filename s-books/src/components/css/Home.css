@@ -46,10 +46,22 @@
 }
 
 .botaoLinkLivro{
-    background-color: #AA6231;
-    width: 200px;
+    background-color: #FF902B;
+    width: 150px;
     display: grid;
     place-self: end;
+    font-weight: 600;
+    color: #ffff;
+    transition: .4s ease-in-out;
+}
+.botaoContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 20px;
+}
+.botaoLinkLivro:hover{
+    scale: .9;
 }
 
 .sobreLivro{
@@ -72,3 +84,8 @@
     gap: 2vh;
 }
 
+.tipoDeLivro{
+    color: #7E7D7A;
+    font-weight: 600;
+    font-size: clamp(0.75rem, -0.4829rem + 16.4384vw, 1.5rem);
+}

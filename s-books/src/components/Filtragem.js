@@ -1,10 +1,11 @@
 import './css/Filtragem.css';
 
-import { Input, Stack, InputGroup, InputLeftElement} from '@chakra-ui/react'; 
+import { Input, Stack, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import React, { useState } from 'react';
-import { Sidebar } from 'primereact/sidebar'; 
-import slider from './Slider.png'; 
+import { Sidebar } from 'primereact/sidebar';
+import slider from './Slider.png';
+
 
 function Filtragem() {
 
@@ -27,7 +28,12 @@ function Filtragem() {
                     <InputLeftElement pointerEvents='none'>
                         <SearchIcon color='black' />
                     </InputLeftElement>
-                    <Input type='tel' placeholder='Digite o nome do livro' className='inputField' fontSize={['sm', 'md', 'lg']}
+                    <Input
+                        type='tel'
+                        placeholder='Digite o nome do livro'
+                        className='inputField'
+                        fontSize={['sm', 'md', 'lg']}
+                        id='inputPesquisa'
                     />
                 </InputGroup>
             </Stack>

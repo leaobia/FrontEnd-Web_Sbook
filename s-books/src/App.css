@@ -24,3 +24,18 @@ li{
   flex-direction: column;
 }
 
+body{
+  overflow-y: auto;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #FF902B;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #5C2C0C;
+}

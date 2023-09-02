@@ -4,7 +4,7 @@ import CardLivro from "./CardLivro"
 function SecaoLivro() {
     return (
        <div className="secaoLivro">
-        <p>Ficcao Cientifica</p>
+        <p className="tipoDeLivro">Ficcao Cientifica</p>
         <CardLivro/>
        </div>
     )
