@@ -24,7 +24,6 @@ function CardLivro() {
     setTermoPesquisa(inputPesquisa.value);
   }, 100); 
 
-  console.log(inputPesquisa);
   if (inputPesquisa) {
     inputPesquisa.addEventListener('input', handlePesquisaChange);
   }

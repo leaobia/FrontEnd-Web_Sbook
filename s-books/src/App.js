@@ -5,10 +5,11 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import Anuncios from './pages/Anuncios';
 import Anunciar from './pages/Anunciar';
-import Login from './pages/Login';
+//import Login from './pages/Login';
 import Favoritos from './pages/Favoritos';
 import Chat from './pages/Chat';
 import Livro from './pages/Livro';
+
 
 
 function App() {
@@ -24,7 +25,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/anuncios" element={<Anuncios />} />
             <Route path="/anunciar" element={<Anunciar />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/favoritos" element={<Favoritos />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/livro" element={<Livro />} />
