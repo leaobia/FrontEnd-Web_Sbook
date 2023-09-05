@@ -1,10 +1,13 @@
 import './css/Filtragem.css';
 
-import { Input, Stack, InputGroup, InputLeftElement } from '@chakra-ui/react';
-import { SearchIcon } from '@chakra-ui/icons';
 import React, { useState } from 'react';
 import { Sidebar } from 'primereact/sidebar';
-import slider from './Slider.png';
+import slider from './img/Slider.png';
+
+import Local from './img/Local.png'
+
+import { Input, Stack, InputGroup, InputRightElement, InputLeftElement, Checkbox } from '@chakra-ui/react';
+import { SearchIcon } from '@chakra-ui/icons';
 
 
 function Filtragem() {
@@ -19,7 +22,41 @@ function Filtragem() {
             </div>
 
             <Sidebar className='sideBar' visible={visibleLeft} position="left" onHide={() => setVisibleLeft(false)}>
-                <h2>Sidebar</h2>
+                <div className="filtragemContainer">
+                    <h1>Filtragem</h1>
+                    <Stack spacing={5} className='stackDigitarLocal'>
+                        <h4 className='titleSection'>Localização</h4>
+                        <InputGroup >
+                            <InputRightElement pointerEvents='none'>
+                                <img src={Local} alt="icone de localização" className='iconLocal' />
+                            </InputRightElement>
+                            <Input
+                                type='email'
+                                placeholder='Digite seu estado ou cidade'
+                                h='48px'
+                                className='inputField'
+                                fontSize={['sm', 'md', 'lg']}
+                            />
+                        </InputGroup>
+                    </Stack>
+                </div>
+                <div className="livrosContainerSidebar">
+                <h4 className='titleSection'>Livros</h4>
+                    <Stack spacing={5} direction='row'>
+                        <Checkbox colorScheme='gray' defaultChecked>
+                            Novos
+                        </Checkbox>
+                        <Checkbox colorScheme='gray' defaultChecked>
+                            Seminovos
+                        </Checkbox>
+                        <Checkbox colorScheme='gray' defaultChecked>
+                            Usados
+                        </Checkbox>
+                    </Stack>
+                </div>
+                <div className="generoContainer">
+                <h4 className='titleSection'>Gênero</h4>
+                </div>
             </Sidebar>
 
 

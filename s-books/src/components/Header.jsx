@@ -1,9 +1,9 @@
 
-import logo from './Logo.png';
+import logo from './img/Logo.png';
 import imageLogin from './img/imagemLogin.png'
-import userProfile from './Vector.png'
-import userFavorites from './coracao.png'
-import userChats from './chat.png'
+import userProfile from './img/Vector.png'
+import userFavorites from './img/coracao.png'
+import userChats from './img/chat.png'
 import PasswordInput from './PasswordInput';
 
 import { Input, Stack, InputGroup, InputRightElement } from '@chakra-ui/react';

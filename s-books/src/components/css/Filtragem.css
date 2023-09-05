@@ -41,11 +41,44 @@
     position: absolute;
     left: 0;
     top: 8vh;
-    height: 92vh;
+    height: auto;
     width: 20vw;
 }
 
-@media (max-width:520px) {
+.stackDigitarLocal{
+    width: 70%;
+}
+.filtragemContainer, .livrosContainerSidebar, .generoContainer{
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    border-bottom: .4px solid gray;
+}
+
+.filtragemContainer h1{
+    font-weight: bold;
+    font-size: clamp(1rem, -2.4615rem + 69.2308vw, 1.5625rem);
+    color: #5C2C0C;
+}
+
+.iconLocal{
+    margin-right: 20px;
+}
+
+.titleSection{
+    color: #5C2C0C;
+    font-size: clamp(0.75rem, -3.05rem + 80vw, 1rem);
+    font-weight: bold;
+}
+
+@media (max-width:1600px) {
+    .sideBar{
+        width: 40vw;
+    }
+}
+
+@media (max-width:720px) {
     img{
         padding-left: 0;
     }
@@ -63,6 +96,10 @@
         font-size: .5rem;
     }
     .sideBar{
-        width: 80vw;
+        width: 90vw;
+    }
+
+    .stackDigitarLocal{
+        width: 80%;
     }
 }
