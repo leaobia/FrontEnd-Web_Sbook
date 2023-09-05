@@ -1,11 +1,13 @@
 import React from 'react';
+import ApiGenero from './ApiGenero';
 
-function GeneroList({genero}) {
+function GeneroList() {
   return (
     <>
-     <h2>{genero.name}</h2>
+      <ApiGenero />
     </>
   );
 }
 
 export default GeneroList;
+

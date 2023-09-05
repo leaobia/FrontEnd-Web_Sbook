@@ -9,7 +9,7 @@ import Local from './img/Local.png'
 import { Input, Stack, InputGroup, InputRightElement, InputLeftElement, Checkbox } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 
-import GeneroList from './GeneroList';
+import ApiGenero from './ApiGenero';
 
 
 function Filtragem() {
@@ -58,7 +58,7 @@ function Filtragem() {
                 </div>
                 <div className="generoContainer">
                 <h4 className='titleSection'>Gênero</h4>
-                <GeneroList/>
+                <ApiGenero/>
                 </div>
             </Sidebar>
 

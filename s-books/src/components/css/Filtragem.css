@@ -72,6 +72,13 @@
     font-weight: bold;
 }
 
+.listaDeGeneros{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 @media (max-width:1600px) {
     .sideBar{
         width: 40vw;
