@@ -1,6 +1,6 @@
 
 import logo from './Logo.png';
-import imageLogin from './img/ImagemLogin.png'
+import imageLogin from './img/imagemLogin.png'
 import userProfile from './Vector.png'
 import userFavorites from './coracao.png'
 import userChats from './chat.png'
@@ -42,7 +42,7 @@ function Header() {
                         <img src={logo} alt="logotipo da empresa" />
                         <h1>Olá</h1>
                         <h4>Bem vindo de volta</h4>
-                        <Stack spacing={2}>
+                        <Stack spacing={4}>
                             <InputGroup >
                                 <InputRightElement pointerEvents='none'>
                                     <EmailIcon color='gray' />
@@ -50,18 +50,19 @@ function Header() {
                                 <Input
                                     type='email'
                                     placeholder='Email'
+                                    w={[250, 350, 400]}
+                                    h='48px'
                                     className='inputField'
                                     fontSize={['sm', 'md', 'lg']}
-                                    id='inputPesquisa'
                                 />
                             </InputGroup>
                             <PasswordInput/>
-                            <span className='forgotPassword'>Esqueci a senha</span>
+                            <Link className='forgotPassword'>Esqueci a senha</Link>
                         </Stack>
                         </div>
 
-                        <span>Não tem conta? Cadastre-se aqui.</span>
-                        <button>Entrar</button>
+                        <span className='solicitandoConta'>Não tem conta? <Link className='linkCadastreAqui'>Cadastre-se aqui.</Link></span>
+                        <button className='buttonLogar'>Entrar</button>
 
                     </div>
                     <div className="imgLogin">

@@ -81,7 +81,11 @@ ul{
     }
 
 
-    ul li {
+    ul li , .userProfileButton span{
         font-size: 13px;
+    }
+
+    .userProfileButton{
+        width: fit-content;
     }
 }

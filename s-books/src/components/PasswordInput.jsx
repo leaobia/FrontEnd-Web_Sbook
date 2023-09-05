@@ -12,11 +12,13 @@ function PasswordInput() {
           pr='4.5rem'
           type={show ? 'text' : 'password'}
           placeholder='Enter password'
+          w={[250, 350, 400]}
+          h="48px"
         />
-        <InputRightElement width='2.8rem'>
+        <InputRightElement width='2.8rem' h='3rem'>
           <Button h='1.75rem' size='sm' onClick={handleClick}  bg='transparent'>
           {show ? (
-            <Icon as={FaEye} color='gray.500' />
+            <Icon as={FaEye} color='gray.500'/>
           ) : (
             <Icon as={FaEyeSlash} color='gray.500' />
           )}
