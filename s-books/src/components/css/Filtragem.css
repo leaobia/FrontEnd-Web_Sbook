@@ -77,7 +77,12 @@
     flex-direction: column;
 }
 
-
+.botaoQuantidadeListaGenero{
+    width: fit-content;
+    display: grid;
+    place-self: end;
+    grid-template-columns: 1fr .4fr;
+}
 
 @media (max-width:1600px) {
     .sideBar{

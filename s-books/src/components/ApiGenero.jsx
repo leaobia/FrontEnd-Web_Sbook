@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Checkbox } from '@chakra-ui/react'; 
 
+import seta from './img/seta.png'
+
 function ApiGenero() {
   const [nomes, setNomes] = useState([]);
   const [selecionados, setSelecionados] = useState({}); 
@@ -33,7 +35,7 @@ function ApiGenero() {
   return (
     <>
       <ul className='listaDeGeneros'>
-        {nomes.slice(0, mostrarTodos ? nomes.length : 10).map((nome, index) => (
+        {nomes.slice(0, mostrarTodos ? nomes.length : 8).map((nome, index) => (
           <li key={index}>
             <label>
               <Checkbox
@@ -48,10 +50,10 @@ function ApiGenero() {
         ))}
       </ul>
       {!mostrarTodos && (
-        <button onClick={toggleMostrarTodos}>Mostrar Mais</button>
+        <button onClick={toggleMostrarTodos} className='botaoQuantidadeListaGenero'>Mostrar Mais <img src={seta} alt="icone de seta" /></button>
       )}
-      {mostrarTodos && nomes.length > 10 && (
-        <button onClick={() => setMostrarTodos(false)}>Mostrar Menos</button>
+      {mostrarTodos && nomes.length > 8 && (
+        <button onClick={() => setMostrarTodos(false)} className='botaoQuantidadeListaGenero'>Mostrar Menos</button>
       )}
     </>
   );
