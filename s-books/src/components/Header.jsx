@@ -1,9 +1,13 @@
 
 import logo from './Logo.png';
-import imageLogin from './img/imagemLogin.png'
+import imageLogin from './img/ImagemLogin.png'
 import userProfile from './Vector.png'
 import userFavorites from './coracao.png'
 import userChats from './chat.png'
+import PasswordInput from './PasswordInput';
+
+import { Input, Stack, InputGroup, InputRightElement } from '@chakra-ui/react';
+import { EmailIcon } from '@chakra-ui/icons';
 
 import './css/Header.css'
 
@@ -13,10 +17,17 @@ import './css/Login.css'
 
 function Header() {
 
-    function openModal(){
+    function openModal() {
         document.getElementById('loginModal').classList.add('d-flex')
         document.getElementById('loginModal').classList.remove('d-none')
     }
+
+    function closeModal() {
+        document.getElementById('loginModal').classList.remove('d-flex')
+        document.getElementById('loginModal').classList.add('d-none')
+    }
+
+
 
     return (
 
@@ -25,8 +36,33 @@ function Header() {
 
             <div className='loginModal d-none' id='loginModal'>
                 <div className="containerLogin">
-                    <div className="form">
+                    <button onClick={closeModal} className='botaoFecharModalLogin'>X</button>
+                    <div className="formLogin">
+                        <div className="textoLogin">
                         <img src={logo} alt="logotipo da empresa" />
+                        <h1>Olá</h1>
+                        <h4>Bem vindo de volta</h4>
+                        <Stack spacing={2}>
+                            <InputGroup >
+                                <InputRightElement pointerEvents='none'>
+                                    <EmailIcon color='gray' />
+                                </InputRightElement>
+                                <Input
+                                    type='email'
+                                    placeholder='Email'
+                                    className='inputField'
+                                    fontSize={['sm', 'md', 'lg']}
+                                    id='inputPesquisa'
+                                />
+                            </InputGroup>
+                            <PasswordInput/>
+                            <span className='forgotPassword'>Esqueci a senha</span>
+                        </Stack>
+                        </div>
+
+                        <span>Não tem conta? Cadastre-se aqui.</span>
+                        <button>Entrar</button>
+
                     </div>
                     <div className="imgLogin">
                         <img src={imageLogin} alt="imagem de um homem e uma mulher na biblioteca" />

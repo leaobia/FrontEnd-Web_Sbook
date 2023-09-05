@@ -11,10 +11,55 @@ width: 100vw;
     z-index: 3;
     opacity: 1;
     background-color: #FFFF;
-    width: 50%;
-    margin-top: 25vh;
-    margin-left: 25%;
+    width: fit-content;
+    margin-top: 15vh;
+    margin-left: 13vw;
     display: flex;
-    height: 60vh;
+    height: fit-content;
 }
 
+.botaoFecharModalLogin{
+    width: auto;
+    height: auto;
+    display: grid;
+    place-self: start;
+   color: #AA6231;
+   font-weight: bolder;
+   margin: 15px 0px 0px 15px;
+   transition: .2s ease-in-out;
+}
+.botaoFecharModalLogin:hover{
+   scale: 1.3;
+}
+
+.formLogin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10vh;
+}
+
+.textoLogin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+}
+
+.forgotPassword{
+    display: grid;
+    place-self: end;
+}
+
+@media (max-width:700px) {
+    .imgLogin{
+        display: none;
+    }
+
+    .containerLogin{
+        display: grid;
+        place-self: start center;
+        margin-top: 10vh;
+    }
+}
