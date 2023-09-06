@@ -45,13 +45,13 @@ function Filtragem() {
                 <div className="livrosContainerSidebar">
                 <h4 className='titleSection'>Livros</h4>
                     <Stack spacing={5} direction='row'>
-                        <Checkbox colorScheme='gray' defaultChecked>
+                        <Checkbox colorScheme='gray'  className='opcaoChecagem'>
                             Novos
                         </Checkbox>
-                        <Checkbox colorScheme='gray' defaultChecked>
+                        <Checkbox colorScheme='gray'  className='opcaoChecagem'>
                             Seminovos
                         </Checkbox>
-                        <Checkbox colorScheme='gray' defaultChecked>
+                        <Checkbox colorScheme='gray'  className='opcaoChecagem'>
                             Usados
                         </Checkbox>
                     </Stack>
@@ -59,6 +59,24 @@ function Filtragem() {
                 <div className="generoContainer">
                 <h4 className='titleSection'>Gênero</h4>
                 <ApiGenero/>
+                </div>
+                <div className="anoDoLivroContainer">
+                <h4 className='titleSection'>Ano</h4>
+                <Stack spacing={5} className='stackDigitarLocal'>
+                        <InputGroup >
+                            <Input
+                                type='number'
+                                placeholder='Digite o ano do livro'
+                                h='48px'
+                                className='inputField'
+                                fontSize={['sm', 'md', 'lg']}
+                            />
+                        </InputGroup>
+                        <span className='opcaoChecagem'>Ex: 2008</span>
+                    </Stack>
+                </div>
+                <div className="limparContainer">
+                    <button title='Clique aqui para limpar os dados'>Limpar</button>
                 </div>
             </Sidebar>
 

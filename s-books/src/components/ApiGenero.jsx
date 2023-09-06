@@ -42,6 +42,7 @@ function ApiGenero() {
                 isChecked={selecionados[nome] || false}
                 onChange={() => toggleSelecionado(nome)}
                 colorScheme='gray'
+                className='opcaoChecagem'
               >
                 {nome}
               </Checkbox>

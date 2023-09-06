@@ -48,12 +48,23 @@
 .stackDigitarLocal{
     width: 70%;
 }
-.filtragemContainer, .livrosContainerSidebar, .generoContainer{
+.filtragemContainer, .livrosContainerSidebar, .generoContainer, .anoDoLivroContainer, .limparContainer{
     padding: 5%;
     display: flex;
     flex-direction: column;
     gap: 5vh;
     border-bottom: .4px solid gray;
+}
+
+.limparContainer button{
+    width: fit-content;
+    display: grid;
+    place-self: center;
+    padding: 4% 30%;
+    border-radius: 8px;
+    border: .5px solid #5C2C0C;
+    font-size: 1.3rem;
+    color: #5C2C0C;
 }
 
 .filtragemContainer h1{
@@ -82,6 +93,11 @@
     display: grid;
     place-self: end;
     grid-template-columns: 1fr .4fr;
+}
+
+.opcaoChecagem{
+    color: #5C2C0C;
+    font-weight: 500;
 }
 
 @media (max-width:1600px) {
