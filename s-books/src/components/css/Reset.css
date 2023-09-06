@@ -1,0 +1,148 @@
+.resetSenha {
+    z-index: 3;
+    opacity: 1;
+    background-color: #FFFF;
+    width: 70vw;
+    height: 80vh;
+    justify-content: space-between;
+}
+
+
+.formEsqueciSenha{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 90%;
+}
+
+.imgEsqueciSenha{
+    height: 100%;
+}
+
+.imgEsqueciSenha img{
+    height: 100%;
+}
+
+.imgTitle{
+    width: 20vw;
+}
+
+.imgTitle h1{
+    font-size: clamp(1.4375rem, -2.7813rem + 22.5vw, 2rem);
+    color: #AC8F83;
+}
+
+.resetLogo{
+    margin-left: 80%;
+}
+
+.pegarEmailContainer{
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    gap: 3vh;
+    align-items: center;
+    text-align: center;
+}
+
+.pegarEmailContainer h3{
+    font-weight: bold;
+    font-size: clamp(0.875rem, -0.375rem + 10vw, 1.125rem);
+}
+
+.solicitarCodigoContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+
+.solicitarCodigoContainer button{
+    background-color: #AA6231;
+    color: #ffff;
+    font-weight: bold;
+    font-size: 1.3rem;
+    width: 15vw;
+    height: 5vh;
+    border-radius: 8px;
+}
+
+.linkCodigo{
+    color: #9F9898;
+    text-decoration: underline;
+}
+
+.contentReset{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+
+.resetButtonClose{
+    display: grid;
+    place-self: end;
+    margin-right: 3%;
+}
+
+@media (max-width:1500px) {
+
+    .contentReset{
+        width: 100%;
+    }
+
+    .resetSenha {
+        justify-content: center;
+    }
+
+    .imgTitle{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50vw;
+    }
+
+    .resetLogo{
+        margin-left: 0;
+    }
+
+
+    .resetSenha {
+        justify-content: center;
+        width: 75vw;
+        height: 75vh;
+    }
+
+    .imgEsqueciSenha {
+        display: none;
+    }
+
+    .pegarEmailContainer{
+        width: 80%;
+    }
+
+    .solicitarCodigoContainer button{
+        width: 30vw;
+        height: 5vh;
+    }
+}
+
+@media (max-width:600px) {
+
+    .imgTitle{
+        width: 90vw;
+    }
+
+    .resetSenha {
+        width: 90vw;
+        height: 90vh;
+    }
+
+    .solicitarCodigoContainer button{
+        width: 60vw;
+        height: 7vh;
+    }
+
+}

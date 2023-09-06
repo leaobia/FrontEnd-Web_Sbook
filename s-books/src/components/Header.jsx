@@ -4,6 +4,7 @@ import imageLogin from './img/imagemLogin.png'
 import userProfile from './img/Vector.png'
 import userFavorites from './img/coracao.png'
 import userChats from './img/chat.png'
+import imagemResetSenha from './img/imagemResetSenha.png'
 import PasswordInput from './PasswordInput';
 
 import { Input, Stack, InputGroup, InputRightElement} from '@chakra-ui/react';
@@ -18,9 +19,16 @@ import './css/Login.css'
 
 import './css/Cadastro.css'
 
+import './css/Reset.css'
+
 function Header() {
 
     function openModalPai(){
+
+
+        document.getElementById('body').classList.remove('overflow-auto')
+        document.getElementById('body').classList.add('overflow-hidden')
+
         document.getElementById('modalPai').classList.remove('d-none')
         document.getElementById('modalPai').classList.add('d-flex')
 
@@ -29,6 +37,9 @@ function Header() {
 
         document.getElementById('containerLogin').classList.remove('d-none')
         document.getElementById('containerLogin').classList.add('d-flex')
+
+        document.getElementById('resetSenha').classList.remove('d-flex')
+        document.getElementById('resetSenha').classList.add('d-none')
     }
 
     function abrirContainerCadastro(){
@@ -37,6 +48,9 @@ function Header() {
 
         document.getElementById('containerCadastro').classList.remove('d-none')
         document.getElementById('containerCadastro').classList.add('d-flex')
+
+        document.getElementById('resetSenha').classList.remove('d-flex')
+        document.getElementById('resetSenha').classList.add('d-none')
     }
 
     function abrirContainerLogin(){
@@ -45,13 +59,30 @@ function Header() {
 
         document.getElementById('containerLogin').classList.remove('d-none')
         document.getElementById('containerLogin').classList.add('d-flex')
+
+        document.getElementById('resetSenha').classList.remove('d-flex')
+        document.getElementById('resetSenha').classList.add('d-none')
+    }
+
+    function abrirContainerResetSenha(){
+        document.getElementById('resetSenha').classList.remove('d-none')
+        document.getElementById('resetSenha').classList.add('d-flex')
+
+        document.getElementById('containerCadastro').classList.remove('d-flex')
+        document.getElementById('containerCadastro').classList.add('d-none')
+
+        document.getElementById('containerLogin').classList.remove('d-flex')
+        document.getElementById('containerLogin').classList.add('d-none')
     }
 
     function closeModalPai(){
+
+
+        document.getElementById('body').classList.add('overflow-auto')
+        document.getElementById('body').classList.remove('overflow-hidden')
+
         document.getElementById('modalPai').classList.remove('d-flex')
         document.getElementById('modalPai').classList.add('d-none')
-
-
     }
 
     return (
@@ -83,7 +114,7 @@ function Header() {
                                     />
                                 </InputGroup>
                                 <PasswordInput />
-                                <Link className='forgotPassword'>Esqueci a senha</Link>
+                                <button className='forgotPassword' onClick={abrirContainerResetSenha}>Esqueci a senha</button>
                             </Stack>
                         </div>
 
@@ -94,6 +125,41 @@ function Header() {
                     <div className="imgLogin">
                         <img src={imageLogin} alt="imagem de um homem e uma mulher na biblioteca" />
                     </div>
+                </div>
+
+                <div className="resetSenha d-none" id='resetSenha'>
+            
+                    <div className="imgEsqueciSenha">
+                    <img src={imagemResetSenha} alt="imagem de um menino pensando e com dúvida"/>
+                    </div>
+
+
+                    <div className="contentReset">
+                    <button onClick={closeModalPai} className='botaoFecharModalLogin resetButtonClose'>X</button>
+                    <div className="formEsqueciSenha">
+                        <div className="imgTitle">
+                            <img src={logo} alt="logotipo da empresa" className='imgLogo resetLogo'/>
+                            <h1>Esqueci minha senha</h1>
+                        </div>
+                        <div className="pegarEmailContainer">
+                            <h3>Prezado cliente, digitar seu email para recuperação de senha</h3>
+                                    <Input
+                                        type='email'
+                                        placeholder='Email'
+                                        w={[250, 350, 400]}
+                                        h='48px'
+                                        fontSize={['sm', 'md', 'lg']}
+                                    />     
+                        </div>
+                        <div className="solicitarCodigoContainer">
+                            <Link className='linkCodigo'>Já tenho o código de redefinição</Link>
+                            <button>Solicitar código</button>
+                        </div>
+                    </div>
+                    </div>
+                   
+
+
                 </div>
 
 
@@ -173,10 +239,10 @@ function Header() {
                 <div className='userMenuContainer'>
                     <div className='divborda'></div>
                     <div className="userMenu">
-                        <button className='userProfileButton' id='botaoLogin' onClick={openModalPai}><img src={userProfile} alt="icone de pessoa" /> <span>Entrar</span></button>
+                        <button className='userProfileButton' id='botaoLogin' onClick={openModalPai}><img src={userProfile} alt="icone de pessoa" className='imgHeader'/> <span>Entrar</span></button>
                         <div className='userMenuIcons'>
-                            <Link to='/favoritos' className='link'><img src={userFavorites} alt="icone de coração para ver os favoritos" /></Link>
-                            <Link to='/chat' className='link'><img src={userChats} alt="icone de chat para ver os chats enviados" /></Link>
+                            <Link to='/favoritos' className='link'><img src={userFavorites} alt="icone de coração para ver os favoritos"  className='imgHeader'/></Link>
+                            <Link to='/chat' className='link'><img src={userChats} alt="icone de chat para ver os chats enviados" className='imgHeader'/></Link>
                         </div>
                     </div>
                 </div>

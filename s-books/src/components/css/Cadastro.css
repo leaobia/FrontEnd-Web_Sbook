@@ -13,7 +13,6 @@
     opacity: 1;
     background-color: #FFFF;
     width: 70vw;
-    display: flex;
     justify-content: space-between;
     height: 80vh;
 }
@@ -112,6 +111,14 @@
 .linkCadastreAqui {
     color: #AA6231;
 }
+
+.imgLogo{
+    padding-left: 0;
+    height: 90px;
+    width: 90px;
+}
+
+
 
 @media (max-width:1000px) {
 
