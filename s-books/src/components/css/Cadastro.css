@@ -1,0 +1,136 @@
+.CadastroModal {
+    z-index: 2;
+    position: absolute;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.containerCadastro {
+    z-index: 3;
+    opacity: 1;
+    background-color: #FFFF;
+    width: 70vw;
+    display: flex;
+    justify-content: space-between;
+    height: 80vh;
+}
+
+.containerLeft{
+    height: 100%;
+    width: 50%;
+}
+
+.containerLeft img{
+    height: 100%;
+}
+
+.botaoFecharModalCadastro {
+    width: auto;
+    height: auto;
+    display: grid;
+    place-self: start;
+    color: #AA6231;
+    font-weight: bolder;
+    margin: 12px 16px 0px 0px;
+    transition: .2s ease-in-out;
+}
+
+.botaoFecharModalCadastro:hover {
+    scale: 1.3;
+}
+
+.imgCadastro {
+    padding-left: 0px;
+}
+
+.formCadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+    width: 40%;
+}
+
+.textoCadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+    margin-top: 4%;
+}
+
+.forgotPassword {
+    display: grid;
+    place-self: end;
+    color: #9F9898;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.formCadastro h1 {
+    font-weight: bold;
+    font-size: clamp(1rem, 0.5946rem + 2.1622vw, 1.25rem);
+}
+
+.formCadastro h4 {
+    font-weight: 500;
+    font-size: clamp(0.8125rem, -0.0182rem + 3.7975vw, 1rem);
+}
+
+.d-none {
+    display: none;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.buttonLogar {
+    background-color: #AA6231;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 175px;
+    height: 48px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    color: #FFFF;
+    font-weight: 700;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.loginConta {
+    font-weight: 600;
+    width: 100%;
+    text-align: end;
+}
+
+.linkCadastreAqui {
+    color: #AA6231;
+}
+
+@media (max-width:1000px) {
+
+    .containerLogin {
+        justify-content: center;
+        width: 75vw;
+        height: 75vh;
+    }
+
+    .imgLogin {
+        display: none;
+    }
+}
+
+@media (max-width:600px) {
+
+    .containerLogin {
+        width: 90vw;
+        height: 90vh;
+    }
+
+}
