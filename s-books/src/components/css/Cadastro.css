@@ -49,8 +49,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 64px;
+    justify-content: space-around;
     width: 40%;
 }
 
@@ -80,13 +79,6 @@
     font-size: clamp(0.8125rem, -0.0182rem + 3.7975vw, 1rem);
 }
 
-.d-none {
-    display: none;
-}
-
-.d-flex {
-    display: flex;
-}
 
 .buttonLogar {
     background-color: #AA6231;
@@ -122,22 +114,30 @@
 
 @media (max-width:1000px) {
 
-    .containerLogin {
+    .containerCadastro {
         justify-content: center;
-        width: 75vw;
-        height: 75vh;
+        width: 85vw;
+        height: 85vh;
     }
 
-    .imgLogin {
+    .imgCadastro, .containerLeft {
         display: none;
+    }
+
+    .textoCadastro{
+        width: 100%;
+    }
+
+    .formCadastro{
+        width: 100%;
     }
 }
 
-@media (max-width:600px) {
+@media (max-width:660px) {
 
-    .containerLogin {
-        width: 90vw;
-        height: 90vh;
+    .containerCadastro {
+        width: 95vw;
+        height: 95vh;
     }
 
 }

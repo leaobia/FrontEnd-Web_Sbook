@@ -40,17 +40,21 @@ function Header() {
 
         document.getElementById('resetSenha').classList.remove('d-flex')
         document.getElementById('resetSenha').classList.add('d-none')
+
+        document.getElementById('codigoRecuperacao').classList.remove('d-flex')
+        document.getElementById('codigoRecuperacao').classList.add('d-none')
     }
 
     function abrirContainerCadastro(){
         document.getElementById('containerLogin').classList.remove('d-flex')
         document.getElementById('containerLogin').classList.add('d-none')
 
-        document.getElementById('containerCadastro').classList.remove('d-none')
-        document.getElementById('containerCadastro').classList.add('d-flex')
-
+        
         document.getElementById('resetSenha').classList.remove('d-flex')
         document.getElementById('resetSenha').classList.add('d-none')
+
+        document.getElementById('containerCadastro').classList.remove('d-none')
+        document.getElementById('containerCadastro').classList.add('d-flex')
     }
 
     function abrirContainerLogin(){
@@ -75,6 +79,22 @@ function Header() {
         document.getElementById('containerLogin').classList.add('d-none')
     }
 
+    function abrirCodigoRecuperacao(){
+
+        document.getElementById('containerLogin').classList.remove('d-flex')
+        document.getElementById('containerLogin').classList.add('d-none')
+
+        
+        document.getElementById('resetSenha').classList.remove('d-flex')
+        document.getElementById('resetSenha').classList.add('d-none')
+
+        document.getElementById('containerCadastro').classList.remove('d-flex')
+        document.getElementById('containerCadastro').classList.add('d-none')
+
+        document.getElementById('codigoRecuperacao').classList.add('d-flex')
+        document.getElementById('codigoRecuperacao').classList.remove('d-none')
+    }
+
     function closeModalPai(){
 
 
@@ -84,6 +104,7 @@ function Header() {
         document.getElementById('modalPai').classList.remove('d-flex')
         document.getElementById('modalPai').classList.add('d-none')
     }
+
 
     return (
 
@@ -132,8 +153,6 @@ function Header() {
                     <div className="imgEsqueciSenha">
                     <img src={imagemResetSenha} alt="imagem de um menino pensando e com dúvida"/>
                     </div>
-
-
                     <div className="contentReset">
                     <button onClick={closeModalPai} className='botaoFecharModalLogin resetButtonClose'>X</button>
                     <div className="formEsqueciSenha">
@@ -153,14 +172,44 @@ function Header() {
                         </div>
                         <div className="solicitarCodigoContainer">
                             <Link className='linkCodigo'>Já tenho o código de redefinição</Link>
-                            <button>Solicitar código</button>
+                            <button onClick={abrirCodigoRecuperacao}>Solicitar código</button>
                         </div>
                     </div>
                     </div>
-                   
-
 
                 </div>
+
+
+                <div className="codigoRecuperacao d-none" id='codigoRecuperacao'>
+            
+            <div className="imgEsqueciSenha">
+            <img src={imagemResetSenha} alt="imagem de um menino pensando e com dúvida"/>
+            </div>
+            <div className="contentReset">
+            <button onClick={closeModalPai} className='botaoFecharModalLogin resetButtonClose'>X</button>
+            <div className="formEsqueciSenha">
+                <div className="imgTitle">
+                    <img src={logo} alt="logotipo da empresa" className='imgLogo resetLogo'/>
+                    <h1>Codigo Recuperacao</h1>
+                </div>
+                <div className="pegarEmailContainer">
+                    <h3>Prezado cliente, digitar seu email para recuperação de senha</h3>
+                            <Input
+                                type='email'
+                                placeholder='Email'
+                                w={[250, 350, 400]}
+                                h='48px'
+                                fontSize={['sm', 'md', 'lg']}
+                            />     
+                </div>
+                <div className="solicitarCodigoContainer">
+                    <Link className='linkCodigo'>Já tenho o código de redefinição</Link>
+                    <button>Solicitar código</button>
+                </div>
+            </div>
+            </div>
+            
+        </div>
 
 
                 <div className="containerCadastro d-none" id='containerCadastro'>
