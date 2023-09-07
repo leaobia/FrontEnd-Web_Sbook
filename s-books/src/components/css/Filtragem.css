@@ -41,7 +41,8 @@
     position: absolute;
     left: 0;
     top: 8vh;
-    height: auto;
+    height: 100vh;
+    overflow-y: auto;
     width: 20vw;
 }
 
