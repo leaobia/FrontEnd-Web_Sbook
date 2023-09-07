@@ -8,10 +8,12 @@ import imagemResetSenha from './img/imagemResetSenha.png'
 import imagemCodigoRecuperacao from './img/imgCodigoDeRecuperacao.png'
 import PasswordInput from './PasswordInput';
 
-import { Input, Stack, InputGroup, InputRightElement , HStack} from '@chakra-ui/react';
+import { Input, Stack, InputGroup, InputRightElement, HStack } from '@chakra-ui/react';
 import { PinInput, PinInputField } from '@chakra-ui/react'
 import PasswordConfirmInput from './PasswordConfirmInput';
 import { EmailIcon } from '@chakra-ui/icons';
+
+import React, { useState } from 'react';
 
 
 import './css/Header.css'
@@ -122,6 +124,28 @@ function Header() {
         document.getElementById('modalPai').classList.add('d-none')
     }
 
+    const [pin1, setPin1] = useState('');
+    const [pin2, setPin2] = useState('');
+    const [pin3, setPin3] = useState('');
+    const [pin4, setPin4] = useState('');
+    const [isValid, setIsValid] = useState(true);
+
+    
+    const checkPin = () => {
+        const correctPin = ['1', '2', '3', '4']; 
+        const enteredPin = [pin1, pin2, pin3, pin4];
+
+        const isPinValid = enteredPin.every((value, index) => value === correctPin[index]);
+
+        setIsValid(isPinValid);
+
+        if (isPinValid) {
+            alert('PIN válido');
+        } else {
+            alert('PIN inválido');
+        }
+    };
+
 
     return (
 
@@ -210,18 +234,27 @@ function Header() {
                             <div className="imgTitle">
                                 <img src={logo} alt="logotipo da empresa" className='imgLogo resetLogo' />
                                 <h1>Informe o código de verificação</h1>
+                                <p>Agora, insira o código que enviamos por e-mail para criar uma nova senha.</p>
                             </div>
                             <HStack>
                                 <PinInput otp>
-                                    <PinInputField />
-                                    <PinInputField />
-                                    <PinInputField />
-                                    <PinInputField />
+                                    <PinInputField value={pin1}
+                                        onChange={(e) => setPin1(e.target.value)}
+                                        isInvalid={!isValid} />
+                                    <PinInputField value={pin2}
+                                        onChange={(e) => setPin2(e.target.value)}
+                                        isInvalid={!isValid} />
+                                    <PinInputField value={pin3}
+                                        onChange={(e) => setPin3(e.target.value)}
+                                        isInvalid={!isValid} />
+                                    <PinInputField value={pin4}
+                                        onChange={(e) => setPin4(e.target.value)}
+                                        isInvalid={!isValid} />
                                 </PinInput>
                             </HStack>
                             <div className="buttonContainer">
-                                    <button className='buttonContainerContinuar'>Continuar</button>
-                                    <button className='buttonContainerReenviar'>Reenviar Código</button>
+                                <button className='buttonContainerContinuar' onClick={checkPin}>Continuar</button>
+                                <button className='buttonContainerReenviar'>Reenviar Código</button>
                             </div>
                         </div>
                     </div>
