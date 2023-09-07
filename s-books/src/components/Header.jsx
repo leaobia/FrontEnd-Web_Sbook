@@ -11,6 +11,7 @@ import { Input, Stack, InputGroup, InputRightElement} from '@chakra-ui/react';
 import PasswordConfirmInput from './PasswordConfirmInput';
 import { EmailIcon } from '@chakra-ui/icons';
 
+
 import './css/Header.css'
 
 import { Link } from "react-router-dom"
@@ -79,21 +80,35 @@ function Header() {
         document.getElementById('containerLogin').classList.add('d-none')
     }
 
-    function abrirCodigoRecuperacao(){
-
-        document.getElementById('containerLogin').classList.remove('d-flex')
-        document.getElementById('containerLogin').classList.add('d-none')
-
+    function abrirCodigoRecuperacao() {
+       
+        const emailInput = document.getElementById('emailRecuperarSenha').value;
+    
         
-        document.getElementById('resetSenha').classList.remove('d-flex')
-        document.getElementById('resetSenha').classList.add('d-none')
-
-        document.getElementById('containerCadastro').classList.remove('d-flex')
-        document.getElementById('containerCadastro').classList.add('d-none')
-
-        document.getElementById('codigoRecuperacao').classList.add('d-flex')
-        document.getElementById('codigoRecuperacao').classList.remove('d-none')
+        if (emailInput) {
+            
+            const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+            if (emailRegex.test(emailInput)) {
+               
+                document.getElementById('containerLogin').classList.remove('d-flex');
+                document.getElementById('containerLogin').classList.add('d-none');
+    
+                document.getElementById('resetSenha').classList.remove('d-flex');
+                document.getElementById('resetSenha').classList.add('d-none');
+    
+                document.getElementById('containerCadastro').classList.remove('d-flex');
+                document.getElementById('containerCadastro').classList.add('d-none');
+    
+                document.getElementById('codigoRecuperacao').classList.add('d-flex');
+                document.getElementById('codigoRecuperacao').classList.remove('d-none');
+            } else {
+                alert('Por favor, insira um endereço de e-mail válido.');
+            }
+        } else {
+            alert('Por favor, preencha o campo de e-mail.');
+        }
     }
+    
 
     function closeModalPai(){
 
@@ -167,6 +182,8 @@ function Header() {
                                         placeholder='Email'
                                         w={[250, 350, 400]}
                                         h='48px'
+                                        required
+                                        id='emailRecuperarSenha'
                                         fontSize={['sm', 'md', 'lg']}
                                     />     
                         </div>
