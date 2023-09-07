@@ -99,7 +99,7 @@ width: 100%;
 
 @media (max-width:1000px) {
 
-    .containerLogin{
+    .containerLogin, .codigoRecuperacao {
         justify-content: center;
         width: 75vw;
         height: 75vh;
@@ -111,9 +111,13 @@ width: 100%;
 
 @media (max-width:600px) {
 
-    .containerLogin{
+    .containerLogin, .codigoRecuperacao {
         width: 90vw;
         height: 90vh;
+    }
+
+    .imgTitle h1{
+        text-align: center;
     }
 
 }

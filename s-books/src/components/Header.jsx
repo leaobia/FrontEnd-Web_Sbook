@@ -5,9 +5,11 @@ import userProfile from './img/Vector.png'
 import userFavorites from './img/coracao.png'
 import userChats from './img/chat.png'
 import imagemResetSenha from './img/imagemResetSenha.png'
+import imagemCodigoRecuperacao from './img/imgCodigoDeRecuperacao.png'
 import PasswordInput from './PasswordInput';
 
-import { Input, Stack, InputGroup, InputRightElement} from '@chakra-ui/react';
+import { Input, Stack, InputGroup, InputRightElement , HStack} from '@chakra-ui/react';
+import { PinInput, PinInputField } from '@chakra-ui/react'
 import PasswordConfirmInput from './PasswordConfirmInput';
 import { EmailIcon } from '@chakra-ui/icons';
 
@@ -24,7 +26,7 @@ import './css/Reset.css'
 
 function Header() {
 
-    function openModalPai(){
+    function openModalPai() {
 
 
         document.getElementById('body').classList.remove('overflow-auto')
@@ -46,11 +48,11 @@ function Header() {
         document.getElementById('codigoRecuperacao').classList.add('d-none')
     }
 
-    function abrirContainerCadastro(){
+    function abrirContainerCadastro() {
         document.getElementById('containerLogin').classList.remove('d-flex')
         document.getElementById('containerLogin').classList.add('d-none')
 
-        
+
         document.getElementById('resetSenha').classList.remove('d-flex')
         document.getElementById('resetSenha').classList.add('d-none')
 
@@ -58,7 +60,7 @@ function Header() {
         document.getElementById('containerCadastro').classList.add('d-flex')
     }
 
-    function abrirContainerLogin(){
+    function abrirContainerLogin() {
         document.getElementById('containerCadastro').classList.remove('d-flex')
         document.getElementById('containerCadastro').classList.add('d-none')
 
@@ -69,7 +71,7 @@ function Header() {
         document.getElementById('resetSenha').classList.add('d-none')
     }
 
-    function abrirContainerResetSenha(){
+    function abrirContainerResetSenha() {
         document.getElementById('resetSenha').classList.remove('d-none')
         document.getElementById('resetSenha').classList.add('d-flex')
 
@@ -81,24 +83,24 @@ function Header() {
     }
 
     function abrirCodigoRecuperacao() {
-       
+
         const emailInput = document.getElementById('emailRecuperarSenha').value;
-    
-        
+
+
         if (emailInput) {
-            
+
             const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
             if (emailRegex.test(emailInput)) {
-               
+
                 document.getElementById('containerLogin').classList.remove('d-flex');
                 document.getElementById('containerLogin').classList.add('d-none');
-    
+
                 document.getElementById('resetSenha').classList.remove('d-flex');
                 document.getElementById('resetSenha').classList.add('d-none');
-    
+
                 document.getElementById('containerCadastro').classList.remove('d-flex');
                 document.getElementById('containerCadastro').classList.add('d-none');
-    
+
                 document.getElementById('codigoRecuperacao').classList.add('d-flex');
                 document.getElementById('codigoRecuperacao').classList.remove('d-none');
             } else {
@@ -108,9 +110,9 @@ function Header() {
             alert('Por favor, preencha o campo de e-mail.');
         }
     }
-    
 
-    function closeModalPai(){
+
+    function closeModalPai() {
 
 
         document.getElementById('body').classList.add('overflow-auto')
@@ -164,69 +166,67 @@ function Header() {
                 </div>
 
                 <div className="resetSenha d-none" id='resetSenha'>
-            
+
                     <div className="imgEsqueciSenha">
-                    <img src={imagemResetSenha} alt="imagem de um menino pensando e com dúvida"/>
+                        <img src={imagemResetSenha} alt="imagem de um menino pensando e com dúvida" />
                     </div>
                     <div className="contentReset">
-                    <button onClick={closeModalPai} className='botaoFecharModalLogin resetButtonClose'>X</button>
-                    <div className="formEsqueciSenha">
-                        <div className="imgTitle">
-                            <img src={logo} alt="logotipo da empresa" className='imgLogo resetLogo'/>
-                            <h1>Esqueci minha senha</h1>
+                        <button onClick={closeModalPai} className='botaoFecharModalLogin resetButtonClose'>X</button>
+                        <div className="formEsqueciSenha">
+                            <div className="imgTitle">
+                                <img src={logo} alt="logotipo da empresa" className='imgLogo resetLogo' />
+                                <h1>Esqueci minha senha</h1>
+                            </div>
+                            <div className="pegarEmailContainer">
+                                <h3>Prezado cliente, digitar seu email para recuperação de senha</h3>
+                                <Input
+                                    type='email'
+                                    placeholder='Email'
+                                    w={[250, 350, 400]}
+                                    h='48px'
+                                    required
+                                    id='emailRecuperarSenha'
+                                    fontSize={['sm', 'md', 'lg']}
+                                />
+                            </div>
+                            <div className="solicitarCodigoContainer">
+                                <Link className='linkCodigo'>Já tenho o código de redefinição</Link>
+                                <button onClick={abrirCodigoRecuperacao}>Solicitar código</button>
+                            </div>
                         </div>
-                        <div className="pegarEmailContainer">
-                            <h3>Prezado cliente, digitar seu email para recuperação de senha</h3>
-                                    <Input
-                                        type='email'
-                                        placeholder='Email'
-                                        w={[250, 350, 400]}
-                                        h='48px'
-                                        required
-                                        id='emailRecuperarSenha'
-                                        fontSize={['sm', 'md', 'lg']}
-                                    />     
-                        </div>
-                        <div className="solicitarCodigoContainer">
-                            <Link className='linkCodigo'>Já tenho o código de redefinição</Link>
-                            <button onClick={abrirCodigoRecuperacao}>Solicitar código</button>
-                        </div>
-                    </div>
                     </div>
 
                 </div>
 
 
                 <div className="codigoRecuperacao d-none" id='codigoRecuperacao'>
-            
-            <div className="imgEsqueciSenha">
-            <img src={imagemResetSenha} alt="imagem de um menino pensando e com dúvida"/>
-            </div>
-            <div className="contentReset">
-            <button onClick={closeModalPai} className='botaoFecharModalLogin resetButtonClose'>X</button>
-            <div className="formEsqueciSenha">
-                <div className="imgTitle">
-                    <img src={logo} alt="logotipo da empresa" className='imgLogo resetLogo'/>
-                    <h1>Codigo Recuperacao</h1>
+
+                    <div className="imgEsqueciSenha">
+                        <img src={imagemCodigoRecuperacao} alt="imagem de uma mulher com a mão na cabeça e com dúvidas" />
+                    </div>
+                    <div className="contentReset">
+                        <button onClick={closeModalPai} className='botaoFecharModalLogin resetButtonClose'>X</button>
+                        <div className="formEsqueciSenha">
+                            <div className="imgTitle">
+                                <img src={logo} alt="logotipo da empresa" className='imgLogo resetLogo' />
+                                <h1>Informe o código de verificação</h1>
+                            </div>
+                            <HStack>
+                                <PinInput otp>
+                                    <PinInputField />
+                                    <PinInputField />
+                                    <PinInputField />
+                                    <PinInputField />
+                                </PinInput>
+                            </HStack>
+                            <div className="buttonContainer">
+                                    <button className='buttonContainerContinuar'>Continuar</button>
+                                    <button className='buttonContainerReenviar'>Reenviar Código</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div className="pegarEmailContainer">
-                    <h3>Prezado cliente, digitar seu email para recuperação de senha</h3>
-                            <Input
-                                type='email'
-                                placeholder='Email'
-                                w={[250, 350, 400]}
-                                h='48px'
-                                fontSize={['sm', 'md', 'lg']}
-                            />     
-                </div>
-                <div className="solicitarCodigoContainer">
-                    <Link className='linkCodigo'>Já tenho o código de redefinição</Link>
-                    <button>Solicitar código</button>
-                </div>
-            </div>
-            </div>
-            
-        </div>
 
 
                 <div className="containerCadastro d-none" id='containerCadastro'>
@@ -305,16 +305,16 @@ function Header() {
                 <div className='userMenuContainer'>
                     <div className='divborda'></div>
                     <div className="userMenu">
-                        <button className='userProfileButton' id='botaoLogin' onClick={openModalPai}><img src={userProfile} alt="icone de pessoa" className='imgHeader'/> <span>Entrar</span></button>
+                        <button className='userProfileButton' id='botaoLogin' onClick={openModalPai}><img src={userProfile} alt="icone de pessoa" className='imgHeader' /> <span>Entrar</span></button>
                         <div className='userMenuIcons'>
-                            <Link to='/favoritos' className='link'><img src={userFavorites} alt="icone de coração para ver os favoritos"  className='imgHeader'/></Link>
-                            <Link to='/chat' className='link'><img src={userChats} alt="icone de chat para ver os chats enviados" className='imgHeader'/></Link>
+                            <Link to='/favoritos' className='link'><img src={userFavorites} alt="icone de coração para ver os favoritos" className='imgHeader' /></Link>
+                            <Link to='/chat' className='link'><img src={userChats} alt="icone de chat para ver os chats enviados" className='imgHeader' /></Link>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-   
+
     )
 }
 
