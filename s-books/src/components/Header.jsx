@@ -131,7 +131,7 @@ function Header() {
         }
     }
 
-    function abrirTrocarSenha(){
+    function abrirTrocarSenha() {
         document.getElementById('containerLogin').classList.remove('d-flex');
         document.getElementById('containerLogin').classList.add('d-none');
 
@@ -165,9 +165,9 @@ function Header() {
     const [pin4, setPin4] = useState('');
     const [isValid, setIsValid] = useState(true);
 
-    
+
     const checkPin = () => {
-        const correctPin = ['1', '2', '3', '4']; 
+        const correctPin = ['1', '2', '3', '4'];
         const enteredPin = [pin1, pin2, pin3, pin4];
 
         const isPinValid = enteredPin.every((value, index) => value === correctPin[index]);
@@ -180,6 +180,17 @@ function Header() {
             alert('PIN inválido');
         }
     };
+
+
+    function verificarSenhasTroca() {
+        const inputNovaSenha = document.getElementById('novaSenha');
+        const inputNovaSenhaConfirmar = document.getElementById('confirmarSenhaTroca');
+    
+        console.log(inputNovaSenha.value)
+        console.log(inputNovaSenhaConfirmar.value)
+    }
+    
+
 
 
     return (
@@ -311,12 +322,12 @@ function Header() {
                             </div>
 
                             <Stack spacing={4}>
-                                <PasswordInput placeholder='Nova senha' />
-                                <PasswordInput  placeholder='Confirmar senha' />
+                                <PasswordInput placeholder='Nova senha' id='novaSenha' />
+                                <PasswordInput placeholder='Confirmar senha' id='confirmarSenhaTroca' />
                             </Stack>
 
                             <div className="buttonContainer">
-                                <button className='buttonContainerReenviar'>Redefinir senha</button>
+                                <button className='buttonContainerReenviar' id='redefinirSenha' onClick={verificarSenhasTroca}>Redefinir senha</button>
                             </div>
                         </div>
                     </div>
@@ -376,7 +387,7 @@ function Header() {
                                         fontSize={['sm', 'md', 'lg']}
                                     />
                                 </InputGroup>
-                                <PasswordInput  placeholder='Senha'/>
+                                <PasswordInput placeholder='Senha' />
                                 <PasswordInput placeholder='Confirmar senha' />
                             </Stack>
                         </div>

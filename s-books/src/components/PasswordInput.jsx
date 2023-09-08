@@ -2,7 +2,7 @@ import { Input, InputGroup, InputRightElement, Button, Icon } from '@chakra-ui/r
 import React from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
-function PasswordInput({ placeholder }) {
+function PasswordInput({ placeholder, id }) {
     const [show, setShow] = React.useState(false)
     const handleClick = () => setShow(!show)
   
@@ -12,6 +12,7 @@ function PasswordInput({ placeholder }) {
           pr='4.5rem'
           type={show ? 'text' : 'password'}
           placeholder= {placeholder}
+          id={id}
           w={[250, 350, 400]}
           h="48px"
         />
