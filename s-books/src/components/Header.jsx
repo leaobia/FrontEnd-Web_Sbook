@@ -6,11 +6,14 @@ import userFavorites from './img/coracao.png'
 import userChats from './img/chat.png'
 import imagemResetSenha from './img/imagemResetSenha.png'
 import imagemCodigoRecuperacao from './img/imgCodigoDeRecuperacao.png'
+import imagemRedefinirSenha from './img/recuperarContaimg.png'
+
+
 import PasswordInput from './PasswordInput';
 
 import { Input, Stack, InputGroup, InputRightElement, HStack } from '@chakra-ui/react';
 import { PinInput, PinInputField } from '@chakra-ui/react'
-import PasswordConfirmInput from './PasswordConfirmInput';
+
 import { EmailIcon } from '@chakra-ui/icons';
 
 import React, { useState } from 'react';
@@ -46,6 +49,9 @@ function Header() {
         document.getElementById('resetSenha').classList.remove('d-flex')
         document.getElementById('resetSenha').classList.add('d-none')
 
+        document.getElementById('trocarSenha').classList.remove('d-flex');
+        document.getElementById('trocarSenha').classList.add('d-none');
+
         document.getElementById('codigoRecuperacao').classList.remove('d-flex')
         document.getElementById('codigoRecuperacao').classList.add('d-none')
     }
@@ -58,6 +64,9 @@ function Header() {
         document.getElementById('resetSenha').classList.remove('d-flex')
         document.getElementById('resetSenha').classList.add('d-none')
 
+        document.getElementById('trocarSenha').classList.remove('d-flex');
+        document.getElementById('trocarSenha').classList.add('d-none');
+
         document.getElementById('containerCadastro').classList.remove('d-none')
         document.getElementById('containerCadastro').classList.add('d-flex')
     }
@@ -69,6 +78,9 @@ function Header() {
         document.getElementById('containerLogin').classList.remove('d-none')
         document.getElementById('containerLogin').classList.add('d-flex')
 
+        document.getElementById('trocarSenha').classList.remove('d-flex');
+        document.getElementById('trocarSenha').classList.add('d-none');
+
         document.getElementById('resetSenha').classList.remove('d-flex')
         document.getElementById('resetSenha').classList.add('d-none')
     }
@@ -79,6 +91,9 @@ function Header() {
 
         document.getElementById('containerCadastro').classList.remove('d-flex')
         document.getElementById('containerCadastro').classList.add('d-none')
+
+        document.getElementById('trocarSenha').classList.remove('d-flex');
+        document.getElementById('trocarSenha').classList.add('d-none');
 
         document.getElementById('containerLogin').classList.remove('d-flex')
         document.getElementById('containerLogin').classList.add('d-none')
@@ -103,6 +118,9 @@ function Header() {
                 document.getElementById('containerCadastro').classList.remove('d-flex');
                 document.getElementById('containerCadastro').classList.add('d-none');
 
+                document.getElementById('trocarSenha').classList.remove('d-flex');
+                document.getElementById('trocarSenha').classList.add('d-none');
+
                 document.getElementById('codigoRecuperacao').classList.add('d-flex');
                 document.getElementById('codigoRecuperacao').classList.remove('d-none');
             } else {
@@ -111,6 +129,23 @@ function Header() {
         } else {
             alert('Por favor, preencha o campo de e-mail.');
         }
+    }
+
+    function abrirTrocarSenha(){
+        document.getElementById('containerLogin').classList.remove('d-flex');
+        document.getElementById('containerLogin').classList.add('d-none');
+
+        document.getElementById('resetSenha').classList.remove('d-flex');
+        document.getElementById('resetSenha').classList.add('d-none');
+
+        document.getElementById('containerCadastro').classList.remove('d-flex');
+        document.getElementById('containerCadastro').classList.add('d-none');
+
+        document.getElementById('codigoRecuperacao').classList.remove('d-flex');
+        document.getElementById('codigoRecuperacao').classList.add('d-none');
+
+        document.getElementById('trocarSenha').classList.remove('d-none');
+        document.getElementById('trocarSenha').classList.add('d-flex');
     }
 
 
@@ -140,7 +175,7 @@ function Header() {
         setIsValid(isPinValid);
 
         if (isPinValid) {
-            alert('PIN válido');
+            abrirTrocarSenha()
         } else {
             alert('PIN inválido');
         }
@@ -175,7 +210,7 @@ function Header() {
                                         fontSize={['sm', 'md', 'lg']}
                                     />
                                 </InputGroup>
-                                <PasswordInput />
+                                <PasswordInput placeholder='Senha' />
                                 <button className='forgotPassword' onClick={abrirContainerResetSenha}>Esqueci a senha</button>
                             </Stack>
                         </div>
@@ -261,6 +296,33 @@ function Header() {
 
                 </div>
 
+                <div className="trocarSenha d-none" id='trocarSenha'>
+
+                    <div className="imgEsqueciSenha">
+                        <img src={imagemRedefinirSenha} alt="imagem de uma mulher com a mão na cabeça e com dúvidas" />
+                    </div>
+                    <div className="contentReset">
+                        <button onClick={closeModalPai} className='botaoFecharModalLogin resetButtonClose'>X</button>
+                        <div className="formEsqueciSenha">
+                            <div className="imgTitle">
+                                <img src={logo} alt="logotipo da empresa" className='imgLogo resetLogo' />
+                                <h1>Recuperação de conta</h1>
+                                <p>Crie sua nova senha.</p>
+                            </div>
+
+                            <Stack spacing={4}>
+                                <PasswordInput placeholder='Nova senha' />
+                                <PasswordInput  placeholder='Confirmar senha' />
+                            </Stack>
+
+                            <div className="buttonContainer">
+                                <button className='buttonContainerReenviar'>Redefinir senha</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
 
                 <div className="containerCadastro d-none" id='containerCadastro'>
                     <div className="containerLeft">
@@ -314,8 +376,8 @@ function Header() {
                                         fontSize={['sm', 'md', 'lg']}
                                     />
                                 </InputGroup>
-                                <PasswordInput />
-                                <PasswordConfirmInput />
+                                <PasswordInput  placeholder='Senha'/>
+                                <PasswordInput placeholder='Confirmar senha' />
                             </Stack>
                         </div>
                         <button className='buttonLogar'>Entrar</button>

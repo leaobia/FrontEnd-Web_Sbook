@@ -10,7 +10,7 @@ width: 100%;
 }
 
 
-.containerLogin, .codigoRecuperacao{
+.containerLogin, .codigoRecuperacao, .trocarSenha{
     z-index: 3;
     opacity: 1;
     background-color: #FFFF;
@@ -103,7 +103,7 @@ width: 100%;
 
 @media (max-width:1000px) {
 
-    .containerLogin, .codigoRecuperacao {
+    .containerLogin, .codigoRecuperacao, .trocarSenha {
         justify-content: center;
         width: 75vw;
         height: 75vh;
@@ -115,7 +115,7 @@ width: 100%;
 
 @media (max-width:600px) {
 
-    .containerLogin, .codigoRecuperacao {
+    .containerLogin, .codigoRecuperacao, .trocarSenha {
         width: 90vw;
         height: 90vh;
     }
