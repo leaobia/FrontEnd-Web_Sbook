@@ -5,6 +5,7 @@ import userProfile from './img/Vector.png'
 import userFavorites from './img/coracao.png'
 import userChats from './img/chat.png'
 import imagemResetSenha from './img/imagemResetSenha.png'
+import imagemSenhaRedefinidaComSucesso from './img/redefinidacomsucesso.png'
 import imagemCodigoRecuperacao from './img/imgCodigoDeRecuperacao.png'
 import imagemRedefinirSenha from './img/recuperarContaimg.png'
 
@@ -31,167 +32,133 @@ import './css/Reset.css'
 
 function Header() {
 
-    function openModalPai() {
-
-
-        document.getElementById('body').classList.remove('overflow-auto')
-        document.getElementById('body').classList.add('overflow-hidden')
-
-        document.getElementById('modalPai').classList.remove('d-none')
-        document.getElementById('modalPai').classList.add('d-flex')
-
-        document.getElementById('containerCadastro').classList.add('d-none')
-        document.getElementById('containerCadastro').classList.remove('d-flex')
-
-        document.getElementById('containerLogin').classList.remove('d-none')
-        document.getElementById('containerLogin').classList.add('d-flex')
-
-        document.getElementById('resetSenha').classList.remove('d-flex')
-        document.getElementById('resetSenha').classList.add('d-none')
-
-        document.getElementById('trocarSenha').classList.remove('d-flex');
-        document.getElementById('trocarSenha').classList.add('d-none');
-
-        document.getElementById('codigoRecuperacao').classList.remove('d-flex')
-        document.getElementById('codigoRecuperacao').classList.add('d-none')
+function hideElement(id) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.classList.remove('d-flex');
+        element.classList.add('d-none');
     }
+}
 
-    function abrirContainerCadastro() {
-        document.getElementById('containerLogin').classList.remove('d-flex')
-        document.getElementById('containerLogin').classList.add('d-none')
-
-
-        document.getElementById('resetSenha').classList.remove('d-flex')
-        document.getElementById('resetSenha').classList.add('d-none')
-
-        document.getElementById('trocarSenha').classList.remove('d-flex');
-        document.getElementById('trocarSenha').classList.add('d-none');
-
-        document.getElementById('containerCadastro').classList.remove('d-none')
-        document.getElementById('containerCadastro').classList.add('d-flex')
+function showElement(id) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.classList.remove('d-none');
+        element.classList.add('d-flex');
     }
+}
 
-    function abrirContainerLogin() {
-        document.getElementById('containerCadastro').classList.remove('d-flex')
-        document.getElementById('containerCadastro').classList.add('d-none')
+function openModalPai() {
+    document.getElementById('body').classList.remove('overflow-auto');
+    document.getElementById('body').classList.add('overflow-hidden');
 
-        document.getElementById('containerLogin').classList.remove('d-none')
-        document.getElementById('containerLogin').classList.add('d-flex')
+    showElement('modalPai');
+    hideElement('containerCadastro');
+    showElement('containerLogin');
+    hideElement('resetSenha');
+    hideElement('trocarSenha');
+    hideElement('senhaRedefinida');
+    hideElement('codigoRecuperacao');
+}
 
-        document.getElementById('trocarSenha').classList.remove('d-flex');
-        document.getElementById('trocarSenha').classList.add('d-none');
+function abrirContainerCadastro() {
+    hideElement('containerLogin');
+    hideElement('resetSenha');
+    hideElement('trocarSenha');
+    hideElement('senhaRedefinida');
+    showElement('containerCadastro');
+}
 
-        document.getElementById('resetSenha').classList.remove('d-flex')
-        document.getElementById('resetSenha').classList.add('d-none')
-    }
+function abrirContainerLogin() {
+    hideElement('containerCadastro');
+    showElement('containerLogin');
+    hideElement('trocarSenha');
+    hideElement('senhaRedefinida');
+    hideElement('resetSenha');
+}
 
-    function abrirContainerResetSenha() {
-        document.getElementById('resetSenha').classList.remove('d-none')
-        document.getElementById('resetSenha').classList.add('d-flex')
+function abrirContainerResetSenha() {
+    showElement('resetSenha');
+    hideElement('containerCadastro');
+    hideElement('trocarSenha');
+    hideElement('senhaRedefinida');
+    hideElement('containerLogin');
+}
 
-        document.getElementById('containerCadastro').classList.remove('d-flex')
-        document.getElementById('containerCadastro').classList.add('d-none')
+function abrirCodigoRecuperacao() {
+    const emailInput = document.getElementById('emailRecuperarSenha').value;
 
-        document.getElementById('trocarSenha').classList.remove('d-flex');
-        document.getElementById('trocarSenha').classList.add('d-none');
-
-        document.getElementById('containerLogin').classList.remove('d-flex')
-        document.getElementById('containerLogin').classList.add('d-none')
-    }
-
-    function abrirCodigoRecuperacao() {
-
-        const emailInput = document.getElementById('emailRecuperarSenha').value;
-
-
-        if (emailInput) {
-
-            const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-            if (emailRegex.test(emailInput)) {
-
-                document.getElementById('containerLogin').classList.remove('d-flex');
-                document.getElementById('containerLogin').classList.add('d-none');
-
-                document.getElementById('resetSenha').classList.remove('d-flex');
-                document.getElementById('resetSenha').classList.add('d-none');
-
-                document.getElementById('containerCadastro').classList.remove('d-flex');
-                document.getElementById('containerCadastro').classList.add('d-none');
-
-                document.getElementById('trocarSenha').classList.remove('d-flex');
-                document.getElementById('trocarSenha').classList.add('d-none');
-
-                document.getElementById('codigoRecuperacao').classList.add('d-flex');
-                document.getElementById('codigoRecuperacao').classList.remove('d-none');
-            } else {
-                alert('Por favor, insira um endereço de e-mail válido.');
-            }
+    if (emailInput) {
+        const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        if (emailRegex.test(emailInput)) {
+            hideElement('containerLogin');
+            hideElement('resetSenha');
+            hideElement('containerCadastro');
+            hideElement('trocarSenha');
+            hideElement('senhaRedefinida');
+            showElement('codigoRecuperacao');
         } else {
-            alert('Por favor, preencha o campo de e-mail.');
+            alert('Por favor, insira um endereço de e-mail válido.');
         }
+    } else {
+        alert('Por favor, preencha o campo de e-mail.');
     }
+}
 
-    function abrirTrocarSenha() {
-        document.getElementById('containerLogin').classList.remove('d-flex');
-        document.getElementById('containerLogin').classList.add('d-none');
+function abrirTrocarSenha() {
+    hideElement('containerLogin');
+    hideElement('resetSenha');
+    hideElement('containerCadastro');
+    hideElement('codigoRecuperacao');
+    hideElement('senhaRedefinida');
+    showElement('trocarSenha');
+}
 
-        document.getElementById('resetSenha').classList.remove('d-flex');
-        document.getElementById('resetSenha').classList.add('d-none');
+function abrirSenhaRedefinidaComSucesso() {
+    hideElement('containerLogin');
+    hideElement('resetSenha');
+    hideElement('containerCadastro');
+    hideElement('codigoRecuperacao');
+    hideElement('trocarSenha');
+    showElement('senhaRedefinida');
+}
 
-        document.getElementById('containerCadastro').classList.remove('d-flex');
-        document.getElementById('containerCadastro').classList.add('d-none');
+function closeModalPai() {
+    document.getElementById('body').classList.add('overflow-auto');
+    document.getElementById('body').classList.remove('overflow-hidden');
+    hideElement('modalPai');
+}
 
-        document.getElementById('codigoRecuperacao').classList.remove('d-flex');
-        document.getElementById('codigoRecuperacao').classList.add('d-none');
+const [pin1, setPin1] = useState('');
+const [pin2, setPin2] = useState('');
+const [pin3, setPin3] = useState('');
+const [pin4, setPin4] = useState('');
+const [isValid, setIsValid] = useState(true);
 
-        document.getElementById('trocarSenha').classList.remove('d-none');
-        document.getElementById('trocarSenha').classList.add('d-flex');
+const checkPin = () => {
+    const correctPin = ['1', '2', '3', '4'];
+    const enteredPin = [pin1, pin2, pin3, pin4];
+    const isPinValid = enteredPin.every((value, index) => value === correctPin[index]);
+
+    setIsValid(isPinValid);
+
+    if (isPinValid) {
+        abrirTrocarSenha();
+    } else {
+        alert('PIN inválido');
     }
+};
 
+function verificarSenhasTroca() {
+    const inputNovaSenha = document.getElementById('novaSenha').value;
+    const inputNovaSenhaConfirmar = document.getElementById('confirmarSenhaTroca').value;
 
-    function closeModalPai() {
-
-
-        document.getElementById('body').classList.add('overflow-auto')
-        document.getElementById('body').classList.remove('overflow-hidden')
-
-        document.getElementById('modalPai').classList.remove('d-flex')
-        document.getElementById('modalPai').classList.add('d-none')
+    if (inputNovaSenha === inputNovaSenhaConfirmar) {
+        abrirSenhaRedefinidaComSucesso();
+    } else {
+        alert('Senhas diferentes');
     }
-
-    const [pin1, setPin1] = useState('');
-    const [pin2, setPin2] = useState('');
-    const [pin3, setPin3] = useState('');
-    const [pin4, setPin4] = useState('');
-    const [isValid, setIsValid] = useState(true);
-
-
-    const checkPin = () => {
-        const correctPin = ['1', '2', '3', '4'];
-        const enteredPin = [pin1, pin2, pin3, pin4];
-
-        const isPinValid = enteredPin.every((value, index) => value === correctPin[index]);
-
-        setIsValid(isPinValid);
-
-        if (isPinValid) {
-            abrirTrocarSenha()
-        } else {
-            alert('PIN inválido');
-        }
-    };
-
-
-    function verificarSenhasTroca() {
-        const inputNovaSenha = document.getElementById('novaSenha');
-        const inputNovaSenhaConfirmar = document.getElementById('confirmarSenhaTroca');
-    
-        console.log(inputNovaSenha.value)
-        console.log(inputNovaSenhaConfirmar.value)
-    }
-    
-
-
+}
 
     return (
 
@@ -328,6 +295,28 @@ function Header() {
 
                             <div className="buttonContainer">
                                 <button className='buttonContainerReenviar' id='redefinirSenha' onClick={verificarSenhasTroca}>Redefinir senha</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div className="trocarSenha d-none" id='senhaRedefinida'>
+
+                    <div className="imgEsqueciSenha">
+                        <img src={imagemSenhaRedefinidaComSucesso} alt="imagem de uma mulher animada" />
+                    </div>
+                    <div className="contentReset">
+                        <button onClick={closeModalPai} className='botaoFecharModalLogin resetButtonClose'>X</button>
+                        <div className="formEsqueciSenha">
+                            <div className="imgTitle">
+                                <img src={logo} alt="logotipo da empresa" className='imgLogo resetLogo' />
+                                <h1>Senha redefinida com sucesso!</h1>
+                                <p>Sua nova senha foi registrada com sucesso!</p>
+                            </div>
+
+                            <div className="buttonContainer">
+                                <button className='buttonContainerReenviar' id='botaoRedefinidaComSucesso' onClick={abrirContainerLogin}>Entrar</button>
                             </div>
                         </div>
                     </div>
