@@ -121,6 +121,17 @@ function Header() {
         }
     }
 
+    function abrirCodigoRecuperacaoComCodigo() {
+
+                hideElement('containerLogin');
+                hideElement('resetSenha');
+                hideElement('containerCadastro');
+                hideElement('trocarSenha');
+                hideElement('senhaRedefinida');
+                showElement('codigoRecuperacao');
+                document.getElementById('emailMessage').textContent = ''
+    }
+
     function abrirTrocarSenha() {
         hideElement('containerLogin');
         hideElement('resetSenha');
@@ -246,8 +257,8 @@ function Header() {
                                 <span id='emailMessage'></span>
                             </div>
                             <div className="solicitarCodigoContainer">
-                                <Link className='linkCodigo'>Já tenho o código de redefinição</Link>
-                                <button onClick={abrirCodigoRecuperacao}>Solicitar código</button>
+                                <button className='linkCodigo' onClick={abrirCodigoRecuperacaoComCodigo}>Já tenho o código de redefinição</button>
+                                <button className='solicitarCodigoButton' onClick={abrirCodigoRecuperacao}>Solicitar código</button>
                             </div>
                         </div>
                     </div>

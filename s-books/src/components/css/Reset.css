@@ -58,7 +58,7 @@
     gap: 2vh;
 }
 
-.solicitarCodigoContainer button {
+.solicitarCodigoButton {
     background-color: #AA6231;
     color: #ffff;
     font-weight: bold;
