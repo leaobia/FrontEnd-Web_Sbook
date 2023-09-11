@@ -172,6 +172,11 @@
     font-weight: 600;
 }
 
+#emailMessage, #pinMessage, #senhaMessage{
+    color: #AA6231;
+    font-weight: bold;
+}
+
 
 @media (max-width:1000px) {
 

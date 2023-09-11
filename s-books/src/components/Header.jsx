@@ -33,7 +33,6 @@ import './css/Cadastro.css'
 
 import './css/Reset.css'
 
-var emailMessage;
 
 function Header() {
 
@@ -113,11 +112,12 @@ function Header() {
                 hideElement('trocarSenha');
                 hideElement('senhaRedefinida');
                 showElement('codigoRecuperacao');
+                document.getElementById('emailMessage').textContent = ''
             } else {
-                emailMessage = 'Por favor, insira um endereço de e-mail válido.'
+                document.getElementById('emailMessage').textContent = 'Por favor, insira um endereço de e-mail válido.'
             }
         } else {
-            emailMessage = 'Por favor, insira um endereço de e-mail válido.'
+            document.getElementById('emailMessage').textContent = 'Por favor, digite um e-mail.'
         }
     }
 
@@ -160,8 +160,9 @@ function Header() {
 
         if (isPinValid) {
             abrirTrocarSenha();
+            document.getElementById('pinMessage').textContent = ''
         } else {
-            alert('PIN inválido');
+            document.getElementById('pinMessage').textContent = 'PIN inválido'
         }
     };
 
@@ -170,9 +171,10 @@ function Header() {
         const inputNovaSenhaConfirmar = document.getElementById('confirmarSenhaTroca').value;
 
         if (inputNovaSenha === inputNovaSenhaConfirmar) {
+            document.getElementById('senhaMessage').textContent = ''
             abrirSenhaRedefinidaComSucesso();
         } else {
-            alert('Senhas diferentes');
+            document.getElementById('senhaMessage').textContent = 'Por favor, verifique as senhas, elas estão diferentes.'
         }
     }
 
@@ -241,7 +243,7 @@ function Header() {
                                     id='emailRecuperarSenha'
                                     fontSize={['sm', 'md', 'lg']}
                                 />
-                                <span></span>
+                                <span id='emailMessage'></span>
                             </div>
                             <div className="solicitarCodigoContainer">
                                 <Link className='linkCodigo'>Já tenho o código de redefinição</Link>
@@ -281,7 +283,9 @@ function Header() {
                                         onChange={(e) => setPin4(e.target.value)}
                                         isInvalid={!isValid} />
                                 </PinInput>
+                             
                             </HStack>
+                            <span id="pinMessage"></span>
                             <div className="buttonContainer">
                                 <button className='buttonContainerContinuar' onClick={checkPin}>Continuar</button>
                                 <button className='buttonContainerReenviar'>Reenviar Código</button>
@@ -308,6 +312,7 @@ function Header() {
                             <Stack spacing={4}>
                                 <PasswordInput placeholder='Nova senha' id='novaSenha' />
                                 <PasswordInput placeholder='Confirmar senha' id='confirmarSenhaTroca' />
+                                <span id="senhaMessage"></span>
                             </Stack>
 
                             <div className="buttonContainer">
