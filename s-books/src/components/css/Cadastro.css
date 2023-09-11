@@ -17,12 +17,12 @@
     height: 80vh;
 }
 
-.containerLeft{
+.containerLeft {
     height: 100%;
-    width: 50%;
+    width: 60%;
 }
 
-.containerLeft img{
+.containerLeft img {
     height: 100%;
 }
 
@@ -50,6 +50,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    width: 40%;
+}
+
+.formCadastroContinuacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
     width: 40%;
 }
 
@@ -104,12 +112,65 @@
     color: #AA6231;
 }
 
-.imgLogo{
+.imgLogo {
     padding-left: 0;
     height: 90px;
     width: 90px;
 }
 
+.containerContinue {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: #9F9898;
+    font-size: 12px;
+    font-weight: 600;
+    justify-content: center;
+    width: 100%;
+}
+
+.linha {
+    background-color: #808080;
+    width: 100px;
+    height: .8px;
+}
+
+.containerButton {
+    width: 120px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9F9898;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid #CECECE;
+}
+
+.contentButton {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.containerTermos{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+}
+
+.termos {
+    color: #9F9898;
+    font-size: 12px;
+    font-weight: 600;
+}
 
 
 @media (max-width:1000px) {
@@ -120,15 +181,16 @@
         height: 85vh;
     }
 
-    .imgCadastro, .containerLeft {
+    .imgCadastro,
+    .containerLeft {
         display: none;
     }
 
-    .textoCadastro{
+    .textoCadastro {
         width: 100%;
     }
 
-    .formCadastro{
+    .formCadastro {
         width: 100%;
     }
 }
