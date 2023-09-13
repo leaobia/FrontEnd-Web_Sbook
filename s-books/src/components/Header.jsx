@@ -123,13 +123,13 @@ function Header() {
 
     function abrirCodigoRecuperacaoComCodigo() {
 
-                hideElement('containerLogin');
-                hideElement('resetSenha');
-                hideElement('containerCadastro');
-                hideElement('trocarSenha');
-                hideElement('senhaRedefinida');
-                showElement('codigoRecuperacao');
-                document.getElementById('emailMessage').textContent = ''
+        hideElement('containerLogin');
+        hideElement('resetSenha');
+        hideElement('containerCadastro');
+        hideElement('trocarSenha');
+        hideElement('senhaRedefinida');
+        showElement('codigoRecuperacao');
+        document.getElementById('emailMessage').textContent = ''
     }
 
     function abrirTrocarSenha() {
@@ -189,6 +189,43 @@ function Header() {
         }
     }
 
+    function fazerLogin(email, senha) {
+        email = document.getElementById('emailLoginInput').value
+        senha = document.getElementById('senhaLoginInput').value
+
+
+        const credentials = {
+            "email": email,
+            "senha": senha
+        };
+
+        console.log(credentials);
+
+        const url = "https://app-nodejs.cyclic.cloud/v1/sbook/login";
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(credentials)
+        })
+            .then(response => response.json())
+            .then(data => {
+
+                console.log(data);
+                const token = data.token;
+
+
+                localStorage.setItem('token', token);
+                console.log(data.token);
+            })
+            .catch(error => {
+                console.error("Erro ao fazer login:", error);
+            });
+
+    }
+
     return (
 
 
@@ -214,16 +251,17 @@ function Header() {
                                         w={[250, 350, 400]}
                                         h='48px'
                                         className='inputField'
+                                        id='emailLoginInput'
                                         fontSize={['sm', 'md', 'lg']}
                                     />
                                 </InputGroup>
-                                <PasswordInput placeholder='Senha' />
+                                <PasswordInput placeholder='Senha' id='senhaLoginInput' />
                                 <button className='forgotPassword' onClick={abrirContainerResetSenha}>Esqueci a senha</button>
                             </Stack>
                         </div>
 
                         <span className='solicitandoConta'>Não tem conta? <Link className='linkCadastreAqui' id='botaoCadastro' onClick={abrirContainerCadastro}>Cadastre-se aqui.</Link></span>
-                        <button className='buttonLogar'>Entrar</button>
+                        <button className='buttonLogar' onClick={fazerLogin}>Entrar</button>
 
                     </div>
                     <div className="imgLogin">
@@ -294,7 +332,7 @@ function Header() {
                                         onChange={(e) => setPin4(e.target.value)}
                                         isInvalid={!isValid} />
                                 </PinInput>
-                             
+
                             </HStack>
                             <span id="pinMessage"></span>
                             <div className="buttonContainer">
@@ -494,7 +532,7 @@ function Header() {
                                 </div>
                                 <div className='containerTermos'>
                                     <p className='termos'>Li e concordo com os termos & politicas</p>
-                                    <Checkbox colorScheme='gray'  className='opcaoChecagem'></Checkbox>
+                                    <Checkbox colorScheme='gray' className='opcaoChecagem'></Checkbox>
                                 </div>
                             </Stack>
                         </div>
