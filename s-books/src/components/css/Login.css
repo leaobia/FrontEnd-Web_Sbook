@@ -100,7 +100,14 @@ width: 100%;
 .linkCadastreAqui{
     color: #AA6231;
 }
-
+.buttonLogarContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2vh;
+}
 @media (max-width:1000px) {
 
     .containerLogin, .codigoRecuperacao, .trocarSenha {

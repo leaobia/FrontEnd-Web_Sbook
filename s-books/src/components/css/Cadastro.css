@@ -172,9 +172,13 @@
     font-weight: 600;
 }
 
-#emailMessage, #pinMessage, #senhaMessage{
+#emailMessage, #pinMessage, #senhaMessage, #erroLogin{
     color: #AA6231;
     font-weight: bold;
+}
+
+#userProfileButton{
+    width: fit-content;
 }
 
 

@@ -35,14 +35,19 @@
 
 .userMenuContainer{
     display: flex;
+    width: fit-content;
     height: 100%;
 }
 
 .userMenuContainer .userMenu{
     display: grid;
     place-self: center;
-    grid-template-columns: 1fr 1fr;
+    width: fit-content;
     padding-right: 1vw;
+}
+
+.grid-colun2{
+    grid-template-columns: 1fr 1fr;
 }
 
 .link:hover{

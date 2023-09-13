@@ -193,13 +193,12 @@ function Header() {
         email = document.getElementById('emailLoginInput').value
         senha = document.getElementById('senhaLoginInput').value
 
-
         const credentials = {
             "email": email,
             "senha": senha
         };
 
-        console.log(credentials);
+
 
         const url = "https://app-nodejs.cyclic.cloud/v1/sbook/login";
 
@@ -213,15 +212,26 @@ function Header() {
             .then(response => response.json())
             .then(data => {
 
-                console.log(data);
+                document.getElementById('erroLogin').textContent = ''
+    
                 const token = data.token;
 
-
+                console.log(data);
                 localStorage.setItem('token', token);
-                console.log(data.token);
+
+                closeModalPai()
+
+                document.getElementById('userProfileButton').classList.remove('d-none')
+                document.getElementById('userProfileButton').classList.add('d-flex')
+
+                document.getElementById('botaoLogin').classList.remove('d-flex')
+                document.getElementById('botaoLogin').classList.add('d-none')
+
+                document.getElementById('userMenu').classList.remove('grid-colun2')
             })
             .catch(error => {
                 console.error("Erro ao fazer login:", error);
+                document.getElementById('erroLogin').textContent = 'Me desculpe, usuário ou senha incorretos, por favor, verifique suas credenciais.'
             });
 
     }
@@ -254,14 +264,20 @@ function Header() {
                                         id='emailLoginInput'
                                         fontSize={['sm', 'md', 'lg']}
                                     />
+                                      <span id="erroEmailMessage"></span>
                                 </InputGroup>
                                 <PasswordInput placeholder='Senha' id='senhaLoginInput' />
+                                <span id="erroSenhaMessage"></span>
                                 <button className='forgotPassword' onClick={abrirContainerResetSenha}>Esqueci a senha</button>
                             </Stack>
                         </div>
 
                         <span className='solicitandoConta'>Não tem conta? <Link className='linkCadastreAqui' id='botaoCadastro' onClick={abrirContainerCadastro}>Cadastre-se aqui.</Link></span>
+                        <div className='buttonLogarContainer'>
                         <button className='buttonLogar' onClick={fazerLogin}>Entrar</button>
+                        <span id='erroLogin'></span>
+                        </div>
+
 
                     </div>
                     <div className="imgLogin">
@@ -554,9 +570,11 @@ function Header() {
                 </nav>
                 <div className='userMenuContainer'>
                     <div className='divborda'></div>
-                    <div className="userMenu">
-                        <button className='userProfileButton' id='botaoLogin' onClick={openModalPai}><img src={userProfile} alt="icone de pessoa" className='imgHeader' /> <span>Entrar</span></button>
+                    <div className="userMenu grid-colun2" id='userMenu'>
+                        <button className='userProfileButton d-flex' id='botaoLogin' onClick={openModalPai} ><img src={userProfile} alt="icone de pessoa" className='imgHeader' /> <span>Entrar</span></button>
+
                         <div className='userMenuIcons'>
+                        <button className='d-none' id='userProfileButton'><img src={userProfile} alt="icone de pessoa"/></button>
                             <Link to='/favoritos' className='link'><img src={userFavorites} alt="icone de coração para ver os favoritos" className='imgHeader' /></Link>
                             <Link to='/chat' className='link'><img src={userChats} alt="icone de chat para ver os chats enviados" className='imgHeader' /></Link>
                         </div>
