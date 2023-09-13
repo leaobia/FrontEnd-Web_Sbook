@@ -34,6 +34,18 @@ import './css/Cadastro.css'
 import './css/Reset.css'
 
 
+function verificarTokenNoLocalStorage() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        console.log('Token encontrado:', token);
+    } else {
+        console.log('Token não encontrado, o usuário não está autenticado');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', verificarTokenNoLocalStorage);
+
+
 function Header() {
 
     function hideElement(id) {
