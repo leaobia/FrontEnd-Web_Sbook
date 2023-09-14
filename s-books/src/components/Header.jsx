@@ -529,7 +529,7 @@ function Header() {
                                         fontSize={['sm', 'md', 'lg']}
                                     />
                                 </InputGroup>
-                                <PasswordInput placeholder='Senha' />
+                                <PasswordInput placeholder='Senha' id={cadastroSenha}/>
                                 <PasswordInput placeholder='Confirmar senha' />
                             </Stack>
                         </div>
