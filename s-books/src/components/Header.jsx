@@ -101,9 +101,52 @@ function Header() {
 
     }
 
-    function verificarCadastroDadosPessoais(){
-        abrirContainerCadastroContinuacao()
+    function verificarCPF(cpf) {
+        cpf = cpf.replace(/\D/g, '');
+        if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
+        let soma = 0;
+        for (let i = 0; i < 9; i++) soma += parseInt(cpf.charAt(i)) * (10 - i);
+        let primeiroDigito = 11 - (soma % 11);
+        if (primeiroDigito > 9) primeiroDigito = 0;
+        soma = 0;
+        for (let i = 0; i < 10; i++) soma += parseInt(cpf.charAt(i)) * (11 - i);
+        let segundoDigito = 11 - (soma % 11);
+        if (segundoDigito > 9) segundoDigito = 0;
+        return parseInt(cpf.charAt(9)) === primeiroDigito && parseInt(cpf.charAt(10)) === segundoDigito;
     }
+    
+
+    function verificarCadastroDadosPessoais(){
+
+        const nomeUser = document.getElementById('nomeCadastro').value
+        const email= document.getElementById('emailCadastro').value
+        const cpf = document.getElementById('cpfCadastro').value
+        const date = document.getElementById('dateCadastro').value
+        const cadastroSenha = document.getElementById('cadastroSenha').value
+        const confirmarCadastroSenha = document.getElementById('confirmarCadastroSenha').value
+
+
+        if(nomeUser,email,cpf,date,cadastroSenha,confirmarCadastroSenha){
+
+            console.log(nomeUser,email,cpf,date,cadastroSenha,confirmarCadastroSenha);
+
+            localStorage.setItem('nomeUserCadastro', nomeUser)
+            localStorage.setItem('emailCadastro', email)
+            localStorage.setItem('dateCadastro', date)
+            localStorage.setItem('cadastroSenha', cadastroSenha)
+            localStorage.setItem('confirmarCadastroSenha', confirmarCadastroSenha)
+
+            if(verificarCPF(cpf)){
+                localStorage.setItem('cpfCadastro', cpf)
+                console.log('certo');
+                abrirContainerCadastroContinuacao()
+            }
+        }else{
+            alert('Preencha todos os campos')
+        }
+    }
+
+
 
     function abrirContainerCadastroCategoria() {
         hideElement('containerCadastroContinuacao');
@@ -228,7 +271,7 @@ function Header() {
             "senha": senha
         };
 
-
+        console.log(credentials);
 
         const url = "https://app-nodejs.cyclic.cloud/v1/sbook/login";
 
@@ -491,6 +534,7 @@ function Header() {
                                         type='text'
                                         placeholder='Nome'
                                         w={[250, 350, 400]}
+                                        id='nomeCadastro'
                                         h='48px'
                                         className='inputField'
                                         fontSize={['sm', 'md', 'lg']}
@@ -500,6 +544,7 @@ function Header() {
                                     <Input
                                         type='number'
                                         placeholder='Cpf'
+                                        id='cpfCadastro'
                                         w={[250, 350, 400]}
                                         h='48px'
                                         className='inputField'
@@ -514,6 +559,7 @@ function Header() {
                                         type='email'
                                         placeholder='Email'
                                         w={[250, 350, 400]}
+                                        id='emailCadastro'
                                         h='48px'
                                         className='inputField'
                                         fontSize={['sm', 'md', 'lg']}
@@ -523,14 +569,15 @@ function Header() {
                                     <Input
                                         type='date'
                                         placeholder='Data de nascimento'
+                                        id='dateCadastro'
                                         w={[250, 350, 400]}
                                         h='48px'
                                         className='inputField'
                                         fontSize={['sm', 'md', 'lg']}
                                     />
                                 </InputGroup>
-                                <PasswordInput placeholder='Senha' id={cadastroSenha}/>
-                                <PasswordInput placeholder='Confirmar senha' />
+                                <PasswordInput placeholder='Senha' id='cadastroSenha'/>
+                                <PasswordInput placeholder='Confirmar senha' id='confirmarCadastroSenha'/>
                             </Stack>
                         </div>
                         <button onClick={verificarCadastroDadosPessoais} className='buttonLogar'>Continuar</button>
