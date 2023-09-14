@@ -8,8 +8,6 @@ import imagemResetSenha from './img/imagemResetSenha.png'
 import imagemSenhaRedefinidaComSucesso from './img/redefinidacomsucesso.png'
 import imagemCodigoRecuperacao from './img/imgCodigoDeRecuperacao.png'
 import imagemRedefinirSenha from './img/recuperarContaimg.png'
-import imagemGoogle from './img/google.png'
-import imagemFacebook from './img/facebook.png'
 
 
 import PasswordInput from './PasswordInput';
@@ -91,6 +89,7 @@ function Header() {
         showElement('containerCadastro');
     }
 
+
     function abrirContainerCadastroContinuacao() {
 
         hideElement('containerCadastro');
@@ -100,6 +99,10 @@ function Header() {
         hideElement('senhaRedefinida');
         hideElement('resetSenha');
 
+    }
+
+    function verificarCadastroDadosPessoais(){
+        abrirContainerCadastroContinuacao()
     }
 
     function abrirContainerCadastroCategoria() {
@@ -530,7 +533,7 @@ function Header() {
                                 <PasswordInput placeholder='Confirmar senha' />
                             </Stack>
                         </div>
-                        <button onClick={abrirContainerCadastroContinuacao} className='buttonLogar'>Continuar</button>
+                        <button onClick={verificarCadastroDadosPessoais} className='buttonLogar'>Continuar</button>
                         <span className='loginConta'>Já tem uma conta? <Link className='linkCadastreAqui' onClick={abrirContainerLogin}>Entre aqui.</Link></span>
                     </div>
                     <button onClick={closeModalPai} className='botaoFecharModalCadastro'>X</button>
@@ -614,25 +617,6 @@ function Header() {
                                     fontSize={['sm', 'md', 'lg']}
                                 />
 
-                                <div className='containerContinue'>
-                                    <div className='linha'></div>
-                                    Ou continue com
-                                    <div className='linha'></div>
-                                </div>
-                                <div className='buttons'>
-                                    <div className='containerButton'>
-                                        <button className='contentButton'>
-                                            <img src={imagemGoogle} alt='Logo do google' />
-                                            Google
-                                        </button>
-                                    </div>
-                                    <div className='containerButton'>
-                                        <button className='contentButton'>
-                                            <img src={imagemFacebook} alt='Logo do facebook' />
-                                            Facebook
-                                        </button>
-                                    </div>
-                                </div>
                                 <div className='containerTermos'>
                                     <p className='termos'>Li e concordo com os termos & politicas</p>
                                     <Checkbox colorScheme='gray' className='opcaoChecagem'></Checkbox>
