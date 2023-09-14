@@ -554,7 +554,7 @@ function Header() {
                                     className='inputField'
                                     fontSize={['sm', 'md', 'lg']}
                                 />
-                                <Select placeholder='Estado' height='48px' color="#9F9898" id='selectEstado'>
+                                <Select placeholder='Estado' height='48px' color="#9F9898" id='selectEstado'   disabled>
                                     <option value='AC'>Acre</option>
                                     <option value='AL'>Alagoas</option>
                                     <option value='AP'>Amapá</option>
@@ -589,6 +589,7 @@ function Header() {
                                     w={[250, 350, 400]}
                                     id='pegarCidade'
                                     h='48px'
+                                    disabled
                                     className='inputField'
                                     fontSize={['sm', 'md', 'lg']}
                                 />
@@ -598,6 +599,7 @@ function Header() {
                                     w={[250, 350, 400]}
                                     h='48px'
                                     id='pegarBairro'
+                                    disabled
                                     className='inputField'
                                     fontSize={['sm', 'md', 'lg']}
                                 />
@@ -607,6 +609,7 @@ function Header() {
                                     w={[250, 350, 400]}
                                     id='pegarLogradouro'
                                     h='48px'
+                                    disabled
                                     className='inputField'
                                     fontSize={['sm', 'md', 'lg']}
                                 />
@@ -618,16 +621,16 @@ function Header() {
                                 </div>
                                 <div className='buttons'>
                                     <div className='containerButton'>
-                                        <div className='contentButton'>
+                                        <button className='contentButton'>
                                             <img src={imagemGoogle} alt='Logo do google' />
                                             Google
-                                        </div>
+                                        </button>
                                     </div>
                                     <div className='containerButton'>
-                                        <div className='contentButton'>
+                                        <button className='contentButton'>
                                             <img src={imagemFacebook} alt='Logo do facebook' />
                                             Facebook
-                                        </div>
+                                        </button>
                                     </div>
                                 </div>
                                 <div className='containerTermos'>
