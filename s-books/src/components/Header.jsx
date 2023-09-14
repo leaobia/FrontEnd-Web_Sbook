@@ -133,13 +133,19 @@ function Header() {
             localStorage.setItem('nomeUserCadastro', nomeUser)
             localStorage.setItem('emailCadastro', email)
             localStorage.setItem('dateCadastro', date)
-            localStorage.setItem('cadastroSenha', cadastroSenha)
-            localStorage.setItem('confirmarCadastroSenha', confirmarCadastroSenha)
+       
 
             if(verificarCPF(cpf)){
                 localStorage.setItem('cpfCadastro', cpf)
                 console.log('certo');
-                abrirContainerCadastroContinuacao()
+                if(cadastroSenha === confirmarCadastroSenha){
+                    localStorage.setItem('cadastroSenha', cadastroSenha)
+                    abrirContainerCadastroContinuacao()
+                }else{
+                    alert('senhas diferentes')
+                }
+            }else{
+                alert('cpf invalido')
             }
         }else{
             alert('Preencha todos os campos')
