@@ -46,6 +46,9 @@ function verificarTokenNoLocalStorage() {
 document.addEventListener('DOMContentLoaded', verificarTokenNoLocalStorage);
 
 
+
+
+
 function Header() {
 
     function hideElement(id) {
@@ -89,12 +92,14 @@ function Header() {
     }
 
     function abrirContainerCadastroContinuacao() {
+
         hideElement('containerCadastro');
         showElement('containerCadastroContinuacao');
         hideElement('containerLogin');
         hideElement('trocarSenha');
         hideElement('senhaRedefinida');
         hideElement('resetSenha');
+
     }
 
     function abrirContainerCadastroCategoria() {
@@ -235,7 +240,7 @@ function Header() {
             .then(data => {
 
                 document.getElementById('erroLogin').textContent = ''
-    
+
                 const token = data.token;
 
                 console.log(data);
@@ -255,6 +260,42 @@ function Header() {
                 console.error("Erro ao fazer login:", error);
                 document.getElementById('erroLogin').textContent = 'Me desculpe, usuário ou senha incorretos, por favor, verifique suas credenciais.'
             });
+
+    }
+
+
+    function fetchViaCep() {
+
+        const cepInput = document.getElementById('pegarCEP');
+        const cidadeInput = document.getElementById('pegarCidade');
+        const bairroInput = document.getElementById('pegarBairro');
+        const logradouroInput = document.getElementById('pegarLogradouro');
+        const  selectEstado = document.getElementById('selectEstado');
+
+       
+
+        const cep = cepInput.value.replace(/\D/g, '');;
+
+        console.log(cepInput);
+
+
+        if (/^\d{8}$/.test(cep)) {
+
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    cidadeInput.value = data.localidade
+                    bairroInput.value = data.bairro
+                    logradouroInput.value = data.logradouro
+                    selectEstado.value = data.uf
+                })
+                .catch(error => {
+                    console.error('Erro ao obter dados do CEP:', error);
+                });
+        } else {
+            console.error('CEP inválido. Certifique-se de inserir 8 dígitos numéricos.');
+        }
 
     }
 
@@ -286,7 +327,7 @@ function Header() {
                                         id='emailLoginInput'
                                         fontSize={['sm', 'md', 'lg']}
                                     />
-                                      <span id="erroEmailMessage"></span>
+                                    <span id="erroEmailMessage"></span>
                                 </InputGroup>
                                 <PasswordInput placeholder='Senha' id='senhaLoginInput' />
                                 <span id="erroSenhaMessage"></span>
@@ -296,8 +337,8 @@ function Header() {
 
                         <span className='solicitandoConta'>Não tem conta? <Link className='linkCadastreAqui' id='botaoCadastro' onClick={abrirContainerCadastro}>Cadastre-se aqui.</Link></span>
                         <div className='buttonLogarContainer'>
-                        <button className='buttonLogar' onClick={fazerLogin}>Entrar</button>
-                        <span id='erroLogin'></span>
+                            <button className='buttonLogar' onClick={fazerLogin}>Entrar</button>
+                            <span id='erroLogin'></span>
                         </div>
 
 
@@ -505,50 +546,71 @@ function Header() {
                             <h1>Criar Conta</h1>
                             <Stack spacing={4}>
                                 <Input
-                                    type='number'
                                     placeholder='CEP'
                                     w={[250, 350, 400]}
+                                    id='pegarCEP'
+                                    h='48px'
+                                    onBlur={fetchViaCep}
+                                    className='inputField'
+                                    fontSize={['sm', 'md', 'lg']}
+                                />
+                                <Select placeholder='Estado' height='48px' color="#9F9898" id='selectEstado'>
+                                    <option value='AC'>Acre</option>
+                                    <option value='AL'>Alagoas</option>
+                                    <option value='AP'>Amapá</option>
+                                    <option value='AM'>Amazonas</option>
+                                    <option value='BA'>Bahia</option>
+                                    <option value='CE'>Ceará</option>
+                                    <option value='DF'>Distrito Federal</option>
+                                    <option value='ES'>Espírito Santo</option>
+                                    <option value='GO'>Goiás</option>
+                                    <option value='MA'>Maranhão</option>
+                                    <option value='MT'>Mato Grosso</option>
+                                    <option value='MS'>Mato Grosso do Sul</option>
+                                    <option value='MG'>Minas Gerais</option>
+                                    <option value='PA'>Pará</option>
+                                    <option value='PB'>Paraíba</option>
+                                    <option value='PR'>Paraná</option>
+                                    <option value='PE'>Pernambuco</option>
+                                    <option value='PI'>Piauí</option>
+                                    <option value='RJ'>Rio de Janeiro</option>
+                                    <option value='RN'>Rio Grande do Norte</option>
+                                    <option value='RS'>Rio Grande do Sul</option>
+                                    <option value='RO'>Rondônia</option>
+                                    <option value='RR'>Roraima</option>
+                                    <option value='SC'>Santa Catarina</option>
+                                    <option value='SP'>São Paulo</option>
+                                    <option value='SE'>Sergipe</option>
+                                    <option value='TO'>Tocantins</option>
+                                </Select>
+
+                                <Input
+                                    placeholder='Cidade'
+                                    w={[250, 350, 400]}
+                                    id='pegarCidade'
                                     h='48px'
                                     className='inputField'
                                     fontSize={['sm', 'md', 'lg']}
                                 />
-                                <Select placeholder='Estado' height='48px' color="#9F9898">
-                                    <option value='option1'>São Paulo</option>
-                                    <option value='option2'>Rio de Janeiro</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                    <option value='option3'>Amazonas</option>
-                                </Select>
-                                <Select placeholder='Cidade' height='48px' color="#9F9898">
-                                    <option value='option1'>São Paulo</option>
-                                    <option value='option2'>Barueri</option>
-                                    <option value='option3'>Carapicuíba</option>
-                                </Select>
-                                <Select placeholder='Bairro' height='48px' color="#9F9898">
-                                    <option value='option1'>São Paulo</option>
-                                    <option value='option2'>Barueri</option>
-                                    <option value='option3'>Carapicuíba</option>
-                                </Select>
-                                <Select placeholder='Logradouro' height='48px' color="#9F9898">
-                                    <option value='option1'>São Paulo</option>
-                                    <option value='option2'>Barueri</option>
-                                    <option value='option3'>Carapicuíba</option>
-                                </Select>
+
+                                <Input
+                                    placeholder='Bairro'
+                                    w={[250, 350, 400]}
+                                    h='48px'
+                                    id='pegarBairro'
+                                    className='inputField'
+                                    fontSize={['sm', 'md', 'lg']}
+                                />
+
+                                <Input
+                                    placeholder='Logradouro'
+                                    w={[250, 350, 400]}
+                                    id='pegarLogradouro'
+                                    h='48px'
+                                    className='inputField'
+                                    fontSize={['sm', 'md', 'lg']}
+                                />
+
                                 <div className='containerContinue'>
                                     <div className='linha'></div>
                                     Ou continue com
@@ -641,7 +703,7 @@ function Header() {
 
             </div>
 
-          
+
 
             <div className="headerLinksContainer">
                 <img src={logo} alt="logotipo da empresa" className='logo' />
@@ -658,7 +720,7 @@ function Header() {
                         <button className='userProfileButton d-flex' id='botaoLogin' onClick={openModalPai} ><img src={userProfile} alt="icone de pessoa" className='imgHeader' /> <span>Entrar</span></button>
 
                         <div className='userMenuIcons'>
-                        <button className='d-none' id='userProfileButton'><img src={userProfile} alt="icone de pessoa"/></button>
+                            <button className='d-none' id='userProfileButton'><img src={userProfile} alt="icone de pessoa" /></button>
                             <Link to='/favoritos' className='link'><img src={userFavorites} alt="icone de coração para ver os favoritos" className='imgHeader' /></Link>
                             <Link to='/chat' className='link'><img src={userChats} alt="icone de chat para ver os chats enviados" className='imgHeader' /></Link>
                         </div>
