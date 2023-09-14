@@ -10,7 +10,7 @@ width: 100%;
 }
 
 
-.containerLogin, .codigoRecuperacao, .trocarSenha{
+.containerLogin, .codigoRecuperacao, .trocarSenha, .containerCategoria{
     z-index: 3;
     opacity: 1;
     background-color: #FFFF;
@@ -36,6 +36,10 @@ width: 100%;
 
 .imgTitle p{
     padding-top: 2%;
+}
+.textoCategoria{
+    padding-top: 2%;
+    font-size: clamp(0.75rem, -0.4829rem + 16.4384vw, 1.5rem);
 }
 
 .formLogin{
@@ -108,9 +112,11 @@ width: 100%;
     text-align: center;
     gap: 2vh;
 }
+
+
 @media (max-width:1000px) {
 
-    .containerLogin, .codigoRecuperacao, .trocarSenha {
+    .containerLogin, .codigoRecuperacao, .trocarSenha, .containerCategoria {
         justify-content: center;
         width: 75vw;
         height: 75vh;
@@ -118,17 +124,29 @@ width: 100%;
     .imgLogin{
         display: none;
     }
+
+    .formCategoria{
+        width: 70vw;
+    }
+    
 }
 
 @media (max-width:600px) {
 
-    .containerLogin, .codigoRecuperacao, .trocarSenha {
+    .formCategoria{
+        width: 90vw;
+    }
+    
+
+    .containerLogin, .codigoRecuperacao, .trocarSenha, .containerCategoria {
         width: 90vw;
         height: 90vh;
     }
 
-    .imgTitle h1, .imgTitle p{
+    .imgTitle h1, .imgTitle p, .textoCategoria{
         text-align: center;
     }
 
+
+   
 }

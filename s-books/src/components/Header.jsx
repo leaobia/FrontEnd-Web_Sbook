@@ -76,6 +76,7 @@ function Header() {
         hideElement('senhaRedefinida');
         hideElement('codigoRecuperacao');
         hideElement('containerCadastroContinuacao');
+        hideElement('containerCadastroCategoria');
     }
 
     function abrirContainerCadastro() {
@@ -90,6 +91,15 @@ function Header() {
     function abrirContainerCadastroContinuacao() {
         hideElement('containerCadastro');
         showElement('containerCadastroContinuacao');
+        hideElement('containerLogin');
+        hideElement('trocarSenha');
+        hideElement('senhaRedefinida');
+        hideElement('resetSenha');
+    }
+
+    function abrirContainerCadastroCategoria() {
+        hideElement('containerCadastroContinuacao');
+        showElement('containerCadastroCategoria');
         hideElement('containerLogin');
         hideElement('trocarSenha');
         hideElement('senhaRedefinida');
@@ -564,12 +574,74 @@ function Header() {
                                 </div>
                             </Stack>
                         </div>
-                        <button className='buttonLogar'>Entrar</button>
+                        <button className='buttonLogar' onClick={abrirContainerCadastroCategoria}>Entrar</button>
+                    </div>
+                    <button onClick={closeModalPai} className='botaoFecharModalCadastro'>X</button>
+                </div>
+
+                <div className="containerCategoria d-none" id='containerCadastroCategoria'>
+                    <div className="containerLeft">
+                        <img src={imageLogin} alt="imagem de um homem e uma mulher na biblioteca" className='imgCadastro' />
+                    </div>
+                    <div className="formCategoria">
+                        <img src={logo} alt="logotipo da empresa" className='imgLogo' />
+                        <p className='textoCategoria'>Por último, para uma melhor interação selecione algumas categorias que interessam você</p>
+                        <h1 className='titleCategoria'>Categorias</h1>
+                        <div className='categorias'>
+                            <div className='buttonCategoria'>
+                                Teologia
+                            </div>
+                            <div className='buttonCategoria'>
+                                Ficção Cientifica
+                            </div>
+                            <div className='buttonCategoria'>
+                                Teologia
+                            </div>
+                            <div className='buttonCategoria'>
+                                Ficção Cientifica
+                            </div>
+                            <div className='buttonCategoria'>
+                                Teologia
+                            </div>
+                            <div className='buttonCategoria'>
+                                Ficção Cientifica
+                            </div>
+                            <div className='buttonCategoria'>
+                                Teologia
+                            </div>
+                            <div className='buttonCategoria'>
+                                Ficção Cientifica
+                            </div>
+                            <div className='buttonCategoria'>
+                                Teologia
+                            </div>
+                            <div className='buttonCategoria'>
+                                Ficção Cientifica
+                            </div>
+                            <div className='buttonCategoria'>
+                                Ficção Cientifica
+                            </div>
+                            <div className='buttonCategoria'>
+                                Ficção Cientifica
+                            </div>
+                            <div className='buttonCategoria'>
+                                Ficção Cientifica
+                            </div>
+                            <div className='buttonCategoria'>
+                                Ficção Cientifica
+                            </div>
+                            <div className='buttonCategoria'>
+                                Ficção Cientifica
+                            </div>
+                        </div>
+                        <button onClick={abrirContainerCadastroCategoria} className='buttonLogar'>Entrar</button>
                     </div>
                     <button onClick={closeModalPai} className='botaoFecharModalCadastro'>X</button>
                 </div>
 
             </div>
+
+          
 
             <div className="headerLinksContainer">
                 <img src={logo} alt="logotipo da empresa" className='logo' />

@@ -12,9 +12,9 @@
     z-index: 3;
     opacity: 1;
     background-color: #FFFF;
-    width: 70vw;
+    width: 80vw;
     justify-content: space-between;
-    height: 80vh;
+    height: 90vh;
 }
 
 .containerLeft {
@@ -179,6 +179,77 @@
 
 #userProfileButton{
     width: fit-content;
+}
+
+
+
+.containerLeft {
+    height: 100%;
+    width: 60%;
+    width: 40%;
+}
+
+.formCategoria{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    width: 40%;
+}
+
+.formCadastroContinuacao {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4%;
+}
+
+.textoCategoria{
+    font-size: 1rem;
+    font-weight: 400;
+    font-weight: 600;
+    text-align: center;
+}
+
+.titleCategoria{
+    font-size: 2rem;
+    color: #AA6231;
+}
+
+.categorias{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    text-align: center;
+    width: 38vw;
+    height: 28vh;
+    overflow-y: auto;
+    padding: 12px;
+    justify-content: space-around;
+}
+
+.buttonCategoria{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 20px;
+    border: 1px solid #AA6231;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.buttonCategoria:hover{
+    background-color: #AA6231;
+    color: #FFFF;
+}
+
+.forgotPassword {
+    display: grid;
+    place-self: end;
+
 }
 
 

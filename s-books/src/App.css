@@ -66,6 +66,29 @@ body::-webkit-scrollbar-thumb {
 .sideBar::-webkit-scrollbar-thumb {
   background: #5C2C0C;
 }
+.sideBar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sideBar::-webkit-scrollbar-track {
+  background-color: #FF902B;
+}
+
+.sideBar::-webkit-scrollbar-thumb {
+  background: #5C2C0C;
+}
+
+.categorias::-webkit-scrollbar {
+  width: 8px;
+}
+
+.categorias::-webkit-scrollbar-track {
+  background-color: #FF902B;
+}
+
+.categorias::-webkit-scrollbar-thumb {
+  background: #5C2C0C;
+}
 
 
 .loginModal {
