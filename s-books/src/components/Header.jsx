@@ -279,7 +279,7 @@ function Header() {
 
         console.log(credentials);
 
-        const url = "https://app-nodejs.cyclic.cloud/v1/sbook/login";
+        const url = "http://10.107.144.31:8080/v1/sbook/login";
 
         fetch(url, {
             method: "POST",
@@ -315,6 +315,56 @@ function Header() {
 
     }
 
+    function pegarEnderecosDados(){
+        const cepInput = document.getElementById('pegarCEP').value;
+        const cidadeInput = document.getElementById('pegarCidade').value;
+        const bairroInput = document.getElementById('pegarBairro').value;
+        const logradouroInput = document.getElementById('pegarLogradouro').value;
+        const selectEstado = document.getElementById('selectEstado').value;
+
+        
+        const nomeUsuario = localStorage.getItem('nomeUserCadastro')
+        const email = localStorage.getItem('emailCadastro')
+        const dataNascimento = localStorage.getItem('dateCadastro')
+        const cpf = localStorage.getItem('cpfCadastro')
+        const senha = localStorage.getItem('cadastroSenha')
+
+        if(cepInput,cidadeInput,bairroInput,logradouroInput,selectEstado){
+            const credentials = {
+                "logradouro_endereco": logradouroInput,
+                "bairro_endereco": bairroInput,
+                "cidade_endereco": cidadeInput,
+                "estado_endereco": selectEstado,
+                "cep_endereco": cepInput,
+                "nome_usuario": nomeUsuario,
+                "cpf_usuario": cpf,
+                "data_nascimento_usuario": dataNascimento,
+                "email_usuario": email,
+                "senha_usuario": senha
+            };
+            const url = "http://10.107.144.31:8080/v1/sbook/registro-usuario";
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(credentials)
+            })
+                .then(response => response.json())
+                .then(data => {
+    
+                  console.log(data);
+                })
+                .catch(error => {
+                    console.error("Erro ao fazer login:", error);
+                    
+                });
+
+        }else{
+            alert('por favor, preencha todas as credenciais corretamente!!')
+        }
+
+    }
 
     function fetchViaCep() {
 
@@ -341,6 +391,8 @@ function Header() {
                     bairroInput.value = data.bairro
                     logradouroInput.value = data.logradouro
                     selectEstado.value = data.uf
+
+                    pegarEnderecosDados()
                 })
                 .catch(error => {
                     console.error('Erro ao obter dados do CEP:', error);
