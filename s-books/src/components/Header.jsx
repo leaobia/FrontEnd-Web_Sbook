@@ -124,6 +124,7 @@ function Header() {
         const date = document.getElementById('dateCadastro').value
         const cadastroSenha = document.getElementById('cadastroSenha').value
         const confirmarCadastroSenha = document.getElementById('confirmarCadastroSenha').value
+        const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
 
         if(nomeUser,email,cpf,date,cadastroSenha,confirmarCadastroSenha){
@@ -131,7 +132,7 @@ function Header() {
             console.log(nomeUser,email,cpf,date,cadastroSenha,confirmarCadastroSenha);
 
             localStorage.setItem('nomeUserCadastro', nomeUser)
-            localStorage.setItem('emailCadastro', email)
+           
             localStorage.setItem('dateCadastro', date)
        
 
@@ -140,15 +141,22 @@ function Header() {
                 console.log('certo');
                 if(cadastroSenha === confirmarCadastroSenha){
                     localStorage.setItem('cadastroSenha', cadastroSenha)
-                    abrirContainerCadastroContinuacao()
+                    if(emailRegex.test(email)){
+                        localStorage.setItem('emailCadastro', email)
+                        document.getElementById('erroSenhaOuFaltaCampos').textContent = ''
+                        abrirContainerCadastroContinuacao()
+                    }else{
+                        document.getElementById('erroSenhaOuFaltaCampos').textContent = 'Por favor, preencha um e-mail válido'
+                    }
+                   
                 }else{
-                    alert('senhas diferentes')
+                    document.getElementById('erroSenhaOuFaltaCampos').textContent = 'Por favor, preencha senhas iguais.'
                 }
             }else{
-                alert('cpf invalido')
+                document.getElementById('erroSenhaOuFaltaCampos').textContent = 'Por favor, preencha um cpf válido.'
             }
         }else{
-            alert('Preencha todos os campos')
+            document.getElementById('erroSenhaOuFaltaCampos').textContent = 'Por favor, preencha todos os campos'
         }
     }
 
@@ -354,6 +362,7 @@ function Header() {
                 .then(data => {
     
                   console.log(data);
+                  abrirContainerCadastroCategoria()
                 })
                 .catch(error => {
                     console.error("Erro ao fazer login:", error);
@@ -364,6 +373,13 @@ function Header() {
             alert('por favor, preencha todas as credenciais corretamente!!')
         }
 
+    }
+
+    function cadastrar(){
+       
+
+            pegarEnderecosDados()
+       
     }
 
     function fetchViaCep() {
@@ -392,13 +408,13 @@ function Header() {
                     logradouroInput.value = data.logradouro
                     selectEstado.value = data.uf
 
-                    pegarEnderecosDados()
+                    document.getElementById('erroEndereco').textContent = ''
                 })
                 .catch(error => {
-                    console.error('Erro ao obter dados do CEP:', error);
+                    document.getElementById('erroEndereco').textContent = 'CEP inválido. Certifique-se de inserir 8 dígitos numéricos.'
                 });
         } else {
-            console.error('CEP inválido. Certifique-se de inserir 8 dígitos numéricos.');
+            document.getElementById('erroEndereco').textContent = 'CEP inválido. Certifique-se de inserir 8 dígitos numéricos.'
         }
 
     }
@@ -636,6 +652,7 @@ function Header() {
                                 </InputGroup>
                                 <PasswordInput placeholder='Senha' id='cadastroSenha'/>
                                 <PasswordInput placeholder='Confirmar senha' id='confirmarCadastroSenha'/>
+                                <span id="erroSenhaOuFaltaCampos"></span>
                             </Stack>
                         </div>
                         <button onClick={verificarCadastroDadosPessoais} className='buttonLogar'>Continuar</button>
@@ -724,11 +741,12 @@ function Header() {
 
                                 <div className='containerTermos'>
                                     <p className='termos'>Li e concordo com os termos & politicas</p>
-                                    <Checkbox colorScheme='gray' className='opcaoChecagem'></Checkbox>
+                                    <Checkbox colorScheme='gray' className='opcaoChecagem' id='opcaoChecagem'></Checkbox>
                                 </div>
+                                <span id="erroEndereco"></span>
                             </Stack>
                         </div>
-                        <button className='buttonLogar' onClick={abrirContainerCadastroCategoria}>Entrar</button>
+                        <button className='buttonLogar' onClick={verificarCadastroDadosPessoais}>Entrar</button>
                     </div>
                     <button onClick={closeModalPai} className='botaoFecharModalCadastro'>X</button>
                 </div>
@@ -788,7 +806,7 @@ function Header() {
                                 Ficção Cientifica
                             </div>
                         </div>
-                        <button onClick={abrirContainerCadastroCategoria} className='buttonLogar'>Entrar</button>
+                        <button onClick={cadastrar} className='buttonLogar'>Entrar</button>
                     </div>
                     <button onClick={closeModalPai} className='botaoFecharModalCadastro'>X</button>
                 </div>
