@@ -169,12 +169,6 @@ function Header() {
         const confirmarCadastroSenha = document.getElementById('confirmarCadastroSenha').value
 
 
-        console.log('nomeUser:', nomeUser);
-        console.log('cpf:', cpf);
-        console.log('date:', date);
-        console.log('cadastroSenha:', cadastroSenha);
-        console.log('confirmarCadastroSenha:', confirmarCadastroSenha);
-
         if (nomeUser && cpf && date && cadastroSenha && confirmarCadastroSenha) {
 
             localStorage.setItem('nomeUserCadastro', nomeUser)
@@ -258,6 +252,8 @@ function Header() {
         hideElement('codigoRecuperacao');
         hideElement('senhaRedefinida');
         hideElement('trocarSenha');
+        hideElement('resetSenha');
+        hideElement('containerCadastroContinuacao');
 
         showElement('codigoValidacaoEmail');
     }
@@ -315,52 +311,54 @@ function Header() {
     const verifiqueEmail = () => {
         const emailCadastro = document.getElementById('emailCadastro').value;
         const pinValidarMessage = document.getElementById('pinValidarMessage');
-    
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
+
         if (!emailRegex.test(emailCadastro)) {
             pinValidarMessage.textContent = 'Email inválido';
             return;
         }
-    
+
         enviarPin();
         pinValidarMessage.textContent = '';
     };
-    
-    
-    
-    
+
+
+
+
     const enviarPin = () => {
-        const pinCorreto = ['1', '2', '3', '4']; 
-    
+        const pinCorreto = ['1', '2', '3', '4'];
+
         localStorage.setItem('correctPinCadastro', JSON.stringify(pinCorreto));
-    
+
     }
-    
+
     const checkPin2 = () => {
-     
+        const emailCadastro = document.getElementById('emailCadastro').value;
+
         const storedCorrectPin = JSON.parse(localStorage.getItem('correctPinCadastro'));
-    
+
         const enteredPin = [pin1Cadastro, pin2Cadastro, pin3Cadastro, pin4Cadastro];
-    
+
         if (!storedCorrectPin || storedCorrectPin.length !== 4) {
             setIsValidCadastro(false);
             document.getElementById('pinValidarMessage').textContent = 'PIN inválido';
             return;
         }
-    
+
         const isPinValid = enteredPin.every((value, index) => value === storedCorrectPin[index]);
-    
+
         setIsValidCadastro(isPinValid);
-    
+
         if (isPinValid) {
             abrirContainerCadastroContinuacao();
+            localStorage.setItem('emailCadastro', emailCadastro)
             document.getElementById('pinValidarMessage').textContent = '';
         } else {
             document.getElementById('pinValidarMessage').textContent = 'PIN inválido';
         }
     };
-    
+
 
 
 
@@ -462,11 +460,7 @@ function Header() {
                 .then(response => response.json())
                 .then(data => {
 
-                    if (data.status !== 200) {
-                        document.getElementById('erroEndereco').textContent = data.message
-                    } else {
-                        abrirContainerCadastroCategoria()
-                    }
+                    abrirContainerCadastroCategoria()
                     document.getElementById('erroEndereco').textContent = ''
                     console.log(data);
                 })
@@ -505,8 +499,6 @@ function Header() {
                     bairroInput.value = data.bairro
                     logradouroInput.value = data.logradouro
                     selectEstado.value = data.uf
-
-                    alert('viacep')
 
                     document.getElementById('erroEndereco').textContent = ''
                 })
@@ -885,6 +877,7 @@ function Header() {
                         </div>
                         <button className='buttonLogar' onClick={pegarEnderecosDados}>Entrar</button>
                     </div>
+                    <button onClick={validarEmail} className='botaoFecharModalCadastro'>back</button>
                     <button onClick={closeModalPai} className='botaoFecharModalCadastro'>X</button>
                 </div>
 
