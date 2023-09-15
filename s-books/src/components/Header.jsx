@@ -312,13 +312,29 @@ function Header() {
 
 
 
-    const enviarPin = () => {
-        const pinCorreto = ['1', '2', '3', '4']; // Substitua pelo seu PIN real
+    const verifiqueEmail = () => {
+        const emailCadastro = document.getElementById('emailCadastro').value;
+        const pinValidarMessage = document.getElementById('pinValidarMessage');
     
-        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+        if (!emailRegex.test(emailCadastro)) {
+            pinValidarMessage.textContent = 'Email inválido';
+            return;
+        }
+    
+        enviarPin();
+        pinValidarMessage.textContent = '';
+    };
+    
+    
+    
+    
+    const enviarPin = () => {
+        const pinCorreto = ['1', '2', '3', '4']; 
+    
         localStorage.setItem('correctPinCadastro', JSON.stringify(pinCorreto));
     
-        console.log(pinCorreto);
     }
     
     const checkPin2 = () => {
@@ -774,7 +790,7 @@ function Header() {
                             </HStack>
                             <span id="pinValidarMessage"></span>
                             <div className="buttonContainer">
-                                <button className='buttonContainerReenviar' onClick={enviarPin}>Enviar Código</button>
+                                <button className='buttonContainerReenviar' onClick={verifiqueEmail}>Enviar Código</button>
                                 <button className='buttonContainerContinuar' onClick={checkPin2}>Continuar</button>
                             </div>
                         </div>

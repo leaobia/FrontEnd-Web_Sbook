@@ -174,7 +174,7 @@
     font-weight: 600;
 }
 
-#emailMessage, #pinMessage, #senhaMessage, #erroLogin, #erroSenhaOuFaltaCampos, #erroEndereco{
+#emailMessage, #pinMessage, #senhaMessage, #erroLogin, #erroSenhaOuFaltaCampos, #erroEndereco, #pinValidarMessage{
     color: #AA6231;
     font-weight: bold;
 }
