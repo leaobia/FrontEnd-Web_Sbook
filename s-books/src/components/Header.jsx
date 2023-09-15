@@ -138,7 +138,7 @@ function Header() {
 
             if(verificarCPF(cpf)){
                 localStorage.setItem('cpfCadastro', cpf)
-                console.log('certo');
+                
                 if(cadastroSenha === confirmarCadastroSenha){
                     localStorage.setItem('cadastroSenha', cadastroSenha)
                     if(emailRegex.test(email)){
@@ -163,6 +163,7 @@ function Header() {
 
 
     function abrirContainerCadastroCategoria() {
+        alert('chegou abrir')
         hideElement('containerCadastroContinuacao');
         showElement('containerCadastroCategoria');
         hideElement('containerLogin');
@@ -324,6 +325,7 @@ function Header() {
     }
 
     function pegarEnderecosDados(){
+
         const cepInput = document.getElementById('pegarCEP').value;
         const cidadeInput = document.getElementById('pegarCidade').value;
         const bairroInput = document.getElementById('pegarBairro').value;
@@ -350,7 +352,7 @@ function Header() {
                 "email_usuario": email,
                 "senha_usuario": senha
             };
-            const url = "http://10.107.144.31:8080/v1/sbook/registro-usuario";
+            const url = "https://app-nodejs.cyclic.cloud/v1/sbook/registro-usuario";
             fetch(url, {
                 method: "POST",
                 headers: {
@@ -360,27 +362,25 @@ function Header() {
             })
                 .then(response => response.json())
                 .then(data => {
-    
-                  console.log(data);
-                  abrirContainerCadastroCategoria()
+
+                    if(data.status != 200){
+                        document.getElementById('erroEndereco').textContent = data.message
+                    }else{
+                        abrirContainerCadastroCategoria()
+                    }
+                    document.getElementById('erroEndereco').textContent = ''
+                    console.log(data);  
                 })
                 .catch(error => {
-                    console.error("Erro ao fazer login:", error);
-                    
+                    console.error("Erro ao fazer cadastro:", error);
                 });
 
         }else{
-            alert('por favor, preencha todas as credenciais corretamente!!')
+            document.getElementById('erroEndereco').textContent = 'Por favor, preencha todas as credenciais corretamente!'
         }
 
     }
 
-    function cadastrar(){
-       
-
-            pegarEnderecosDados()
-       
-    }
 
     function fetchViaCep() {
 
@@ -394,8 +394,6 @@ function Header() {
 
         const cep = cepInput.value.replace(/\D/g, '');;
 
-        console.log(cepInput);
-
 
         if (/^\d{8}$/.test(cep)) {
 
@@ -407,6 +405,8 @@ function Header() {
                     bairroInput.value = data.bairro
                     logradouroInput.value = data.logradouro
                     selectEstado.value = data.uf
+
+                    alert('viacep')
 
                     document.getElementById('erroEndereco').textContent = ''
                 })
@@ -746,7 +746,7 @@ function Header() {
                                 <span id="erroEndereco"></span>
                             </Stack>
                         </div>
-                        <button className='buttonLogar' onClick={verificarCadastroDadosPessoais}>Entrar</button>
+                        <button className='buttonLogar' onClick={pegarEnderecosDados}>Entrar</button>
                     </div>
                     <button onClick={closeModalPai} className='botaoFecharModalCadastro'>X</button>
                 </div>
@@ -806,7 +806,7 @@ function Header() {
                                 Ficção Cientifica
                             </div>
                         </div>
-                        <button onClick={cadastrar} className='buttonLogar'>Entrar</button>
+                        <button className='buttonLogar'>Entrar</button>
                     </div>
                     <button onClick={closeModalPai} className='botaoFecharModalCadastro'>X</button>
                 </div>
