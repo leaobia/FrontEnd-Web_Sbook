@@ -69,15 +69,19 @@ function Header() {
         document.getElementById('body').classList.remove('overflow-auto');
         document.getElementById('body').classList.add('overflow-hidden');
 
-        showElement('modalPai');
         hideElement('containerCadastro');
-        showElement('containerLogin');
         hideElement('resetSenha');
         hideElement('trocarSenha');
         hideElement('senhaRedefinida');
         hideElement('codigoRecuperacao');
         hideElement('containerCadastroContinuacao');
+        hideElement('codigoValidacao');
         hideElement('containerCadastroCategoria');
+
+        showElement('modalPai');
+        showElement('containerLogin');
+
+
     }
 
     function abrirContainerCadastro() {
@@ -86,6 +90,8 @@ function Header() {
         hideElement('trocarSenha');
         hideElement('senhaRedefinida');
         hideElement('containerCadastroContinuacao');
+        hideElement('codigoValidacao');
+        hideElement('containerCadastroCategoria');
         showElement('containerCadastro');
     }
 
@@ -93,13 +99,53 @@ function Header() {
     function abrirContainerCadastroContinuacao() {
 
         hideElement('containerCadastro');
+        hideElement('containerLogin');
+        hideElement('trocarSenha');
+        hideElement('senhaRedefinida');
+        hideElement('codigoValidacao');
+        hideElement('resetSenha');
+        hideElement('containerCadastroCategoria');
         showElement('containerCadastroContinuacao');
+
+    }
+
+    function abrirContainerCadastroCategoria() {
+        hideElement('containerCadastro');
+        hideElement('containerCadastroContinuacao');
         hideElement('containerLogin');
         hideElement('trocarSenha');
         hideElement('senhaRedefinida');
         hideElement('resetSenha');
+        hideElement('codigoValidacao');
 
+        showElement('containerCadastroCategoria');
     }
+
+    function abrirContainerLogin() {
+
+        hideElement('containerCadastro');
+        hideElement('trocarSenha');
+        hideElement('codigoValidacao');
+        hideElement('senhaRedefinida');
+        hideElement('resetSenha');
+        hideElement('containerCadastroContinuacao');
+
+        showElement('containerLogin');
+    }
+
+    function abrirContainerResetSenha() {
+      
+        hideElement('containerCadastro');
+        hideElement('trocarSenha');
+        hideElement('senhaRedefinida');
+        hideElement('codigoValidacao');
+        hideElement('containerLogin');
+        hideElement('containerCadastroContinuacao');
+
+        showElement('resetSenha');
+    }
+
+    // api
 
     function verificarCPF(cpf) {
         cpf = cpf.replace(/\D/g, '');
@@ -114,12 +160,12 @@ function Header() {
         if (segundoDigito > 9) segundoDigito = 0;
         return parseInt(cpf.charAt(9)) === primeiroDigito && parseInt(cpf.charAt(10)) === segundoDigito;
     }
-    
 
-    function verificarCadastroDadosPessoais(){
+
+    function verificarCadastroDadosPessoais() {
 
         const nomeUser = document.getElementById('nomeCadastro').value
-        const email= document.getElementById('emailCadastro').value
+        const email = document.getElementById('emailCadastro').value
         const cpf = document.getElementById('cpfCadastro').value
         const date = document.getElementById('dateCadastro').value
         const cadastroSenha = document.getElementById('cadastroSenha').value
@@ -127,66 +173,42 @@ function Header() {
         const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
 
-        if(nomeUser,email,cpf,date,cadastroSenha,confirmarCadastroSenha){
+        if (nomeUser, email, cpf, date, cadastroSenha, confirmarCadastroSenha) {
 
-            console.log(nomeUser,email,cpf,date,cadastroSenha,confirmarCadastroSenha);
+            console.log(nomeUser, email, cpf, date, cadastroSenha, confirmarCadastroSenha);
 
             localStorage.setItem('nomeUserCadastro', nomeUser)
-           
-            localStorage.setItem('dateCadastro', date)
-       
 
-            if(verificarCPF(cpf)){
+            localStorage.setItem('dateCadastro', date)
+
+
+            if (verificarCPF(cpf)) {
                 localStorage.setItem('cpfCadastro', cpf)
-                
-                if(cadastroSenha === confirmarCadastroSenha){
+
+                if (cadastroSenha === confirmarCadastroSenha) {
                     localStorage.setItem('cadastroSenha', cadastroSenha)
-                    if(emailRegex.test(email)){
+                    if (emailRegex.test(email)) {
                         localStorage.setItem('emailCadastro', email)
                         document.getElementById('erroSenhaOuFaltaCampos').textContent = ''
                         abrirContainerCadastroContinuacao()
-                    }else{
+                    } else {
                         document.getElementById('erroSenhaOuFaltaCampos').textContent = 'Por favor, preencha um e-mail válido'
                     }
-                   
-                }else{
+
+                } else {
                     document.getElementById('erroSenhaOuFaltaCampos').textContent = 'Por favor, preencha senhas iguais.'
                 }
-            }else{
+            } else {
                 document.getElementById('erroSenhaOuFaltaCampos').textContent = 'Por favor, preencha um cpf válido.'
             }
-        }else{
+        } else {
             document.getElementById('erroSenhaOuFaltaCampos').textContent = 'Por favor, preencha todos os campos'
         }
     }
 
 
 
-    function abrirContainerCadastroCategoria() {
-        alert('chegou abrir')
-        hideElement('containerCadastroContinuacao');
-        showElement('containerCadastroCategoria');
-        hideElement('containerLogin');
-        hideElement('trocarSenha');
-        hideElement('senhaRedefinida');
-        hideElement('resetSenha');
-    }
 
-    function abrirContainerLogin() {
-        hideElement('containerCadastro');
-        showElement('containerLogin');
-        hideElement('trocarSenha');
-        hideElement('senhaRedefinida');
-        hideElement('resetSenha');
-    }
-
-    function abrirContainerResetSenha() {
-        showElement('resetSenha');
-        hideElement('containerCadastro');
-        hideElement('trocarSenha');
-        hideElement('senhaRedefinida');
-        hideElement('containerLogin');
-    }
 
     function abrirCodigoRecuperacao() {
         const emailInput = document.getElementById('emailRecuperarSenha').value;
@@ -198,7 +220,9 @@ function Header() {
                 hideElement('resetSenha');
                 hideElement('containerCadastro');
                 hideElement('trocarSenha');
+                hideElement('codigoValidacao');
                 hideElement('senhaRedefinida');
+
                 showElement('codigoRecuperacao');
                 document.getElementById('emailMessage').textContent = ''
             } else {
@@ -216,6 +240,8 @@ function Header() {
         hideElement('containerCadastro');
         hideElement('trocarSenha');
         hideElement('senhaRedefinida');
+        hideElement('codigoValidacao');
+
         showElement('codigoRecuperacao');
         document.getElementById('emailMessage').textContent = ''
     }
@@ -226,8 +252,22 @@ function Header() {
         hideElement('containerCadastro');
         hideElement('codigoRecuperacao');
         hideElement('senhaRedefinida');
+        hideElement('codigoValidacao');
+
         showElement('trocarSenha');
     }
+
+    function validarEmail(){
+        hideElement('containerLogin');
+        hideElement('resetSenha');
+        hideElement('containerCadastro');
+        hideElement('codigoRecuperacao');
+        hideElement('senhaRedefinida');
+        hideElement('trocarSenha');
+
+        showElement('codigoValidacao');
+    }
+
 
     function abrirSenhaRedefinidaComSucesso() {
         hideElement('containerLogin');
@@ -235,6 +275,8 @@ function Header() {
         hideElement('containerCadastro');
         hideElement('codigoRecuperacao');
         hideElement('trocarSenha');
+        hideElement('codigoValidacao');
+
         showElement('senhaRedefinida');
     }
 
@@ -262,6 +304,28 @@ function Header() {
             document.getElementById('pinMessage').textContent = ''
         } else {
             document.getElementById('pinMessage').textContent = 'PIN inválido'
+        }
+    };
+
+
+    const [pin1Cadastro, setPin1Cadastro] = useState('');
+    const [pin2Cadastro, setPin2Cadastro] = useState('');
+    const [pin3Cadastro, setPin3Cadastro] = useState('');
+    const [pin4Cadastro, setPin4Cadastro] = useState('');
+    const [isValidCadastro, setIsValidCadastro] = useState(true);
+
+    const checkPin2 = () => {
+        const correctPin = ['1', '2', '3', '4'];
+        const enteredPin = [pin1Cadastro, pin2Cadastro, pin3Cadastro, pin4Cadastro];
+        const isPinValid = enteredPin.every((value, index) => value === correctPin[index]);
+
+        setIsValidCadastro(isPinValid);
+
+        if (isPinValid) {
+            verificarCadastroDadosPessoais()
+            document.getElementById('pinValidarMessage').textContent = ''
+        } else {
+            document.getElementById('pinValidarMessage').textContent = 'PIN inválido'
         }
     };
 
@@ -324,7 +388,7 @@ function Header() {
 
     }
 
-    function pegarEnderecosDados(){
+    function pegarEnderecosDados() {
 
         const cepInput = document.getElementById('pegarCEP').value;
         const cidadeInput = document.getElementById('pegarCidade').value;
@@ -332,14 +396,14 @@ function Header() {
         const logradouroInput = document.getElementById('pegarLogradouro').value;
         const selectEstado = document.getElementById('selectEstado').value;
 
-        
+
         const nomeUsuario = localStorage.getItem('nomeUserCadastro')
         const email = localStorage.getItem('emailCadastro')
         const dataNascimento = localStorage.getItem('dateCadastro')
         const cpf = localStorage.getItem('cpfCadastro')
         const senha = localStorage.getItem('cadastroSenha')
 
-        if(cepInput,cidadeInput,bairroInput,logradouroInput,selectEstado){
+        if (cepInput, cidadeInput, bairroInput, logradouroInput, selectEstado) {
             const credentials = {
                 "logradouro_endereco": logradouroInput,
                 "bairro_endereco": bairroInput,
@@ -352,7 +416,7 @@ function Header() {
                 "email_usuario": email,
                 "senha_usuario": senha
             };
-            const url = "https://app-nodejs.cyclic.cloud/v1/sbook/registro-usuario";
+            const url = "http://10.107.144.31:8080/v1/sbook/registro-usuario";
             fetch(url, {
                 method: "POST",
                 headers: {
@@ -363,23 +427,24 @@ function Header() {
                 .then(response => response.json())
                 .then(data => {
 
-                    if(data.status != 200){
+                    if (data.status !== 200) {
                         document.getElementById('erroEndereco').textContent = data.message
-                    }else{
+                    } else {
                         abrirContainerCadastroCategoria()
                     }
                     document.getElementById('erroEndereco').textContent = ''
-                    console.log(data);  
+                    console.log(data);
                 })
                 .catch(error => {
                     console.error("Erro ao fazer cadastro:", error);
                 });
 
-        }else{
+        } else {
             document.getElementById('erroEndereco').textContent = 'Por favor, preencha todas as credenciais corretamente!'
         }
 
     }
+
 
 
     function fetchViaCep() {
@@ -388,9 +453,9 @@ function Header() {
         const cidadeInput = document.getElementById('pegarCidade');
         const bairroInput = document.getElementById('pegarBairro');
         const logradouroInput = document.getElementById('pegarLogradouro');
-        const  selectEstado = document.getElementById('selectEstado');
+        const selectEstado = document.getElementById('selectEstado');
 
-       
+
 
         const cep = cepInput.value.replace(/\D/g, '');;
 
@@ -650,15 +715,54 @@ function Header() {
                                         fontSize={['sm', 'md', 'lg']}
                                     />
                                 </InputGroup>
-                                <PasswordInput placeholder='Senha' id='cadastroSenha'/>
-                                <PasswordInput placeholder='Confirmar senha' id='confirmarCadastroSenha'/>
+                                <PasswordInput placeholder='Senha' id='cadastroSenha' />
+                                <PasswordInput placeholder='Confirmar senha' id='confirmarCadastroSenha' />
                                 <span id="erroSenhaOuFaltaCampos"></span>
                             </Stack>
                         </div>
-                        <button onClick={verificarCadastroDadosPessoais} className='buttonLogar'>Continuar</button>
+                        <button onClick={validarEmail} className='buttonLogar'>Continuar</button>
                         <span className='loginConta'>Já tem uma conta? <Link className='linkCadastreAqui' onClick={abrirContainerLogin}>Entre aqui.</Link></span>
                     </div>
                     <button onClick={closeModalPai} className='botaoFecharModalCadastro'>X</button>
+                </div>
+
+                <div className="codigoValidacao d-none" id='codigoValidacao'>
+
+                    <div className="imgEsqueciSenha">
+                        <img src={imagemCodigoRecuperacao} alt="imagem de uma mulher com a mão na cabeça e com dúvidas" />
+                    </div>
+                    <div className="contentReset">
+                        <button onClick={closeModalPai} className='botaoFecharModalLogin resetButtonClose'>X</button>
+                        <div className="formEsqueciSenha">
+                            <div className="imgTitle">
+                                <img src={logo} alt="logotipo da empresa" className='imgLogo resetLogo' />
+                                <h1>Informe o código de validação</h1>
+                                <p>Agora, insira o código que enviamos por e-mail para verificar se o seu e-mail existe.</p>
+                            </div>
+                            <HStack>
+                                <PinInput otp>
+                                    <PinInputField value={pin1Cadastro}
+                                        onChange={(e) => setPin1Cadastro(e.target.value)}
+                                        isInvalid={!isValidCadastro} />
+                                    <PinInputField value={pin2Cadastro}
+                                        onChange={(e) => setPin2Cadastro(e.target.value)}
+                                        isInvalid={!isValidCadastro} />
+                                    <PinInputField value={pin3Cadastro}
+                                        onChange={(e) => setPin3Cadastro(e.target.value)}
+                                        isInvalid={!isValidCadastro} />
+                                    <PinInputField value={pin4Cadastro}
+                                        onChange={(e) => setPin4Cadastro(e.target.value)}
+                                        isInvalid={!isValidCadastro} />
+                                </PinInput>
+
+                            </HStack>
+                            <span id="pinValidarMessage"></span>
+                            <div className="buttonContainer">
+                                <button className='buttonContainerContinuar' onClick={checkPin2}>Continuar</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div className="containerCadastro d-none" id='containerCadastroContinuacao'>
@@ -679,7 +783,7 @@ function Header() {
                                     className='inputField'
                                     fontSize={['sm', 'md', 'lg']}
                                 />
-                                <Select placeholder='Estado' height='48px' color="#9F9898" id='selectEstado'   disabled>
+                                <Select placeholder='Estado' height='48px' color="#9F9898" id='selectEstado' disabled>
                                     <option value='AC'>Acre</option>
                                     <option value='AL'>Alagoas</option>
                                     <option value='AP'>Amapá</option>

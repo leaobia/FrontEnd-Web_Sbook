@@ -10,7 +10,7 @@ width: 100%;
 }
 
 
-.containerLogin, .codigoRecuperacao, .trocarSenha, .containerCategoria{
+.containerLogin, .codigoRecuperacao, .trocarSenha, .containerCategoria, #codigoValidacao{
     z-index: 3;
     opacity: 1;
     background-color: #FFFF;
