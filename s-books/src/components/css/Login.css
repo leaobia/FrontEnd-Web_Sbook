@@ -10,7 +10,7 @@ width: 100%;
 }
 
 
-.containerLogin, .codigoRecuperacao, .trocarSenha, .containerCategoria, #codigoValidacao{
+.containerLogin, .codigoRecuperacao, .trocarSenha, .containerCategoria{
     z-index: 3;
     opacity: 1;
     background-color: #FFFF;
@@ -19,6 +19,15 @@ width: 100%;
     justify-content: space-between;
     height: 80vh;
 }
+    #codigoValidacaoEmail{
+        z-index: 3;
+        opacity: 1;
+        background-color: #FFFF;
+        width: 70vw;
+        justify-content: space-between;
+        height: 80vh;
+    }
+
 
 .botaoFecharModalLogin{
     width: auto;
@@ -138,7 +147,7 @@ width: 100%;
     }
     
 
-    .containerLogin, .codigoRecuperacao, .trocarSenha, .containerCategoria {
+    .containerLogin, .codigoRecuperacao, .trocarSenha, .containerCategoria , #codigoValidacaoEmail{
         width: 90vw;
         height: 90vh;
     }

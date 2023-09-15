@@ -44,9 +44,6 @@ function verificarTokenNoLocalStorage() {
 document.addEventListener('DOMContentLoaded', verificarTokenNoLocalStorage);
 
 
-
-
-
 function Header() {
 
     function hideElement(id) {
@@ -66,6 +63,7 @@ function Header() {
     }
 
     function openModalPai() {
+
         document.getElementById('body').classList.remove('overflow-auto');
         document.getElementById('body').classList.add('overflow-hidden');
 
@@ -75,7 +73,7 @@ function Header() {
         hideElement('senhaRedefinida');
         hideElement('codigoRecuperacao');
         hideElement('containerCadastroContinuacao');
-        hideElement('codigoValidacao');
+        hideElement('codigoValidacaoEmail');
         hideElement('containerCadastroCategoria');
 
         showElement('modalPai');
@@ -90,7 +88,7 @@ function Header() {
         hideElement('trocarSenha');
         hideElement('senhaRedefinida');
         hideElement('containerCadastroContinuacao');
-        hideElement('codigoValidacao');
+        hideElement('codigoValidacaoEmail');
         hideElement('containerCadastroCategoria');
         showElement('containerCadastro');
     }
@@ -102,10 +100,10 @@ function Header() {
         hideElement('containerLogin');
         hideElement('trocarSenha');
         hideElement('senhaRedefinida');
-        hideElement('codigoValidacao');
         hideElement('resetSenha');
         hideElement('containerCadastroCategoria');
         showElement('containerCadastroContinuacao');
+        hideElement('codigoValidacaoEmail');
 
     }
 
@@ -116,7 +114,7 @@ function Header() {
         hideElement('trocarSenha');
         hideElement('senhaRedefinida');
         hideElement('resetSenha');
-        hideElement('codigoValidacao');
+        hideElement('codigoValidacaoEmail');
 
         showElement('containerCadastroCategoria');
     }
@@ -125,7 +123,7 @@ function Header() {
 
         hideElement('containerCadastro');
         hideElement('trocarSenha');
-        hideElement('codigoValidacao');
+        hideElement('codigoValidacaoEmail');
         hideElement('senhaRedefinida');
         hideElement('resetSenha');
         hideElement('containerCadastroContinuacao');
@@ -134,11 +132,11 @@ function Header() {
     }
 
     function abrirContainerResetSenha() {
-      
+
         hideElement('containerCadastro');
         hideElement('trocarSenha');
         hideElement('senhaRedefinida');
-        hideElement('codigoValidacao');
+        hideElement('codigoValidacaoEmail');
         hideElement('containerLogin');
         hideElement('containerCadastroContinuacao');
 
@@ -165,35 +163,30 @@ function Header() {
     function verificarCadastroDadosPessoais() {
 
         const nomeUser = document.getElementById('nomeCadastro').value
-        const email = document.getElementById('emailCadastro').value
-        const cpf = document.getElementById('cpfCadastro').value
+        const cpf = document.getElementById('cpfCadastro').value.replace(/[.-]/g, '');
         const date = document.getElementById('dateCadastro').value
         const cadastroSenha = document.getElementById('cadastroSenha').value
         const confirmarCadastroSenha = document.getElementById('confirmarCadastroSenha').value
-        const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
 
-        if (nomeUser, email, cpf, date, cadastroSenha, confirmarCadastroSenha) {
+        console.log('nomeUser:', nomeUser);
+        console.log('cpf:', cpf);
+        console.log('date:', date);
+        console.log('cadastroSenha:', cadastroSenha);
+        console.log('confirmarCadastroSenha:', confirmarCadastroSenha);
 
-            console.log(nomeUser, email, cpf, date, cadastroSenha, confirmarCadastroSenha);
+        if (nomeUser && cpf && date && cadastroSenha && confirmarCadastroSenha) {
 
             localStorage.setItem('nomeUserCadastro', nomeUser)
 
             localStorage.setItem('dateCadastro', date)
-
 
             if (verificarCPF(cpf)) {
                 localStorage.setItem('cpfCadastro', cpf)
 
                 if (cadastroSenha === confirmarCadastroSenha) {
                     localStorage.setItem('cadastroSenha', cadastroSenha)
-                    if (emailRegex.test(email)) {
-                        localStorage.setItem('emailCadastro', email)
-                        document.getElementById('erroSenhaOuFaltaCampos').textContent = ''
-                        abrirContainerCadastroContinuacao()
-                    } else {
-                        document.getElementById('erroSenhaOuFaltaCampos').textContent = 'Por favor, preencha um e-mail válido'
-                    }
+                    validarEmail()
 
                 } else {
                     document.getElementById('erroSenhaOuFaltaCampos').textContent = 'Por favor, preencha senhas iguais.'
@@ -240,7 +233,7 @@ function Header() {
         hideElement('containerCadastro');
         hideElement('trocarSenha');
         hideElement('senhaRedefinida');
-        hideElement('codigoValidacao');
+        hideElement('codigoValidacaoEmail');
 
         showElement('codigoRecuperacao');
         document.getElementById('emailMessage').textContent = ''
@@ -252,12 +245,13 @@ function Header() {
         hideElement('containerCadastro');
         hideElement('codigoRecuperacao');
         hideElement('senhaRedefinida');
-        hideElement('codigoValidacao');
+        hideElement('codigoValidacaoEmail');
 
         showElement('trocarSenha');
     }
 
-    function validarEmail(){
+    function validarEmail() {
+
         hideElement('containerLogin');
         hideElement('resetSenha');
         hideElement('containerCadastro');
@@ -265,7 +259,7 @@ function Header() {
         hideElement('senhaRedefinida');
         hideElement('trocarSenha');
 
-        showElement('codigoValidacao');
+        showElement('codigoValidacaoEmail');
     }
 
 
@@ -276,6 +270,7 @@ function Header() {
         hideElement('codigoRecuperacao');
         hideElement('trocarSenha');
         hideElement('codigoValidacao');
+        hideElement('codigoValidacaoEmail');
 
         showElement('senhaRedefinida');
     }
@@ -283,6 +278,7 @@ function Header() {
     function closeModalPai() {
         document.getElementById('body').classList.add('overflow-auto');
         document.getElementById('body').classList.remove('overflow-hidden');
+        hideElement('codigoValidacaoEmail');
         hideElement('modalPai');
     }
 
@@ -314,20 +310,43 @@ function Header() {
     const [pin4Cadastro, setPin4Cadastro] = useState('');
     const [isValidCadastro, setIsValidCadastro] = useState(true);
 
+
+
+    const enviarPin = () => {
+        const pinCorreto = ['1', '2', '3', '4']; // Substitua pelo seu PIN real
+    
+        
+        localStorage.setItem('correctPinCadastro', JSON.stringify(pinCorreto));
+    
+        console.log(pinCorreto);
+    }
+    
     const checkPin2 = () => {
-        const correctPin = ['1', '2', '3', '4'];
+     
+        const storedCorrectPin = JSON.parse(localStorage.getItem('correctPinCadastro'));
+    
         const enteredPin = [pin1Cadastro, pin2Cadastro, pin3Cadastro, pin4Cadastro];
-        const isPinValid = enteredPin.every((value, index) => value === correctPin[index]);
-
+    
+        if (!storedCorrectPin || storedCorrectPin.length !== 4) {
+            setIsValidCadastro(false);
+            document.getElementById('pinValidarMessage').textContent = 'PIN inválido';
+            return;
+        }
+    
+        const isPinValid = enteredPin.every((value, index) => value === storedCorrectPin[index]);
+    
         setIsValidCadastro(isPinValid);
-
+    
         if (isPinValid) {
-            verificarCadastroDadosPessoais()
-            document.getElementById('pinValidarMessage').textContent = ''
+            abrirContainerCadastroContinuacao();
+            document.getElementById('pinValidarMessage').textContent = '';
         } else {
-            document.getElementById('pinValidarMessage').textContent = 'PIN inválido'
+            document.getElementById('pinValidarMessage').textContent = 'PIN inválido';
         }
     };
+    
+
+
 
     function verificarSenhasTroca() {
         const inputNovaSenha = document.getElementById('novaSenha').value;
@@ -352,7 +371,7 @@ function Header() {
 
         console.log(credentials);
 
-        const url = "http://10.107.144.31:8080/v1/sbook/login";
+        const url = "https://app-nodejs.cyclic.cloud/v1/sbook/login";
 
         fetch(url, {
             method: "POST",
@@ -403,7 +422,7 @@ function Header() {
         const cpf = localStorage.getItem('cpfCadastro')
         const senha = localStorage.getItem('cadastroSenha')
 
-        if (cepInput, cidadeInput, bairroInput, logradouroInput, selectEstado) {
+        if (cepInput && cidadeInput && bairroInput && logradouroInput && selectEstado) {
             const credentials = {
                 "logradouro_endereco": logradouroInput,
                 "bairro_endereco": bairroInput,
@@ -416,7 +435,7 @@ function Header() {
                 "email_usuario": email,
                 "senha_usuario": senha
             };
-            const url = "http://10.107.144.31:8080/v1/sbook/registro-usuario";
+            const url = "https://app-nodejs.cyclic.cloud/v1/sbook/registro-usuario";
             fetch(url, {
                 method: "POST",
                 headers: {
@@ -691,20 +710,6 @@ function Header() {
                                     />
                                 </InputGroup>
                                 <InputGroup >
-                                    <InputRightElement h='2.8rem' pointerEvents='none'>
-                                        <EmailIcon color='gray' />
-                                    </InputRightElement>
-                                    <Input
-                                        type='email'
-                                        placeholder='Email'
-                                        w={[250, 350, 400]}
-                                        id='emailCadastro'
-                                        h='48px'
-                                        className='inputField'
-                                        fontSize={['sm', 'md', 'lg']}
-                                    />
-                                </InputGroup>
-                                <InputGroup >
                                     <Input
                                         type='date'
                                         placeholder='Data de nascimento'
@@ -720,13 +725,13 @@ function Header() {
                                 <span id="erroSenhaOuFaltaCampos"></span>
                             </Stack>
                         </div>
-                        <button onClick={validarEmail} className='buttonLogar'>Continuar</button>
+                        <button onClick={verificarCadastroDadosPessoais} className='buttonLogar'>Continuar</button>
                         <span className='loginConta'>Já tem uma conta? <Link className='linkCadastreAqui' onClick={abrirContainerLogin}>Entre aqui.</Link></span>
                     </div>
                     <button onClick={closeModalPai} className='botaoFecharModalCadastro'>X</button>
                 </div>
 
-                <div className="codigoValidacao d-none" id='codigoValidacao'>
+                <div className="d-none" id='codigoValidacaoEmail'>
 
                     <div className="imgEsqueciSenha">
                         <img src={imagemCodigoRecuperacao} alt="imagem de uma mulher com a mão na cabeça e com dúvidas" />
@@ -739,6 +744,17 @@ function Header() {
                                 <h1>Informe o código de validação</h1>
                                 <p>Agora, insira o código que enviamos por e-mail para verificar se o seu e-mail existe.</p>
                             </div>
+
+                            <Input
+                                type='email'
+                                placeholder='Email'
+                                w={[250, 350, 400]}
+                                id='emailCadastro'
+                                h='48px'
+                                className='inputField'
+                                fontSize={['sm', 'md', 'lg']}
+                            />
+
                             <HStack>
                                 <PinInput otp>
                                     <PinInputField value={pin1Cadastro}
@@ -758,6 +774,7 @@ function Header() {
                             </HStack>
                             <span id="pinValidarMessage"></span>
                             <div className="buttonContainer">
+                                <button className='buttonContainerReenviar' onClick={enviarPin}>Enviar Código</button>
                                 <button className='buttonContainerContinuar' onClick={checkPin2}>Continuar</button>
                             </div>
                         </div>

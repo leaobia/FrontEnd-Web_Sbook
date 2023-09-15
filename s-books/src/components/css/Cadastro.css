@@ -7,7 +7,9 @@
     justify-content: center;
     width: 100%;
 }
-
+.d-none{
+    display: none;
+}
 .containerCadastro {
     z-index: 3;
     opacity: 1;
