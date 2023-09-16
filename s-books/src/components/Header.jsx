@@ -125,28 +125,31 @@ function Header() {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 200) {
-                    const generos = data.dados.map(genero => genero.nome);
-                    console.log(generos);
+                    const generos = data.dados;
     
                     generos.forEach(genero => {
                         const buttonCategoria = document.createElement('button');
                         buttonCategoria.className = 'buttonCategoria';
-                        buttonCategoria.textContent = genero;
+                        buttonCategoria.textContent = genero.nome;
     
                         buttonCategoria.addEventListener('click', () => {
-                            if (!generosSelecionados.includes(genero)) {
-                                generosSelecionados.push(genero);
+                            // Verificar se o gênero já está no array
+                            const generoObj = {
+                                id: genero.id,
+                                nome: genero.nome
+                            };
+                            
+                            const generoIndex = generosSelecionados.findIndex(item => item.id === genero.id);
+                            
+                            if (generoIndex === -1) {
+                                generosSelecionados.push(generoObj);
                                 buttonCategoria.classList.add('buttonSelecionado');
-                                localStorage.setItem('generosSelecionados', JSON.stringify(generosSelecionados));
                             } else {
-                                // Se o botão já tiver a classe, remova-a do array e do localStorage
-                                const index = generosSelecionados.indexOf(genero);
-                                if (index !== -1) {
-                                    generosSelecionados.splice(index, 1);
-                                    buttonCategoria.classList.remove('buttonSelecionado');
-                                    localStorage.setItem('generosSelecionados', JSON.stringify(generosSelecionados));
-                                }
+                                generosSelecionados.splice(generoIndex, 1);
+                                buttonCategoria.classList.remove('buttonSelecionado');
                             }
+    
+                            localStorage.setItem('generosSelecionados', JSON.stringify(generosSelecionados));
                         });
     
                         categoriasContainer.appendChild(buttonCategoria);
@@ -159,6 +162,7 @@ function Header() {
                 console.error('Erro ao fazer a solicitação:', error);
             });
     }
+    
     
 
 
