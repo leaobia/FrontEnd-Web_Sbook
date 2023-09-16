@@ -242,7 +242,10 @@
     cursor: pointer;
     transition: .5s;
 }
-
+.buttonSelecionado{
+    background-color: #AA6231;
+    color: #FFFF;
+}
 .buttonCategoria:hover{
     background-color: #AA6231;
     color: #FFFF;

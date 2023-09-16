@@ -115,23 +115,32 @@ function Header() {
         hideElement('senhaRedefinida');
         hideElement('resetSenha');
         hideElement('codigoValidacaoEmail');
-    
+
         showElement('containerCadastroCategoria');
-    
+
+        const generosSelecionados = [];
+        const categoriasContainer = document.getElementById('categorias');
+
         fetch('https://app-nodejs.cyclic.cloud/v1/sbook/generos')
             .then(response => response.json())
             .then(data => {
-              
                 if (data.status === 200) {
                     const generos = data.dados.map(genero => genero.nome);
-    
-                    const categoriasContainer = document.getElementById('categorias');
-    
+                    console.log(generos);
+
                     generos.forEach(genero => {
-                        const buttonCategoria = document.createElement('div');
+                        const buttonCategoria = document.createElement('button');
                         buttonCategoria.className = 'buttonCategoria';
                         buttonCategoria.textContent = genero;
-    
+
+                        buttonCategoria.addEventListener('click', () => {
+                            buttonCategoria.classList.add('buttonSelecionado')
+                            if (!generosSelecionados.includes(genero)) {
+                                generosSelecionados.push(genero);
+                                localStorage.setItem('generosSelecionados', JSON.stringify(generosSelecionados));
+                            }
+                        });
+
                         categoriasContainer.appendChild(buttonCategoria);
                     });
                 } else {
@@ -142,7 +151,7 @@ function Header() {
                 console.error('Erro ao fazer a solicitação:', error);
             });
     }
-    
+
 
     function abrirContainerLogin() {
 
@@ -570,6 +579,7 @@ function Header() {
                 .then(response => response.json())
                 .then(data => {
 
+                    localStorage.setItem('id_usuario', data.id_usuario)
                     abrirContainerCadastroCategoria()
                     document.getElementById('erroEndereco').textContent = ''
                     console.log(data);
@@ -621,10 +631,17 @@ function Header() {
 
     }
 
+    function enviarCategoriasFavoritasDoUsuario() {
+        const arrayGeneros = localStorage.getItem('generosSelecionados')
+        console.log(arrayGeneros);
+    }
+
     return (
 
 
         <div className="Header">
+
+            {/* login */}
 
             <div className='loginModal d-none' id='modalPai'>
 
@@ -669,6 +686,8 @@ function Header() {
                         <img src={imageLogin} alt="imagem de um homem e uma mulher na biblioteca" />
                     </div>
                 </div>
+
+                {/* reset senha */}
 
                 <div className="resetSenha d-none" id='resetSenha'>
 
@@ -1003,7 +1022,7 @@ function Header() {
                                 Teologia
                             </div> */}
                         </div>
-                        <button className='buttonLogar'>Entrar</button>
+                        <button className='buttonLogar' onClick={enviarCategoriasFavoritasDoUsuario}>Entrar</button>
                     </div>
                     <button onClick={closeModalPai} className='botaoFecharModalCadastro'>X</button>
                 </div>
