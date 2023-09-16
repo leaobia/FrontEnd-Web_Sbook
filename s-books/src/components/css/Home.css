@@ -40,6 +40,7 @@
     border-radius: 8px;
     padding: 10px;
     gap: 20px;
+    width: 20vw;
     -webkit-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
     -moz-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
     box-shadow: 0 0 20px 0px rgba(211, 211, 211, 1);
@@ -50,8 +51,10 @@
 }
 
 .imgLivro{
+    display: grid;
+    place-self: center;
     height: 30vh;
-    width: 18vw;
+    width: 60%;
 }
 
 .autorAno{
@@ -114,4 +117,26 @@
     padding: 2%;
     display: flex;
     justify-content: space-between;
+}
+
+@media (max-width:1200px) {
+    .personagem-card{
+        width: 25vw;
+    }
+}
+
+@media (max-width:1000px) {
+    .personagem-card{
+        width: 30vw;
+    }
+}
+@media (max-width:600px) {
+    .personagem-card{
+        width: 60vw;
+    }
+}
+@media (max-width:400px) {
+    .personagem-card{
+        width: 80vw;
+    }
 }
