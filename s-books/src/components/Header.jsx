@@ -324,7 +324,7 @@ function Header() {
         const url = "https://app-nodejs.cyclic.cloud/v1/sbook/validar-token";
 
         const requestOptions = {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
