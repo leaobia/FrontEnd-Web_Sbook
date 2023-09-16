@@ -200,25 +200,50 @@ function Header() {
     function abrirCodigoRecuperacao() {
         const emailInput = document.getElementById('emailRecuperarSenha').value;
 
+        console.log(emailInput);
+    
         if (emailInput) {
             const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
             if (emailRegex.test(emailInput)) {
-                hideElement('containerLogin');
-                hideElement('resetSenha');
-                hideElement('containerCadastro');
-                hideElement('trocarSenha');
-                hideElement('codigoValidacao');
-                hideElement('senhaRedefinida');
-
-                showElement('codigoRecuperacao');
-                document.getElementById('emailMessage').textContent = ''
+                const url = `https://app-nodejs.cyclic.cloud/v1/sbook/esqueci-senha/${emailInput}`;
+    
+            
+                fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then(response => {
+                    if (response.status === 200) {
+                   
+                        hideElement('containerLogin');
+                        hideElement('resetSenha');
+                        hideElement('containerCadastro');
+                        hideElement('trocarSenha');
+                        hideElement('codigoValidacao');
+                        hideElement('senhaRedefinida');
+                        showElement('codigoRecuperacao');
+                        document.getElementById('emailMessage').textContent = '';
+                    } else if (response.status === 404) {
+                        
+                        document.getElementById('emailMessage').textContent = 'Email não encontrado.';
+                    } else {
+                        
+                        console.error("Erro na solicitação GET:", response.status);
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro na solicitação GET:", error);
+                });
             } else {
-                document.getElementById('emailMessage').textContent = 'Por favor, insira um endereço de e-mail válido.'
+                document.getElementById('emailMessage').textContent = 'Por favor, insira um endereço de e-mail válido.';
             }
         } else {
-            document.getElementById('emailMessage').textContent = 'Por favor, digite um e-mail.'
+            document.getElementById('emailMessage').textContent = 'Por favor, digite um e-mail.';
         }
     }
+    
 
     function abrirCodigoRecuperacaoComCodigo() {
 
