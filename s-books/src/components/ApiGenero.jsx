@@ -10,10 +10,11 @@ function ApiGenero() {
   const [mostrarTodos, setMostrarTodos] = useState(false);
 
   useEffect(() => {
-    axios.get('https://rickandmortyapi.com/api/character')
+    axios.get('https://app-nodejs.cyclic.cloud/v1/sbook/generos')
       .then(response => {
-        const personagensData = response.data.results;
-        const nomesDosPersonagens = personagensData.map(personagem => personagem.name);
+       
+        const personagensData = response.data.dados;
+        const nomesDosPersonagens = personagensData.map(personagem => personagem.nome);
         setNomes(nomesDosPersonagens); 
       })
       .catch(error => {
