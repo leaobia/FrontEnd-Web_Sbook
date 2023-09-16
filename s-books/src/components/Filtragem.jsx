@@ -43,26 +43,26 @@ function Filtragem() {
                     </Stack>
                 </div>
                 <div className="livrosContainerSidebar">
-                <h4 className='titleSection'>Livros</h4>
+                    <h4 className='titleSection'>Livros</h4>
                     <Stack spacing={5} direction='row'>
-                        <Checkbox colorScheme='gray'  className='opcaoChecagem'>
+                        <Checkbox colorScheme='gray' className='opcaoChecagem'>
                             Novos
                         </Checkbox>
-                        <Checkbox colorScheme='gray'  className='opcaoChecagem'>
+                        <Checkbox colorScheme='gray' className='opcaoChecagem'>
                             Seminovos
                         </Checkbox>
-                        <Checkbox colorScheme='gray'  className='opcaoChecagem'>
+                        <Checkbox colorScheme='gray' className='opcaoChecagem'>
                             Usados
                         </Checkbox>
                     </Stack>
                 </div>
                 <div className="generoContainer">
-                <h4 className='titleSection'>Gênero</h4>
-                <ApiGenero/>
+                    <h4 className='titleSection'>Gênero</h4>
+                    <ApiGenero />
                 </div>
                 <div className="anoDoLivroContainer">
-                <h4 className='titleSection'>Ano</h4>
-                <Stack spacing={5} className='stackDigitarLocal'>
+                    <h4 className='titleSection'>Ano</h4>
+                    <Stack spacing={5} className='stackDigitarLocal'>
                         <InputGroup >
                             <Input
                                 type='number'
@@ -76,6 +76,7 @@ function Filtragem() {
                     </Stack>
                 </div>
                 <div className="limparContainer">
+                    <button title='Clique aqui para Enviar os dados'>Enviar</button>
                     <button title='Clique aqui para limpar os dados'>Limpar</button>
                 </div>
             </Sidebar>
