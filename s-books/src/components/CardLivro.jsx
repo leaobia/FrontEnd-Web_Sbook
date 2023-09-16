@@ -41,7 +41,7 @@ function CardLivro() {
     <div className="livrosContainer">
       {termoPesquisa === '' ? (
         anuncios.map((anuncio) => (
-          <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio} autor={anuncio.autores[0].nome} />
+          <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio} autor={anuncio.autores[0].nome} tipo={anuncio.tipo_anuncio[0].tipo} />
         ))
       ) : (
         (() => {
@@ -72,7 +72,7 @@ function CardLivro() {
           }
 
           return filteredAnuncios.map((anuncio) => (
-            <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio || {}} autor={anuncio.autores[0].nome} />
+            <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio || {}} autor={anuncio.autores[0].nome} tipo={anuncio.tipo_anuncio[0].tipo} />
           ));
           
         })()
