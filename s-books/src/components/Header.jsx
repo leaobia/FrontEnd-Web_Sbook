@@ -200,7 +200,6 @@ function Header() {
     function abrirCodigoRecuperacao() {
         const emailInput = document.getElementById('emailRecuperarSenha').value;
 
-        console.log(emailInput);
     
         if (emailInput) {
             const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
@@ -224,6 +223,7 @@ function Header() {
                         hideElement('codigoValidacao');
                         hideElement('senhaRedefinida');
                         showElement('codigoRecuperacao');
+                        localStorage.setItem('emailRecuperarCadastro', emailInput)
                         document.getElementById('emailMessage').textContent = '';
                     } else if (response.status === 404) {
                         
@@ -307,21 +307,48 @@ function Header() {
     const [pin2, setPin2] = useState('');
     const [pin3, setPin3] = useState('');
     const [pin4, setPin4] = useState('');
-    const [isValid, setIsValid] = useState(true);
+    //const [isValid, setIsValid] = useState(true);
 
     const checkPin = () => {
-        const correctPin = ['1', '2', '3', '4'];
         const enteredPin = [pin1, pin2, pin3, pin4];
-        const isPinValid = enteredPin.every((value, index) => value === correctPin[index]);
+        const  email = localStorage.getItem('emailRecuperarCadastro')
 
-        setIsValid(isPinValid);
+        const dados = {
+            email: email,
+            token: enteredPin
+        };
 
-        if (isPinValid) {
-            abrirTrocarSenha();
-            document.getElementById('pinMessage').textContent = ''
-        } else {
+        const url = "https://app-nodejs.cyclic.cloud/v1/sbook/validar-token";
+
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados)
+        };
+        
+        fetch(url, requestOptions)
+            .then(response => {
+                if (response.status === 200) {
+                    document.getElementById('pinMessage').textContent = ''
+                    abrirTrocarSenha();
+                    return response.json();
+                } else {
+                    document.getElementById('pinMessage').textContent = 'PIN inválido'
+                    console.error('Erro na solicitação GET:', response.status);
+                    return Promise.reject('Erro na solicitação GET');
+                }
+            })
+            .then(dadosUsuario => {
+                
+                console.log('Dados do usuário:', dadosUsuario);
+            })
+            .catch(error => {
+                  
             document.getElementById('pinMessage').textContent = 'PIN inválido'
-        }
+                console.error('Erro na solicitação:', error);
+            });
     };
 
 
@@ -636,24 +663,19 @@ function Header() {
                             <HStack>
                                 <PinInput otp>
                                     <PinInputField value={pin1}
-                                        onChange={(e) => setPin1(e.target.value)}
-                                        isInvalid={!isValid} />
+                                        onChange={(e) => setPin1(e.target.value)}/>
                                     <PinInputField value={pin2}
-                                        onChange={(e) => setPin2(e.target.value)}
-                                        isInvalid={!isValid} />
+                                        onChange={(e) => setPin2(e.target.value)}/>
                                     <PinInputField value={pin3}
-                                        onChange={(e) => setPin3(e.target.value)}
-                                        isInvalid={!isValid} />
+                                        onChange={(e) => setPin3(e.target.value)}/>
                                     <PinInputField value={pin4}
-                                        onChange={(e) => setPin4(e.target.value)}
-                                        isInvalid={!isValid} />
+                                        onChange={(e) => setPin4(e.target.value)}/>
                                 </PinInput>
 
                             </HStack>
                             <span id="pinMessage"></span>
                             <div className="buttonContainer">
                                 <button className='buttonContainerContinuar' onClick={checkPin}>Continuar</button>
-                                <button className='buttonContainerReenviar'>Reenviar Código</button>
                             </div>
                         </div>
                     </div>
