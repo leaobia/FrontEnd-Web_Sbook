@@ -335,6 +335,7 @@ function Header() {
             .then(response => {
                 if (response.status === 200) {
                     document.getElementById('pinMessage').textContent = ''
+                    // localStorage.setItem('idResetSenha', response.id)
                     abrirTrocarSenha();
                     return response.json();
                 } else {
@@ -346,6 +347,7 @@ function Header() {
             .then(dadosUsuario => {
                 
                 console.log('Dados do usuário:', dadosUsuario);
+                localStorage.setItem('idResetSenha', dadosUsuario.id)
             })
             .catch(error => {
                   
