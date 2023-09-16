@@ -108,3 +108,10 @@
     font-weight: 600;
     font-size: clamp(0.75rem, -0.4829rem + 16.4384vw, 1.5rem);
 }
+
+.containerEnderecoFav{
+    border-top: 1px solid darkgray;
+    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+}
