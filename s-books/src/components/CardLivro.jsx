@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import _ from 'lodash'; // Importe o lodash
-import PersonagemCard from './PersonagemCard';
-
+import _ from 'lodash'; 
+import AnuncioCard from './AnuncioCard'; // Suponha que você tenha um componente AnuncioCard para exibir os anúncios.
 
 import {
   Alert,
@@ -12,17 +11,17 @@ import {
 } from '@chakra-ui/react'
 
 function CardLivro() {
-  const [personagens, setPersonagens] = useState([]);
+  const [anuncios, setAnuncios] = useState([]);
   const [termoPesquisa, setTermoPesquisa] = useState('');
 
   useEffect(() => {
-    axios.get('https://rickandmortyapi.com/api/character')
+    axios.get('https://app-nodejs.cyclic.cloud/v1/sbook/anuncio')
       .then(response => {
-        const personagensData = response.data.results;
-        setPersonagens(personagensData);
+        const anunciosData = response.data.anuncios;
+        setAnuncios(anunciosData);
       })
       .catch(error => {
-        console.error('Erro ao obter dados dos personagens:', error);
+        console.error('Erro ao obter dados dos anúncios:', error);
       });
   }, []);
 
@@ -39,49 +38,44 @@ function CardLivro() {
   return (
     <div className="livrosContainer">
       {termoPesquisa === '' ? (
-        personagens.map((personagem) => (
-          <PersonagemCard key={personagem.id} personagem={personagem} />
+        anuncios.map((anuncio) => (
+          <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio || {}} />
         ))
       ) : (
         (() => {
-          const filteredPersonagens = personagens.filter((personagem) =>
-            personagem.name.toLowerCase().includes(termoPesquisa.toLowerCase())
+          const filteredAnuncios = anuncios.filter((anuncio) =>
+            anuncio.anuncio && anuncio.anuncio.nome.toLowerCase().includes(termoPesquisa.toLowerCase())
           );
   
-          if (filteredPersonagens.length === 0) {
+          if (filteredAnuncios.length === 0) {
             return (
-            
               <Alert
-              status='error'
-              variant='subtle'
-              flexDirection='column'
-              alignItems='center'
-              justifyContent='center'
-              textAlign='center'
-              height='40vh'
-            >
-              <AlertIcon boxSize='40px' mr={0} />
-              <AlertTitle mt={4} mb={1} fontSize='lg'>
-                Erro!
-              </AlertTitle>
-              <AlertDescription maxWidth='sm'>
-                Nenhum resultado foi encontrado para sua pesquisa.
-              </AlertDescription>
-            </Alert>
-             
+                status='error'
+                variant='subtle'
+                flexDirection='column'
+                alignItems='center'
+                justifyContent='center'
+                textAlign='center'
+                height='40vh'
+              >
+                <AlertIcon boxSize='40px' mr={0} />
+                <AlertTitle mt={4} mb={1} fontSize='lg'>
+                  Erro!
+                </AlertTitle>
+                <AlertDescription maxWidth='sm'>
+                  Nenhum resultado foi encontrado para sua pesquisa.
+                </AlertDescription>
+              </Alert>
             );
           }
   
-          return filteredPersonagens.map((personagem) => (
-            <PersonagemCard key={personagem.id} personagem={personagem} />
+          return filteredAnuncios.map((anuncio) => (
+            <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio || {}} />
           ));
         })()
       )}
     </div>
   );
-  
-  
 }
 
 export default CardLivro;
-
