@@ -200,42 +200,42 @@ function Header() {
     function abrirCodigoRecuperacao() {
         const emailInput = document.getElementById('emailRecuperarSenha').value;
 
-    
+
         if (emailInput) {
             const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
             if (emailRegex.test(emailInput)) {
                 const url = `https://app-nodejs.cyclic.cloud/v1/sbook/esqueci-senha/${emailInput}`;
-    
-            
+
+
                 fetch(url, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"
                     }
                 })
-                .then(response => {
-                    if (response.status === 200) {
-                   
-                        hideElement('containerLogin');
-                        hideElement('resetSenha');
-                        hideElement('containerCadastro');
-                        hideElement('trocarSenha');
-                        hideElement('codigoValidacao');
-                        hideElement('senhaRedefinida');
-                        showElement('codigoRecuperacao');
-                        localStorage.setItem('emailRecuperarCadastro', emailInput)
-                        document.getElementById('emailMessage').textContent = '';
-                    } else if (response.status === 404) {
-                        
-                        document.getElementById('emailMessage').textContent = 'Email não encontrado.';
-                    } else {
-                        
-                        console.error("Erro na solicitação GET:", response.status);
-                    }
-                })
-                .catch(error => {
-                    console.error("Erro na solicitação GET:", error);
-                });
+                    .then(response => {
+                        if (response.status === 200) {
+
+                            hideElement('containerLogin');
+                            hideElement('resetSenha');
+                            hideElement('containerCadastro');
+                            hideElement('trocarSenha');
+                            hideElement('codigoValidacao');
+                            hideElement('senhaRedefinida');
+                            showElement('codigoRecuperacao');
+                            localStorage.setItem('emailRecuperarCadastro', emailInput)
+                            document.getElementById('emailMessage').textContent = '';
+                        } else if (response.status === 404) {
+
+                            document.getElementById('emailMessage').textContent = 'Email não encontrado.';
+                        } else {
+
+                            console.error("Erro na solicitação GET:", response.status);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erro na solicitação GET:", error);
+                    });
             } else {
                 document.getElementById('emailMessage').textContent = 'Por favor, insira um endereço de e-mail válido.';
             }
@@ -243,7 +243,7 @@ function Header() {
             document.getElementById('emailMessage').textContent = 'Por favor, digite um e-mail.';
         }
     }
-    
+
 
     function abrirCodigoRecuperacaoComCodigo() {
 
@@ -311,7 +311,7 @@ function Header() {
 
     const checkPin = () => {
         const enteredPin = [pin1, pin2, pin3, pin4];
-        const  email = localStorage.getItem('emailRecuperarCadastro')
+        const email = localStorage.getItem('emailRecuperarCadastro')
         const token = parseInt(enteredPin.join(''), 10);
 
         const dados = {
@@ -330,7 +330,7 @@ function Header() {
             },
             body: JSON.stringify(dados)
         };
-        
+
         fetch(url, requestOptions)
             .then(response => {
                 if (response.status === 200) {
@@ -345,13 +345,13 @@ function Header() {
                 }
             })
             .then(dadosUsuario => {
-                
+
                 console.log('Dados do usuário:', dadosUsuario);
                 localStorage.setItem('idResetSenha', dadosUsuario.id)
             })
             .catch(error => {
-                  
-            document.getElementById('pinMessage').textContent = 'PIN inválido'
+
+                document.getElementById('pinMessage').textContent = 'PIN inválido'
                 console.error('Erro na solicitação:', error);
             });
     };
@@ -422,15 +422,43 @@ function Header() {
     function verificarSenhasTroca() {
         const inputNovaSenha = document.getElementById('novaSenha').value;
         const inputNovaSenhaConfirmar = document.getElementById('confirmarSenhaTroca').value;
-
-        if (inputNovaSenha === inputNovaSenhaConfirmar) {
-            document.getElementById('senhaMessage').textContent = ''
-            abrirSenhaRedefinidaComSucesso();
+    
+        if (inputNovaSenha !== '' && inputNovaSenhaConfirmar !== '') {
+            if (inputNovaSenha === inputNovaSenhaConfirmar) {
+                document.getElementById('senhaMessage').textContent = '';
+                const data = {
+                    id: localStorage.getItem('idResetSenha'),
+                    password: inputNovaSenha
+                };
+                fetch('https://app-nodejs.cyclic.cloud/v1/sbook/recuperar-conta', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            abrirSenhaRedefinidaComSucesso();
+                            return response.json();
+                        } else {
+                            throw new Error('Erro ao fazer a solicitação');
+                        }
+                    })
+                    .then(data => {
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            } else {
+                document.getElementById('senhaMessage').textContent = 'Por favor, verifique as senhas, elas estão diferentes.';
+            }
         } else {
-            document.getElementById('senhaMessage').textContent = 'Por favor, verifique as senhas, elas estão diferentes.'
+            document.getElementById('senhaMessage').textContent = 'Por favor, preencha ambas as senhas.';
         }
     }
-
+    
     function fazerLogin(email, senha) {
         email = document.getElementById('emailLoginInput').value
         senha = document.getElementById('senhaLoginInput').value
@@ -668,13 +696,13 @@ function Header() {
                             <HStack>
                                 <PinInput otp>
                                     <PinInputField value={pin1}
-                                        onChange={(e) => setPin1(e.target.value)}/>
+                                        onChange={(e) => setPin1(e.target.value)} />
                                     <PinInputField value={pin2}
-                                        onChange={(e) => setPin2(e.target.value)}/>
+                                        onChange={(e) => setPin2(e.target.value)} />
                                     <PinInputField value={pin3}
-                                        onChange={(e) => setPin3(e.target.value)}/>
+                                        onChange={(e) => setPin3(e.target.value)} />
                                     <PinInputField value={pin4}
-                                        onChange={(e) => setPin4(e.target.value)}/>
+                                        onChange={(e) => setPin4(e.target.value)} />
                                 </PinInput>
 
                             </HStack>
