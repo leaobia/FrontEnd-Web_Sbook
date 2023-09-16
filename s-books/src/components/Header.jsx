@@ -115,32 +115,32 @@ function Header() {
         hideElement('senhaRedefinida');
         hideElement('resetSenha');
         hideElement('codigoValidacaoEmail');
-    
+
         showElement('containerCadastroCategoria');
-    
+
         const generosSelecionados = [];
         const categoriasContainer = document.getElementById('categorias');
-    
+
         fetch('https://app-nodejs.cyclic.cloud/v1/sbook/generos')
             .then(response => response.json())
             .then(data => {
                 if (data.status === 200) {
                     const generos = data.dados;
-    
+
                     generos.forEach(genero => {
                         const buttonCategoria = document.createElement('button');
                         buttonCategoria.className = 'buttonCategoria';
                         buttonCategoria.textContent = genero.nome;
-    
+
                         buttonCategoria.addEventListener('click', () => {
                             // Verificar se o gênero já está no array
                             const generoObj = {
-                                id: genero.id,
+                                id: parseInt(genero.id),
                                 nome: genero.nome
                             };
-                            
+
                             const generoIndex = generosSelecionados.findIndex(item => item.id === genero.id);
-                            
+
                             if (generoIndex === -1) {
                                 generosSelecionados.push(generoObj);
                                 buttonCategoria.classList.add('buttonSelecionado');
@@ -148,10 +148,11 @@ function Header() {
                                 generosSelecionados.splice(generoIndex, 1);
                                 buttonCategoria.classList.remove('buttonSelecionado');
                             }
-    
+
                             localStorage.setItem('generosSelecionados', JSON.stringify(generosSelecionados));
+        
                         });
-    
+
                         categoriasContainer.appendChild(buttonCategoria);
                     });
                 } else {
@@ -162,8 +163,8 @@ function Header() {
                 console.error('Erro ao fazer a solicitação:', error);
             });
     }
-    
-    
+
+
 
 
 
@@ -174,6 +175,7 @@ function Header() {
         hideElement('codigoValidacaoEmail');
         hideElement('senhaRedefinida');
         hideElement('resetSenha');
+        hideElement('containerCadastroCategoria');
         hideElement('containerCadastroContinuacao');
 
         showElement('containerLogin');
@@ -593,10 +595,9 @@ function Header() {
                 .then(response => response.json())
                 .then(data => {
 
-                    localStorage.setItem('id_usuario', data.id_usuario)
+                    localStorage.setItem('id_usuario', data.usuario[0].id_usuario)
                     abrirContainerCadastroCategoria()
                     document.getElementById('erroEndereco').textContent = ''
-                    console.log(data);
                 })
                 .catch(error => {
                     console.error("Erro ao fazer cadastro:", error);
@@ -646,8 +647,39 @@ function Header() {
     }
 
     function enviarCategoriasFavoritasDoUsuario() {
-        const arrayGeneros = localStorage.getItem('generosSelecionados')
-        console.log(arrayGeneros);
+    
+        const generosSelecionados = JSON.parse(localStorage.getItem('generosSelecionados'));
+
+        const id_usuario = parseInt(localStorage.getItem('id_usuario'));
+
+        const dados = {
+            "id_usuario": id_usuario,
+            "generos_preferidos": generosSelecionados
+        }
+
+        console.log(dados);
+
+        fetch('https://app-nodejs.cyclic.cloud/v1/sbook/generos-preferidos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados)
+        })
+            .then(response => {
+                if (response.ok) {
+                    abrirContainerLogin()
+                    return response.json();
+                } else {
+                    throw new Error('Erro ao fazer a solicitação');
+                }
+            })
+            .then(data => {
+                console.log(data); 
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
 
     return (
