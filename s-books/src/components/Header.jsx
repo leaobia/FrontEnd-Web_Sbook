@@ -115,32 +115,40 @@ function Header() {
         hideElement('senhaRedefinida');
         hideElement('resetSenha');
         hideElement('codigoValidacaoEmail');
-
+    
         showElement('containerCadastroCategoria');
-
+    
         const generosSelecionados = [];
         const categoriasContainer = document.getElementById('categorias');
-
+    
         fetch('https://app-nodejs.cyclic.cloud/v1/sbook/generos')
             .then(response => response.json())
             .then(data => {
                 if (data.status === 200) {
                     const generos = data.dados.map(genero => genero.nome);
                     console.log(generos);
-
+    
                     generos.forEach(genero => {
                         const buttonCategoria = document.createElement('button');
                         buttonCategoria.className = 'buttonCategoria';
                         buttonCategoria.textContent = genero;
-
+    
                         buttonCategoria.addEventListener('click', () => {
-                            buttonCategoria.classList.add('buttonSelecionado')
                             if (!generosSelecionados.includes(genero)) {
                                 generosSelecionados.push(genero);
+                                buttonCategoria.classList.add('buttonSelecionado');
                                 localStorage.setItem('generosSelecionados', JSON.stringify(generosSelecionados));
+                            } else {
+                                // Se o botão já tiver a classe, remova-a do array e do localStorage
+                                const index = generosSelecionados.indexOf(genero);
+                                if (index !== -1) {
+                                    generosSelecionados.splice(index, 1);
+                                    buttonCategoria.classList.remove('buttonSelecionado');
+                                    localStorage.setItem('generosSelecionados', JSON.stringify(generosSelecionados));
+                                }
                             }
                         });
-
+    
                         categoriasContainer.appendChild(buttonCategoria);
                     });
                 } else {
@@ -151,6 +159,8 @@ function Header() {
                 console.error('Erro ao fazer a solicitação:', error);
             });
     }
+    
+
 
 
     function abrirContainerLogin() {
