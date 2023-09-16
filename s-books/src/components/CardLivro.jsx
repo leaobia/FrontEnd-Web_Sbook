@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import _ from 'lodash'; 
+import _ from 'lodash';
 import AnuncioCard from './AnuncioCard'; // Suponha que você tenha um componente AnuncioCard para exibir os anúncios.
 
 import {
@@ -29,24 +29,26 @@ function CardLivro() {
 
   const handlePesquisaChange = _.debounce(event => {
     setTermoPesquisa(inputPesquisa.value);
-  }, 100); 
+  }, 100);
 
   if (inputPesquisa) {
     inputPesquisa.addEventListener('input', handlePesquisaChange);
   }
-
+  
+  localStorage.setItem('quantidadeLivros', anuncios.length);
+  
   return (
     <div className="livrosContainer">
       {termoPesquisa === '' ? (
         anuncios.map((anuncio) => (
-          <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio || {}} />
+          <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio} autor={anuncio.autores[0].nome} />
         ))
       ) : (
         (() => {
           const filteredAnuncios = anuncios.filter((anuncio) =>
             anuncio.anuncio && anuncio.anuncio.nome.toLowerCase().includes(termoPesquisa.toLowerCase())
           );
-  
+
           if (filteredAnuncios.length === 0) {
             return (
               <Alert
@@ -68,10 +70,11 @@ function CardLivro() {
               </Alert>
             );
           }
-  
+
           return filteredAnuncios.map((anuncio) => (
-            <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio || {}} />
+            <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio || {}} autor={anuncio.autores[0].nome} />
           ));
+          
         })()
       )}
     </div>

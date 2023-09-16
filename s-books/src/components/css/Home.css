@@ -45,6 +45,25 @@
     box-shadow: 0 0 20px 0px rgba(211, 211, 211, 1);
 }
 
+.sobreLivro h2{
+    text-transform: uppercase;
+}
+
+.imgLivro{
+    height: 30vh;
+    width: 18vw;
+}
+
+.autorAno{
+    display: flex;
+    gap: 3%
+}
+
+.dataLancamento{
+    border-left: 1px solid  darkgray;
+    padding-left: 3%;
+}
+
 .botaoLinkLivro{
     background-color: #FF902B;
     width: 150px;

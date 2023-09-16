@@ -17,7 +17,7 @@ function Home() {
         }
       }
       
-      var quantidadeDeLivros = 200000;
+      var quantidadeDeLivros = localStorage.getItem('quantidadeLivros');
       var quantidadeFormatada = formatarNumero(quantidadeDeLivros);
 
       
