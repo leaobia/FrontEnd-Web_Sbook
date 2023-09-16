@@ -312,11 +312,14 @@ function Header() {
     const checkPin = () => {
         const enteredPin = [pin1, pin2, pin3, pin4];
         const  email = localStorage.getItem('emailRecuperarCadastro')
+        const token = parseInt(enteredPin.join(''), 10);
 
         const dados = {
             email: email,
-            token: enteredPin
+            token: token
         };
+
+        console.log(dados);
 
         const url = "https://app-nodejs.cyclic.cloud/v1/sbook/validar-token";
 
