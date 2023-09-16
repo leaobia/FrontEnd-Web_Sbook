@@ -115,9 +115,34 @@ function Header() {
         hideElement('senhaRedefinida');
         hideElement('resetSenha');
         hideElement('codigoValidacaoEmail');
-
+    
         showElement('containerCadastroCategoria');
+    
+        fetch('https://app-nodejs.cyclic.cloud/v1/sbook/generos')
+            .then(response => response.json())
+            .then(data => {
+              
+                if (data.status === 200) {
+                    const generos = data.dados.map(genero => genero.nome);
+    
+                    const categoriasContainer = document.getElementById('categorias');
+    
+                    generos.forEach(genero => {
+                        const buttonCategoria = document.createElement('div');
+                        buttonCategoria.className = 'buttonCategoria';
+                        buttonCategoria.textContent = genero;
+    
+                        categoriasContainer.appendChild(buttonCategoria);
+                    });
+                } else {
+                    console.error('Falha ao obter os gêneros.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao fazer a solicitação:', error);
+            });
     }
+    
 
     function abrirContainerLogin() {
 
@@ -422,7 +447,7 @@ function Header() {
     function verificarSenhasTroca() {
         const inputNovaSenha = document.getElementById('novaSenha').value;
         const inputNovaSenhaConfirmar = document.getElementById('confirmarSenhaTroca').value;
-    
+
         if (inputNovaSenha !== '' && inputNovaSenhaConfirmar !== '') {
             if (inputNovaSenha === inputNovaSenhaConfirmar) {
                 document.getElementById('senhaMessage').textContent = '';
@@ -458,7 +483,7 @@ function Header() {
             document.getElementById('senhaMessage').textContent = 'Por favor, preencha ambas as senhas.';
         }
     }
-    
+
     function fazerLogin(email, senha) {
         email = document.getElementById('emailLoginInput').value
         senha = document.getElementById('senhaLoginInput').value
@@ -765,6 +790,8 @@ function Header() {
 
                 </div>
 
+                {/* //Cadastro */}
+
 
                 <div className="containerCadastro d-none" id='containerCadastro'>
                     <div className="containerLeft">
@@ -961,6 +988,8 @@ function Header() {
                     <button onClick={closeModalPai} className='botaoFecharModalCadastro'>X</button>
                 </div>
 
+                {/* Categoria Preferida */}
+
                 <div className="containerCategoria d-none" id='containerCadastroCategoria'>
                     <div className="containerLeft">
                         <img src={imageLogin} alt="imagem de um homem e uma mulher na biblioteca" className='imgCadastro' />
@@ -969,52 +998,10 @@ function Header() {
                         <img src={logo} alt="logotipo da empresa" className='imgLogo' />
                         <p className='textoCategoria'>Por último, para uma melhor interação selecione algumas categorias que interessam você</p>
                         <h1 className='titleCategoria'>Categorias</h1>
-                        <div className='categorias'>
-                            <div className='buttonCategoria'>
+                        <div className='categorias' id='categorias'>
+                            {/* <div className='buttonCategoria'>
                                 Teologia
-                            </div>
-                            <div className='buttonCategoria'>
-                                Ficção Cientifica
-                            </div>
-                            <div className='buttonCategoria'>
-                                Teologia
-                            </div>
-                            <div className='buttonCategoria'>
-                                Ficção Cientifica
-                            </div>
-                            <div className='buttonCategoria'>
-                                Teologia
-                            </div>
-                            <div className='buttonCategoria'>
-                                Ficção Cientifica
-                            </div>
-                            <div className='buttonCategoria'>
-                                Teologia
-                            </div>
-                            <div className='buttonCategoria'>
-                                Ficção Cientifica
-                            </div>
-                            <div className='buttonCategoria'>
-                                Teologia
-                            </div>
-                            <div className='buttonCategoria'>
-                                Ficção Cientifica
-                            </div>
-                            <div className='buttonCategoria'>
-                                Ficção Cientifica
-                            </div>
-                            <div className='buttonCategoria'>
-                                Ficção Cientifica
-                            </div>
-                            <div className='buttonCategoria'>
-                                Ficção Cientifica
-                            </div>
-                            <div className='buttonCategoria'>
-                                Ficção Cientifica
-                            </div>
-                            <div className='buttonCategoria'>
-                                Ficção Cientifica
-                            </div>
+                            </div> */}
                         </div>
                         <button className='buttonLogar'>Entrar</button>
                     </div>
