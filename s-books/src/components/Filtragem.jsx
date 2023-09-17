@@ -33,7 +33,7 @@ function Filtragem() {
                                 <img src={Local} alt="icone de localização" className='iconLocal' />
                             </InputRightElement>
                             <Input
-                                type='email'
+                                id='enderecoValor'
                                 placeholder='Digite seu estado ou cidade'
                                 h='48px'
                                 className='inputField'
@@ -76,7 +76,7 @@ function Filtragem() {
                     </Stack>
                 </div>
                 <div className="limparContainer">
-                    <button title='Clique aqui para Enviar os dados'>Enviar</button>
+                    <button title='Clique aqui para Enviar os dados' >Enviar</button>
                     <button title='Clique aqui para limpar os dados'>Limpar</button>
                 </div>
             </Sidebar>
