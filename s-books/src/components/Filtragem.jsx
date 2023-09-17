@@ -34,10 +34,32 @@ function Filtragem() {
         const enderecoValor = document.getElementById('enderecoValor').value
         const anoLivro = document.getElementById('anoLivro').value
         const generos = localStorage.getItem('gênerosSelecionados');
-        console.log(generos);
-        console.log(anoLivro);
-        console.log(enderecoValor);
-        console.log('Livros selecionados:', livrosSelecionados);
+
+        if (!enderecoValor && !anoLivro && !generos && livrosSelecionados.length === 0) {
+            console.log('Nenhum filtro foi aplicado.');
+        } else {
+            console.log('Filtros aplicados:');
+
+            if (enderecoValor) {
+                console.log('Endereço Valor:', enderecoValor);
+            }
+
+            if (anoLivro) {
+                console.log('Ano do Livro:', anoLivro);
+            }
+
+            if (generos && generos.length > 0 && generos !== null) {
+                console.log('Gêneros:', generos);
+              }
+              
+
+            if (livrosSelecionados.length > 0) {
+                console.log('Livros Selecionados:', livrosSelecionados);
+            }
+        }
+
+
+        document.getElementById('secaoLivro').textContent = ''
     }
 
     return (
@@ -72,7 +94,7 @@ function Filtragem() {
                         <Checkbox
                             colorScheme='gray'
                             className='opcaoChecagem'
-                            name='Novos' 
+                            name='Novos'
                             onChange={handleCheckboxChange}
                             checked={livrosSelecionados.includes('Novos')}
                         >
@@ -81,7 +103,7 @@ function Filtragem() {
                         <Checkbox
                             colorScheme='gray'
                             className='opcaoChecagem'
-                            name='Seminovos' 
+                            name='Seminovos'
                             onChange={handleCheckboxChange}
                             checked={livrosSelecionados.includes('Seminovos')}
                         >
@@ -90,7 +112,7 @@ function Filtragem() {
                         <Checkbox
                             colorScheme='gray'
                             className='opcaoChecagem'
-                            name='Usados' 
+                            name='Usados'
                             onChange={handleCheckboxChange}
                             checked={livrosSelecionados.includes('Usados')}
                         >

@@ -67,7 +67,7 @@ body::-webkit-scrollbar-thumb {
   background: #5C2C0C;
 }
 .sideBar::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
 }
 
 .sideBar::-webkit-scrollbar-track {
