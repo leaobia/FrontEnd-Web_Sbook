@@ -15,6 +15,27 @@ import ApiGenero from './ApiGenero';
 function Filtragem() {
 
     const [visibleLeft, setVisibleLeft] = useState(false);
+    const [livrosSelecionados, setLivrosSelecionados] = useState([]);
+
+    const handleCheckboxChange = (event) => {
+        alert('filtrarcheck')
+        const { name, checked } = event.target;
+
+
+        if (checked) {
+
+            setLivrosSelecionados((prevSelected) => [...prevSelected, name]);
+        } else {
+
+            setLivrosSelecionados((prevSelected) => prevSelected.filter((item) => item !== name));
+        }
+    };
+
+    const filtrar = () => {
+        const enderecoValor = document.getElementById('enderecoValor').value
+        console.log(enderecoValor);
+        console.log('Livros selecionados:', livrosSelecionados);
+    }
 
     return (
         <div className="Filtragem">
@@ -45,13 +66,31 @@ function Filtragem() {
                 <div className="livrosContainerSidebar">
                     <h4 className='titleSection'>Livros</h4>
                     <Stack spacing={5} direction='row'>
-                        <Checkbox colorScheme='gray' className='opcaoChecagem'>
+                        <Checkbox
+                            colorScheme='gray'
+                            className='opcaoChecagem'
+                            name='Novos' 
+                            onChange={handleCheckboxChange}
+                            checked={livrosSelecionados.includes('Novos')}
+                        >
                             Novos
                         </Checkbox>
-                        <Checkbox colorScheme='gray' className='opcaoChecagem'>
+                        <Checkbox
+                            colorScheme='gray'
+                            className='opcaoChecagem'
+                            name='Seminovos' 
+                            onChange={handleCheckboxChange}
+                            checked={livrosSelecionados.includes('Seminovos')}
+                        >
                             Seminovos
                         </Checkbox>
-                        <Checkbox colorScheme='gray' className='opcaoChecagem'>
+                        <Checkbox
+                            colorScheme='gray'
+                            className='opcaoChecagem'
+                            name='Usados' 
+                            onChange={handleCheckboxChange}
+                            checked={livrosSelecionados.includes('Usados')}
+                        >
                             Usados
                         </Checkbox>
                     </Stack>
@@ -76,7 +115,7 @@ function Filtragem() {
                     </Stack>
                 </div>
                 <div className="limparContainer">
-                    <button title='Clique aqui para Enviar os dados' >Enviar</button>
+                    <button title='Clique aqui para Enviar os dados' onClick={filtrar} >Filtrar</button>
                     <button title='Clique aqui para limpar os dados'>Limpar</button>
                 </div>
             </Sidebar>
