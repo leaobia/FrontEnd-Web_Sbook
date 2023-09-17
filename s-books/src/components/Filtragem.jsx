@@ -32,8 +32,10 @@ function Filtragem() {
 
     const filtrar = () => {
         const enderecoValor = document.getElementById('enderecoValor').value
+        const anoLivro = document.getElementById('anoLivro').value
         const generos = localStorage.getItem('gênerosSelecionados');
         console.log(generos);
+        console.log(anoLivro);
         console.log(enderecoValor);
         console.log('Livros selecionados:', livrosSelecionados);
     }
@@ -108,6 +110,7 @@ function Filtragem() {
                                 type='number'
                                 placeholder='Digite o ano do livro'
                                 h='48px'
+                                id='anoLivro'
                                 className='inputField'
                                 fontSize={['sm', 'md', 'lg']}
                             />
@@ -117,7 +120,7 @@ function Filtragem() {
                 </div>
                 <div className="limparContainer">
                     <button title='Clique aqui para Enviar os dados' onClick={filtrar} >Filtrar</button>
-                    <button title='Clique aqui para limpar os dados'>Limpar</button>
+                    {/* <button title='Clique aqui para limpar os dados'>Limpar</button> */}
                 </div>
             </Sidebar>
 
