@@ -18,9 +18,8 @@ function Filtragem() {
     const [livrosSelecionados, setLivrosSelecionados] = useState([]);
 
     const handleCheckboxChange = (event) => {
-        alert('filtrarcheck')
-        const { name, checked } = event.target;
 
+        const { name, checked } = event.target;
 
         if (checked) {
 
@@ -33,6 +32,8 @@ function Filtragem() {
 
     const filtrar = () => {
         const enderecoValor = document.getElementById('enderecoValor').value
+        const generos = localStorage.getItem('gênerosSelecionados');
+        console.log(generos);
         console.log(enderecoValor);
         console.log('Livros selecionados:', livrosSelecionados);
     }

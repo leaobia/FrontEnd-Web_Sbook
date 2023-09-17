@@ -1,37 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Checkbox } from '@chakra-ui/react'; 
+import { Checkbox } from '@chakra-ui/react';
 
-import seta from './img/seta.png'
+import seta from './img/seta.png';
 
 function ApiGenero() {
   const [nomes, setNomes] = useState([]);
-  const [selecionados, setSelecionados] = useState({}); 
+  const [selecionados, setSelecionados] = useState([]);
   const [mostrarTodos, setMostrarTodos] = useState(false);
+
+  const toggleSelecionado = (nome) => {
+    if (selecionados.includes(nome)) {
+      setSelecionados(selecionados.filter((item) => item !== nome));
+    } else {
+      setSelecionados([...selecionados, nome]);
+    }
+  };
 
   useEffect(() => {
     axios.get('https://app-nodejs.cyclic.cloud/v1/sbook/generos')
       .then(response => {
-       
         const personagensData = response.data.dados;
         const nomesDosPersonagens = personagensData.map(personagem => personagem.nome);
-        setNomes(nomesDosPersonagens); 
+        setNomes(nomesDosPersonagens);
+
+        // Obter os gêneros selecionados do localStorage
+        const generosSelecionados = JSON.parse(localStorage.getItem('gênerosSelecionados')) || [];
+        setSelecionados(generosSelecionados);
       })
       .catch(error => {
         console.error('Erro ao obter dados dos personagens:', error);
       });
   }, []);
 
-  const toggleSelecionado = (nome) => {
-    setSelecionados(prevSelecionados => ({
-      ...prevSelecionados,
-      [nome]: !prevSelecionados[nome] 
-    }));
+  const toggleMostrarTodos = () => {
+    setMostrarTodos(!mostrarTodos);
   };
 
-  const toggleMostrarTodos = () => {
-    setMostrarTodos(!mostrarTodos); 
-  };
+  // Salvar os gêneros selecionados no localStorage sempre que houver alterações
+  useEffect(() => {
+    localStorage.setItem('gênerosSelecionados', JSON.stringify(selecionados));
+  }, [selecionados]);
 
   return (
     <>
@@ -40,7 +49,7 @@ function ApiGenero() {
           <li key={index}>
             <label>
               <Checkbox
-                isChecked={selecionados[nome] || false}
+                isChecked={selecionados.includes(nome)}
                 onChange={() => toggleSelecionado(nome)}
                 colorScheme='gray'
                 className='opcaoChecagem'
