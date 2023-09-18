@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
-import AnuncioCard from './AnuncioCard'; // Suponha que você tenha um componente AnuncioCard para exibir os anúncios.
+import AnuncioCard from './AnuncioCard'; 
 
 import {
   Alert,
@@ -10,12 +10,15 @@ import {
   AlertDescription,
 } from '@chakra-ui/react'
 
+const baseUrl = 'https://app-nodejs.cyclic.cloud/'
+
 function CardLivro() {
   const [anuncios, setAnuncios] = useState([]);
   const [termoPesquisa, setTermoPesquisa] = useState('');
+  
 
   useEffect(() => {
-    axios.get('http://10.107.144.7:8080/v1/sbook/anuncio')
+    axios.get(`${baseUrl}v1/sbook/anuncio`)
       .then(response => {
         const anunciosData = response.data.anuncios;
         setAnuncios(anunciosData);

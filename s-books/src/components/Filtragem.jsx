@@ -33,7 +33,8 @@ function Filtragem() {
     const filtrar = () => {
         const enderecoValor = document.getElementById('enderecoValor').value
         const anoLivro = document.getElementById('anoLivro').value
-        const generos = localStorage.getItem('gênerosSelecionados');
+       
+        const generos =  JSON.parse(localStorage.getItem('gênerosSelecionados'));
 
         if (!enderecoValor && !anoLivro && !generos && livrosSelecionados.length === 0) {
             console.log('Nenhum filtro foi aplicado.');
@@ -48,9 +49,13 @@ function Filtragem() {
                 console.log('Ano do Livro:', anoLivro);
             }
 
-            if (generos && generos.length > 0 && generos !== null) {
-                console.log('Gêneros:', generos);
+        
+            if (generos.length === 0) {
+                console.log('vazio', generos); 
+              } else{
+                console.log('certo', generos); 
               }
+              
               
 
             if (livrosSelecionados.length > 0) {
