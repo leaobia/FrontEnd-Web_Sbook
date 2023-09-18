@@ -29,7 +29,7 @@ function Home() {
             </div>
             <div className="apresentacaoLivros">
                 <p>Livros usados, seminovos e novos em todo o Brasil</p>
-                <span id="quantidadeDeLivros">{quantidadeFormatada} livros encontrados</span>
+                <span id="quantidadeDeLivros"> {quantidadeFormatada} livros encontrados</span>
             </div>
             <SecaoLivro/>
             <Footer/>

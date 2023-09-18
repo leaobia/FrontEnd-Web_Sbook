@@ -18,7 +18,7 @@ function ApiGenero() {
   };
 
   useEffect(() => {
-    axios.get('https://app-nodejs.cyclic.cloud/v1/sbook/generos')
+    axios.get('http://10.107.144.7:8080/v1/sbook/generos')
       .then(response => {
         const personagensData = response.data.dados;
         const nomesDosPersonagens = personagensData.map(personagem => personagem.nome);

@@ -74,7 +74,13 @@ ul{
     align-self: center;
 }
 
+.logo{
+    padding-left: 1vw;
+}
 
+.botaoMenu img{
+    padding-left: 1vw;
+}
 @media (max-width:520px) {
     .logo{
         padding-left: 0;

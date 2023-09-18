@@ -121,7 +121,7 @@ function Header() {
         const generosSelecionados = [];
         const categoriasContainer = document.getElementById('categorias');
 
-        fetch('https://app-nodejs.cyclic.cloud/v1/sbook/generos')
+        fetch('http://10.107.144.7:8080/v1/sbook/generos')
             .then(response => response.json())
             .then(data => {
                 if (data.status === 200) {
@@ -244,27 +244,37 @@ function Header() {
     }
 
 
-
+//http://10.107.144.31:8080
 
 
     function abrirCodigoRecuperacao() {
         const emailInput = document.getElementById('emailRecuperarSenha').value;
 
 
+        const dados = {
+            email: emailInput
+        };
+
+
         if (emailInput) {
             const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
             if (emailRegex.test(emailInput)) {
-                const url = `https://app-nodejs.cyclic.cloud/v1/sbook/esqueci-senha/${emailInput}`;
+                const url = `http://10.107.144.7:8080/v1/sbook/esqueci-senha/`;
 
 
-                fetch(url, {
-                    method: "GET",
+                const requestOptions = {
+                    method: 'POST',
                     headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                    .then(response => {
-                        if (response.status === 200) {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dados)
+                };
+
+                fetch(url, requestOptions) 
+                    .then(response => response.json())
+                    .then(data => {
+                
+                        if (data.status === 200) {
 
                             hideElement('containerLogin');
                             hideElement('resetSenha');
@@ -275,12 +285,12 @@ function Header() {
                             showElement('codigoRecuperacao');
                             localStorage.setItem('emailRecuperarCadastro', emailInput)
                             document.getElementById('emailMessage').textContent = '';
-                        } else if (response.status === 404) {
+                        } else if (data.status === 404) {
 
                             document.getElementById('emailMessage').textContent = 'Email não encontrado.';
                         } else {
 
-                            console.error("Erro na solicitação GET:", response.status);
+                            console.error("Erro na solicitação GET:", data.status);
                         }
                     })
                     .catch(error => {
@@ -292,6 +302,7 @@ function Header() {
         } else {
             document.getElementById('emailMessage').textContent = 'Por favor, digite um e-mail.';
         }
+
     }
 
 
@@ -371,7 +382,7 @@ function Header() {
 
         console.log(dados);
 
-        const url = "https://app-nodejs.cyclic.cloud/v1/sbook/validar-token";
+        const url = "http://10.107.144.7:8080/v1/sbook/validar-token";
 
         const requestOptions = {
             method: 'POST',
@@ -480,8 +491,8 @@ function Header() {
                     id: localStorage.getItem('idResetSenha'),
                     password: inputNovaSenha
                 };
-                fetch('https://app-nodejs.cyclic.cloud/v1/sbook/recuperar-conta', {
-                    method: 'POST',
+                fetch('http://10.107.144.7:8080/v1/sbook/recuperar-conta', {
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -518,9 +529,7 @@ function Header() {
             "senha": senha
         };
 
-        console.log(credentials);
-
-        const url = "https://app-nodejs.cyclic.cloud/v1/sbook/login";
+        const url = "http://10.107.144.7:8080/v1/sbook/login";
 
         fetch(url, {
             method: "POST",
@@ -584,7 +593,7 @@ function Header() {
                 "email_usuario": email,
                 "senha_usuario": senha
             };
-            const url = "https://app-nodejs.cyclic.cloud/v1/sbook/registro-usuario";
+            const url = "http://10.107.144.7:8080/v1/sbook/registro-usuario";
             fetch(url, {
                 method: "POST",
                 headers: {
@@ -659,7 +668,7 @@ function Header() {
 
         console.log(dados);
 
-        fetch('https://app-nodejs.cyclic.cloud/v1/sbook/generos-preferidos', {
+        fetch('http://10.107.144.7:8080/v1/sbook/generos-preferidos', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

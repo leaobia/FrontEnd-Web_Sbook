@@ -15,7 +15,7 @@ function CardLivro() {
   const [termoPesquisa, setTermoPesquisa] = useState('');
 
   useEffect(() => {
-    axios.get('https://app-nodejs.cyclic.cloud/v1/sbook/anuncio')
+    axios.get('http://10.107.144.7:8080/v1/sbook/anuncio')
       .then(response => {
         const anunciosData = response.data.anuncios;
         setAnuncios(anunciosData);

@@ -7,27 +7,29 @@
     justify-content: center;
     width: 100%;
 }
-.d-none{
-    display: none;
-}
+
 .containerCadastro {
     z-index: 3;
     opacity: 1;
     background-color: #FFFF;
     width: 70vw;
+    display: flex;
     justify-content: space-between;
     height: 80vh;
 }
 
-.containerLeft {
+.containerLeft{
     height: 100%;
-    width: 60%;
+    width: 50%;
 }
 
-.containerLeft img {
+.containerLeft img{
     height: 100%;
 }
 
+.d-none{
+    display: none;
+}
 .botaoFecharModalCadastro {
     width: auto;
     height: auto;
