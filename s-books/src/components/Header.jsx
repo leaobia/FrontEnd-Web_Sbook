@@ -1101,7 +1101,7 @@ function Header() {
                         <button className='userProfileButton d-flex' id='botaoLogin' onClick={openModalPai} ><img src={userProfile} alt="icone de pessoa" className='imgHeader' /> <span>Entrar</span></button>
 
                         <div className='userMenuIcons'>
-                            <button className='d-none' id='userProfileButton'><img src={userProfile} alt="icone de pessoa" /></button>
+                            <Link to= '/perfil'className='d-none' id='userProfileButton'><img src={userProfile} alt="icone de pessoa" /></Link>
                             <Link to='/favoritos' className='link'><img src={userFavorites} alt="icone de coração para ver os favoritos" className='imgHeader' /></Link>
                             <Link to='/chat' className='link'><img src={userChats} alt="icone de chat para ver os chats enviados" className='imgHeader' /></Link>
                         </div>

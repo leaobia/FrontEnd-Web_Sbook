@@ -9,6 +9,7 @@ import Anunciar from './pages/Anunciar';
 import Favoritos from './pages/Favoritos';
 import Chat from './pages/Chat';
 import Livro from './pages/Livro';
+import Perfil from './pages/Perfil';
 
 
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="/favoritos" element={<Favoritos />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/livro" element={<Livro />} />
+            <Route path="/perfil" element={<Perfil />} />
           </Routes>
         </div>
 
