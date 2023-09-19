@@ -102,3 +102,17 @@
     width: 30vw;
     gap: 1vh;
 }
+
+@media (max-width:1000px) {
+    .contentPerfil{
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 2vh;
+    }
+    .resumoPerfil{
+        width: 95%;
+    }
+    .containerCategorias{
+        width: 70vw;
+    }
+}
