@@ -3,6 +3,10 @@ import { Sidebar } from 'primereact/sidebar';
 import iconSidebar from '../components/img/sidebarClick.png'
 import '../components/css/Perfil.css'
 import userImage from '../components/img/userImage.png'
+import mundoIcon from '../components/img/mundoIcon.png'
+import localIcon from '../components/img/localIcon.png'
+import emailIcon from '../components/img/EmailIcon.png'
+import boloIcon from '../components/img/BoloIcon.png'
 
 function Perfil() {
     const [visibleLeft, setVisibleLeft] = useState(false);
@@ -27,10 +31,10 @@ function Perfil() {
                             <p>Thiago Freitas</p>
                         </div>
                         <div className="dadosUser">
-                            <span>Brasil</span>
-                            <span>Carapicuíba, SP</span>
-                            <span>tifreitas10@gmail.com</span>
-                            <span>14/06/2006</span>
+                            <span> <img src={mundoIcon} alt="icone do planeta Terra" /> Brasil</span>
+                            <span> <img src={localIcon} alt="icone de localizacao" />  Carapicuíba, SP</span>
+                            <span> <img src={emailIcon} alt="icone de email" /> tifreitas10@gmail.com</span>
+                            <span><img src={boloIcon} alt="icone de bolo" /> 14/06/2006</span>
                         </div>
                     </div>
                     <div className="generoDiv">
