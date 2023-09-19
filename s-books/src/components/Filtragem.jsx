@@ -56,14 +56,10 @@ function Filtragem() {
                 console.log('certo', generos); 
               }
               
-              
-
             if (livrosSelecionados.length > 0) {
                 console.log('Livros Selecionados:', livrosSelecionados);
             }
         }
-
-
         document.getElementById('secaoLivro').textContent = ''
     }
 
