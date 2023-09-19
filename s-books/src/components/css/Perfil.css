@@ -2,3 +2,14 @@
    background-color: blueviolet;
    min-height: 100vh;
 }
+
+.sideBarContainer{
+    display: flex;
+    width: 100%;
+    height: 8vh;
+    font-family: 'Inter', sans-serif;
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2% 1%;
+}

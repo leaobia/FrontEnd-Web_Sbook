@@ -9,6 +9,9 @@ function Perfil() {
         <div className="meuPerfi">
             <div className="sideBarContainer">
             <button className='botaoMenu' onClick={() => setVisibleLeft(true)}><img src={iconSidebar} alt='ícone do botao de menu' /></button>
+            <div className="menuLocalContainer">
+                <span className='nomeDaCidade'>Carapicuíba</span>
+            </div>
                 <Sidebar className='sideBar' visible={visibleLeft} position="left" onHide={() => setVisibleLeft(false)}>
                     oi
             </Sidebar>
