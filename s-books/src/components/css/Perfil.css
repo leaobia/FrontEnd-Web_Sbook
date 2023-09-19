@@ -1,6 +1,7 @@
 .meuPerfi{
    background-color: #F5F5F5;
    min-height: 92vh;
+   width: 100vw;
    display: flex;
    flex-direction: column;
    font-family: 'Inter', sans-serif;
@@ -21,7 +22,6 @@
 .perfilContent{
     min-height: 83.7vh;
     display: flex;
-    background-color: aqua;
     flex-direction: column;
     padding: 5vh 5vw 0 5vw;
     gap: 3vh;
@@ -42,6 +42,7 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column;
+    width: 55%;
     gap: 2vh;
     padding: 30px;
 }
@@ -81,4 +82,23 @@
     display: flex;
     gap: 1vw;
     align-items: center;
+}
+
+.generoDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 4vh;
+}
+
+.generoDiv h1{
+    color: #AA6231;
+    font-size: clamp(1.125rem, 0.0313rem + 3.5vw, 2rem);
+    font-weight: 600;
+}
+
+.containerCategorias{
+    display: flex;
+    flex-wrap: wrap;
+    width: 30vw;
+    gap: 1vh;
 }

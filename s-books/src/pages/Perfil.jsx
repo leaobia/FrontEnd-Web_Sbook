@@ -38,12 +38,24 @@ function Perfil() {
                         </div>
                     </div>
                     <div className="generoDiv">
+                        <h1>Categorias</h1>
+                        <div className="containerCategorias">
                         <span className='nomeDaCidade'>Gênero</span>
                         <span className='nomeDaCidade'>Gênero</span>
                         <span className='nomeDaCidade'>Gênero</span>
                         <span className='nomeDaCidade'>Gênero</span>
                         <span className='nomeDaCidade'>Gênero</span>
                         <span className='nomeDaCidade'>Gênero</span>
+                        <span className='nomeDaCidade'>Gênero</span>
+                        <span className='nomeDaCidade'>Gênero</span>
+                        <span className='nomeDaCidade'>Gênero</span>
+                        <span className='nomeDaCidade'>Gênero</span>
+                        <span className='nomeDaCidade'>Gênero</span>
+                        <span className='nomeDaCidade'>Gênero</span>
+                        <span className='nomeDaCidade'>Gênero</span>
+                        <span className='nomeDaCidade'>Gênero</span>
+                        <span className='nomeDaCidade'>Gênero</span>
+                        </div>
                     </div>
                 </div>
             </div>
