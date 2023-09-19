@@ -5,6 +5,8 @@ import { Checkbox } from '@chakra-ui/react';
 import seta from './img/seta.png';
 
 function ApiGenero() {
+  const baseUrl = 'http://10.107.144.7:8080/'
+
   const [nomes, setNomes] = useState([]);
   const [selecionados, setSelecionados] = useState([]);
   const [mostrarTodos, setMostrarTodos] = useState(false);
@@ -19,7 +21,7 @@ function ApiGenero() {
 
   useEffect(() => {
     //https://app-nodejs.cyclic.cloud/
-    axios.get('https://app-nodejs.cyclic.cloud/v1/sbook/generos')
+    axios.get(`${baseUrl}v1/sbook/generos`)
       .then(response => {
         const personagensData = response.data.dados;
         const nomesDosPersonagens = personagensData.map(personagem => personagem.nome);
