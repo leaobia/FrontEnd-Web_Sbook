@@ -26,6 +26,12 @@ function Perfil() {
                             <img src={userImage} alt="foto de perfil do usuário" />
                             <p>Thiago Freitas</p>
                         </div>
+                        <div className="dadosUser">
+                            <span>Brasil</span>
+                            <span>Carapicuíba, SP</span>
+                            <span>tifreitas10@gmail.com</span>
+                            <span>14/06/2006</span>
+                        </div>
                     </div>
                     <div className="generoDiv">
                         <span className='nomeDaCidade'>Gênero</span>

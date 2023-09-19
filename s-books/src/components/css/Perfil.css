@@ -40,15 +40,30 @@
 .resumoPerfil{
     background-color: #FFFF;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    padding: 10px;
 }
 
 .perfilUsuario{
     display: flex;
     align-items: center;
+    gap: 4vw;
+}
+
+.perfilUsuario img{
+    border-radius: 200px;
 }
 
 .perfilUsuario p{
     color: #AA6231;
     font-weight: 600;
     font-size: clamp(1rem, -0.4063rem + 4.5vw, 2.125rem);
+}
+
+.resumoPerfil h3{
+    color: #7E7D7A;
+    font-size: clamp(1rem, 0.5313rem + 1.5vw, 1.375rem);
+    font-weight: 600;
 }
