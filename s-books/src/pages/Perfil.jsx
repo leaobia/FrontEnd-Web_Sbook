@@ -16,6 +16,9 @@ function Perfil() {
                     oi
             </Sidebar>
             </div>
+            <div className="perfilContent">
+                <h1>Perfil</h1>
+            </div>
         </div>
     )
 }

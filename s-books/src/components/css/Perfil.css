@@ -1,6 +1,8 @@
 .meuPerfi{
-   background-color: blueviolet;
-   min-height: 100vh;
+   background-color: #8a2be2;
+   min-height: 92vh;
+   display: flex;
+   flex-direction: column;
 }
 
 .sideBarContainer{
@@ -11,5 +13,11 @@
     background-color: white;
     justify-content: space-between;
     align-items: center;
-    padding: 2% 1%;
+    padding: 2% 
+    1%;
+}
+
+.perfilContent{
+    background-color: aquamarine;
+    min-height: 83.7vh;
 }
