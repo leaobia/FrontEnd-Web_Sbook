@@ -8,16 +8,24 @@ function Perfil() {
     return (
         <div className="meuPerfi">
             <div className="sideBarContainer">
-            <button className='botaoMenu' onClick={() => setVisibleLeft(true)}><img src={iconSidebar} alt='ícone do botao de menu' /></button>
-            <div className="menuLocalContainer">
-                <span className='nomeDaCidade'>Carapicuíba</span>
-            </div>
+                <button className='botaoMenu' onClick={() => setVisibleLeft(true)}><img src={iconSidebar} alt='ícone do botao de menu' /></button>
+                <div className="menuLocalContainer">
+                    <span className='nomeDaCidade'>Carapicuíba</span>
+                </div>
                 <Sidebar className='sideBar' visible={visibleLeft} position="left" onHide={() => setVisibleLeft(false)}>
                     oi
-            </Sidebar>
+                </Sidebar>
             </div>
             <div className="perfilContent">
                 <h1>Perfil</h1>
+                <div className="contentPerfil">
+                    <div className="resumoPerfil">
+                        nome da pessoa
+                    </div>
+                    <div className="generoDiv">
+                        <span className='nomeDaCidade'>Carapicuíba</span>
+                    </div>
+                </div>
             </div>
         </div>
     )

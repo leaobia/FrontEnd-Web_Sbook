@@ -20,4 +20,12 @@
 .perfilContent{
     background-color: aquamarine;
     min-height: 83.7vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.contentPerfil{
+    background-color: tomato;
+    display: flex;
+    justify-content: space-between;
 }

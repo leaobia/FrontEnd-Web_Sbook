@@ -12,7 +12,9 @@ import {
 
 const baseUrl = 'https://app-nodejs.cyclic.cloud/'
 
-function CardLivro() {
+function 
+
+CardLivro() {
   const [anuncios, setAnuncios] = useState([]);
   const [termoPesquisa, setTermoPesquisa] = useState('');
   
