@@ -101,21 +101,7 @@ function Perfil() {
                     </div>
                     <div className="generoDiv">
                         <h1>Categorias</h1>
-                        <div className="containerCategorias">
-                        <span className='nomeDaCidade'>Gênero</span>
-                        <span className='nomeDaCidade'>Gênero</span>
-                        <span className='nomeDaCidade'>Gênero</span>
-                        <span className='nomeDaCidade'>Gênero</span>
-                        <span className='nomeDaCidade'>Gênero</span>
-                        <span className='nomeDaCidade'>Gênero</span>
-                        <span className='nomeDaCidade'>Gênero</span>
-                        <span className='nomeDaCidade'>Gênero</span>
-                        <span className='nomeDaCidade'>Gênero</span>
-                        <span className='nomeDaCidade'>Gênero maior</span>
-                        <span className='nomeDaCidade'>Gênero</span>
-                        <span className='nomeDaCidade'>Gênero</span>
-                        <span className='nomeDaCidade'>Gênero</span>
-                        <span className='nomeDaCidade'>Gênero</span>
+                        <div className="containerCategorias" id='containerCategorias'>
                         <span className='nomeDaCidade'>Gênero</span>
                         </div>
                     </div>
