@@ -45,6 +45,9 @@
     width: 55%;
     gap: 2vh;
     padding: 30px;
+    -webkit-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
+    -moz-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
+    box-shadow: 0 0 20px 0px rgba(211, 211, 211, 1);
 }
 
 .perfilUsuario{
@@ -101,6 +104,64 @@
     flex-wrap: wrap;
     width: 30vw;
     gap: 1vh;
+}
+
+.dadosUserSideBar{
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', sans-serif;
+    align-items: center;
+    gap: 2vh;
+    padding-top: 5vh;
+}
+
+.nomeFotoUser{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    align-items: center;
+}
+
+.nomeFotoUser p{
+    font-weight: 400;
+    font-size: clamp(1.125rem, 0.5rem + 2vw, 1.625rem);
+}
+
+.sideBarConfig{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 2vw;
+    gap: 2vh;
+
+}
+
+.linksConfig{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.titleConfigSidebar{
+    color: #9F9898;
+}
+
+.link{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.botaoLogOut{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    margin-top: 4vh;
+}
+
+.bold{
+    font-weight: 800;
 }
 
 @media (max-width:1000px) {
