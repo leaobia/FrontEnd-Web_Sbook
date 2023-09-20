@@ -51,20 +51,29 @@ function Perfil() {
       useEffect(() => {
   
         axios.get(`${baseUrl}v1/sbook/generos/${idUser}`)
-          .then(response => {
-                    let generosArray = response.data.generos_preferidos
-                    generosArray.forEach(genero => {
-                    
-                        const containerCategorias = document.getElementById('containerCategorias')
-                        const spanGenero = document.createElement('span')
-                        spanGenero.classList.add('nomeDaCidade')
-                        spanGenero.textContent = genero.nome_genero
-                        containerCategorias.append(spanGenero)
-                    });
-          })
-          .catch(error => {
-            console.error('Erro ao obter dados dos generos preferidos', error);
+        .then(response => {
+          let generosArray = response.data.generos_preferidos
+          const generosUnicos = new Set(); 
+          const containerCategorias = document.getElementById('containerCategorias');
+          containerCategorias.innerHTML = ''; 
+          
+          generosArray.forEach(genero => {
+            const idGenero = genero.id_genero;
+            if (!generosUnicos.has(idGenero)) {
+              const spanGenero = document.createElement('span');
+              spanGenero.classList.add('nomeDaCidade');
+              spanGenero.textContent = genero.nome_genero;
+              containerCategorias.appendChild(spanGenero);
+              
+              generosUnicos.add(idGenero); 
+            }
           });
+        })
+        .catch(error => {
+          console.error('Erro ao obter dados dos gêneros preferidos', error);
+        });
+      
+
       }, []);
 
       let nomeUsuario = localStorage.getItem('nomeUsuario')
@@ -119,7 +128,7 @@ function Perfil() {
                     <div className="generoDiv">
                         <h1>Categorias</h1>
                         <div className="containerCategorias" id='containerCategorias'>
-                        
+                        <span className='nomeDaCidade'>Gênero</span>
                         </div>
                     </div>
                 </div>
