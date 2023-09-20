@@ -21,6 +21,7 @@ import { Link } from "react-router-dom"
 function Perfil() {
     const [visibleLeft, setVisibleLeft] = useState(false);
     const idUser = localStorage.getItem('id_usuarioLogin')
+    
     console.log(idUser);
     //const baseUrl = 'https://app-nodejs.cyclic.cloud/'
     const baseUrl = 'http://10.107.144.7:8080/'
@@ -30,11 +31,31 @@ function Perfil() {
           .then(response => {
                     console.log(response);
                     console.log(response.data.dados[0]);
+                    let nomeUser = response.data.dados[0].nome
+                    let perfilFoto = response.data.dados[0].foto
+                    let estadoUsuario = response.data.dados[0].estado
+                    let logradouroUsuario = response.data.dados[0].logradouro
+                    let data_nascimento = response.data.dados[0].data_nascimento
+                    let email = response.data.dados[0].email
+
+                    localStorage.setItem('nomeUsuario', nomeUser )
+                    localStorage.setItem('perfilFoto', perfilFoto )
+                    localStorage.setItem('estadoUsuario', estadoUsuario )
+                    localStorage.setItem('logradouroUsuario', logradouroUsuario)
+                    localStorage.setItem('data_nascimento', data_nascimento)
+                    localStorage.setItem('email', email)
           })
           .catch(error => {
             console.error('Erro ao obter dados do usuario', error);
           });
       }, []);
+
+      let nomeUsuario = localStorage.getItem('nomeUsuario')
+      let perfilFoto = localStorage.getItem('perfilFoto')
+      let estadoUsuario = localStorage.getItem('estadoUsuario')
+      let logradouroUsuario = localStorage.getItem('logradouroUsuario')
+      let data_nascimento = localStorage.getItem('data_nascimento')
+      let email = localStorage.getItem('email')
       
     return (
         <div className="meuPerfi">
@@ -46,8 +67,8 @@ function Perfil() {
                 <Sidebar className='sideBar perfilLateral' visible={visibleLeft} position="left" onHide={() => setVisibleLeft(false)}>
                     <div className="dadosUserSideBar">
                         <div className="nomeFotoUser">
-                        <p>Thiago Freitas</p>
-                    <img src={userImage} alt="foto de perfil do usuário" />
+                        <p>{nomeUsuario}</p>
+                    <img src={perfilFoto} alt="foto de perfil do usuário"  className='fotoUser'/>
                         </div>
                         <div className="sideBarConfig">
                             <span className='titleConfigSidebar'>PERFIL</span>
@@ -68,14 +89,14 @@ function Perfil() {
                     <div className="resumoPerfil">
                         <h3>Resumo do seu perfil</h3>
                         <div className="perfilUsuario">
-                            <img src={userImage} alt="foto de perfil do usuário" />
-                            <p>Thiago Freitas</p>
+                            <img src={perfilFoto} alt="foto de perfil do usuário" className='fotoUser'/>
+                            <p>{nomeUsuario}</p>
                         </div>
                         <div className="dadosUser">
-                            <span> <img src={mundoIcon} alt="icone do planeta Terra" /> Brasil</span>
-                            <span> <img src={localIcon} alt="icone de localizacao" />  Carapicuíba, SP</span>
-                            <span> <img src={emailIcon} alt="icone de email" /> tifreitas10@gmail.com</span>
-                            <span><img src={boloIcon} alt="icone de bolo" /> 14/06/2006</span>
+                            <span> <img src={mundoIcon} alt="icone do planeta Terra" /> {estadoUsuario}</span>
+                            <span> <img src={localIcon} alt="icone de localizacao" />{logradouroUsuario}</span>
+                            <span> <img src={emailIcon} alt="icone de email" />{email}</span>
+                            <span><img src={boloIcon} alt="icone de bolo" />{data_nascimento}</span>
                         </div>
                     </div>
                     <div className="generoDiv">

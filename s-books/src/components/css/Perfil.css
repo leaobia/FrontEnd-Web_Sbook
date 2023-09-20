@@ -164,6 +164,11 @@
     font-weight: 800;
 }
 
+.fotoUser{
+    width: 132px;
+    height: 132px;
+}
+
 @media (max-width:1000px) {
     .contentPerfil{
         flex-direction: column;
