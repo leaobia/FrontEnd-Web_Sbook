@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+
 import { Sidebar } from 'primereact/sidebar';
 import iconSidebar from '../components/img/sidebarClick.png'
 import '../components/css/Perfil.css'
@@ -13,10 +13,29 @@ import favoritosIcon from '../components/img/CoracaoIcon 2.png'
 import configIcon from '../components/img/ConfigIcon.png'
 import sairIcon from '../components/img/sairIcon.png'
 
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
 import { Link } from "react-router-dom"
 
 function Perfil() {
     const [visibleLeft, setVisibleLeft] = useState(false);
+    const idUser = localStorage.getItem('id_usuarioLogin')
+    console.log(idUser);
+    //const baseUrl = 'https://app-nodejs.cyclic.cloud/'
+    const baseUrl = 'http://10.107.144.7:8080/'
+    useEffect(() => {
+  
+        axios.get(`${baseUrl}v1/sbook/usuario/${idUser}`)
+          .then(response => {
+                    console.log(response);
+                    console.log(response.data.dados[0]);
+          })
+          .catch(error => {
+            console.error('Erro ao obter dados do usuario', error);
+          });
+      }, []);
+      
     return (
         <div className="meuPerfi">
             <div className="sideBarContainer">

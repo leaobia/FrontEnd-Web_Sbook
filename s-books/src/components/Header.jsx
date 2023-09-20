@@ -547,7 +547,7 @@ function Header() {
 
                 const token = data.token;
 
-                console.log(data);
+                localStorage.setItem('id_usuarioLogin',data.usuario[0].id_usuario)
                 localStorage.setItem('token', token);
 
                 closeModalPai()
