@@ -43,37 +43,50 @@ function Configuracoes() {
                 </Sidebar>
             </div>
             <div className="configContent">
-            <div className="tabelaConfigDados">
-                <table border="1">
-                    <h3>Dados pessoais</h3>
-                    {/* <tr>
-                        <th>Coluna 1</th>
-                        <th>Coluna 2</th>
-                    </tr> */}
-                    <tr>
-                        <td>Dado 1A</td>
-                        <td>Dado 1B</td>
-                    </tr>
-                    <tr>
-                        <td>Dado 2A</td>
-                        <td>Dado 2B</td>
-                    </tr>
-                    <tr>
-                        <td>Dado 3A</td>
-                        <td>Dado 3B</td>
-                    </tr>
-                </table>
-            </div>
-            <div className="contentUserDireita">
-                <div className="userContainerDireita">
-                    <p>PERFIL</p>
-                    <img src={perfilFoto} alt="foto do usuário"  className='fotoUser'/>
-                    <p>{nomeUsuario}</p>
+                <div className="tabelaConfigDados">
+                    <div className="titleConfigDados">
+                        <h3>Dados pessoais</h3>
+                    </div>
+                    <div className="inputContainer">
+                        <div className="inputContainer1">
+                            <div className="inputGroup">
+                                Nome:
+                                <input type="text"/>
+                            </div>
+                            <div className="inputGroup">
+                                Email:
+                                <input type="text" />
+                            </div>
+                            <div className="inputGroup">
+                                CEP:
+                                <input type="text" />
+                            </div>
+                        </div>
+                        <div className="inputContainer2">
+                            <div className="inputGroup">
+                                Data de nascimento:
+                                <input type="text"/>
+                            </div>
+                            <div className="inputGroup">
+                                Confirmar email:
+                                <input type="text" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <button className='editarConfig'>Editar</button>
                 </div>
-                <div className="userContainerDireitaLink">
-                    <Link>Categorias ➔ </Link>
+                <div className="contentUserDireita">
+                    <div className="userContainerDireita">
+                        <p>PERFIL</p>
+                        <img src={perfilFoto} alt="foto do usuário" className='fotoUser' />
+                        <p>{nomeUsuario}</p>
+                    </div>
+                    <div className="userContainerDireitaLink">
+                        <Link>Categorias ➔ </Link>
+                    </div>
                 </div>
-            </div>
+               
             </div>
         </div>
     )

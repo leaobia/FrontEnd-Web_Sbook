@@ -221,7 +221,63 @@
     padding: 40px 0;
     display: grid;
     place-content: center;
+    color: #AA6231;
+    font-weight: 600;
     border-radius: 8px;
+    font-size: clamp(0.875rem, 0.4063rem + 1.5vw, 1.25rem);
+}
+
+.titleConfigDados{
+    border-bottom: 1px solid #CECECE;
+}
+
+.titleConfigDados h3{
+    padding: 3%;
+    font-weight: 500;
+    color: #AA6231;
+    font-size: clamp(1.125rem, 0.5rem + 2vw, 1.625rem);
+}
+.inputContainer{
+    display: flex;
+    gap: 20%;
+    margin-left: 3%;
+}
+.inputGroup{
+    display: flex;
+    flex-direction: column;
+    padding-top: 5vh;
+    font-size: clamp(0.875rem, 0.4063rem + 1.5vw, 1.25rem);
+}
+
+.inputGroup input{
+    border-bottom: 1px solid #7E7D7A;
+}
+
+.userContainerDireita :nth-child(1){
+    color: #AA6231;
+    font-size: clamp(0.875rem, 0.25rem + 2vw, 1.375rem);
+    font-weight: 600;
+}
+
+.userContainerDireita :nth-child(3){
+    font-weight: 600;
+    font-size: clamp(0.875rem, 0.4063rem + 1.5vw, 1.25rem);
+}
+
+.editarConfig{
+    margin-top: 10vh;
+    border: 1px solid #AA6231;
+    margin-left: 3%;
+    padding: 1% 8%;
+    color: #AA6231;
+    font-weight: 600;
+    font-size: clamp(0.875rem, 0.4063rem + 1.5vw, 1.25rem);
+    border-radius: 8px;
+    transition: .4s ease-in-out;
+}
+
+.editarConfig:hover{
+    scale: .8;
 }
 @media (max-width:1000px) {
     .contentPerfil, .configContent{
