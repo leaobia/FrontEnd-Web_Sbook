@@ -66,10 +66,12 @@ function Configuracoes() {
             </div>
             <div className="contentUserDireita">
                 <div className="userContainerDireita">
-                    img user
+                    <p>PERFIL</p>
+                    <img src={perfilFoto} alt="foto do usuário"  className='fotoUser'/>
+                    <p>{nomeUsuario}</p>
                 </div>
                 <div className="userContainerDireitaLink">
-                    config
+                    <Link>Categorias ➔ </Link>
                 </div>
             </div>
             </div>

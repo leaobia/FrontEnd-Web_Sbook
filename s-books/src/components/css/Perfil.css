@@ -190,7 +190,7 @@
 }
 
 .contentUserDireita{
-    background-color: aqua;
+    align-items: center;
     height: 40vh;
     display: flex;
     flex-direction: column;
@@ -198,14 +198,33 @@
     width: 40vw;
 }
 
-.userContainerDireita{
+.userContainerDireita, .userContainerDireitaLink{
     background-color: #FFFF;
     -webkit-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
     -moz-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
     box-shadow: 0 0 20px 0px rgba(211, 211, 211, 1);
+    width: fit-content;
+}
+
+.userContainerDireita{
+    padding: 40px 0;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    width: 20vw;
+}
+
+.userContainerDireitaLink{
+    width: 20vw;
+    padding: 40px 0;
+    display: grid;
+    place-content: center;
+    border-radius: 8px;
 }
 @media (max-width:1000px) {
-    .contentPerfil{
+    .contentPerfil, .configContent{
         flex-direction: column;
         justify-content: flex-start;
         gap: 2vh;
@@ -215,5 +234,23 @@
     }
     .containerCategorias{
         width: 70vw;
+    }
+
+    .tabelaConfigDados{
+        width: 90vw;
+        height: 40vh;
+    }
+
+    .userContainerDireita{
+        flex-direction: row;
+        width: 90vw;
+    }
+
+    .userContainerDireita p:nth-child(1){
+        display: none;
+    }
+
+    .contentUserDireita, .userContainerDireitaLink{
+        width: 90vw;
     }
 }
