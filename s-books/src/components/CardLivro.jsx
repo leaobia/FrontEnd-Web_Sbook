@@ -23,6 +23,7 @@ CardLivro() {
     axios.get(`${baseUrl}v1/sbook/anuncio`)
       .then(response => {
         const anunciosData = response.data.anuncios;
+        console.log(anunciosData[0]);
         setAnuncios(anunciosData);
       })
       .catch(error => {
@@ -46,7 +47,7 @@ CardLivro() {
     <div className="livrosContainer">
       {termoPesquisa === '' ? (
         anuncios.map((anuncio) => (
-          <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio} autor={anuncio.autores[0].nome} tipo={anuncio.tipo_anuncio[0]} endereco = {anuncio.endereco} />
+          <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio} autor={anuncio.autores[0].nome} tipo={anuncio.tipo_anuncio[0]} endereco = {anuncio.endereco} foto = {anuncio.foto[0].foto}/>
         ))
       ) : (
         (() => {
@@ -77,7 +78,7 @@ CardLivro() {
           }
 
           return filteredAnuncios.map((anuncio) => (
-            <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio || {}} autor={anuncio.autores[0].nome} tipo={anuncio.tipo_anuncio[0]} endereco = {anuncio.endereco} />
+            <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio || {}} autor={anuncio.autores[0].nome} tipo={anuncio.tipo_anuncio[0]} endereco = {anuncio.endereco} foto = {anuncio.foto[0].foto} />
           ));
           
         })()

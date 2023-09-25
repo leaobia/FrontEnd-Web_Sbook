@@ -4,7 +4,7 @@ import imagemCarrinho from './img/carrinho.png';
 import imagemCoracao from './img/coracaoIcon.png';
 import imagemCoracaoPreenchido from './img/coracaoPreenchido.png';
 
-function AnuncioCard({ anuncio, autor, tipo, endereco }) {
+function AnuncioCard({ anuncio, autor, tipo, endereco , foto}) {
   const [coracaoPreenchido, setCoracaoPreenchido] = useState(false);
 
   const preencher = () => {
@@ -17,7 +17,7 @@ function AnuncioCard({ anuncio, autor, tipo, endereco }) {
 
   return (
     <div className="personagem-card">
-      <img src={anuncio.foto} alt={anuncio.nome} className='imgLivro' />
+      <img src={foto} alt={anuncio.nome} className='imgLivro' />
       <div className='sobreLivro'>
         <h2>{anuncio.nome}</h2>
         <div className="autorAno">
