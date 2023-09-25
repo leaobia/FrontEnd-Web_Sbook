@@ -67,7 +67,7 @@ function Filtragem() {
         <div className="Filtragem">
             <div className="menuLocalContainer">
                 <button className='botaoMenu' onClick={() => setVisibleLeft(true)}><img src={slider} alt='ícone do botao de menu' /></button>
-                <span className='nomeDaCidade'>Carapicuíba</span>
+                {/* <span className='nomeDaCidade'>Carapicuíba</span> */}
             </div>
 
             <Sidebar className='sideBar' visible={visibleLeft} position="left" onHide={() => setVisibleLeft(false)}>

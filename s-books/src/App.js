@@ -10,7 +10,7 @@ import Favoritos from './pages/Favoritos';
 import Chat from './pages/Chat';
 import Livro from './pages/Livro';
 import Perfil from './pages/Perfil';
-
+import Configuracoes from './components/Configuracoes';
 
 
 function App() {
@@ -30,6 +30,7 @@ function App() {
             <Route path="/chat" element={<Chat />} />
             <Route path="/livro" element={<Livro />} />
             <Route path="/perfil" element={<Perfil />} />
+            <Route path="/configuracoes" element={<Configuracoes />} />
           </Routes>
         </div>
 

@@ -2,7 +2,7 @@
 import { Sidebar } from 'primereact/sidebar';
 import iconSidebar from '../components/img/sidebarClick.png'
 import '../components/css/Perfil.css'
-import userImage from '../components/img/userImage.png'
+//import userImage from '../components/img/userImage.png'
 import mundoIcon from '../components/img/mundoIcon.png'
 import localIcon from '../components/img/localIcon.png'
 import emailIcon from '../components/img/EmailIcon.png'
@@ -35,6 +35,7 @@ function Perfil() {
                     let logradouroUsuario = response.data.dados[0].logradouro
                     let data_nascimento = response.data.dados[0].data_nascimento
                     let email = response.data.dados[0].email
+                    let cidadeUsuario = response.data.dados[0].cidade
 
                     localStorage.setItem('nomeUsuario', nomeUser )
                     localStorage.setItem('perfilFoto', perfilFoto )
@@ -42,6 +43,7 @@ function Perfil() {
                     localStorage.setItem('logradouroUsuario', logradouroUsuario)
                     localStorage.setItem('data_nascimento', data_nascimento)
                     localStorage.setItem('email', email)
+                    localStorage.setItem('cidadeUsuario', cidadeUsuario)
           })
           .catch(error => {
             console.error('Erro ao obter dados do usuario', error);
@@ -82,13 +84,14 @@ function Perfil() {
       let logradouroUsuario = localStorage.getItem('logradouroUsuario')
       let data_nascimento = localStorage.getItem('data_nascimento')
       let email = localStorage.getItem('email')
+      let cidadeUsuario = localStorage.getItem('cidadeUsuario')
       
     return (
         <div className="meuPerfi">
             <div className="sideBarContainer">
                 <button className='botaoMenu' onClick={() => setVisibleLeft(true)}><img src={iconSidebar} alt='ícone do botao de menu' /></button>
                 <div className="menuLocalContainer">
-                    <span className='nomeDaCidade'>Carapicuíba</span>
+                    <span className='nomeDaCidade'>{cidadeUsuario}</span>
                 </div>
                 <Sidebar className='sideBar perfilLateral' visible={visibleLeft} position="left" onHide={() => setVisibleLeft(false)}>
                     <div className="dadosUserSideBar">
@@ -102,7 +105,7 @@ function Perfil() {
                                 <Link className='link' to='/perfil'> <img src={perfilIcon} alt="icone foto de perfil" /> Perfil</Link>
                                 <Link className='link'> <img src={anunciosIcon} alt="icone foto de anuncios" /> Meus anúncios</Link>
                                 <Link className='link'> <img src={favoritosIcon} alt="icone foto de favoritos" />Favoritos</Link>
-                                <Link className='link'> <img src={configIcon} alt="icone foto de favoritos" />Configurações</Link>
+                                <Link className='link' to='/configuracoes'> <img src={configIcon} alt="icone foto de favoritos" />Configurações</Link>
                             </div>
                             <button className='botaoLogOut bold'><img src={sairIcon} alt="sair" />Sair</button>
                         </div>
