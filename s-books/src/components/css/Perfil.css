@@ -1,4 +1,4 @@
-.meuPerfi{
+.meuPerfi, .configContainer{
    background-color: #F5F5F5;
    min-height: 92vh;
    width: 100vw;
@@ -169,6 +169,41 @@
     height: 132px;
 }
 
+
+
+.configContent{
+    min-height: 84vh;
+    display: flex;
+    padding: 5vh 5vw 0 5vw;
+    gap: 3vh;
+    justify-content: space-between;
+}
+
+.tabelaConfigDados{
+    background-color: #ffff;
+    height: 60vh;
+    border-radius: 15px;
+    width: 50vw;
+    -webkit-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
+    -moz-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
+    box-shadow: 0 0 20px 0px rgba(211, 211, 211, 1);
+}
+
+.contentUserDireita{
+    background-color: aqua;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40vw;
+}
+
+.userContainerDireita{
+    background-color: #FFFF;
+    -webkit-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
+    -moz-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
+    box-shadow: 0 0 20px 0px rgba(211, 211, 211, 1);
+}
 @media (max-width:1000px) {
     .contentPerfil{
         flex-direction: column;

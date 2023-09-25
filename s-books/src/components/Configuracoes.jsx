@@ -17,8 +17,8 @@ let cidadeUsuario = localStorage.getItem('cidadeUsuario')
 function Configuracoes() {
     const [visibleLeft, setVisibleLeft] = useState(false);
     return (
-        <div>
-                        <div className="sideBarContainer">
+        <div className='configContainer'>
+            <div className="sideBarContainer">
                 <button className='botaoMenu' onClick={() => setVisibleLeft(true)}><img src={iconSidebar} alt='ícone do botao de menu' /></button>
                 <div className="menuLocalContainer">
                     <span className='nomeDaCidade'>{cidadeUsuario}</span>
@@ -26,8 +26,8 @@ function Configuracoes() {
                 <Sidebar className='sideBar perfilLateral' visible={visibleLeft} position="left" onHide={() => setVisibleLeft(false)}>
                     <div className="dadosUserSideBar">
                         <div className="nomeFotoUser">
-                        <p>{nomeUsuario}</p>
-                    <img src={perfilFoto} alt="foto de perfil do usuário"  className='fotoUser'/>
+                            <p>{nomeUsuario}</p>
+                            <img src={perfilFoto} alt="foto de perfil do usuário" className='fotoUser' />
                         </div>
                         <div className="sideBarConfig">
                             <span className='titleConfigSidebar'>PERFIL</span>
@@ -41,6 +41,37 @@ function Configuracoes() {
                         </div>
                     </div>
                 </Sidebar>
+            </div>
+            <div className="configContent">
+            <div className="tabelaConfigDados">
+                <table border="1">
+                    <h3>Dados pessoais</h3>
+                    {/* <tr>
+                        <th>Coluna 1</th>
+                        <th>Coluna 2</th>
+                    </tr> */}
+                    <tr>
+                        <td>Dado 1A</td>
+                        <td>Dado 1B</td>
+                    </tr>
+                    <tr>
+                        <td>Dado 2A</td>
+                        <td>Dado 2B</td>
+                    </tr>
+                    <tr>
+                        <td>Dado 3A</td>
+                        <td>Dado 3B</td>
+                    </tr>
+                </table>
+            </div>
+            <div className="contentUserDireita">
+                <div className="userContainerDireita">
+                    img user
+                </div>
+                <div className="userContainerDireitaLink">
+                    config
+                </div>
+            </div>
             </div>
         </div>
     )
