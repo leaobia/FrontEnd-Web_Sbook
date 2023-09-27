@@ -52,7 +52,7 @@ function Perfil() {
 
       useEffect(() => {
   
-        axios.get(`${baseUrl}v1/sbook/generos/${idUser}`)
+        axios.get(`${baseUrl}v1/sbook/generos-preferidos/${idUser}`)
         .then(response => {
           let generosArray = response.data.generos_preferidos
           const generosUnicos = new Set(); 
@@ -104,7 +104,7 @@ function Perfil() {
                             <div className="linksConfig">
                                 <Link className='link' to='/perfil'> <img src={perfilIcon} alt="icone foto de perfil" /> Perfil</Link>
                                 <Link className='link'> <img src={anunciosIcon} alt="icone foto de anuncios" /> Meus anúncios</Link>
-                                <Link className='link'> <img src={favoritosIcon} alt="icone foto de favoritos" />Favoritos</Link>
+                                <Link className='link' to='/favoritos'> <img src={favoritosIcon} alt="icone foto de favoritos" />Favoritos</Link>
                                 <Link className='link' to='/configuracoes'> <img src={configIcon} alt="icone foto de favoritos" />Configurações</Link>
                             </div>
                             <button className='botaoLogOut bold'><img src={sairIcon} alt="sair" />Sair</button>

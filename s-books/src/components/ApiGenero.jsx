@@ -5,7 +5,7 @@ import { Checkbox } from '@chakra-ui/react';
 import seta from './img/seta.png';
 
 function ApiGenero() {
-    //https://app-nodejs.cyclic.cloud/
+  //const baseUrl = 'https://app-nodejs.cyclic.cloud/'
   const baseUrl = 'http://10.107.144.7:8080/'
 
   const [nomes, setNomes] = useState([]);

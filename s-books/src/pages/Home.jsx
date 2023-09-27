@@ -5,20 +5,20 @@ import Footer from "../components/Footer";
 
 function Home() {
 
-    function formatarNumero(numero) {
-        if (numero < 1000) {
-          return numero.toString();
-        } else if (numero < 1000000) {
-          return (numero / 1000).toFixed(0) + " mil";
-        } else if (numero < 1000000000) {
-          return (numero / 1000000).toFixed(0) + " milhões";
-        } else {
-          return numero.toString();
-        }
-      }
+    // function formatarNumero(numero) {
+    //     if (numero < 1000) {
+    //       return numero.toString();
+    //     } else if (numero < 1000000) {
+    //       return (numero / 1000).toFixed(0) + " mil";
+    //     } else if (numero < 1000000000) {
+    //       return (numero / 1000000).toFixed(0) + " milhões";
+    //     } else {
+    //       return numero.toString();
+    //     }
+    //   }
       
-      var quantidadeDeLivros = localStorage.getItem('quantidadeLivros');
-      var quantidadeFormatada = formatarNumero(quantidadeDeLivros);
+    //   var quantidadeDeLivros = localStorage.getItem('quantidadeLivros');
+    //   var quantidadeFormatada = formatarNumero(quantidadeDeLivros);
 
       
     return (
@@ -29,7 +29,7 @@ function Home() {
             </div>
             <div className="apresentacaoLivros">
                 <p>Livros usados, seminovos e novos em todo o Brasil</p>
-                <span id="quantidadeDeLivros"> {quantidadeFormatada} livros encontrados</span>
+                {/* <span id="quantidadeDeLivros"> {quantidadeFormatada} livros encontrados</span> */}
             </div>
             <SecaoLivro/>
             <Footer/>

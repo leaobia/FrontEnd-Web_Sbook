@@ -543,11 +543,13 @@ function Header() {
             .then(response => response.json())
             .then(data => {
 
+                console.log(data);
+
                 document.getElementById('erroLogin').textContent = ''
 
                 const token = data.token;
 
-                localStorage.setItem('id_usuarioLogin',data.usuario[0].id_usuario)
+                localStorage.setItem('id_usuarioLogin',data.usuario.usuario.id)
                 localStorage.setItem('token', token);
 
                 closeModalPai()
