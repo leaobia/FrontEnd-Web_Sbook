@@ -11,10 +11,10 @@ function CardLivroFav() {
     useEffect(() => {
         axios.get(`${baseUrl}v1/sbook/anuncios-favoritados/${idUser}`)
             .then(response => {
-                const anunciosData = response.data.anuncios_favoritados;
+                const anunciosData = response.data.anuncios;
                 setAnuncios(anunciosData);
-                console.log(response);
-                console.log('anuncios data: ', anunciosData[0].id_anuncio);
+                console.log(anunciosData[0]);
+                //console.log('anuncios data: ', anunciosData[0].id_anuncio);
             })
             .catch(error => {
                 console.error('Erro ao obter dados dos anúncios:', error);
@@ -26,14 +26,14 @@ function CardLivroFav() {
             {anuncios.length > 0 ? (
                 anuncios.map((anuncio) => (
                     <AnuncioCardFav
-                        key={anuncio.id_anuncio}
-                        anuncio={anuncio}
-                        autor={anuncio.autor}
-                        tipo={anuncio.estado_livro}
+                        key={anuncio.anuncio.id_anuncio}
+                        anuncio={anuncio.anuncio}
+                        autor={anuncio.autores[0].nome}
+                        tipo={anuncio.tipo_anuncio[0]}
                         endereco={anuncio.endereco}
-                        foto={anuncio.foto}
-                        cidade={anuncio.cidade}
-                        estado={anuncio.estado}
+                        foto={anuncio.foto[0].foto}
+                        cidade={anuncio.endereco.cidade}
+                        estado={anuncio.endereco.estado}
                     />
                 ))
             ) : (

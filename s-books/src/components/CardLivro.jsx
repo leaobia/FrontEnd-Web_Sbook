@@ -23,8 +23,6 @@ CardLivro() {
     axios.get(`${baseUrl}v1/sbook/anuncio`)
       .then(response => {
         const anunciosData = response.data.anuncios;
-        console.log(anunciosData);
-        console.log(anunciosData[0]);
         setAnuncios(anunciosData);
       })
       .catch(error => {
