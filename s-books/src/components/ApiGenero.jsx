@@ -6,7 +6,7 @@ import seta from './img/seta.png';
 
 function ApiGenero() {
   //const baseUrl = 'https://app-nodejs.cyclic.cloud/'
-  const baseUrl = 'http://10.107.144.7:8080/'
+  const baseUrl = 'http://10.107.144.19:8080/'
 
   const [nomes, setNomes] = useState([]);
   const [selecionados, setSelecionados] = useState([]);

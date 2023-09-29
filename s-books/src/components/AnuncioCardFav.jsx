@@ -7,7 +7,7 @@ import imagemCoracaoPreenchido from './img/coracaoPreenchido.png';
 function AnuncioCardFav({ anuncio, autor, tipo, cidade, estado , foto}) {
 
        //const baseUrl = 'https://app-nodejs.cyclic.cloud/'
-       const baseUrl = 'http://10.107.144.7:8080/'
+       const baseUrl = 'http://10.107.144.19:8080/'
 
   const  anuncioId = anuncio.id
   const idUser = localStorage.getItem('id_usuarioLogin')

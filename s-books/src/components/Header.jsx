@@ -32,7 +32,7 @@ import './css/Cadastro.css'
 import './css/Reset.css'
 
 //const baseUrl = 'https://app-nodejs.cyclic.cloud/'
-const baseUrl = 'http://10.107.144.7:8080/'
+const baseUrl = 'http://10.107.144.19:8080/'
 
 function verificarTokenNoLocalStorage() {
     const token = localStorage.getItem('token');

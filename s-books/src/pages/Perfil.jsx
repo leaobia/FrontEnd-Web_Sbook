@@ -23,11 +23,12 @@ function Perfil() {
     const idUser = localStorage.getItem('id_usuarioLogin')
     
     //const baseUrl = 'https://app-nodejs.cyclic.cloud/'
-    const baseUrl = 'http://10.107.144.7:8080/'
+    const baseUrl = 'http://10.107.144.19:8080/'
     useEffect(() => {
   
         axios.get(`${baseUrl}v1/sbook/usuario/${idUser}`)
           .then(response => {
+              console.log(response);
                     console.log(response.data.dados[0]);
                     let nomeUser = response.data.dados[0].nome
                     let perfilFoto = response.data.dados[0].foto

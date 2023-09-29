@@ -7,7 +7,7 @@ import imagemCoracaoPreenchido from './img/coracaoPreenchido.png';
 function AnuncioCard({ anuncio, autor, tipo, endereco , foto}) {
 
       //const baseUrl = 'https://app-nodejs.cyclic.cloud/'
-      const baseUrl = 'http://10.107.144.7:8080/'
+      const baseUrl = 'http://10.107.144.19:8080/'
 
 
   const [coracaoPreenchido, setCoracaoPreenchido] = useState(false);
@@ -20,7 +20,6 @@ function AnuncioCard({ anuncio, autor, tipo, endereco , foto}) {
 
   const preencher = () => {
     setCoracaoPreenchido(true);
-    
   }
 
   const despreencher = () => {
