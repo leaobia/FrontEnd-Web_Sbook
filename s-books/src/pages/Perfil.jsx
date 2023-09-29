@@ -33,6 +33,7 @@ function Perfil() {
                     let nomeUser = response.data.dados[0].nome
                     let perfilFoto = response.data.dados[0].foto
                     let estadoUsuario = response.data.dados[0].estado
+                    let cepUsuario = response.data.dados[0].cep
                     let logradouroUsuario = response.data.dados[0].logradouro
                     let data_nascimento = response.data.dados[0].data_nascimento
                     let email = response.data.dados[0].email
@@ -45,6 +46,7 @@ function Perfil() {
                     localStorage.setItem('data_nascimento', data_nascimento)
                     localStorage.setItem('email', email)
                     localStorage.setItem('cidadeUsuario', cidadeUsuario)
+                    localStorage.setItem('cepUsuario', cepUsuario)
           })
           .catch(error => {
             console.error('Erro ao obter dados do usuario', error);

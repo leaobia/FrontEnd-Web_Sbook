@@ -10,12 +10,36 @@ import sairIcon from '../components/img/sairIcon.png'
 
 import { Link } from "react-router-dom"
 
-let nomeUsuario = localStorage.getItem('nomeUsuario')
-let perfilFoto = localStorage.getItem('perfilFoto')
-let cidadeUsuario = localStorage.getItem('cidadeUsuario')
+
 
 function Configuracoes() {
     const [visibleLeft, setVisibleLeft] = useState(false);
+
+    let nomeUsuario = localStorage.getItem('nomeUsuario')
+    let perfilFoto = localStorage.getItem('perfilFoto')
+    let cidadeUsuario = localStorage.getItem('cidadeUsuario')
+    //let estadoUsuario = localStorage.getItem('estadoUsuario')
+    // let logradouroUsuario = localStorage.getItem('logradouroUsuario')
+    let data_nascimento = localStorage.getItem('data_nascimento')
+    let formattedDate;
+    let email = localStorage.getItem('email')
+    let cepUsuario = localStorage.getItem('cepUsuario')
+
+
+    if (data_nascimento) {
+        const parts = data_nascimento.split('-');
+
+        if (parts.length === 3) {
+            const day = parts[0];
+            const month = parts[1];
+            const year = parts[2];
+
+            formattedDate = `${year}-${month}-${day}`;
+        } else {
+            console.error('Invalid date format in localStorage');
+        }
+    }
+
     return (
         <div className='configContainer'>
             <div className="sideBarContainer">
@@ -51,25 +75,21 @@ function Configuracoes() {
                         <div className="inputContainer1">
                             <div className="inputGroup">
                                 Nome:
-                                <input type="text"/>
+                                <input type="text" value={nomeUsuario} />
                             </div>
                             <div className="inputGroup">
                                 Email:
-                                <input type="text" />
-                            </div>
-                            <div className="inputGroup">
-                                CEP:
-                                <input type="text" />
+                                <input type="email" value={email} />
                             </div>
                         </div>
                         <div className="inputContainer2">
                             <div className="inputGroup">
                                 Data de nascimento:
-                                <input type="text"/>
+                                <input type="date" value={formattedDate} />
                             </div>
                             <div className="inputGroup">
-                                Confirmar email:
-                                <input type="text" />
+                                CEP:
+                                <input type="number" value={cepUsuario} />
                             </div>
                         </div>
 
@@ -86,7 +106,7 @@ function Configuracoes() {
                         <Link>Categorias ➔ </Link>
                     </div>
                 </div>
-               
+
             </div>
         </div>
     )
