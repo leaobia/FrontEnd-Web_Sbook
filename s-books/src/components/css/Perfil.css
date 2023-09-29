@@ -279,6 +279,18 @@
 .editarConfig:hover{
     scale: .8;
 }
+
+.desejaEditarDiv{
+    margin-left: 3%;
+    margin-top: 3%;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.botoesEditarOpcao{
+    display: flex;
+    gap: 3vw;
+}
 @media (max-width:1000px) {
     .contentPerfil, .configContent{
         flex-direction: column;

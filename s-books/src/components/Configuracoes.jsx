@@ -10,7 +10,8 @@ import sairIcon from '../components/img/sairIcon.png'
 
 import { Link } from "react-router-dom"
 
-
+//const baseUrl = 'https://app-nodejs.cyclic.cloud/'
+const baseUrl = 'http://10.107.144.19:8080/'
 
 function Configuracoes() {
     const [visibleLeft, setVisibleLeft] = useState(false);
@@ -38,6 +39,100 @@ function Configuracoes() {
         } else {
             console.error('Invalid date format in localStorage');
         }
+    }
+
+    const abrirPerguntasEditar = () => {
+        const desejaEditarDiv = document.getElementById('desejaEditarDiv')
+        desejaEditarDiv.classList.add('d-flex')
+        desejaEditarDiv.classList.remove('d-none')
+    }
+
+    const fecharPerguntasEditar = () => {
+        const desejaEditarDiv = document.getElementById('desejaEditarDiv')
+        desejaEditarDiv.classList.remove('d-flex')
+        desejaEditarDiv.classList.add('d-none')
+    }
+
+    function fetchViaCep() {
+
+        const cepInput = document.getElementById('pegarCEPEdit');
+
+        const cep = cepInput.value.replace(/\D/g, '');;
+
+
+        if (/^\d{8}$/.test(cep)) {
+
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    let cidade = data.localidade
+                    let bairro = data.bairro
+                    let logradouro = data.logradouro
+                    let estado = data.uf
+
+                    localStorage.setItem('cepEdit', cep)
+                    localStorage.setItem('cidadeEdit', cidade)
+                    localStorage.setItem('bairroEdit', bairro)
+                    localStorage.setItem('logradouroEdit', logradouro)
+                    localStorage.setItem('estadoEdit', estado)
+
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        } else {
+            console.log('CEP inválido. Certifique-se de inserir 8 dígitos numéricos.');
+        }
+
+    }
+
+    function editarUsuario() {
+        let cep = localStorage.getItem('cepEdit')
+        let cidade = localStorage.getItem('cidadeEdit')
+        let logradouro = localStorage.getItem('logradouroEdit')
+        let estado = localStorage.getItem('estadoEdit')
+        let bairro = localStorage.getItem('bairroEdit')
+
+        let id_endereco = localStorage.getItem('id_endereco')
+        let id_usuario = localStorage.getItem('id_usuarioLogin')
+
+        let dateEdit = document.getElementById('dateEdit').value
+        let emailEdit = document.getElementById('emailEdit').value
+        let nomeEdit = document.getElementById('nomeEdit').value
+
+        const dados = {
+            "id_usuario": id_usuario,
+            "id_endereco": id_endereco,
+            "logradouro_endereco": logradouro,
+            "bairro_endereco": bairro,
+            "cidade_endereco": cidade,
+            "estado_endereco": estado,
+            "cep_endereco": cep,
+            "nome_usuario": nomeEdit,
+            "data_nascimento_usuario": dateEdit,
+            "email_usuario": emailEdit
+        };
+
+        const url = `${baseUrl}v1/sbook/atualizar-usuario`;
+
+        fetch(`${url}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados)
+        })
+            .then(response => {
+                console.log(response);
+            })
+            .then(data => {
+                console.log(data); 
+            })
+            .catch(error => {
+                console.error(error);
+            });
+       
     }
 
     return (
@@ -75,26 +170,33 @@ function Configuracoes() {
                         <div className="inputContainer1">
                             <div className="inputGroup">
                                 Nome:
-                                <input type="text" value={nomeUsuario} />
+                                <input type="text" value={nomeUsuario} id= 'nomeEdit'/>
                             </div>
                             <div className="inputGroup">
                                 Email:
-                                <input type="email" value={email} />
+                                <input type="email" value={email} id= 'emailEdit'/>
                             </div>
                         </div>
                         <div className="inputContainer2">
                             <div className="inputGroup">
                                 Data de nascimento:
-                                <input type="date" value={formattedDate} />
+                                <input type="date" value={formattedDate} id= 'dateEdit' />
                             </div>
                             <div className="inputGroup">
                                 CEP:
-                                <input type="number" value={cepUsuario} />
+                                <input type="number" value={cepUsuario} id='pegarCEPEdit' onBlur={fetchViaCep} />
                             </div>
                         </div>
 
                     </div>
-                    <button className='editarConfig'>Editar</button>
+                    <button className='editarConfig' onClick={abrirPerguntasEditar}>Editar</button>
+                    <div className="desejaEditarDiv d-none" id='desejaEditarDiv'>
+                        <h3>Deseja realmente editar suas informações?</h3>
+                        <div className="botoesEditarOpcao">
+                            <button>Sim</button>
+                            <button onClick={fecharPerguntasEditar}>Não</button>
+                        </div>
+                    </div>
                 </div>
                 <div className="contentUserDireita">
                     <div className="userContainerDireita">
