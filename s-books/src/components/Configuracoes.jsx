@@ -123,13 +123,16 @@ function Configuracoes() {
         };
 
         const url = `${baseUrl}v1/sbook/atualizar-usuario`;
+        const tokenJWT = localStorage.getItem('token'); 
+        console.log(tokenJWT);
 
         console.log(dados);
 
         fetch(`${url}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'x-access-token': `${tokenJWT}`
             },
             body: JSON.stringify(dados)
         })
