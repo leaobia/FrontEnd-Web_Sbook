@@ -9,6 +9,8 @@ import configIcon from '../components/img/ConfigIcon.png'
 import sairIcon from '../components/img/sairIcon.png'
 import { baseUrl } from '../url';
 
+import { logOut } from '../url';
+
 import { Link } from "react-router-dom"
 
 
@@ -164,7 +166,7 @@ function Configuracoes() {
                                 <Link className='link'> <img src={favoritosIcon} alt="icone foto de favoritos" />Favoritos</Link>
                                 <Link className='link' to='/configuracoes'> <img src={configIcon} alt="icone foto de favoritos" />Configurações</Link>
                             </div>
-                            <button className='botaoLogOut bold'><img src={sairIcon} alt="sair" />Sair</button>
+                            <button className='botaoLogOut bold' onClick={logOut}><img src={sairIcon} alt="sair" />Sair</button>
                         </div>
                     </div>
                 </Sidebar>

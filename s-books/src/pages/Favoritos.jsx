@@ -10,6 +10,7 @@ import sairIcon from '../components/img/sairIcon.png'
 import React, { useState } from 'react';
 import SecaoLivroFav from '../components/SecaoLivroFav';
 
+import { logOut } from '../url';
 
 import { Link } from "react-router-dom"
 
@@ -42,7 +43,7 @@ function Favoritos() {
                                 <Link className='link' to='/favoritos'> <img src={favoritosIcon} alt="icone foto de favoritos" />Favoritos</Link>
                                 <Link className='link' to='/configuracoes'> <img src={configIcon} alt="icone foto de favoritos" />Configurações</Link>
                             </div>
-                            <button className='botaoLogOut bold'><img src={sairIcon} alt="sair" />Sair</button>
+                            <button className='botaoLogOut bold' onClick={logOut}><img src={sairIcon} alt="sair" />Sair</button>
                         </div>
                     </div>
                 </Sidebar>

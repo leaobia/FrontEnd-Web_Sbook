@@ -9,6 +9,7 @@ import imagemSenhaRedefinidaComSucesso from './img/redefinidacomsucesso.png'
 import imagemCodigoRecuperacao from './img/imgCodigoDeRecuperacao.png'
 import imagemRedefinirSenha from './img/recuperarContaimg.png'
 import { baseUrl } from '../url';
+import React, { useEffect, useState } from 'react';
 
 import PasswordInput from './PasswordInput';
 
@@ -18,7 +19,6 @@ import { PinInput, PinInputField } from '@chakra-ui/react'
 import { EmailIcon } from '@chakra-ui/icons';
 import { Select } from '@chakra-ui/react'
 
-import React, { useState } from 'react';
 
 
 import './css/Header.css'
@@ -32,19 +32,33 @@ import './css/Cadastro.css'
 import './css/Reset.css'
 
 
-function verificarTokenNoLocalStorage() {
-    const token = localStorage.getItem('token');
-    if (token) {
-        console.log('Token encontrado:', token);
-    } else {
-        console.log('Token não encontrado, o usuário não está autenticado');
-    }
-}
-
-document.addEventListener('DOMContentLoaded', verificarTokenNoLocalStorage);
 
 
 function Header() {
+
+
+    const storedUsuario = localStorage.getItem('usuario');
+    // Inicializa o estado com base no valor armazenado ou false se não houver valor
+    const [usuario, setUsuario] = useState(storedUsuario === 'true');
+
+
+    // Efeito para atualizar o localStorage sempre que o estado 'usuario' mudar
+    useEffect(() => {
+        localStorage.setItem('usuario', usuario.toString());
+        if (storedUsuario === 'true') {
+            document.getElementById('userProfileButton').classList.remove('d-none')
+            document.getElementById('userProfileButton').classList.add('d-flex')
+    
+            document.getElementById('botaoLogin').classList.remove('d-flex')
+            document.getElementById('botaoLogin').classList.add('d-none')
+    
+            document.getElementById('userMenu').classList.remove('grid-colun2')
+        }
+    }, [usuario, storedUsuario]);
+
+    console.log('Usuário logado:', localStorage.getItem('usuario'));
+
+
 
     function hideElement(id) {
         const element = document.getElementById(id);
@@ -133,7 +147,7 @@ function Header() {
                         buttonCategoria.textContent = genero.nome;
 
                         buttonCategoria.addEventListener('click', () => {
-                           
+
                             const generoObj = {
                                 id: parseInt(genero.id),
                                 nome: genero.nome
@@ -150,7 +164,7 @@ function Header() {
                             }
 
                             localStorage.setItem('generosSelecionados', JSON.stringify(generosSelecionados));
-        
+
                         });
 
                         categoriasContainer.appendChild(buttonCategoria);
@@ -256,7 +270,7 @@ function Header() {
         if (emailInput) {
             const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
             if (emailRegex.test(emailInput)) {
-                const url = `${baseUrl}v1/sbook/esqueci-senha` ;
+                const url = `${baseUrl}v1/sbook/esqueci-senha`;
 
 
                 const requestOptions = {
@@ -267,10 +281,10 @@ function Header() {
                     body: JSON.stringify(dados)
                 };
 
-                fetch(url, requestOptions) 
+                fetch(url, requestOptions)
                     .then(response => response.json())
                     .then(data => {
-                
+
                         if (data.status === 200) {
 
                             hideElement('containerLogin');
@@ -543,9 +557,10 @@ function Header() {
 
                 const token = data.token;
 
-                localStorage.setItem('id_usuarioLogin',data.usuario.usuario.id)
-                localStorage.setItem('id_endereco',data.usuario.endereco.id)
+                localStorage.setItem('id_usuarioLogin', data.usuario.usuario.id)
+                localStorage.setItem('id_endereco', data.usuario.endereco.id)
                 localStorage.setItem('token', token);
+                setUsuario('true')
 
                 closeModalPai()
 
@@ -592,7 +607,7 @@ function Header() {
                 "email_usuario": email,
                 "senha_usuario": senha
             };
-            const url =`${baseUrl}v1/sbook/registro-usuario`;
+            const url = `${baseUrl}v1/sbook/registro-usuario`;
             fetch(url, {
                 method: "POST",
                 headers: {
@@ -655,7 +670,7 @@ function Header() {
     }
 
     function enviarCategoriasFavoritasDoUsuario() {
-    
+
         const generosSelecionados = JSON.parse(localStorage.getItem('generosSelecionados'));
 
         const id_usuario = parseInt(localStorage.getItem('id_usuario'));
@@ -683,7 +698,7 @@ function Header() {
                 }
             })
             .then(data => {
-                console.log(data); 
+                console.log(data);
             })
             .catch(error => {
                 console.error(error);
@@ -1100,7 +1115,7 @@ function Header() {
                         <button className='userProfileButton d-flex' id='botaoLogin' onClick={openModalPai} ><img src={userProfile} alt="icone de pessoa" className='imgHeader' /> <span>Entrar</span></button>
 
                         <div className='userMenuIcons'>
-                            <Link to= '/perfil'className='d-none' id='userProfileButton'><img src={userProfile} alt="icone de pessoa" /></Link>
+                            <Link to='/perfil' className='d-none' id='userProfileButton'><img src={userProfile} alt="icone de pessoa" /></Link>
                             <Link to='/favoritos' className='link'><img src={userFavorites} alt="icone de coração para ver os favoritos" className='imgHeader' /></Link>
                             <Link to='/chat' className='link'><img src={userChats} alt="icone de chat para ver os chats enviados" className='imgHeader' /></Link>
                         </div>

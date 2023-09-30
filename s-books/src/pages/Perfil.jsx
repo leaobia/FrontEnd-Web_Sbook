@@ -17,9 +17,12 @@ import { baseUrl } from '../url';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import { logOut } from '../url';
+
 import { Link } from "react-router-dom"
 
 function Perfil() {
+
     const [visibleLeft, setVisibleLeft] = useState(false);
     const idUser = localStorage.getItem('id_usuarioLogin')
     
@@ -51,7 +54,7 @@ function Perfil() {
           .catch(error => {
             console.error('Erro ao obter dados do usuario', error);
           });
-      }, []);
+      }, [idUser]);
 
       useEffect(() => {
   
@@ -79,7 +82,7 @@ function Perfil() {
         });
       
 
-      }, []);
+      }, [idUser]);
 
       let nomeUsuario = localStorage.getItem('nomeUsuario')
       let perfilFoto = localStorage.getItem('perfilFoto')
@@ -110,7 +113,7 @@ function Perfil() {
                                 <Link className='link' to='/favoritos'> <img src={favoritosIcon} alt="icone foto de favoritos" />Favoritos</Link>
                                 <Link className='link' to='/configuracoes'> <img src={configIcon} alt="icone foto de favoritos" />Configurações</Link>
                             </div>
-                            <button className='botaoLogOut bold'><img src={sairIcon} alt="sair" />Sair</button>
+                            <button className='botaoLogOut bold' onClick={logOut}><img src={sairIcon} alt="sair" />Sair</button>
                         </div>
                     </div>
                 </Sidebar>

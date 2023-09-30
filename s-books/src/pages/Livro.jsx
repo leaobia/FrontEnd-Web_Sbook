@@ -12,6 +12,7 @@ function Livro() {
   const [images, setImages] = useState([]);
   let cidadeUsuario = localStorage.getItem('cidadeUsuario')
   let idPegarAnuncio = parseInt(localStorage.getItem('getAnuncioById'))
+  let perfilFoto = localStorage.getItem('perfilFoto')
  
   const [anuncio, setAnuncio] = useState([]);
   const [generos, setGeneros] = useState([]);
@@ -87,7 +88,14 @@ function Livro() {
          <p>{generos}</p>
           </div>
           <div className="direitaDadosAnuncio">
-         <button>Enviar mensagem</button>
+        <Link to='/chat'><button className='messageButton'>Enviar mensagem</button></Link> 
+        <div className="anuncianteDados">
+          <img src={perfilFoto} alt="foto perfil do anunciante" className='fotoUser' />
+          <div className="nomeAnunciante">
+            <p>Max Kellermen</p>
+            <p>{anuncio.endereco.cidade}, {anuncio.endereco.estado}</p>
+          </div>
+        </div>
           </div>
        
         </div>
