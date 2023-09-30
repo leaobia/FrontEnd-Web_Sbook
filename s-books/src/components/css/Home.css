@@ -39,22 +39,28 @@
     background-color: #FFFFFF;
     border-radius: 8px;
     padding: 10px;
-    gap: 20px;
+    justify-content: space-between;
     width: 15vw;
     -webkit-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
     -moz-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
     box-shadow: 0 0 20px 0px rgba(211, 211, 211, 1);
+    height: 60vh;
 }
 
 .sobreLivro h2{
     text-transform: uppercase;
 }
 
+
 .imgLivro{
-    display: grid;
-    place-self: center;
+    background-color: #AA6231;
+    width: 100%;
     height: 30vh;
-    width: 60%;
+}
+
+.imgLivro img{
+    height: 100%;
+    width: 100%;
 }
 
 .autorAno{
@@ -146,9 +152,16 @@
     .personagem-card{
         width: 60vw;
     }
+
+    .livrosContainer{
+        align-items: center;
+        justify-content: center;
+    }
 }
 @media (max-width:400px) {
     .personagem-card{
         width: 80vw;
     }
+
+
 }
