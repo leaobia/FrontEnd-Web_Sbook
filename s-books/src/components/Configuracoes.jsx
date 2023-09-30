@@ -108,8 +108,8 @@ function Configuracoes() {
         let nomeEdit = document.getElementById('nomeEdit').value
 
         const dados = {
-            "id_usuario": id_usuario,
-            "id_endereco": id_endereco,
+            "id_usuario": parseInt(id_usuario),
+            "id_endereco": parseInt(id_endereco),
             "logradouro_endereco": logradouro,
             "bairro_endereco": bairro,
             "cidade_endereco": cidade,
@@ -122,6 +122,8 @@ function Configuracoes() {
 
         const url = `${baseUrl}v1/sbook/atualizar-usuario`;
 
+        console.log(dados);
+
         fetch(`${url}`, {
             method: 'PUT',
             headers: {
@@ -130,10 +132,10 @@ function Configuracoes() {
             body: JSON.stringify(dados)
         })
             .then(response => {
-                console.log(response);
+                console.log('Response:',response);
             })
             .then(data => {
-                console.log(data); 
+                console.log('Data',data); 
             })
             .catch(error => {
                 console.error(error);
