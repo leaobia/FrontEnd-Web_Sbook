@@ -138,6 +138,7 @@
 .nenhumFav p:nth-child(1){
   color: #AA6231;
 }
+
 @media (max-width:1200px) {
     .personagem-card{
         width: 25vw;

@@ -24,7 +24,7 @@ function Configuracoes() {
     let formattedDate;
     let email = localStorage.getItem('email')
     let cepUsuario = localStorage.getItem('cepUsuario')
-
+   
 
     if (data_nascimento) {
         const parts = data_nascimento.split('-');
@@ -40,6 +40,12 @@ function Configuracoes() {
         }
     }
 
+
+    const [dateValue, setDateValue] = useState(formattedDate);
+    const [emailValue, setEmailValue] = useState(email);
+    const [nameValue, setNameValue] = useState(nomeUsuario);
+    const [cepValue, setCepValue] = useState(cepUsuario);
+
     const abrirPerguntasEditar = () => {
         const desejaEditarDiv = document.getElementById('desejaEditarDiv')
         desejaEditarDiv.classList.add('d-flex')
@@ -50,6 +56,7 @@ function Configuracoes() {
         const desejaEditarDiv = document.getElementById('desejaEditarDiv')
         desejaEditarDiv.classList.remove('d-flex')
         desejaEditarDiv.classList.add('d-none')
+        window.location.reload()
     }
 
     function fetchViaCep() {
@@ -169,21 +176,21 @@ function Configuracoes() {
                         <div className="inputContainer1">
                             <div className="inputGroup">
                                 Nome:
-                                <input type="text" value={nomeUsuario} id= 'nomeEdit'/>
+                                <input type="text" value={nameValue}  onChange={(e) => setNameValue(e.target.value)} id= 'nomeEdit'/>
                             </div>
                             <div className="inputGroup">
                                 Email:
-                                <input type="email" value={email} id= 'emailEdit'/>
+                                <input type="email" id= 'emailEdit' value={emailValue} onChange={(e) => setEmailValue(e.target.value)}/>
                             </div>
                         </div>
                         <div className="inputContainer2">
                             <div className="inputGroup">
                                 Data de nascimento:
-                                <input type="date" value={formattedDate} id= 'dateEdit' />
+                                <input type="date" value={dateValue} id= 'dateEdit' onChange={(e) => setDateValue(e.target.value)} />
                             </div>
                             <div className="inputGroup">
                                 CEP:
-                                <input type="number" value={cepUsuario} id='pegarCEPEdit' onBlur={fetchViaCep} />
+                                <input type="number"  id='pegarCEPEdit' onBlur={fetchViaCep} value={cepValue}  onChange={(e) => setCepValue(e.target.value)} />
                             </div>
                         </div>
 
@@ -192,7 +199,7 @@ function Configuracoes() {
                     <div className="desejaEditarDiv d-none" id='desejaEditarDiv'>
                         <h3>Deseja realmente editar suas informações?</h3>
                         <div className="botoesEditarOpcao">
-                            <button>Sim</button>
+                            <button onClick={editarUsuario}>Sim</button>
                             <button onClick={fecharPerguntasEditar}>Não</button>
                         </div>
                     </div>

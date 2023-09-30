@@ -10,10 +10,12 @@ function AnuncioCard({ anuncio, autor, tipo, endereco, foto }) {
 
   const [coracaoPreenchido, setCoracaoPreenchido] = useState(false);
 
-  const valorAtualCoracao = coracaoPreenchido;
+  //const valorAtualCoracao = coracaoPreenchido;
 
   const anuncioId = anuncio.id
+  localStorage.setItem('getAnuncioById', anuncioId)
   const idUser = localStorage.getItem('id_usuarioLogin')
+
 
 
 
@@ -36,7 +38,7 @@ function AnuncioCard({ anuncio, autor, tipo, endereco, foto }) {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        //console.log(data);
 
       })
       .catch(error => {
@@ -93,13 +95,6 @@ function AnuncioCard({ anuncio, autor, tipo, endereco, foto }) {
     }
   }, [idUser, anuncioId]);
 
-
-  const getIdLivro = () => {
-    localStorage.setItem('getAnuncioById', anuncio.id)
-  }
-
-
-
   return (
     <div className="personagem-card">
       <div className="imgLivro">
@@ -114,7 +109,7 @@ function AnuncioCard({ anuncio, autor, tipo, endereco, foto }) {
         </div>
         <p>{tipo.tipo}</p>
       </div>
-      <button className='botaoLinkLivro' onClick={getIdLivro}>
+      <button className='botaoLinkLivro'>
         <Link to='/livro'>
           <button className='botaoContainer'>
             {tipo.tipo === 'Doação' ? 'Analisar' :

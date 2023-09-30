@@ -291,6 +291,39 @@
     display: flex;
     gap: 3vw;
 }
+.botoesEditarOpcao button{
+    transition: .4s ease-in-out;
+}
+.botoesEditarOpcao button:hover{
+    scale: .8;
+}
+
+.botoesEditarOpcao button:nth-child(1){
+    background-color: #AA6231;
+    padding: 1% 3%;
+    border-radius: 5px;
+    color: #F5F5F5
+}
+
+.botoesEditarOpcao button:nth-child(2){
+    border: 1px solid #AA6231;
+    padding: 1% 3%;
+    border-radius: 5px;
+    color: #ae1010;
+    font-weight: 600;
+}
+
+@media (max-width:1500px) {
+        .tabelaConfigDados{
+            height: 75vh;
+        }
+}
+
+@media (max-width:1400px) {
+    .tabelaConfigDados{
+       width: 80vw;
+    }
+}
 @media (max-width:1000px) {
     .contentPerfil, .configContent{
         flex-direction: column;
@@ -320,5 +353,15 @@
 
     .contentUserDireita, .userContainerDireitaLink{
         width: 90vw;
+    }
+}
+
+@media (max-width:600px) {
+    .tabelaConfigDados{
+        height: 50vh;
+    }
+
+    .contentUserDireita{
+        height: 25vh;
     }
 }

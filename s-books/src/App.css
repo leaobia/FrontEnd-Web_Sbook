@@ -118,3 +118,16 @@ body::-webkit-scrollbar-thumb {
     transform: translateY(-20px);
   }
 }
+
+.spinnerContainer{
+  display: grid;
+  place-content: center;
+  width: 96vw;
+  height: 44vh;
+}
+.spinnerContainer2{
+  display: grid;
+  place-content: center;
+  width: 96vw;
+  height: 92vh;
+}

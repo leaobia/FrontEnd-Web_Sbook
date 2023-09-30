@@ -1,0 +1,34 @@
+.anuncioDados{
+    height: auto;
+    display: flex;
+    margin-top: 6vh;
+    flex-direction: column;
+}
+
+.dadosAnuncioPrincipal{
+    background-color: #ffff;
+    width: 90vw;
+    height: 20vh;
+    display: flex;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
+    -moz-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
+    box-shadow: 0 0 20px 0px rgba(211, 211, 211, 1);
+    margin-left: 4vw;
+}
+
+.esquerdaDadosAnuncio{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    color: #404040;
+    padding: 2%;
+}
+.esquerdaDadosAnuncio p:nth-child(1){
+    font-weight: 700;
+    border-bottom: .3px solid #706f6f;
+    width: 60%;
+    margin-bottom: 2%;
+    font-size: clamp(1rem, -0.0274rem + 13.6986vw, 1.625rem);
+    padding-bottom: 1%;
+}
