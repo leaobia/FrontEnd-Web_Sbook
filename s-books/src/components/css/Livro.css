@@ -1,8 +1,22 @@
-.anuncioDados{
+.anuncioDados, .descricaoContainer{
     height: auto;
     display: flex;
     margin-top: 6vh;
     flex-direction: column;
+}
+
+.descricaoContainer{
+    margin-left: 4vw;
+    gap: 2vh;
+}
+
+.descricaoContainer p{
+    width: 80%;
+    text-align: justify;
+}
+
+.titleContainerDesc{
+    font-size: clamp(1rem, -0.0274rem + 13.6986vw, 1.625rem);
 }
 
 .dadosAnuncioPrincipal{
@@ -50,4 +64,38 @@
     display: flex;
     align-items: center;
     gap: 2vw;
+}
+
+.dadosLivro{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.dadoLivro{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.dadoLivro p{
+    margin-left: 10vw;
+    color: #7E7D7A;
+}
+
+@media (max-width:700px) {
+    .dadosAnuncioPrincipal{
+        flex-direction: column;
+    }
+    .direitaDadosAnuncio, .esquerdaDadosAnuncio{
+        width: 100%;
+    }
+    .esquerdaDadosAnuncio p:nth-child(1){
+        width: 100%;
+    }
+
+    .descricaoContainer p{
+        width: 95%;
+    }
 }

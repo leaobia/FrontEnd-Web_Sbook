@@ -101,6 +101,38 @@ function Livro() {
         </div>
         
       </div>
+      <div className="descricaoContainer">
+        <h3 className='titleContainerDesc'>Descrição:</h3>
+        <p>{anuncio.anuncio.descricao}</p>
+      </div>
+      <div className="descricaoContainer">
+        <h3 className='titleContainerDesc'>Informações:</h3>
+       <div className="dadosLivro">
+        <div className="dadoLivro">
+          <h3>Ano de edição</h3>
+          <p>{anuncio.anuncio.ano_lancamento}</p>
+        </div>
+        <div className="dadoLivro">
+          <h3>Autor</h3>
+          <p>{anuncio.autores[0].nome}</p>
+        </div>
+        <div className="dadoLivro">
+          <h3>Editora</h3>
+          <p>{anuncio.editora.nome}</p>
+        </div>
+        <div className="dadoLivro">
+          <h3>Idioma</h3>
+          <p>{anuncio.idioma.nome}</p>
+        </div>
+        <div className="dadoLivro">
+          <h3>Estado do livro</h3>
+          <p>{anuncio.estado_livro.estado}</p>
+        </div>
+       </div>
+      </div>
+      <div className="descricaoContainer">
+        <h3 className='titleContainerDesc'>Este anunciante também anunciou:</h3>
+      </div>
     </div>
   );
   }
