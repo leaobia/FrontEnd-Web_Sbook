@@ -3,10 +3,14 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link } from "react-router-dom"
+import { baseUrl } from '../url';
+import axios from 'axios';
 
 function Livro() {
   const [images, setImages] = useState([]);
   let cidadeUsuario = localStorage.getItem('cidadeUsuario')
+  let idPegarAnuncio = localStorage.getItem('getAnuncioById')
+
 
   useEffect(() => {
     fetch('https://picsum.photos/v2/list?page=1&limit=4') //
@@ -24,6 +28,17 @@ function Livro() {
     slidesToShow: 3,
     slidesToScroll: 1,
   };
+
+  useEffect(() => {
+    axios.get(`${baseUrl}v1/sbook/anuncio/${idPegarAnuncio}`)
+      .then(response => {
+        const anunciosData = response.data.anuncios;
+        console.log('Anuncio data:', anunciosData);
+      })
+      .catch(error => {
+        console.error('Erro ao obter dados do anúncio pelo id:', error);
+      });
+  }, []);
 
   return (
     <div className='livroContainer'>
