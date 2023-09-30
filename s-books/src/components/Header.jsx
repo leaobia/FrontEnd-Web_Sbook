@@ -8,7 +8,7 @@ import imagemResetSenha from './img/imagemResetSenha.png'
 import imagemSenhaRedefinidaComSucesso from './img/redefinidacomsucesso.png'
 import imagemCodigoRecuperacao from './img/imgCodigoDeRecuperacao.png'
 import imagemRedefinirSenha from './img/recuperarContaimg.png'
-
+import { baseUrl } from '../url';
 
 import PasswordInput from './PasswordInput';
 
@@ -31,8 +31,6 @@ import './css/Cadastro.css'
 
 import './css/Reset.css'
 
-//const baseUrl = 'https://app-nodejs.cyclic.cloud/'
-const baseUrl = 'http://10.107.144.19:8080/'
 
 function verificarTokenNoLocalStorage() {
     const token = localStorage.getItem('token');
@@ -135,7 +133,7 @@ function Header() {
                         buttonCategoria.textContent = genero.nome;
 
                         buttonCategoria.addEventListener('click', () => {
-                            // Verificar se o gênero já está no array
+                           
                             const generoObj = {
                                 id: parseInt(genero.id),
                                 nome: genero.nome
@@ -244,9 +242,6 @@ function Header() {
             document.getElementById('erroSenhaOuFaltaCampos').textContent = 'Por favor, preencha todos os campos'
         }
     }
-
-
-//http://10.107.144.31:8080
 
 
     function abrirCodigoRecuperacao() {
@@ -370,7 +365,7 @@ function Header() {
     const [pin2, setPin2] = useState('');
     const [pin3, setPin3] = useState('');
     const [pin4, setPin4] = useState('');
-    //const [isValid, setIsValid] = useState(true);
+
 
     const checkPin = () => {
         const enteredPin = [pin1, pin2, pin3, pin4];
@@ -398,7 +393,6 @@ function Header() {
             .then(response => {
                 if (response.status === 200) {
                     document.getElementById('pinMessage').textContent = ''
-                    // localStorage.setItem('idResetSenha', response.id)
                     abrirTrocarSenha();
                     return response.json();
                 } else {

@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import imagemCarrinho from './img/carrinho.png';
 import imagemCoracaoPreenchido from './img/coracaoPreenchido.png';
 //import imagemCoracao from './img/coracaoIcon.png';
+import { baseUrl } from "../url";
 
 function AnuncioCardFav({ anuncio, autor, tipo, cidade, estado , foto}) {
 
-       //const baseUrl = 'https://app-nodejs.cyclic.cloud/'
-       const baseUrl = 'http://10.107.144.19:8080/'
 
   const  anuncioId = anuncio.id
   const idUser = localStorage.getItem('id_usuarioLogin')

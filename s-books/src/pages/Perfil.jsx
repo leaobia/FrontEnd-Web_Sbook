@@ -12,6 +12,7 @@ import anunciosIcon from '../components/img/iconeAnuncios.png'
 import favoritosIcon from '../components/img/CoracaoIcon 2.png'
 import configIcon from '../components/img/ConfigIcon.png'
 import sairIcon from '../components/img/sairIcon.png'
+import { baseUrl } from '../url';
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -22,8 +23,7 @@ function Perfil() {
     const [visibleLeft, setVisibleLeft] = useState(false);
     const idUser = localStorage.getItem('id_usuarioLogin')
     
-    //const baseUrl = 'https://app-nodejs.cyclic.cloud/'
-    const baseUrl = 'http://10.107.144.19:8080/'
+
     useEffect(() => {
   
         axios.get(`${baseUrl}v1/sbook/usuario/${idUser}`)

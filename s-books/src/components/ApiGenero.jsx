@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Checkbox } from '@chakra-ui/react';
+import { baseUrl } from '../url';
 
 import seta from './img/seta.png';
 
 function ApiGenero() {
-  //const baseUrl = 'https://app-nodejs.cyclic.cloud/'
-  const baseUrl = 'http://10.107.144.19:8080/'
+
 
   const [nomes, setNomes] = useState([]);
   const [selecionados, setSelecionados] = useState([]);

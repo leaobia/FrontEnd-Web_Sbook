@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
 import AnuncioCard from './AnuncioCard'; 
+import { baseUrl } from '../url';
 
 import {
   Alert,
@@ -10,8 +11,6 @@ import {
   AlertDescription,
 } from '@chakra-ui/react'
 
-//const baseUrl = 'https://app-nodejs.cyclic.cloud/'
-const baseUrl = 'http://10.107.144.19:8080/'
 function 
 
 CardLivro() {

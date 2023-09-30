@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AnuncioCardFav from './AnuncioCardFav';
-
-const baseUrl = 'http://10.107.144.19:8080/'
+import { baseUrl } from '../url';
 
 function CardLivroFav() {
     const [anuncios, setAnuncios] = useState([]);
