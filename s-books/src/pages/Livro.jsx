@@ -51,8 +51,6 @@ function Livro() {
   }, [idPegarAnuncio, anuncio]);
 
 
-  console.log(anuncio);
-
   if (anuncio.length === 0) {
     return (
       <div className="spinnerContainer2">

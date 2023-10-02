@@ -25,22 +25,21 @@ function Perfil() {
 
     const [visibleLeft, setVisibleLeft] = useState(false);
     const idUser = localStorage.getItem('id_usuarioLogin')
+    console.log(idUser);
     
 
     useEffect(() => {
   
         axios.get(`${baseUrl}v1/sbook/usuario/${idUser}`)
           .then(response => {
-              console.log(response);
-                    console.log(response.data.dados[0]);
-                    let nomeUser = response.data.dados[0].nome
-                    let perfilFoto = response.data.dados[0].foto
-                    let estadoUsuario = response.data.dados[0].estado
-                    let cepUsuario = response.data.dados[0].cep
-                    let logradouroUsuario = response.data.dados[0].logradouro
-                    let data_nascimento = response.data.dados[0].data_nascimento
-                    let email = response.data.dados[0].email
-                    let cidadeUsuario = response.data.dados[0].cidade
+                    let nomeUser = response.data.dados.nome
+                    let perfilFoto = response.data.dados.foto
+                    let estadoUsuario = response.data.dados.estado
+                    let cepUsuario = response.data.dados.cep
+                    let logradouroUsuario = response.data.dados.logradouro
+                    let data_nascimento = response.data.dados.data_nascimento
+                    let email = response.data.dados.email
+                    let cidadeUsuario = response.data.dados.cidade
 
                     localStorage.setItem('nomeUsuario', nomeUser )
                     localStorage.setItem('perfilFoto', perfilFoto )

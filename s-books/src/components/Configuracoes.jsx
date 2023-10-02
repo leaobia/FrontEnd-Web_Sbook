@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Sidebar } from 'primereact/sidebar';
 import iconSidebar from '../components/img/sidebarClick.png'
 import '../components/css/Perfil.css'
@@ -24,7 +24,7 @@ function Configuracoes() {
     // let logradouroUsuario = localStorage.getItem('logradouroUsuario')
     let data_nascimento = localStorage.getItem('data_nascimento')
     let formattedDate;
-    let email = localStorage.getItem('email')
+    //let email = localStorage.getItem('email')
     let cepUsuario = localStorage.getItem('cepUsuario')
    
 
@@ -44,7 +44,6 @@ function Configuracoes() {
 
 
     const [dateValue, setDateValue] = useState(formattedDate);
-    const [emailValue, setEmailValue] = useState(email);
     const [nameValue, setNameValue] = useState(nomeUsuario);
     const [cepValue, setCepValue] = useState(cepUsuario);
 
@@ -106,7 +105,7 @@ function Configuracoes() {
         let id_usuario = localStorage.getItem('id_usuarioLogin')
 
         let dateEdit = document.getElementById('dateEdit').value
-        let emailEdit = document.getElementById('emailEdit').value
+        //let emailEdit = document.getElementById('emailEdit').value
         let nomeEdit = document.getElementById('nomeEdit').value
 
         const dados = {
@@ -118,13 +117,12 @@ function Configuracoes() {
             "estado_endereco": estado,
             "cep_endereco": cep,
             "nome_usuario": nomeEdit,
-            "data_nascimento_usuario": dateEdit,
-            "email_usuario": emailEdit
+            "data_nascimento_usuario": dateEdit
         };
 
         const url = `${baseUrl}v1/sbook/atualizar-usuario`;
         const tokenJWT = localStorage.getItem('token'); 
-        console.log(tokenJWT);
+        console.log('token:',tokenJWT);
 
         console.log(dados);
 
@@ -132,15 +130,13 @@ function Configuracoes() {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'x-access-token': `${tokenJWT}`
+                'Authorization': `x-acccess-token ${tokenJWT}`
             },
             body: JSON.stringify(dados)
         })
             .then(response => {
                 console.log('Response:',response);
-            })
-            .then(data => {
-                console.log('Data',data); 
+                window.location.reload()
             })
             .catch(error => {
                 console.error(error);
@@ -186,8 +182,8 @@ function Configuracoes() {
                                 <input type="text" value={nameValue}  onChange={(e) => setNameValue(e.target.value)} id= 'nomeEdit'/>
                             </div>
                             <div className="inputGroup">
-                                Email:
-                                <input type="email" id= 'emailEdit' value={emailValue} onChange={(e) => setEmailValue(e.target.value)}/>
+                                CEP:
+                                <input type="number"  id='pegarCEPEdit' onBlur={fetchViaCep} value={cepValue}  onChange={(e) => setCepValue(e.target.value)} />
                             </div>
                         </div>
                         <div className="inputContainer2">
@@ -195,10 +191,7 @@ function Configuracoes() {
                                 Data de nascimento:
                                 <input type="date" value={dateValue} id= 'dateEdit' onChange={(e) => setDateValue(e.target.value)} />
                             </div>
-                            <div className="inputGroup">
-                                CEP:
-                                <input type="number"  id='pegarCEPEdit' onBlur={fetchViaCep} value={cepValue}  onChange={(e) => setCepValue(e.target.value)} />
-                            </div>
+
                         </div>
 
                     </div>
