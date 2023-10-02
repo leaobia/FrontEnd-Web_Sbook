@@ -26,7 +26,7 @@ function Configuracoes() {
     let formattedDate;
     //let email = localStorage.getItem('email')
     let cepUsuario = localStorage.getItem('cepUsuario')
-   
+
 
     if (data_nascimento) {
         const parts = data_nascimento.split('-');
@@ -121,8 +121,8 @@ function Configuracoes() {
         };
 
         const url = `${baseUrl}v1/sbook/atualizar-usuario`;
-        const tokenJWT = localStorage.getItem('token'); 
-        console.log('token:',tokenJWT);
+        const tokenJWT = localStorage.getItem('token');
+        console.log('token:', tokenJWT);
 
         console.log(dados);
 
@@ -135,13 +135,16 @@ function Configuracoes() {
             body: JSON.stringify(dados)
         })
             .then(response => {
-                console.log('Response:',response);
-                window.location.reload()
+                console.log('Response:', response);
+                //window.location.reload()
+                const desejaEditarDiv = document.getElementById('desejaEditarDiv')
+                desejaEditarDiv.classList.remove('d-flex')
+                desejaEditarDiv.classList.add('d-none')
             })
             .catch(error => {
                 console.error(error);
             });
-       
+
     }
 
     return (
@@ -179,17 +182,17 @@ function Configuracoes() {
                         <div className="inputContainer1">
                             <div className="inputGroup">
                                 Nome:
-                                <input type="text" value={nameValue}  onChange={(e) => setNameValue(e.target.value)} id= 'nomeEdit'/>
+                                <input type="text" value={nameValue} onChange={(e) => setNameValue(e.target.value)} id='nomeEdit' />
                             </div>
                             <div className="inputGroup">
                                 CEP:
-                                <input type="number"  id='pegarCEPEdit' onBlur={fetchViaCep} value={cepValue}  onChange={(e) => setCepValue(e.target.value)} />
+                                <input type="number" id='pegarCEPEdit' onBlur={fetchViaCep} value={cepValue} onChange={(e) => setCepValue(e.target.value)} />
                             </div>
                         </div>
                         <div className="inputContainer2">
                             <div className="inputGroup">
                                 Data de nascimento:
-                                <input type="date" value={dateValue} id= 'dateEdit' onChange={(e) => setDateValue(e.target.value)} />
+                                <input type="date" value={dateValue} id='dateEdit' onChange={(e) => setDateValue(e.target.value)} />
                             </div>
 
                         </div>
