@@ -1,4 +1,5 @@
 import '../components/css/Anunciar.css'
+import { Link } from "react-router-dom"
 function Anunciar() {
     let cidadeUsuario = localStorage.getItem('cidadeUsuario')
     return (
@@ -34,7 +35,7 @@ function Anunciar() {
                         <textarea name=""></textarea>
                     </div>
                 </div>
-                <button id='continuarAnuncio'>Continuar</button>
+                <Link id='continuarAnuncio' to='/anunciar2'><button>Continuar</button></Link>
             </div>
         </div>
 
