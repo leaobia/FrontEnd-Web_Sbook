@@ -1,7 +1,13 @@
 import '../components/css/Anunciar.css'
 function Anunciar() {
+    let cidadeUsuario = localStorage.getItem('cidadeUsuario')
     return (
         <div className="queroAnunciar">
+            <div className="sideBarContainer">
+                <div className="menuLocalContainer">
+                    <span className='nomeDaCidade'>{cidadeUsuario}</span>
+                </div>
+            </div>
             <h1>Bem-vindo ao anúncio do livro! </h1>
             <div className="anunciarContainer">
                 <div className="inputsAnunciar">
