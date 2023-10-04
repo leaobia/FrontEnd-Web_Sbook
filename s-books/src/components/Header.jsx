@@ -1106,7 +1106,7 @@ function Header() {
                 <nav>
                     <ul>
                         <li><Link to='/' className='link'>Home</Link></li>
-                        <li><Link to='/anuncios' className='link'> Anúncios</Link></li>
+                        {/* <li><Link to='/anuncios' className='link'> Anúncios Próximos</Link></li> */}
                         <li><Link to='/anunciar' className='link'>Quero anunciar</Link></li>
                     </ul>
                 </nav>
