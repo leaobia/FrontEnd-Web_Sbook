@@ -2,30 +2,30 @@ import { anoAtual } from "../url"
 
 let cidadeUsuario = localStorage.getItem('cidadeUsuario')
 
-var form = document.getElementById('imageForm');
+//var form = document.getElementById('imageForm');
 
 
-var imagensEnviadas = document.getElementById('imagensEnviadas');
+//var imagensEnviadas = document.getElementById('imagensEnviadas');
 
 
-form.addEventListener('submit', function (event) {
-    event.preventDefault();
+//form.addEventListener('submit', function (event) {
+//    event.preventDefault();
 
-    var inputImagem = document.getElementById('imagem');
+   // var inputImagem = document.getElementById('imagem');
 
-    if (inputImagem.files.length > 0) {
-        var imagem = inputImagem.files[0];
+    //if (inputImagem.files.length > 0) {
+      //  var imagem = inputImagem.files[0];
 
-        var imgElement = document.createElement('img');
+       // var imgElement = document.createElement('img');
 
-        imgElement.src = URL.createObjectURL(imagem);
+      //  imgElement.src = URL.createObjectURL(imagem);
 
     
-        imagensEnviadas.appendChild(imgElement);
+     //   imagensEnviadas.appendChild(imgElement);
 
-        inputImagem.value = '';
-    }
-});
+     //   inputImagem.value = '';
+  //  }
+//});
 
 function Anunciar2() {
     return (
