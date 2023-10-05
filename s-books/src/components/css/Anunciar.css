@@ -75,6 +75,20 @@
     height: 40px;
     background-color: #AA6231;
 }
+
+.uploadContainer{
+    margin-left: 3vw;
+}
+  .submitButton {
+    padding: 10px 20px;
+    background-color: #AA6231;;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
 @media (max-width:700px) {
     .queroAnunciar h1{
         width: 100%;

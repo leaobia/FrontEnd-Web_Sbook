@@ -50,19 +50,18 @@ function AnuncioCard({ anuncio, autor, tipo, endereco, foto }) {
   const despreencher = () => {
     setCoracaoPreenchido(false);
 
-    const dados = {
-      id_usuario: idUser,
-      id_anuncio: anuncioId
-    };
+    // const dados = {
+    //   id_usuario: idUser,
+    //   id_anuncio: anuncioId
+    // };
 
-    const url = `${baseUrl}v1/sbook/remover-favorito`;
+    const url = `${baseUrl}v1/sbook/remover-favorito/${idUser}/${anuncioId}`;
 
     fetch(url, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
-      },
-      body: JSON.stringify(dados)
+      }
     })
       .then(response => response.json())
       .then(data => {

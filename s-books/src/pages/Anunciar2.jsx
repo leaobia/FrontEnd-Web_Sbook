@@ -1,31 +1,8 @@
 import { anoAtual } from "../url"
+import Upload from "../components/Upload"
 
 let cidadeUsuario = localStorage.getItem('cidadeUsuario')
 
-//var form = document.getElementById('imageForm');
-
-
-//var imagensEnviadas = document.getElementById('imagensEnviadas');
-
-
-//form.addEventListener('submit', function (event) {
-//    event.preventDefault();
-
-   // var inputImagem = document.getElementById('imagem');
-
-    //if (inputImagem.files.length > 0) {
-      //  var imagem = inputImagem.files[0];
-
-       // var imgElement = document.createElement('img');
-
-      //  imgElement.src = URL.createObjectURL(imagem);
-
-    
-     //   imagensEnviadas.appendChild(imgElement);
-
-     //   inputImagem.value = '';
-  //  }
-//});
 
 function Anunciar2() {
     return (
@@ -57,15 +34,8 @@ function Anunciar2() {
                         <input type="text" name="isbnLivro" className='dadoDoAnuncio' />
                     </div>
                 </div>
-
-                <form action="#" method="post" enctype="multipart/form-data" id="imageForm">
-                    <input type="file" name="imagem" id="imagem" accept="image/*" />
-                    <input type="submit" value="Enviar Imagem" />
-                </form>
-
-                <div id="imagensEnviadas"></div>
-
             </div>
+            <Upload/>
         </div>
     )
 }
