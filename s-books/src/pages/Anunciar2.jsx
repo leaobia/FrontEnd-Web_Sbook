@@ -37,7 +37,7 @@ function Anunciar2() {
                 </div>
             </div>
             <Upload/>
-            <Link id='continuarAnuncio' to='/anunciar3'><button>Continuar</button></Link>
+            <Link id='continuarAnuncio2' to='/anunciar3'><button>Continuar</button></Link>
         </div>
     )
 }
