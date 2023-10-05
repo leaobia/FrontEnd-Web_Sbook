@@ -78,15 +78,49 @@
 
 .uploadContainer{
     margin-left: 3vw;
+    display: flex;
+    gap: 4vw;
 }
   .submitButton {
     padding: 10px 20px;
-    background-color: #AA6231;;
+    background-color: #DA6C27;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s;
+  }
+
+  input[type="file"]{
+    display: none;
+  }
+
+  .labelArquivo{
+    padding: 10px 20px;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    display: grid;
+    place-content: center;
+    border: 1px solid transparent;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .imagensFile{
+    width: 90vw;
+    height: 25vh;
+    display: flex;
+    gap: 2vw;
+    flex-wrap: wrap;
+    margin-left: 3vw;
+    margin-top: 5vh;
+  }
+
+  .imagem{
+    width: 200px;
+    height: 100%;
+    background-color: #AA6231;
   }
   
 @media (max-width:700px) {
