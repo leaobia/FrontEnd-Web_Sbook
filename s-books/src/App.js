@@ -12,6 +12,7 @@ import Livro from './pages/Livro';
 import Perfil from './pages/Perfil';
 import Configuracoes from './components/Configuracoes';
 import Anunciar2 from './pages/Anunciar2';
+import Anunciar4 from './pages/Anunciar4';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/configuracoes" element={<Configuracoes />} />
             <Route path="/anunciar2" element={<Anunciar2 />} />
+            <Route path="/anunciar4" element={<Anunciar4 />} />
           </Routes>
         </div>
 

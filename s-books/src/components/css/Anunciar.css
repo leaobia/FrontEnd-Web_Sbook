@@ -162,6 +162,11 @@
   .picture__img {
     max-width: 100%;
   }
+
+  .imagemLivro{
+    width: 400px;
+    height: 300px;
+  }
   
   
 @media (max-width:700px) {

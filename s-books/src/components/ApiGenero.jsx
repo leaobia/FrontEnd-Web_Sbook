@@ -33,7 +33,7 @@ function ApiGenero() {
         setSelecionados(generosSelecionados);
       })
       .catch(error => {
-        console.error('Erro ao obter dados dos personagens:', error);
+        console.error('Erro ao obter dados dos generos:', error);
       });
   }, []);
 
