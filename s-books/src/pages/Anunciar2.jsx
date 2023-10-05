@@ -1,5 +1,6 @@
 import { anoAtual } from "../url"
 import Upload from "../components/Upload"
+import { Link } from "react-router-dom"
 
 let cidadeUsuario = localStorage.getItem('cidadeUsuario')
 
@@ -36,6 +37,7 @@ function Anunciar2() {
                 </div>
             </div>
             <Upload/>
+            <Link id='continuarAnuncio' to='/anunciar3'><button>Continuar</button></Link>
         </div>
     )
 }
