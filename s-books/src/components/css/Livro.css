@@ -9,7 +9,12 @@
     margin-left: 4vw;
     gap: 2vh;
 }
-
+.fotoAnuncio{
+    width: 20vw;
+    height: 30vh;
+    margin-left: 4vw;
+    margin-bottom: 4vh;
+}
 .descricaoContainer p{
     width: 80%;
     text-align: justify;
@@ -97,5 +102,12 @@
 
     .descricaoContainer p{
         width: 95%;
+    }
+
+    .fotoAnuncio{
+        width: 50vw;
+        height: 30vh;
+        margin-left: 25vw;
+        margin-bottom: 4vh;
     }
 }
