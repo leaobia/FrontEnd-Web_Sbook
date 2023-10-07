@@ -1,11 +1,12 @@
 import '../components/css/Anunciar.css'
-//import { Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 function Anunciar4() {
     let cidadeUsuario = localStorage.getItem('cidadeUsuario')
     let imgLivro = localStorage.getItem('dataImage')
     return (
         <div className="queroAnunciar">
             <div className="sideBarContainer">
+            <Link to='/anunciar3'>&larr;</Link>
                 <div className="menuLocalContainer">
                     <span className='nomeDaCidade'>{cidadeUsuario}</span>
                 </div>

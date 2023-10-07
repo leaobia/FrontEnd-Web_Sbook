@@ -23,6 +23,7 @@ function Anunciar2() {
     return (
         <div className="queroAnunciar">
             <div className="sideBarContainer">
+            <Link to='/anunciar'>&larr;</Link>
                 <div className="menuLocalContainer">
                     <span className='nomeDaCidade'>{cidadeUsuario}</span>
                 </div>

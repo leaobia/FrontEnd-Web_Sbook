@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FetchGeneros } from '../module/Funcoes';
+import { FetchEstadoLivro, FetchGeneros, FetchTipoAnuncio } from '../module/Funcoes';
 
 function Anunciar3() {
 
@@ -28,17 +28,17 @@ function Anunciar3() {
 
     async function fetchDataEstadoLivro() {
       try {
-        const generosData = await FetchGeneros();
-        setGeneros(generosData);
+        const estadoData = await FetchEstadoLivro();
+        setEstadoLivro(estadoData);
       } catch (error) {
-        console.error('Erro ao buscar gêneros:', error);
+        console.error('Erro ao buscar estados do livro:', error);
       }
     }
 
     async function fetchDataTipoLivro() {
       try {
-        const generosData = await FetchGeneros();
-        setGeneros(generosData);
+        const tipoAnuncioData = await FetchTipoAnuncio();
+        setTipoAnuncio(tipoAnuncioData);
       } catch (error) {
         console.error('Erro ao buscar gêneros:', error);
       }
@@ -46,6 +46,9 @@ function Anunciar3() {
 
     // chamando os fetchNasApi
     fetchDataGenero();
+    fetchDataEstadoLivro();
+    fetchDataTipoLivro();
+
 
     const cidade = localStorage.getItem('cidadeUsuario');
     setCidadeUsuario(cidade);
@@ -60,14 +63,31 @@ function Anunciar3() {
     }
   }
 
+  function handleCheckboxChange2(estadoLivro) {
+    if (estadosSelecionados.includes(estadoLivro)) {
+      setestadosSelecionados(estadosSelecionados.filter(item => item !== estadoLivro));
+    } else {
+      setestadosSelecionados([...estadosSelecionados, estadoLivro]);
+    }
+  }
+
+  function handleCheckboxChange3(tipoAnuncio) {
+    if (tipoAnuncioSelecionados.includes(tipoAnuncio)) {
+      setTipoAnuncioSelecionados(tipoAnuncioSelecionados.filter(item => item !== tipoAnuncio));
+    } else {
+      setTipoAnuncioSelecionados([...tipoAnuncioSelecionados, tipoAnuncio]);
+    }
+  }
+
   // Ação clique 
   function coletarDados() {
     console.log('Gêneros selecionados:', generosSelecionados);
   }
 
   return (
-    <div className="queroAnunciar">
+    <div className="queroAnunciar3">
       <div className="sideBarContainer">
+      <Link to='/anunciar2'>&larr;</Link>
         <div className="menuLocalContainer">
           <span className='nomeDaCidade'>{cidadeUsuario}</span>
         </div>
@@ -81,6 +101,7 @@ function Anunciar3() {
               <input
                 type="checkbox"
                 value={genero}
+                className='check'
                 onChange={() => handleCheckboxChange(genero)}
               />
               {genero}
@@ -91,14 +112,15 @@ function Anunciar3() {
       <div className="dadosPersonalizados">
         <p>Selecione as condições do livro:</p>
         <div className="dadosGenero">
-          {generos.map(genero => (
-            <label key={genero}>
+          {estadoLivro.map(estado => (
+            <label key={estado}>
               <input
                 type="checkbox"
-                value={genero}
-                onChange={() => handleCheckboxChange(genero)}
+                className='check'
+                value={estado}
+                onChange={() => handleCheckboxChange2(estado)}
               />
-              {genero}
+              {estado}
             </label>
           ))}
         </div>
@@ -106,14 +128,15 @@ function Anunciar3() {
       <div className="dadosPersonalizados">
         <p>Que tipo de negociação será feita com o livro:</p>
         <div className="dadosGenero">
-          {generos.map(genero => (
-            <label key={genero}>
+          {tipoAnuncio.map(tipo => (
+            <label key={tipo}>
               <input
                 type="checkbox"
-                value={genero}
-                onChange={() => handleCheckboxChange(genero)}
+                className='check'
+                value={tipo}
+                onChange={() => handleCheckboxChange3(tipo)}
               />
-              {genero}
+              {tipo}
             </label>
           ))}
         </div>
