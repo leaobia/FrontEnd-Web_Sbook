@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+
 import axios from 'axios';
 import { baseUrl } from '../url';
 
@@ -26,6 +26,19 @@ export async function FetchEstadoLivro() {
     return estados;
   } catch (error) {
     console.error('Erro ao obter dados do estado do livro:', error);
+    throw error;
+  }
+}
+
+// Função para buscar tipo_anuncio
+export async function FetchTipoAnuncio() {
+  try {
+    const response = await axios.get(`${baseUrl}v1/sbook/tipo-anuncio`);
+    const tipo_anuncio = response.data.tipos.map(tipos => tipos.tipo); 
+    console.log(tipo_anuncio);
+    return tipo_anuncio;
+  } catch (error) {
+    console.error('Erro ao obter dados do tipo de anuncio:', error);
     throw error;
   }
 }
