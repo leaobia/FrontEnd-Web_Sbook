@@ -51,7 +51,7 @@ function Anunciar2() {
                 </div>
             </div>
             <Upload/>
-            <Link id='continuarAnuncio' to='/anunciar4'><button onClick={coletarDados}>Continuar</button></Link>
+            <Link id='continuarAnuncio' to='/anunciar3'><button onClick={coletarDados}>Continuar</button></Link>
         </div>
     )
 }
