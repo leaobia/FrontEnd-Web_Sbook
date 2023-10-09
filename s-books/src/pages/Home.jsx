@@ -21,11 +21,18 @@ function Home() {
     //   var quantidadeFormatada = formatarNumero(quantidadeDeLivros);
 
       
+    let nomeUsuario = localStorage.getItem('nomeUsuario') 
+    let nomeBemVindo = '';
+    if(nomeUsuario){
+        nomeBemVindo = nomeUsuario
+    }else{
+        nomeBemVindo = 'Usuário'
+    }
     return (
         <div className="Home">
             <Filtragem/>
             <div className="welcome-group">
-                <h1>Bem-Vindo,Usuário!</h1>
+                <h1>Bem-Vindo, {nomeBemVindo}</h1>
             </div>
             <div className="apresentacaoLivros">
                 <p>Livros usados, seminovos e novos em todo o Brasil</p>
