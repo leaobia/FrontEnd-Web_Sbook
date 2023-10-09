@@ -20,7 +20,7 @@ CardLivro() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${baseUrl}v1/sbook/anuncio`)
+    axios.get(`${baseUrl}v1/sbook/anuncio?page=1`)
       .then(response => {
         const anunciosData = response.data.anuncios;
         console.log('Anuncios data:', anunciosData);

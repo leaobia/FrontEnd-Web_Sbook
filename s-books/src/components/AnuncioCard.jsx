@@ -13,11 +13,15 @@ function AnuncioCard({ anuncio, autor, tipo, endereco, foto }) {
   //const valorAtualCoracao = coracaoPreenchido;
 
   const anuncioId = anuncio.id
-  localStorage.setItem('getAnuncioById', anuncioId)
+  
   const idUser = localStorage.getItem('id_usuarioLogin')
 
 
-
+   const pegarIdAnuncio = () => {
+    const idAnuncio = anuncio.id
+    localStorage.setItem('getAnuncioById', idAnuncio)
+    console.log(anuncioId);
+   }
 
   const preencher = () => {
     setCoracaoPreenchido(true);
@@ -110,7 +114,7 @@ function AnuncioCard({ anuncio, autor, tipo, endereco, foto }) {
       </div>
       <button className='botaoLinkLivro'>
         <Link to='/livro'>
-          <button className='botaoContainer'>
+          <button className='botaoContainer' onClick={pegarIdAnuncio}>
             {tipo.tipo === 'Doação' ? 'Analisar' :
               tipo.tipo === 'Troca' ? 'Trocar' : 'Comprar'}
             <img src={imagemCarrinho} alt='icone de carrinho' />

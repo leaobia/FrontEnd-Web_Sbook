@@ -7,9 +7,10 @@ import { baseUrl } from '../url';
 import axios from 'axios';
 import '../components/css/Livro.css'
 import { Spinner } from '@chakra-ui/react'
+import SecaoLivroAnunciante from '../components/SecaolivroAnunciante';
 
 function Livro() {
- // const [images, setImages] = useState([]);
+
   let cidadeUsuario = localStorage.getItem('cidadeUsuario')
   let idPegarAnuncio = parseInt(localStorage.getItem('getAnuncioById'))
   let perfilFoto = localStorage.getItem('perfilFoto')
@@ -17,39 +18,28 @@ function Livro() {
   const [anuncio, setAnuncio] = useState([]);
   const [generos, setGeneros] = useState([]);
 
-  // useEffect(() => {
-  //   fetch('https://picsum.photos/v2/list?page=1&limit=4') //
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       const imageUrls = data.map((item) => item.download_url);
-  //       setImages(imageUrls);
-  //     });
-  // }, []);
 
-  // const settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 3,
-  //   slidesToScroll: 1,
-  // };
+
 
   useEffect(() => {
+
     axios.get(`${baseUrl}v1/sbook/anuncio/${idPegarAnuncio}`)
       .then(response => {
         const anuncioData = response.data.anuncios;
-        setAnuncio(anuncioData)
-        let generos = anuncioData.generos
+        setAnuncio(anuncioData);
+        let generos = anuncioData.generos;
+        localStorage.setItem('id_anunciante', anuncioData.anuncio.anunciante);
         const generosArray = generos.map((genero) => genero.nome);
         const generosString = generosArray.join(', ');
-        
+  
         setGeneros(generosString);
       })
       .catch(error => {
         console.error('Erro ao obter dados do anúncio pelo id:', error);
       });
+      
   }, [idPegarAnuncio, anuncio]);
-
+  
 
   if (anuncio.length === 0) {
     return (
@@ -131,6 +121,7 @@ function Livro() {
       </div>
       <div className="descricaoContainer">
         <h3 className='titleContainerDesc'>Este anunciante também anunciou:</h3>
+        <SecaoLivroAnunciante/>
       </div>
     </div>
   );
