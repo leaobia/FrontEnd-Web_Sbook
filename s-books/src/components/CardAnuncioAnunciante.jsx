@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AnuncioCardAnunciante from './AnuncioCardAnunciante';
 import { baseUrl } from '../url';
+import { Spinner } from '@chakra-ui/react'
 
 function CardAnuncioAnunciante() {
     const [anuncios, setAnuncios] = useState([]);
@@ -19,7 +20,7 @@ function CardAnuncioAnunciante() {
           setAnuncios(anuncio);
           setTimeout(() => {
             setIsLoading(false);
-          }, 5000); 
+          }, 100); 
         })
         .catch(error => {
           console.error('Erro ao obter dados do anúncio pelo id do anunciante:', error);
@@ -27,7 +28,7 @@ function CardAnuncioAnunciante() {
 
           setTimeout(() => {
             setIsLoading(false);
-          }, 5000); 
+          }, 100); 
         });
     }, [anunciante]);
     
@@ -36,8 +37,13 @@ function CardAnuncioAnunciante() {
   
       <div className="livrosContainer">
      {isLoading ? (
-    <div className='loader'>
-        <p>Carregando...</p>
+        <div className="spinnerContainer">
+     <Spinner
+       thickness='4px'
+       speed='0.65s'
+       color='brown' 
+       size='xl'
+     />
     </div>
 ) : Array.isArray(anuncios) ? (
     anuncios.map((anuncio) => (
@@ -53,16 +59,9 @@ function CardAnuncioAnunciante() {
         />
     ))
 ) : (
-    <AnuncioCardAnunciante
-        key={anuncios.anuncio.id_anuncio}
-        anuncio={anuncios.anuncio}
-        autor={anuncios.autores[0].nome}
-        tipo={anuncios.tipo_anuncio[0]}
-        endereco={anuncios.endereco}
-        foto={anuncios.foto[0].foto}
-        cidade={anuncios.endereco.cidade}
-        estado={anuncios.endereco.estado}
-    />
+  <div className='nenhumFav'>
+  <p>Só postou esse por enquanto 😞</p>
+</div>
 )}
 
 </div>

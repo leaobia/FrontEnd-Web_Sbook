@@ -13,7 +13,7 @@ function Livro() {
 
   let cidadeUsuario = localStorage.getItem('cidadeUsuario')
   let idPegarAnuncio = parseInt(localStorage.getItem('getAnuncioById'))
-  let perfilFoto = localStorage.getItem('perfilFoto')
+
  
   const [anuncio, setAnuncio] = useState([]);
   const [generos, setGeneros] = useState([]);
@@ -38,8 +38,28 @@ function Livro() {
         console.error('Erro ao obter dados do anúncio pelo id:', error);
       });
       
-  }, [idPegarAnuncio, anuncio]);
+  }, [idPegarAnuncio]);
+
+  let anunciante = localStorage.getItem('id_anunciante')
+
+  useEffect(() => {
+
+    axios.get(`${baseUrl}v1/sbook/usuario/${anunciante}`)
+      .then(response => {
+        console.log(response);
+        localStorage.setItem('nome_anunciante', response.data.dados.nome)
+        localStorage.setItem('perfilFotoAnunciante', response.data.dados.foto )
+
+      })
+      .catch(error => {
+        console.error('Erro ao obter dados do usuario:', error);
+      });
+      
+  }, [idPegarAnuncio]);
   
+  let anuncianteNome = localStorage.getItem('nome_anunciante')
+  let perfilFotoAnunciante = localStorage.getItem('perfilFotoAnunciante')
+
 
   if (anuncio.length === 0) {
     return (
@@ -79,9 +99,9 @@ function Livro() {
           <div className="direitaDadosAnuncio">
         <Link to='/chat'><button className='messageButton'>Enviar mensagem</button></Link> 
         <div className="anuncianteDados">
-          <img src={perfilFoto} alt="foto perfil do anunciante" className='fotoUser' />
+          <img src={perfilFotoAnunciante} alt="foto perfil do anunciante" className='fotoUser' />
           <div className="nomeAnunciante">
-            <p>Max Kellermen</p>
+            <p>{anuncianteNome}</p>
             <p>{anuncio.endereco.cidade}, {anuncio.endereco.estado}</p>
           </div>
         </div>
