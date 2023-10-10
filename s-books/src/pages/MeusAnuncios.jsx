@@ -8,7 +8,7 @@ import configIcon from '../components/img/ConfigIcon.png'
 import sairIcon from '../components/img/sairIcon.png'
 
 import React, { useState } from 'react';
-import SecaoLivroFav from '../components/SecaoLivroFav';
+import SecaoMeusLivros from '../components/MeuAnuncioSecao';
 
 import { logOut } from '../url';
 
@@ -18,7 +18,7 @@ let nomeUsuario = localStorage.getItem('nomeUsuario')
 let perfilFoto = localStorage.getItem('perfilFoto')
 let cidadeUsuario = localStorage.getItem('cidadeUsuario')
 
-function Favoritos() {
+function MeusAnuncios() {
 
     const [visibleLeft, setVisibleLeft] = useState(false);
   
@@ -48,9 +48,10 @@ function Favoritos() {
                     </div>
                 </Sidebar>
             </div>
-            <SecaoLivroFav/>
+            <p className='meuAnuncioTitle'>Meus Anuncios</p>
+            <SecaoMeusLivros/>
         </div>
     )
 }
 
-export default Favoritos
+export default MeusAnuncios

@@ -108,7 +108,7 @@ function Perfil() {
                             <span className='titleConfigSidebar'>PERFIL</span>
                             <div className="linksConfig">
                                 <Link className='link' to='/perfil'> <img src={perfilIcon} alt="icone foto de perfil" /> Perfil</Link>
-                                <Link className='link'> <img src={anunciosIcon} alt="icone foto de anuncios" /> Meus anúncios</Link>
+                                <Link className='link' to='/meusAnuncios'> <img src={anunciosIcon} alt="icone foto de anuncios" /> Meus anúncios</Link>
                                 <Link className='link' to='/favoritos'> <img src={favoritosIcon} alt="icone foto de favoritos" />Favoritos</Link>
                                 <Link className='link' to='/configuracoes'> <img src={configIcon} alt="icone foto de favoritos" />Configurações</Link>
                             </div>

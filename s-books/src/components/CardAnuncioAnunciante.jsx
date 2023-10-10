@@ -6,7 +6,7 @@ import { Spinner } from '@chakra-ui/react'
 
 function CardAnuncioAnunciante() {
     const [anuncios, setAnuncios] = useState([]);
-    const [isLoading, setIsLoading] = useState(false); // Definir como false inicialmente
+    const [isLoading, setIsLoading] = useState(false); 
     const anunciante = localStorage.getItem('id_anunciante');
     let idPegarAnuncio = parseInt(localStorage.getItem('getAnuncioById'))
 

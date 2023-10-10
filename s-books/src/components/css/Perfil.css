@@ -313,6 +313,14 @@
     font-weight: 600;
 }
 
+.meuAnuncioTitle{
+    padding-left: 3vw;
+    padding-top: 3vh;
+    font-size: clamp(1.5625rem, 0.2344rem + 4.25vw, 2.625rem);
+    font-weight: 500;
+    color: #474747;
+}
+
 @media (max-width:1500px) {
         .tabelaConfigDados{
             height: 75vh;
