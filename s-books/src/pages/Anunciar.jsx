@@ -2,6 +2,20 @@ import '../components/css/Anunciar.css'
 import { Link } from "react-router-dom"
 function Anunciar() {
     let cidadeUsuario = localStorage.getItem('cidadeUsuario')
+    const pegarValores = () => {
+
+       let nomeDoLivroCadastro = document.getElementById('nomeDoLivroCadastro').value
+       let nomeDoAutorCadastro = document.getElementById('nomeDoAutorCadastro').value
+       let idiomas = document.getElementById('idiomas').value
+       let textAreaCadastro = document.getElementById('textAreaCadastro').value
+
+       console.log(nomeDoLivroCadastro,nomeDoAutorCadastro,idiomas,textAreaCadastro);
+
+       localStorage.setItem('nomeDoLivroCadastro', nomeDoLivroCadastro)
+       localStorage.setItem('nomeDoAutorCadastro', nomeDoAutorCadastro)
+       localStorage.setItem('idiomas', idiomas)
+       localStorage.setItem('textAreaCadastro', textAreaCadastro)
+    } 
     return (
         <div className="queroAnunciar">
             <div className="sideBarContainer">
@@ -16,11 +30,11 @@ function Anunciar() {
                     <div className="dadosAnunciarContainer">
                         <div className="dadoAnuncio">
                             <label htmlFor="nomeLivro">Digite o nome:</label>
-                            <input type="text" name="nomeLivro" className='dadoDoAnuncio' />
+                            <input type="text" name="nomeLivro" className='dadoDoAnuncio' id='nomeDoLivroCadastro' />
                         </div>
                         <div className="dadoAnuncio">
                             <label htmlFor="autorLivro">Digite o autor:</label>
-                            <input type="text" name="autorLivro" className='dadoDoAnuncio' />
+                            <input type="text" name="autorLivro" className='dadoDoAnuncio' id='nomeDoAutorCadastro' />
                         </div>
                         <div className="dadoAnuncio">
                             <label htmlFor="idiomaLivro">Digite o idioma do livro:</label>
@@ -33,10 +47,10 @@ function Anunciar() {
                     </div>
                     <div className="dadoAnuncio sinopseAnuncio">
                         <label htmlFor="sinopse">Sinopse:</label>
-                        <textarea name=""></textarea>
+                        <textarea name="sinopse" id='textAreaCadastro'></textarea>
                     </div>
                 </div>
-                <Link id='continuarAnuncio' to='/anunciar2'><button>Continuar</button></Link>
+                <Link id='continuarAnuncio' to='/anunciar2'><button onClick={pegarValores}>Continuar</button></Link>
             </div>
         </div>
 

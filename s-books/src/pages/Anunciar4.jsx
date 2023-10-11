@@ -1,8 +1,14 @@
 import '../components/css/Anunciar.css'
 import { Link } from "react-router-dom"
 function Anunciar4() {
+
     let cidadeUsuario = localStorage.getItem('cidadeUsuario')
+    let nomeDoLivroCadastro = localStorage.getItem('nomeDoLivroCadastro')
+    let nomeDoAutorCadastro = localStorage.getItem('nomeDoAutorCadastro')
+    let idiomas = localStorage.getItem('idiomas')
+    let textAreaCadastro = localStorage.getItem('textAreaCadastro')
     let imgLivro = localStorage.getItem('dataImage')
+
     return (
         <div className="queroAnunciar3">
             <div className="sideBarContainer">
@@ -16,7 +22,7 @@ function Anunciar4() {
         <img src={imgLivro} alt="foto do anuncio" className='fotoAnuncio' />
         <div className="dadosAnuncioPrincipal">
           <div className="esquerdaDadosAnuncio">
-          <p>kkk</p>
+          <p>{nomeDoLivroCadastro}</p>
          <p>Disponivel para: </p>
          <p>kk</p>
           </div>
@@ -36,7 +42,7 @@ function Anunciar4() {
       </div>
       <div className="descricaoContainer">
         <h3 className='titleContainerDesc'>Descrição:</h3>
-        <p></p>
+        <p>{textAreaCadastro}</p>
       </div>
       <div className="descricaoContainer">
         <h3 className='titleContainerDesc'>Informações:</h3>
@@ -47,7 +53,7 @@ function Anunciar4() {
         </div>
         <div className="dadoLivro">
           <h3>Autor</h3>
-          <p></p>
+          <p>{nomeDoAutorCadastro}</p>
         </div>
         <div className="dadoLivro">
           <h3>Editora</h3>
@@ -55,7 +61,7 @@ function Anunciar4() {
         </div>
         <div className="dadoLivro">
           <h3>Idioma</h3>
-          <p></p>
+          <p>{idiomas}</p>
         </div>
         <div className="dadoLivro">
           <h3>Estado do livro</h3>
