@@ -7,6 +7,11 @@ function Anunciar4() {
     let nomeDoAutorCadastro = localStorage.getItem('nomeDoAutorCadastro')
     let idiomas = localStorage.getItem('idiomas')
     let textAreaCadastro = localStorage.getItem('textAreaCadastro')
+    let isbnValue = localStorage.getItem('isbnValue')
+    let anoValue = localStorage.getItem('anoValue')
+    let pagValue= localStorage.getItem('pagValue')
+    let edicaoValue = localStorage.getItem('edicaoValue')
+    let editoraValue = localStorage.getItem('editoraValue')
     let imgLivro = localStorage.getItem('dataImage')
 
     return (
@@ -49,7 +54,7 @@ function Anunciar4() {
        <div className="dadosLivro">
         <div className="dadoLivro">
           <h3>Ano de edição</h3>
-          <p></p>
+          <p>{anoValue}</p>
         </div>
         <div className="dadoLivro">
           <h3>Autor</h3>
@@ -57,7 +62,7 @@ function Anunciar4() {
         </div>
         <div className="dadoLivro">
           <h3>Editora</h3>
-          <p></p>
+          <p>{editoraValue}</p>
         </div>
         <div className="dadoLivro">
           <h3>Idioma</h3>

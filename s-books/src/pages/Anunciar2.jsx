@@ -14,12 +14,14 @@ function Anunciar2() {
     const [isbnValue, setIsbnValue] = useState('');
     const [pagValue, setPagValue] = useState('');
     const [edicaoValue, setEdicaoValue] = useState('');
+    const [editoraValue, setEditoraValue] = useState('');
 
     function coletarDados(){
         localStorage.setItem('anoValue', anoValue)
         localStorage.setItem('isbnValue', isbnValue)
         localStorage.setItem('pagValue', pagValue)
         localStorage.setItem('edicaoValue', edicaoValue)
+        localStorage.setItem('editoraValue', editoraValue)
     }
 
     return (
@@ -48,6 +50,10 @@ function Anunciar2() {
                         <input type="text" name="edicaoLivro" className='dadoDoAnuncio' value={edicaoValue} onChange={(e) => setEdicaoValue(e.target.value)}/>
                     </div>
                     <div className="dadoAnuncio">
+                        <label htmlFor="edicaoLivro">Digite a editora do livro:</label>
+                        <input type="text" name="edicaoLivro" className='dadoDoAnuncio' value={editoraValue} onChange={(e) => setEditoraValue(e.target.value)}/>
+                    </div>
+                    <div className="dadoAnuncio">
                         <label htmlFor="isbnLivro">Digite o ISBN:</label>
                         <input type="text" name="isbnLivro" className='dadoDoAnuncio' value={isbnValue} onChange={(e) => setIsbnValue(e.target.value)}/>
                     </div>
@@ -55,7 +61,7 @@ function Anunciar2() {
             </div>
             <h2 className="instrucaoImg">Insira uma imagem frontal, lateral e traseira.</h2>
             <div className="imagensContainer">
-                <Upload/>
+            <Upload/>
             <Upload2/>
             <Upload3/>
             </div>
