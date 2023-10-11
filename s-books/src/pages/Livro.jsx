@@ -47,6 +47,7 @@ function Livro() {
     axios.get(`${baseUrl}v1/sbook/usuario/${anunciante}`)
       .then(response => {
         console.log(response);
+        console.log(response);
         localStorage.setItem('nome_anunciante', response.data.dados.nome)
         localStorage.setItem('perfilFotoAnunciante', response.data.dados.foto )
 

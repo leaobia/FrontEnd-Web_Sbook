@@ -1,5 +1,7 @@
 import { anoAtual } from "../url"
 import Upload from "../components/Upload"
+import Upload2 from "../components/Upload2";
+import Upload3 from "../components/Upload3";
 import { Link } from "react-router-dom"
 import React, { useState } from 'react';
 
@@ -51,7 +53,12 @@ function Anunciar2() {
                     </div>
                 </div>
             </div>
-            <Upload/>
+            <h2 className="instrucaoImg">Insira uma imagem frontal, lateral e traseira.</h2>
+            <div className="imagensContainer">
+                <Upload/>
+            <Upload2/>
+            <Upload3/>
+            </div>
             <Link id='continuarAnuncio' to='/anunciar3'><button onClick={coletarDados}>Continuar</button></Link>
         </div>
     )
