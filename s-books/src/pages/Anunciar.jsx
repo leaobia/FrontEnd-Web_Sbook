@@ -12,7 +12,7 @@ function Anunciar() {
        console.log(nomeDoLivroCadastro,nomeDoAutorCadastro,idiomas,textAreaCadastro);
 
        localStorage.setItem('nomeDoLivroCadastro', nomeDoLivroCadastro)
-       localStorage.setItem('nomeDoAutorCadastro', nomeDoAutorCadastro)
+       localStorage.setItem('nomeDoAutorCadastroLivro', nomeDoAutorCadastro)
        localStorage.setItem('idiomas', idiomas)
        localStorage.setItem('textAreaCadastro', textAreaCadastro)
     } 

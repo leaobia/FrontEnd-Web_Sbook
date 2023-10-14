@@ -1,19 +1,16 @@
+import React from 'react';
+
 function Upload() {
+  function mudarFoto(e) {
+    const inputFile = e.target;
+    const pictureImage = document.querySelector(".picture__image");
 
-
-function mudarFoto() {
-  const inputFile = document.querySelector("#picture__input");
-  const pictureImage = document.querySelector(".picture__image");
-
-  inputFile.removeEventListener("change", mudarFoto);
-
-  inputFile.addEventListener("change", function (e) {
-    const inputTarget = e.target;
-
-    const file = inputTarget.files[0];
+    const file = inputFile.files[0];
 
     if (file) {
       const img = document.createElement("img");
+
+      console.log('oi');
 
       // Atribui a URL da imagem diretamente ao src
       img.src = URL.createObjectURL(file);
@@ -25,18 +22,15 @@ function mudarFoto() {
     } else {
       pictureImage.textContent = "";
     }
-  });
-}
+  }
 
-  
-  
   return (
     <div className="uploadContainer">
       <label className="picture" htmlFor="picture__input" tabIndex="0">
         <span className="picture__image"></span>
       </label>
 
-      <input type="file" onChange={mudarFoto}  name="picture__input" id="picture__input"></input>
+      <input type="file" onBlur={mudarFoto} name="picture__input" id="picture__input"></input>
     </div>
   );
 }

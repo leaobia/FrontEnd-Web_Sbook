@@ -131,7 +131,7 @@
 
 
   #picture__input , #picture__input2, #picture__input3{
-    display: none;
+    opacity: 0;
   }
   
   .picture , .picture2, .picture3{

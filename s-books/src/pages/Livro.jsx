@@ -19,7 +19,7 @@ function Livro() {
   const [generos, setGeneros] = useState([]);
 
 
-
+  let anunciante = localStorage.getItem('id_anunciante')
 
   useEffect(() => {
 
@@ -40,7 +40,7 @@ function Livro() {
       
   }, [idPegarAnuncio]);
 
-  let anunciante = localStorage.getItem('id_anunciante')
+
 
   useEffect(() => {
 
@@ -56,7 +56,7 @@ function Livro() {
         console.error('Erro ao obter dados do usuario:', error);
       });
       
-  }, [idPegarAnuncio]);
+  }, [idPegarAnuncio,anunciante]);
   
   let anuncianteNome = localStorage.getItem('nome_anunciante')
   let perfilFotoAnunciante = localStorage.getItem('perfilFotoAnunciante')

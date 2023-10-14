@@ -58,7 +58,7 @@ function Anunciar3() {
   function handleCheckboxChange(genero) {
     if (generosSelecionados.includes(genero)) {
       setGenerosSelecionados(generosSelecionados.filter(item => item !== genero));
-    } else {
+      localStorage.setItem('generosSelecionados', generosSelecionados)    } else {
       setGenerosSelecionados([...generosSelecionados, genero]);
     }
   }
@@ -81,7 +81,10 @@ function Anunciar3() {
 
   // Ação clique 
   function coletarDados() {
-    console.log('Gêneros selecionados:', generosSelecionados);
+    localStorage.setItem('tipoAnuncioSelecionados', tipoAnuncioSelecionados)
+    localStorage.setItem('estadosSelecionados', estadosSelecionados)
+    localStorage.setItem('generosSelecionados', generosSelecionados)  
+    
   }
 
   return (
