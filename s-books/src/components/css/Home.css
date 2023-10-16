@@ -139,6 +139,12 @@
   color: #AA6231;
 }
 
+.maisProximos{
+    display: grid;
+    place-self: end;
+    margin-right: 5vw;
+}
+
 @media (max-width:1200px) {
     .personagem-card{
         width: 25vw;

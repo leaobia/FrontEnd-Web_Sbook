@@ -2,6 +2,7 @@ import Filtragem from "../components/Filtragem"
 import SecaoLivro from "../components/SecaoLivro";
 import '../components/css/Home.css'
 import Footer from "../components/Footer";
+import { Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter  } from '@chakra-ui/react';
 
 function Home() {
 
@@ -35,7 +36,7 @@ function Home() {
                 <h1>Bem-Vindo, {nomeBemVindo}</h1>
             </div>
             <div className="apresentacaoLivros">
-                <p>Livros usados, seminovos e novos em todo o Brasil</p>
+                <p>Livros usados, seminovos e novos em todo o Brasil </p>   <Button className="maisProximos">Mais próximos</Button>
                 {/* <span id="quantidadeDeLivros"> {quantidadeFormatada} livros encontrados</span> */}
             </div>
             <SecaoLivro/>
