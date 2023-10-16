@@ -191,7 +191,7 @@
 
 .contentUserDireita{
     align-items: center;
-    height: 40vh;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -319,6 +319,15 @@
     font-size: clamp(1.5625rem, 0.2344rem + 4.25vw, 2.625rem);
     font-weight: 500;
     color: #474747;
+}
+
+.excluirButton{
+    color: #ae1010;
+}
+
+#motivo{
+    margin-top: 1vh;
+    font-weight: bold;
 }
 
 @media (max-width:1500px) {

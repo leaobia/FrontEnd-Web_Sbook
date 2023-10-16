@@ -14,8 +14,12 @@ import { logOut } from '../url';
 import { Link } from "react-router-dom"
 
 
+import { Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter  } from '@chakra-ui/react';
+
+
 function Configuracoes() {
     const [visibleLeft, setVisibleLeft] = useState(false);
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     let nomeUsuario = localStorage.getItem('nomeUsuario')
     let perfilFoto = localStorage.getItem('perfilFoto')
@@ -149,6 +153,30 @@ function Configuracoes() {
 
     return (
         <div className='configContainer'>
+                    <Modal onClose={onClose} isOpen={isOpen} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Excluir conta</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+           <p>Tem certeza de que deseja excluir sua conta? Ficaríamos gratos se você pudesse nos dizer o motivo para nos ajudar a melhorar. Por favor, compartilhe seus comentários antes de prosseguir com a exclusão.</p>
+           <select id="motivo" name="motivo">
+  <option value="mudanca-plataforma">Mudança de plataforma</option>
+  <option value="problemas-privacidade">Problemas de privacidade</option>
+  <option value="nao-interessado">Não estou mais interessado</option>
+  <option value="problemas-tecnicos">Problemas técnicos</option>
+  <option value="preocupacoes-seguranca">Preocupações de segurança</option>
+  <option value="alternativa-melhor">Encontrei uma alternativa melhor</option>
+  <option value="excesso-notificacoes">Excesso de notificações</option>
+  <option value="problemas-usabilidade">Problemas de usabilidade</option>
+  <option value="outro">Outro (por favor, especifique)</option>
+</select>
+          </ModalBody>
+          <ModalFooter>
+            <Button>Excluir</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
             <div className="sideBarContainer">
                 <button className='botaoMenu' onClick={() => setVisibleLeft(true)}><img src={iconSidebar} alt='ícone do botao de menu' /></button>
                 <div className="menuLocalContainer">
@@ -216,9 +244,16 @@ function Configuracoes() {
                     <div className="userContainerDireitaLink">
                         <Link>Categorias ➔ </Link>
                     </div>
+                    {/* <div className="userContainerDireitaLink excluirButton">
+                        <button>Excluir conta </button>
+                    </div> */}
                 </div>
 
+                <Button onClick={onOpen}>Excluir conta</Button>
+
+
             </div>
+
         </div>
     )
 }
