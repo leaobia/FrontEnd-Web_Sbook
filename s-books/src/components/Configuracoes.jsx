@@ -8,6 +8,7 @@ import favoritosIcon from '../components/img/CoracaoIcon 2.png'
 import configIcon from '../components/img/ConfigIcon.png'
 import sairIcon from '../components/img/sairIcon.png'
 import { baseUrl } from '../url';
+import UploadFotoPerfil from './UploadFotoPerfil';
 
 import { logOut } from '../url';
 
@@ -221,6 +222,9 @@ function Configuracoes() {
                             <div className="inputGroup">
                                 Data de nascimento:
                                 <input type="date" value={dateValue} id='dateEdit' onChange={(e) => setDateValue(e.target.value)} />
+                            </div>
+                            <div className="inputGroup">
+                            <UploadFotoPerfil/>
                             </div>
 
                         </div>
