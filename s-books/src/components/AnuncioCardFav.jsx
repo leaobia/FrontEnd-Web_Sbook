@@ -13,9 +13,11 @@ function AnuncioCardFav({ anuncio, autor, tipo, cidade, estado , foto}) {
 
   const despreencher = () => {
     const dados = {
-      id_usuario: idUser,
+      id_usuario: parseInt(idUser),
       id_anuncio: anuncioId
   };
+
+  console.log(dados);
 
   const url = `${baseUrl}v1/sbook/remover-favorito`;
 
