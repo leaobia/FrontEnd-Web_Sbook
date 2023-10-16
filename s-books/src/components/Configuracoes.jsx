@@ -52,11 +52,7 @@ function Configuracoes() {
     const [nameValue, setNameValue] = useState(nomeUsuario);
     const [cepValue, setCepValue] = useState(cepUsuario);
 
-    const abrirPerguntasEditar = () => {
-        const desejaEditarDiv = document.getElementById('desejaEditarDiv')
-        desejaEditarDiv.classList.add('d-flex')
-        desejaEditarDiv.classList.remove('d-none')
-    }
+
 
     const fecharPerguntasEditar = () => {
         const desejaEditarDiv = document.getElementById('desejaEditarDiv')
@@ -97,6 +93,14 @@ function Configuracoes() {
             console.log('CEP inválido. Certifique-se de inserir 8 dígitos numéricos.');
         }
 
+    }
+
+    const abrirPerguntasEditar = () => {
+        const desejaEditarDiv = document.getElementById('desejaEditarDiv')
+        desejaEditarDiv.classList.add('d-flex')
+        desejaEditarDiv.classList.remove('d-none')
+
+        fetchViaCep()
     }
 
     function editarUsuario() {
