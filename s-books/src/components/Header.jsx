@@ -558,7 +558,6 @@ function Header() {
                 const token = data.token;
 
                 localStorage.setItem('id_usuarioLogin', data.usuario.usuario.id)
-                console.log('id: ', data.usuario.usuario.id);
                 localStorage.setItem('id_endereco', data.usuario.endereco.id)
                 localStorage.setItem('token', token);
                 setUsuario('true')

@@ -1,8 +1,14 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import Filtragem from "../components/Filtragem"
 import SecaoLivro from "../components/SecaoLivro";
 import '../components/css/Home.css'
 import Footer from "../components/Footer";
-import { Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter  } from '@chakra-ui/react';
+import { Button  } from '@chakra-ui/react';
+import { baseUrl } from '../url';
+import SecaoLivroProximo from '../components/SecaoLivroProximo';
+
 
 function Home() {
 
@@ -22,27 +28,65 @@ function Home() {
     //   var quantidadeFormatada = formatarNumero(quantidadeDeLivros);
 
       
-    let nomeUsuario = localStorage.getItem('nomeUsuario') 
+    const [nomeUsuario, setNomeUsuario] = useState('');
+
+    let idUsuario = localStorage.getItem('id_usuarioLogin') 
     let nomeBemVindo = '';
+
     if(nomeUsuario){
         nomeBemVindo = nomeUsuario
     }else{
         nomeBemVindo = 'Usuário'
     }
+
+    //if(idUsuario){
+        useEffect(() => {
+            axios.get(`${baseUrl}v1/sbook/usuario/${idUsuario}`)
+              .then(response => {
+               setNomeUsuario(response.data.dados.nome)
+              })
+              .catch(error => {
+                console.error('Erro ao obter dados do usuario:', error);
+              })
+          }, [idUsuario]);
+   // }
+
+   const [mostrarMais, setMostrarMais] = useState(false);
+
+    const pegarMaisProximos = () => {
+              //localStorage.setItem('id_endereco', data.usuario.endereco.id)
+              //localStorage.setItem('id_usuarioLogin', data.usuario.usuario.id)
+
+              setMostrarMais(!mostrarMais);
+    }
+
+    const pegarMenosProximos = () => {
+        window.location.reload()
+    }
+    
+
     return (
         <div className="Home">
-            <Filtragem/>
-            <div className="welcome-group">
-                <h1>Bem-Vindo, {nomeBemVindo}</h1>
-            </div>
-            <div className="apresentacaoLivros">
-                <p>Livros usados, seminovos e novos em todo o Brasil </p>   <Button className="maisProximos">Mais próximos</Button>
-                {/* <span id="quantidadeDeLivros"> {quantidadeFormatada} livros encontrados</span> */}
-            </div>
-            <SecaoLivro/>
-            <Footer/>
+          <Filtragem />
+          <div className="welcome-group">
+            <h1>Bem-Vindo, {nomeBemVindo}</h1>
+          </div>
+          <div className="apresentacaoLivros">
+            <p>Livros usados, seminovos e novos em todo o Brasil</p>
+            {mostrarMais ? (
+              <Button className="mostrarMenos" onClick={pegarMenosProximos}>
+                Menos próximos
+              </Button>
+            ) : (
+              <Button className="maisProximos" onClick={pegarMaisProximos}>
+                Mais próximos
+              </Button>
+            )}
+          </div>
+          {mostrarMais ? <SecaoLivroProximo /> : <SecaoLivro />}
+          <Footer />
         </div>
-    )
+      );
 }
 
 export default Home

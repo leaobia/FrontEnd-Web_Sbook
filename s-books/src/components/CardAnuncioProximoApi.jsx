@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import _ from 'lodash';
-import AnuncioCard from './AnuncioCard'; 
+import AnuncioCardProximos from './AnuncioCardProximos'; 
 import { baseUrl } from '../url';
 import { Spinner } from '@chakra-ui/react'
 
@@ -14,26 +13,49 @@ import {
 
 function 
 
-CardLivro() {
+CardAnuncioProximoApi() {
   const [anuncios, setAnuncios] = useState([]);
   const [termoPesquisa, setTermoPesquisa] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${baseUrl}v1/sbook/anuncio?page=1`)
-      .then(response => {
-        const anunciosData = response.data.anuncios;
-        //console.log('Anuncios data:', anunciosData);
-        setAnuncios(anunciosData);
-      })
-      .catch(error => {
-        console.error('Erro ao obter dados dos anúncios:', error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
 
+    const credentials = {
+        "bairro": 'Vila Marcondes',
+        "cidade": 'Carapicuíba',
+        "estado": 'SP'
+    };
+
+    const url = `${baseUrl}v1/sbook/anuncio-proximos?page=1`;
+    
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(credentials)
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json(); 
+        } else {
+            throw new Error('A resposta da rede não foi bem-sucedida');
+        }
+    })
+    .then(data => {
+        console.log('Dados da resposta:', data);
+        const anunciosData = data.anuncios;
+        setAnuncios(anunciosData);
+    })
+    .catch(error => {
+        console.error('Erro ao obter dados dos anúncios:', error);
+    })
+    .finally(() => {
+        setIsLoading(false);
+    });
+}, []);
+
+      
   const inputPesquisa = document.getElementById('inputPesquisa');
 
   const handlePesquisaChange = _.debounce(event => {
@@ -59,7 +81,7 @@ CardLivro() {
    </div>
   ) : termoPesquisa === '' ? (
     anuncios.map((anuncio) => (
-      <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio} autor={anuncio.autores[0].nome} tipo={anuncio.tipo_anuncio[0]} endereco={anuncio.endereco} foto={anuncio.foto[0].foto} />
+      <AnuncioCardProximos key={anuncio.anuncio.id} anuncio={anuncio.anuncio} autor={anuncio.autores[0].nome} tipo={anuncio.tipo_anuncio[0]} endereco={anuncio.endereco} foto={anuncio.foto[0].foto} />
     ))
   ) : (
     (() => {
@@ -90,7 +112,7 @@ CardLivro() {
       }
 
       return filteredAnuncios.map((anuncio) => (
-        <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio || {}} autor={anuncio.autores[0].nome} tipo={anuncio.tipo_anuncio[0]} endereco={anuncio.endereco} foto={anuncio.foto[0].foto} />
+        <AnuncioCardProximos key={anuncio.anuncio.id} anuncio={anuncio.anuncio || {}} autor={anuncio.autores[0].nome} tipo={anuncio.tipo_anuncio[0]} endereco={anuncio.endereco} foto={anuncio.foto[0].foto} />
       ));
 
     })()
@@ -100,4 +122,4 @@ CardLivro() {
   );
 }
 
-export default CardLivro;
+export default CardAnuncioProximoApi;
