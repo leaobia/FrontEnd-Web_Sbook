@@ -43,6 +43,14 @@ function Home() {
         useEffect(() => {
             axios.get(`${baseUrl}v1/sbook/usuario/${idUsuario}`)
               .then(response => {
+                let bairro = response.data.dados.bairro
+                let cidade = response.data.dados.cidade
+                let estado = response.data.dados.estado
+
+                localStorage.setItem('bairroUsuarioHome', bairro)
+                localStorage.setItem('cidadeUsuarioHome', cidade)
+                localStorage.setItem('estadoUsuarioHome', estado)
+
                setNomeUsuario(response.data.dados.nome)
               })
               .catch(error => {

@@ -18,12 +18,18 @@ CardAnuncioProximoApi() {
   const [termoPesquisa, setTermoPesquisa] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
+  let bairro =   localStorage.getItem('bairroUsuarioHome')
+  let cidade =    localStorage.getItem('cidadeUsuarioHome')
+  let estado =   localStorage.getItem('estadoUsuarioHome')
+
+  let idUsuario = localStorage.getItem('id_usuarioLogin') 
+
   useEffect(() => {
 
     const credentials = {
-        "bairro": 'Vila Marcondes',
-        "cidade": 'Carapicuíba',
-        "estado": 'SP'
+        "bairro": bairro,
+        "cidade": cidade,
+        "estado": estado
     };
 
     const url = `${baseUrl}v1/sbook/anuncio-proximos?page=1`;
@@ -67,6 +73,36 @@ CardAnuncioProximoApi() {
   }
   
   localStorage.setItem('quantidadeLivros', anuncios.length);
+
+  const abrirLogin = () => {
+    document.getElementById('botaoLogin').click()
+  }
+
+  if(!idUsuario){
+    return(
+        <Alert
+        status='error'
+        variant='subtle'
+        flexDirection='column'
+        alignItems='center'
+        justifyContent='center'
+        textAlign='center'
+        height='45vh'
+        marginLeft='22%'
+        width='45%'
+        borderRadius='20'
+      >
+        <AlertIcon boxSize='40px' mr={0} />
+        <AlertTitle mt={4} mb={1} fontSize='lg'>
+          Erro!
+        </AlertTitle>
+        <AlertDescription maxWidth='sm'>
+          Você ainda não fez o login
+        </AlertDescription>
+        <button className='fazerLoginButton' onClick={abrirLogin}>Fazer Login</button>
+      </Alert>
+    )
+  }
   
   return (
     <div className="livrosContainer">
@@ -98,7 +134,10 @@ CardAnuncioProximoApi() {
             alignItems='center'
             justifyContent='center'
             textAlign='center'
-            height='40vh'
+            height='45vh'
+            marginLeft='22%'
+            width='45%'
+            borderRadius='20'
           >
             <AlertIcon boxSize='40px' mr={0} />
             <AlertTitle mt={4} mb={1} fontSize='lg'>

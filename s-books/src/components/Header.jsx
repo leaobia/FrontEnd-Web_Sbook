@@ -572,6 +572,9 @@ function Header() {
 
                 document.getElementById('userMenu').classList.remove('grid-colun2')
             })
+            .finally(function() {
+               window.location.reload()
+             })
             .catch(error => {
                 console.error("Erro ao fazer login:", error);
                 document.getElementById('erroLogin').textContent = 'Me desculpe, usuário ou senha incorretos, por favor, verifique suas credenciais.'
