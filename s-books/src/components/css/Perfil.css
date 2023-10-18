@@ -60,6 +60,10 @@
     border-radius: 200px;
 }
 
+.fotoUser{
+    border-radius: 50%;
+}
+
 .perfilUsuario p{
     color: #AA6231;
     font-weight: 600;
