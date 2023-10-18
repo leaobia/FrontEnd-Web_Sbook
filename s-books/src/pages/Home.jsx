@@ -46,10 +46,13 @@ function Home() {
                 let bairro = response.data.dados.bairro
                 let cidade = response.data.dados.cidade
                 let estado = response.data.dados.estado
+                let foto = response.data.dados.foto
 
                 localStorage.setItem('bairroUsuarioHome', bairro)
                 localStorage.setItem('cidadeUsuarioHome', cidade)
                 localStorage.setItem('estadoUsuarioHome', estado)
+                localStorage.setItem('fotoUsuarioHome', foto)
+
 
                setNomeUsuario(response.data.dados.nome)
               })

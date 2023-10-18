@@ -1,7 +1,9 @@
 .chat{
     display: flex;
-    height: 100vh;
+    height: 92vh;
+    overflow: hidden;
     width: 100vw;
+    background-color: #FFFFFF;
 }
 
 .listachats{
@@ -9,4 +11,39 @@
     height: 100vh;
     background-color: aliceblue;
     overflow-y: auto;
+}
+.chatMessage{
+    width: 75%;
+    border-left: 1.5px solid #E0E0E0;
+}
+.headerChatMessage{
+    width: 100%;
+    align-items: center;
+    padding: 1%;
+    display: flex;
+    gap: 35%;
+    border-bottom: 1.5px solid #E0E0E0;
+}
+
+.headerChatMessage p{
+    font-weight: bold;
+    font-size: clamp(0.875rem, -0.2188rem + 3.5vw, 1.75rem);
+    color: #303030;
+}
+
+.fotoUsuarioChat{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+}
+
+.containerMensagens{
+    padding: 1%;
+    height: 80%;
+    background-image: url('../img/wallpaper.png');
+    background-size: auto;
+    background-repeat: no-repeat;
+    overflow-y: auto;
+    background-position: center;
 }
