@@ -9,7 +9,7 @@
 .listachats{
     width: 25%;
     height: 100vh;
-    background-color: aliceblue;
+    background-color: #AA6231;
     overflow-y: auto;
 }
 
@@ -18,6 +18,7 @@
 }
 .chatMessage{
     width: 75%;
+    flex-direction: column;
     border-left: 1.5px solid #E0E0E0;
 }
 .imagemPadraoDiv{
@@ -32,13 +33,28 @@
     padding-right: 5%;
     display: flex;
     justify-content: space-between;
+    height: 11vh;
+    border-bottom: 1.5px solid #E0E0E0;
+}
+
+.headerChats{
+    background-color: #FFFFFF;
+    padding: 1%;
+    padding-right: 5%;
+    height: 11vh;
+    display: grid;
+    place-content: center start;
+    font-weight: bold;
+    color: #AA6231;
+    padding-left: 3%;
+    font-size: clamp(0.875rem, -0.2188rem + 3.5vw, 1.75rem);
     border-bottom: 1.5px solid #E0E0E0;
 }
 
 .headerChatMessage p{
     font-weight: bold;
     font-size: clamp(0.875rem, -0.2188rem + 3.5vw, 1.75rem);
-    color: #303030;
+    color: #AA6231;
     padding-right: 10%;
 }
 
@@ -107,4 +123,14 @@
 
 .inputChat{
     width: 90%;
+}
+
+#galeriaFile{
+    display: none;
+}
+
+.enviada{
+    display: flex;
+    align-items: center;
+    float: right;
 }
