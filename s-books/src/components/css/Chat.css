@@ -134,3 +134,34 @@
     align-items: center;
     float: right;
 }
+
+@media (max-width:600px) {
+    .listachats{
+        width: 15%;
+        height: 100vh;
+        background-color: #AA6231;
+        overflow-x: hidden;
+
+    }
+    .chatMessage{
+        width: 85%;
+        flex-direction: column;
+        border-left: 1.5px solid #E0E0E0;
+    }
+
+    .mensagemEnviarContainer{
+        width: 100%;
+        padding: 2%;
+    }
+    .fotoUsuarioChat{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        border: 1px solid transparent;
+    }
+
+    .imagemPadraoDiv{
+        width: 85%;
+    }
+    
+}
