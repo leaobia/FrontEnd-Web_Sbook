@@ -12,16 +12,26 @@
     background-color: aliceblue;
     overflow-y: auto;
 }
+
+.listachats button{
+    width: 100%;
+}
 .chatMessage{
     width: 75%;
     border-left: 1.5px solid #E0E0E0;
+}
+.imagemPadraoDiv{
+    width: 75%;
+    border-left: 1.5px solid #E0E0E0;
+    background-image: url('../img/planodefundo.jpeg');
 }
 .headerChatMessage{
     width: 100%;
     align-items: center;
     padding: 1%;
+    padding-right: 5%;
     display: flex;
-    gap: 35%;
+    justify-content: space-between;
     border-bottom: 1.5px solid #E0E0E0;
 }
 
@@ -29,6 +39,42 @@
     font-weight: bold;
     font-size: clamp(0.875rem, -0.2188rem + 3.5vw, 1.75rem);
     color: #303030;
+    padding-right: 10%;
+}
+
+.menu{
+    transition: 1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+}
+
+.menu ul {
+    display: none;
+    transition: 1s ease-in-out;
+}
+
+.menu:hover ul {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.listaDropdown{
+    background-color: #E0E0E0;
+    padding: 5px;
+    display: flex;
+    gap: 0;
+    flex-direction: column;
+}
+
+.listaDropdown li{
+    cursor: pointer;
+    opacity: .6;
+}
+.listaDropdown li:hover{
+    opacity: 1;
 }
 
 .fotoUsuarioChat{
@@ -41,9 +87,24 @@
 .containerMensagens{
     padding: 1%;
     height: 80%;
-    background-image: url('../img/wallpaper.png');
-    background-size: auto;
+    background-image: url('../img/planodefundo.jpeg');
+    background-size: cover;
     background-repeat: no-repeat;
     overflow-y: auto;
     background-position: center;
+}
+
+.mensagemEnviarContainer{
+    border: 1.5px solid #AA6231;
+    padding: .8%;
+    margin: 1%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    border-radius: 18px;
+    justify-content: space-between;
+}
+
+.inputChat{
+    width: 90%;
 }

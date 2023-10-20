@@ -11,6 +11,7 @@ export const ChatItemComponent = () => {
   subtitle="Ok. See you !"
   date={new Date()}
   unread={0}
+  id='chatClique'
 />
   )
 }
