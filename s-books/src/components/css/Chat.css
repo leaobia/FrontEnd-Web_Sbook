@@ -128,11 +128,34 @@
 #galeriaFile{
     display: none;
 }
-
+.enviadaContainer{
+    display: flex;
+    float: right;
+    flex-direction: column;
+}
 .enviada{
     display: flex;
-    align-items: center;
     float: right;
+}
+
+.iconEditarMensagem{
+    cursor: pointer;
+ display: none;
+ padding: 2px;
+}
+
+.enviada:hover .iconEditarMensagem{
+    display: flex;
+}
+
+.buttonCancelarMensagem{
+    display: flex;
+    float: left;
+    color: #353535;
+}
+
+.d-none{
+    display: none;
 }
 
 @media (max-width:600px) {
