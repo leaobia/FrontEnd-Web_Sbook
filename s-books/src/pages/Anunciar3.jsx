@@ -9,7 +9,7 @@ function Anunciar3() {
   const [tipoAnuncio, setTipoAnuncio] = useState([]);
 
   const [generosSelecionados, setGenerosSelecionados] = useState([]);
-  const [estadosSelecionados, setestadosSelecionados] = useState([]);
+  const [estadosSelecionados, setEstadosSelecionados] = useState([]);
   const [tipoAnuncioSelecionados, setTipoAnuncioSelecionados] = useState([]);
 
   const [cidadeUsuario, setCidadeUsuario] = useState('');
@@ -65,9 +65,9 @@ function Anunciar3() {
 
   function handleCheckboxChange2(estadoLivro) {
     if (estadosSelecionados.includes(estadoLivro)) {
-      setestadosSelecionados(estadosSelecionados.filter(item => item !== estadoLivro));
+      setEstadosSelecionados(estadosSelecionados.filter(item => item !== estadoLivro));
     } else {
-      setestadosSelecionados([...estadosSelecionados, estadoLivro]);
+      setEstadosSelecionados([...estadosSelecionados, estadoLivro]);
     }
   }
 
@@ -79,8 +79,8 @@ function Anunciar3() {
     }
   }
 
-  // Ação clique 
   function coletarDados() {
+    console.log(estadosSelecionados, tipoAnuncioSelecionados,generosSelecionados);
     localStorage.setItem('tipoAnuncioSelecionados', tipoAnuncioSelecionados)
     localStorage.setItem('estadosSelecionados', estadosSelecionados)
     localStorage.setItem('generosSelecionados', generosSelecionados)  

@@ -11,7 +11,7 @@ function Upload3() {
       const img = document.createElement("img");
 
       img.src = URL.createObjectURL(file);
-      localStorage.setItem('dataImage', img.src);
+      localStorage.setItem('dataImage3', img.src);
       img.classList.add("picture__img3");
 
       pictureImage.textContent = "";

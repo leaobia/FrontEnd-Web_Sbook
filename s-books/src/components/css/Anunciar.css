@@ -226,6 +226,25 @@
     margin-left: 3vw;
     font-size: clamp(0.875rem, 0.0156rem + 2.75vw, 1.5625rem);
   }
+
+  .fotos{
+    display: flex;
+  }
+
+  .publicarButton{
+    display: flex;
+    float: left;
+    margin-left: 3vw;
+    background-color: #FF902B;
+    width: fit-content;
+    padding: .3% 4%;
+    cursor: pointer;
+    transition: .4s ease-in-out;
+  }
+
+  .publicarButton:hover{
+    scale: .8;
+  }
   
 @media (max-width:700px) {
     .queroAnunciar h1{

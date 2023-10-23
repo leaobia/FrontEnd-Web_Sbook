@@ -10,7 +10,7 @@ function Upload2() {
       const img = document.createElement("img");
 
       img.src = URL.createObjectURL(file);
-      localStorage.setItem('dataImage', img.src);
+      localStorage.setItem('dataImage2', img.src);
       img.classList.add("picture__img2");
 
       pictureImage.textContent = "";

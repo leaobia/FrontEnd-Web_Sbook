@@ -13,26 +13,30 @@ function Anunciar4() {
   let edicaoValue = localStorage.getItem('edicaoValue')
   let editoraValue = localStorage.getItem('editoraValue')
   let imgLivro = localStorage.getItem('dataImage')
+  let imgLivro2 = localStorage.getItem('dataImage2')
+  let imgLivro3 = localStorage.getItem('dataImage3')
 
   let estadosSelecionados = localStorage.getItem('estadosSelecionados');
-let generosSelecionados = localStorage.getItem('generosSelecionados');
-let tipoAnuncioSelecionados = localStorage.getItem('tipoAnuncioSelecionados');
+  let generosSelecionados = localStorage.getItem('generosSelecionados');
+  let tipoAnuncioSelecionados = localStorage.getItem('tipoAnuncioSelecionados');
 
-// Verifica se os valores no localStorage existem
+  let nomeUsuario = localStorage.getItem('nomeUsuario')
+  let perfilFoto = localStorage.getItem('fotoUsuarioHome')
+
+console.log(estadosSelecionados);
 if (estadosSelecionados) {
-  estadosSelecionados = estadosSelecionados.split(','); // Converte a string em um array
+  estadosSelecionados = estadosSelecionados.split(','); 
 }
 if (generosSelecionados) {
-  generosSelecionados = generosSelecionados.split(','); // Converte a string em um array
+  generosSelecionados = generosSelecionados.split(','); 
 }
 if (tipoAnuncioSelecionados) {
-  tipoAnuncioSelecionados = tipoAnuncioSelecionados.split(','); // Converte a string em um array
+  tipoAnuncioSelecionados = tipoAnuncioSelecionados.split(','); 
 }
 
-// Agora você tem os arrays correspondentes
 
-// Se você deseja convertê-los de volta em strings, use o método join():
 let estadosString = estadosSelecionados.join(',');
+
 let generosString = generosSelecionados.join(',');
 let tipoAnuncioString = tipoAnuncioSelecionados.join(',');
 
@@ -45,9 +49,15 @@ let tipoAnuncioString = tipoAnuncioSelecionados.join(',');
           <span className='nomeDaCidade'>{cidadeUsuario}</span>
         </div>
       </div>
-      <h1>Agora confira as informações do livro antes de publicar! </h1>
+      <h1>Agora confira as informações do livro antes de publicar! </h1> 
+      <button className='publicarButton'>Publicar</button>
       <div className="anuncioDados">
+        <div className="fotos">
         <img src={imgLivro} alt="foto do anuncio" className='fotoAnuncio' />
+        <img src={imgLivro2} alt="foto do anuncio" className='fotoAnuncio' />
+        <img src={imgLivro3} alt="foto do anuncio" className='fotoAnuncio' />
+        </div>
+        
         <div className="dadosAnuncioPrincipal">
           <div className="esquerdaDadosAnuncio">
             <p>{nomeDoLivroCadastro}</p>
@@ -57,9 +67,9 @@ let tipoAnuncioString = tipoAnuncioSelecionados.join(',');
           <div className="direitaDadosAnuncio">
             <Link to='/chat'><button className='messageButton'>Enviar mensagem</button></Link>
             <div className="anuncianteDados">
-              <img src='' alt="foto perfil do anunciante" className='fotoUser' />
+              <img src={perfilFoto} alt="foto perfil do anunciante" className='fotoUser' />
               <div className="nomeAnunciante">
-                <p>Max Kellermen</p>
+                <p>{nomeUsuario}</p>
                 <p>kkk</p>
               </div>
             </div>

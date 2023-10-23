@@ -84,12 +84,13 @@ function Perfil() {
       }, [idUser]);
 
       let nomeUsuario = localStorage.getItem('nomeUsuario')
-      let perfilFoto = localStorage.getItem('perfilFoto')
-      let estadoUsuario = localStorage.getItem('estadoUsuario')
-      let logradouroUsuario = localStorage.getItem('logradouroUsuario')
-      let data_nascimento = localStorage.getItem('data_nascimento')
-      let email = localStorage.getItem('email')
-      let cidadeUsuario = localStorage.getItem('cidadeUsuario')
+      let perfilFoto = localStorage.getItem('fotoUsuarioHome')
+      let estadoUsuario = localStorage.getItem('estadoUsuarioHome')
+      let logradouroUsuario = localStorage.getItem('logradouroUsuarioHome')
+      let data_nascimento = localStorage.getItem('dataNascUsuarioHome')
+      let email = localStorage.getItem('emailUsuarioHome')
+      let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
+
       
     return (
         <div className="meuPerfi">
