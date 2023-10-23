@@ -114,7 +114,7 @@
     border: 1.5px solid #AA6231;
     padding: .8%;
     margin: 1%;
-    width: 80%;
+    width: 90%;
     display: flex;
     align-items: center;
     border-radius: 18px;
@@ -136,6 +136,7 @@
 .enviada{
     display: flex;
     float: right;
+    width: fit-content;
 }
 
 .iconEditarMensagem{
@@ -156,6 +157,14 @@
 
 .d-none{
     display: none;
+}
+
+.verCancelado{
+    font-size: 1.8rem;
+}
+
+.verCancelado:hover{
+    font-weight: bold;
 }
 
 @media (max-width:600px) {

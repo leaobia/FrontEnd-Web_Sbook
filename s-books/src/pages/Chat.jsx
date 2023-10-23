@@ -121,12 +121,12 @@ function Chat() {
                     <div className="enviadaContainer">
                         {/* <button className="buttonCancelarMensagem d-none" onClick={onOpen2} onBlur={sumirDaTela}>Cancelar mensagem</button> */}
                     <div className="enviada" onClick={onOpen2}>
-                        <button>. . .</button>
+                        <button className="verCancelado iconEditarMensagem">...</button>
                     <MessageBox
                     className="mensagemEnviada"
                         position='right'
                         type='text'
-                        text="Oieee !"
+                        text="Oieee ghygxuwsx xwhjgbsxkw sxwhwvxkw xhbwkbxw bxkwbsx!"
                         date={Date.now()}
                     />
                     </div>
@@ -151,6 +151,19 @@ function Chat() {
                         text="szxgwfvzsw wwszgwjs2 agqfa2 ga2gnfa2 av2jgay2 af2fa2 safs2qyj"
                         date={Date.now()}
                     />
+
+<div className="enviadaContainer">
+                    <div className="enviada" onClick={onOpen2}>
+                        <button className="verCancelado iconEditarMensagem">...</button>
+                    <MessageBox
+                    className="mensagemEnviada"
+                        position='right'
+                        type='text'
+                        text="Oieee teste aqqqqq!"
+                        date={Date.now()}
+                    />
+                    </div>
+                    </div>
 
 
                 </div>
