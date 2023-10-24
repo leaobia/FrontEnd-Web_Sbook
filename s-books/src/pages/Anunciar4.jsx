@@ -40,6 +40,16 @@ let estadosString = estadosSelecionados.join(',');
 let generosString = generosSelecionados.join(',');
 let tipoAnuncioString = tipoAnuncioSelecionados.join(',');
 
+const publicarLivro = () => {
+  if(cidadeUsuario && nomeDoAutorCadastro && nomeDoLivroCadastro && idiomas && textAreaCadastro
+    && isbnValue && anoValue && pagValue && edicaoValue && editoraValue && imgLivro && imgLivro2 
+    && imgLivro3 && estadosSelecionados && generosSelecionados && tipoAnuncioSelecionados && nomeUsuario && perfilFoto ){
+      alert('tudo pegado')
+  }else{
+    alert('falta dados')
+  }
+}
+
 
   return (
     <div className="queroAnunciar3">
@@ -50,7 +60,7 @@ let tipoAnuncioString = tipoAnuncioSelecionados.join(',');
         </div>
       </div>
       <h1>Agora confira as informações do livro antes de publicar! </h1> 
-      <button className='publicarButton'>Publicar</button>
+      <button className='publicarButton' onClick={publicarLivro}>Publicar</button>
       <div className="anuncioDados">
         <div className="fotos">
         <img src={imgLivro} alt="foto do anuncio" className='fotoAnuncio' />

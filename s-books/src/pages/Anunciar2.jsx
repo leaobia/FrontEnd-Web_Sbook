@@ -3,7 +3,10 @@ import Upload from "../components/Upload"
 import Upload2 from "../components/Upload2";
 import Upload3 from "../components/Upload3";
 import { Link } from "react-router-dom"
-import React, { useState } from 'react';
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { baseUrl } from '../url';
 
 let cidadeUsuario = localStorage.getItem('cidadeUsuario')
 
@@ -15,6 +18,20 @@ function Anunciar2() {
     const [pagValue, setPagValue] = useState('');
     const [edicaoValue, setEdicaoValue] = useState('');
     const [editoraValue, setEditoraValue] = useState('');
+
+    const [editoraArray, setEditoraArray] = useState([]);
+
+    useEffect(() => {
+  
+        axios.get(`${baseUrl}v1/sbook/editoras`)
+          .then(response => {
+                    let editoras = response.data.editoras
+                    setEditoraArray(editoras)
+          })
+          .catch(error => {
+            console.error('Erro ao obter dados das editoras', error);
+          });
+      });
 
     function coletarDados(){
         localStorage.setItem('anoValue', anoValue)
@@ -51,7 +68,13 @@ function Anunciar2() {
                     </div>
                     <div className="dadoAnuncio">
                         <label htmlFor="edicaoLivro">Digite a editora do livro:</label>
-                        <input type="text" name="edicaoLivro" className='dadoDoAnuncio' value={editoraValue} onChange={(e) => setEditoraValue(e.target.value)}/>
+                        <select id="editora" className='dadoDoAnuncio' value={editoraValue} onChange={(e) => setEditoraValue(e.target.value)}>
+  <option value=""></option>
+  {editoraArray.map(editora => (
+    <option key={editora.id} value={editora.id}>{editora.nome}</option>
+  ))}
+</select>
+
                     </div>
                     <div className="dadoAnuncio">
                         <label htmlFor="isbnLivro">Digite o ISBN:</label>

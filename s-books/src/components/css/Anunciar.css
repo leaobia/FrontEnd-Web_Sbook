@@ -245,6 +245,12 @@
   .publicarButton:hover{
     scale: .8;
   }
+
+.componenteErro{
+  display: grid;
+  place-content: center;
+  width: 100%;
+}
   
 @media (max-width:700px) {
     .queroAnunciar h1{
