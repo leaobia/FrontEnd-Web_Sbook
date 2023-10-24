@@ -21,6 +21,12 @@ function Anunciar() {
   const [idiomaValue, setIdiomaValue] = useState('');
   const [autorValue, setAutorValue] = useState('');
 
+  const handleIdiomaChange = (e) => {
+    const selectedOption = e.target.options[e.target.selectedIndex];
+    const idiomaNome = selectedOption.textContent;
+    console.log(idiomaNome);
+  };
+
 useEffect(() => {
   
   axios.get(`${baseUrl}v1/sbook/idiomas`)
@@ -49,6 +55,9 @@ useEffect(() => {
        let nomeDoLivroCadastro = document.getElementById('nomeDoLivroCadastro').value
        let nomeDoAutorCadastro = autorValue
        let idiomas = idiomaValue
+       let idiomaNome = document.getElementById('idiomas').textContent
+       console.log(idiomaNome);
+       console.log('idiomas;',idiomas);
        let textAreaCadastro = document.getElementById('textAreaCadastro').value
 
        console.log(nomeDoLivroCadastro,nomeDoAutorCadastro,idiomas,textAreaCadastro);
@@ -116,7 +125,7 @@ useEffect(() => {
                         </div>
                         <div className="dadoAnuncio">
                             <label htmlFor="idiomaLivro">Digite o idioma do livro:</label>
-                            <select id="idiomas" className='dadoDoAnuncio' value={idiomaValue} onChange={(e) => setIdiomaValue(e.target.value)}>
+                            <select id="idiomas" className='dadoDoAnuncio' value={idiomaValue} onChange={(e) => setIdiomaValue(e.target.value)} >
       <option value=""></option>
       {idiomaArray.map(idioma => (
         <option key={idioma.id} value={idioma.id}>{idioma.nome}</option>
