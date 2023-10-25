@@ -21,6 +21,23 @@ function Anunciar2() {
 
     const [editoraArray, setEditoraArray] = useState([]);
 
+    let autorCadastro2 = document.getElementById('editoraCadastro2')
+
+
+
+
+
+    useEffect(() => {
+      if(autorCadastro2){
+        if (editoraValue === "outro") {
+          autorCadastro2.classList.remove("dadoInvisivel");
+        } else {
+          autorCadastro2.classList.add("dadoInvisivel");
+        }
+      }
+  
+    })
+
     useEffect(() => {
   
         axios.get(`${baseUrl}v1/sbook/editoras`)
@@ -70,12 +87,15 @@ function Anunciar2() {
                         <label htmlFor="edicaoLivro">Digite a editora do livro:</label>
                         <select id="editora" className='dadoDoAnuncio' value={editoraValue} onChange={(e) => setEditoraValue(e.target.value)}>
   <option value=""></option>
+  <option value="outro">Adicionar outro</option>
   {editoraArray.map(editora => (
     <option key={editora.id} value={editora.id}>{editora.nome}</option>
   ))}
 </select>
-
                     </div>
+                    <div className="dadoAnuncio">
+                        <input type="text" name="editoraLivro" className='dadoDoAnuncio dadoInvisivel' id='editoraCadastro2' placeholder='  digite o nome da editora'/>
+                        </div>
                     <div className="dadoAnuncio">
                         <label htmlFor="isbnLivro">Digite o ISBN:</label>
                         <input type="text" name="isbnLivro" className='dadoDoAnuncio' value={isbnValue} onChange={(e) => setIsbnValue(e.target.value)}/>

@@ -39,13 +39,6 @@ function Anunciar() {
   })
   
 
-
-  // const handleIdiomaChange = (e) => {
-  //   const selectedOption = e.target.options[e.target.selectedIndex];
-  //   const idiomaNome = selectedOption.textContent;
-  //   console.log(idiomaNome);
-  // };
-
 useEffect(() => {
   
   axios.get(`${baseUrl}v1/sbook/idiomas`)
