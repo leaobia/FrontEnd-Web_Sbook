@@ -24,9 +24,6 @@ function Anunciar() {
   let autorCadastro2 = document.getElementById('autorCadastro2')
 
 
-
-
-
   useEffect(() => {
     if(autorCadastro2){
       if (autorValue === "outro") {
@@ -84,6 +81,15 @@ useEffect(() => {
   }
     let idUsuario = localStorage.getItem('id_usuarioLogin') 
 
+   const pegarIdAutores = () => {
+    const autores = document.querySelector("#autores");
+const autorKey = autores.options[autores.selectedIndex].id
+
+localStorage.setItem('autorkey', autorKey)
+
+console.log(autorKey);
+   }
+
 
     if(!idUsuario){
         return(
@@ -128,11 +134,11 @@ useEffect(() => {
                         </div>
                         <div className="dadoAnuncio">
                             <label htmlFor="autorLivro">Digite o autor:</label>
-                            <select id="autores" className='dadoDoAnuncio'  value={autorValue} onChange={(e) => setAutorValue(e.target.value)}>
-      <option value=""></option>
+                            <select id="autores" className='dadoDoAnuncio'  value={autorValue} onChange={(e) => setAutorValue(e.target.value)} onBlur={pegarIdAutores}>
+      <option value="vazio"></option>
       <option value="outro">Adicionar outro</option>
       {autorArray.map(autor => (
-        <option key={autor.id} value={autor.id}>{autor.nome}</option>
+        <option id={autor.id} value={autor.nome}>{autor.nome}</option>
       ))}
     </select>
                         </div>
