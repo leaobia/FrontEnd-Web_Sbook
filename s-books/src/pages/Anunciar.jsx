@@ -21,11 +21,30 @@ function Anunciar() {
   const [idiomaValue, setIdiomaValue] = useState('');
   const [autorValue, setAutorValue] = useState('');
 
-  const handleIdiomaChange = (e) => {
-    const selectedOption = e.target.options[e.target.selectedIndex];
-    const idiomaNome = selectedOption.textContent;
-    console.log(idiomaNome);
-  };
+  let autorCadastro2 = document.getElementById('autorCadastro2')
+
+
+
+
+
+  useEffect(() => {
+    if(autorCadastro2){
+      if (autorValue === "outro") {
+        autorCadastro2.classList.remove("dadoInvisivel");
+      } else {
+        autorCadastro2.classList.add("dadoInvisivel");
+      }
+    }
+
+  })
+  
+
+
+  // const handleIdiomaChange = (e) => {
+  //   const selectedOption = e.target.options[e.target.selectedIndex];
+  //   const idiomaNome = selectedOption.textContent;
+  //   console.log(idiomaNome);
+  // };
 
 useEffect(() => {
   
@@ -118,10 +137,14 @@ useEffect(() => {
                             <label htmlFor="autorLivro">Digite o autor:</label>
                             <select id="autores" className='dadoDoAnuncio'  value={autorValue} onChange={(e) => setAutorValue(e.target.value)}>
       <option value=""></option>
+      <option value="outro">Adicionar outro</option>
       {autorArray.map(autor => (
         <option key={autor.id} value={autor.id}>{autor.nome}</option>
       ))}
     </select>
+                        </div>
+                           <div className="dadoAnuncio">
+                        <input type="text" name="autorLivro" className='dadoDoAnuncio dadoInvisivel' id='autorCadastro2' placeholder='  digite o nome do autor'/>
                         </div>
                         <div className="dadoAnuncio">
                             <label htmlFor="idiomaLivro">Digite o idioma do livro:</label>
@@ -132,6 +155,7 @@ useEffect(() => {
       ))}
     </select>
                         </div>
+                     
                     </div>
                     <div className="dadoAnuncio sinopseAnuncio">
                         <label htmlFor="sinopse">Sinopse:</label>

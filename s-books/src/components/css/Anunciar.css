@@ -251,6 +251,17 @@
   place-content: center;
   width: 100%;
 }
+
+.d-none{
+  display: none;
+}
+
+.dadoInvisivel{
+width: 1px;
+height: 1px;
+  border: .1px solid transparent;
+  border-radius: 0;
+}
   
 @media (max-width:700px) {
     .queroAnunciar h1{
