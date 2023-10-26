@@ -338,6 +338,13 @@
     height: 70vh;
 }
 
+.fotoIconPequeno{
+    border: 1px solid transparent;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
 @media (max-width:1500px) {
         .tabelaConfigDados{
             height: 75vh;

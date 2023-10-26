@@ -90,6 +90,15 @@ localStorage.setItem('autorkey', autorKey)
 console.log(autorKey);
    }
 
+   const pegarIdIdiomas= () => {
+    const autores = document.querySelector("#idiomas");
+const autorKey = autores.options[autores.selectedIndex].id
+
+localStorage.setItem('idiomakey', autorKey)
+
+console.log(autorKey);
+   }
+
 
     if(!idUsuario){
         return(
@@ -147,10 +156,10 @@ console.log(autorKey);
                         </div>
                         <div className="dadoAnuncio">
                             <label htmlFor="idiomaLivro">Digite o idioma do livro:</label>
-                            <select id="idiomas" className='dadoDoAnuncio' value={idiomaValue} onChange={(e) => setIdiomaValue(e.target.value)} >
+                            <select id="idiomas" className='dadoDoAnuncio' value={idiomaValue} onChange={(e) => setIdiomaValue(e.target.value)} onBlur={pegarIdIdiomas}>
       <option value=""></option>
       {idiomaArray.map(idioma => (
-        <option key={idioma.id} value={idioma.id}>{idioma.nome}</option>
+        <option id={idioma.id} value={idioma.nome}>{idioma.nome}</option>
       ))}
     </select>
                         </div>

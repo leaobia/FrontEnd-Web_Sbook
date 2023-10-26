@@ -1,4 +1,7 @@
 
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import logo from './img/Logo.png';
 import imageLogin from './img/imagemLogin.png'
 import userProfile from './img/Vector.png'
@@ -9,7 +12,7 @@ import imagemSenhaRedefinidaComSucesso from './img/redefinidacomsucesso.png'
 import imagemCodigoRecuperacao from './img/imgCodigoDeRecuperacao.png'
 import imagemRedefinirSenha from './img/recuperarContaimg.png'
 import { baseUrl } from '../url';
-import React, { useEffect, useState } from 'react';
+
 
 import PasswordInput from './PasswordInput';
 
@@ -31,10 +34,33 @@ import './css/Cadastro.css'
 
 import './css/Reset.css'
 
-
+let idUsuario = localStorage.getItem('id_usuarioLogin') 
 
 
 function Header() {
+
+    const [fotoUsuario, setFotoUser] = useState('');
+
+    useEffect(() => {
+        axios.get(`${baseUrl}v1/sbook/usuario/${idUsuario}`)
+          .then(response => {
+          
+            let foto = response.data.dados.foto
+    
+    
+           setFotoUser(foto)
+          })
+          .catch(error => {
+            console.error('Erro ao obter dados do usuario:', error);
+          })
+      });
+    
+    setTimeout(() => {
+        if(idUsuario){
+            document.getElementById('iconeDePessoa').src = fotoUsuario
+            document.getElementById('iconeDePessoa').classList.add('fotoIconPequeno')
+        }
+      });
 
 
     const storedUsuario = localStorage.getItem('usuario');
@@ -1118,7 +1144,7 @@ function Header() {
                         <button className='userProfileButton d-flex' id='botaoLogin' onClick={openModalPai} ><img src={userProfile} alt="icone de pessoa" className='imgHeader' /> <span>Entrar</span></button>
 
                         <div className='userMenuIcons'>
-                            <Link to='/perfil' className='d-none' id='userProfileButton'><img src={userProfile} alt="icone de pessoa" /></Link>
+                            <Link to='/perfil' className='d-none' id='userProfileButton'><img src={userProfile} alt="icone de pessoa" id='iconeDePessoa'/></Link>
                             <Link to='/favoritos' className='link'><img src={userFavorites} alt="icone de coração para ver os favoritos" className='imgHeader' /></Link>
                             <Link to='/chat' className='link'><img src={userChats} alt="icone de chat para ver os chats enviados" className='imgHeader' /></Link>
                         </div>
