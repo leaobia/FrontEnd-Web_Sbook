@@ -58,6 +58,15 @@ function Anunciar2() {
         localStorage.setItem('editoraValue', editoraValue)
     }
 
+    const pegarIdEditora = () => {
+        const autores = document.querySelector("#editora");
+    const autorKey = autores.options[autores.selectedIndex].id
+    
+    localStorage.setItem('editorakey', autorKey)
+    
+    console.log(autorKey);
+       }
+
     return (
         <div className="queroAnunciar">
             <div className="sideBarContainer">
@@ -85,11 +94,11 @@ function Anunciar2() {
                     </div>
                     <div className="dadoAnuncio">
                         <label htmlFor="edicaoLivro">Digite a editora do livro:</label>
-                        <select id="editora" className='dadoDoAnuncio' value={editoraValue} onChange={(e) => setEditoraValue(e.target.value)}>
+                        <select id="editora" className='dadoDoAnuncio' value={editoraValue} onChange={(e) => setEditoraValue(e.target.value)} onBlur= {pegarIdEditora}>
   <option value=""></option>
   <option value="outro">Adicionar outro</option>
   {editoraArray.map(editora => (
-    <option key={editora.id} value={editora.id}>{editora.nome}</option>
+    <option id={editora.id} value={editora.id}>{editora.nome}</option>
   ))}
 </select>
                     </div>

@@ -2,19 +2,27 @@ import '../components/css/Anunciar.css'
 import { Link } from "react-router-dom"
 function Anunciar4() {
 
-  let cidadeUsuario = localStorage.getItem('cidadeUsuario')
   let nomeDoLivroCadastro = localStorage.getItem('nomeDoLivroCadastro')
+
   let nomeDoAutorCadastro = localStorage.getItem('nomeDoAutorCadastroLivro')
+  let keyDoAutorCadastro = localStorage.getItem('autorKey')
+
   let idiomas = localStorage.getItem('idiomas')
+  let idiomaKey = localStorage.getItem('idiomaKey')
+
   let textAreaCadastro = localStorage.getItem('textAreaCadastro')
   let isbnValue = localStorage.getItem('isbnValue')
   let anoValue = localStorage.getItem('anoValue')
   let pagValue = localStorage.getItem('pagValue')
   let edicaoValue = localStorage.getItem('edicaoValue')
+
   let editoraValue = localStorage.getItem('editoraValue')
+  let editoraKey = localStorage.getItem('editoraKey')
+
   let imgLivro = localStorage.getItem('dataImage')
   let imgLivro2 = localStorage.getItem('dataImage2')
   let imgLivro3 = localStorage.getItem('dataImage3')
+
 
   let estadosSelecionados = localStorage.getItem('estadosSelecionados');
   let generosSelecionados = localStorage.getItem('generosSelecionados');
@@ -23,28 +31,69 @@ function Anunciar4() {
   let nomeUsuario = localStorage.getItem('nomeUsuario')
   let perfilFoto = localStorage.getItem('fotoUsuarioHome')
 
-console.log(estadosSelecionados);
+  let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
+  let estadoUsuario = localStorage.getItem('estadoUsuarioHome')
+
+  let estadosString = ''
+  let generosString = ''
+  let tipoAnuncioString = ''
+
+console.log('Estados selecionados: ', estadosSelecionados);
 if (estadosSelecionados) {
   estadosSelecionados = estadosSelecionados.split(','); 
+  estadosString = estadosSelecionados.join(',');
 }
 if (generosSelecionados) {
   generosSelecionados = generosSelecionados.split(','); 
+  generosString = generosSelecionados.join(',');
 }
 if (tipoAnuncioSelecionados) {
   tipoAnuncioSelecionados = tipoAnuncioSelecionados.split(','); 
+  tipoAnuncioString = tipoAnuncioSelecionados.join(',');
 }
 
-
-let estadosString = estadosSelecionados.join(',');
-
-let generosString = generosSelecionados.join(',');
-let tipoAnuncioString = tipoAnuncioSelecionados.join(',');
-
 const publicarLivro = () => {
-  if(cidadeUsuario && nomeDoAutorCadastro && nomeDoLivroCadastro && idiomas && textAreaCadastro
-    && isbnValue && anoValue && pagValue && edicaoValue && editoraValue && imgLivro && imgLivro2 
+  if(cidadeUsuario && keyDoAutorCadastro && nomeDoLivroCadastro && idiomaKey && textAreaCadastro
+    && isbnValue && anoValue && pagValue && edicaoValue && editoraKey && imgLivro && imgLivro2 
     && imgLivro3 && estadosSelecionados && generosSelecionados && tipoAnuncioSelecionados && nomeUsuario && perfilFoto ){
-      alert('tudo pegado')
+
+      const credentials = {
+        "nome": nomeDoLivroCadastro,
+        "numero_paginas": parseInt(pagValue),
+        "ano_lancamento": parseInt(anoValue), 
+        "descricao": textAreaCadastro,
+        "edicao": edicaoValue, 
+        "isbn": isbnValue, 
+        "preco": null,
+        "id_usuario": 1,
+        "id_estado_livro": 1, 
+        "id_idioma": parseInt(idiomaKey), 
+        "id_editora": {
+          "status_editora": false,
+        "id_editora": parseInt(editoraKey)
+        }, 
+        "fotos": [
+          imgLivro,
+          imgLivro2,
+          imgLivro3
+      ], 
+      "tipos_anuncio": [
+        2,
+        3
+    ],
+    "generos": [
+        6
+    ], 
+    "autores": [
+        {
+            "status_autor": false,
+            "id_autor": parseInt(keyDoAutorCadastro)
+        }
+    ]
+    }
+
+    console.log(credentials);
+
   }else{
     alert('falta dados')
   }
@@ -80,7 +129,7 @@ const publicarLivro = () => {
               <img src={perfilFoto} alt="foto perfil do anunciante" className='fotoUser' />
               <div className="nomeAnunciante">
                 <p>{nomeUsuario}</p>
-                <p>kkk</p>
+                <p>{cidadeUsuario},{estadoUsuario}</p>
               </div>
             </div>
           </div>

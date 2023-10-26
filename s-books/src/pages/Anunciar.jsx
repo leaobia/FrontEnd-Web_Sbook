@@ -59,6 +59,8 @@ useEffect(() => {
     });
 });
     let cidadeUsuario = localStorage.getItem('cidadeUsuario')
+
+
     const pegarValores = () => {
 
        let nomeDoLivroCadastro = document.getElementById('nomeDoLivroCadastro').value
@@ -76,9 +78,13 @@ useEffect(() => {
        localStorage.setItem('idiomas', idiomas)
        localStorage.setItem('textAreaCadastro', textAreaCadastro)
     } 
+
+
       const abrirLogin = () => {
     document.getElementById('botaoLogin').click()
   }
+
+  
     let idUsuario = localStorage.getItem('id_usuarioLogin') 
 
    const pegarIdAutores = () => {

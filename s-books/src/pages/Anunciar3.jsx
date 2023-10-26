@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FetchEstadoLivro, FetchGeneros, FetchTipoAnuncio } from '../module/Funcoes';
 
+// import RadioGroup from "@mui/material/RadioGroup";
+// import Radio from "@mui/material/Radio";
+
 function Anunciar3() {
 
   const [generos, setGeneros] = useState([]);
@@ -9,10 +12,14 @@ function Anunciar3() {
   const [tipoAnuncio, setTipoAnuncio] = useState([]);
 
   const [generosSelecionados, setGenerosSelecionados] = useState([]);
+  // const [generosSelecionadosId, setGenerosSelecionadosId] = useState([]);
+  // const [generosSelecionadosNome, setGenerosSelecionadosNome] = useState([]);
   const [estadosSelecionados, setEstadosSelecionados] = useState([]);
   const [tipoAnuncioSelecionados, setTipoAnuncioSelecionados] = useState([]);
 
   const [cidadeUsuario, setCidadeUsuario] = useState('');
+
+
 
   useEffect(() => {
 
@@ -63,13 +70,9 @@ function Anunciar3() {
     }
   }
 
-  function handleCheckboxChange2(estadoLivro) {
-    if (estadosSelecionados.includes(estadoLivro)) {
-      setEstadosSelecionados(estadosSelecionados.filter(item => item !== estadoLivro));
-    } else {
-      setEstadosSelecionados([...estadosSelecionados, estadoLivro]);
-    }
-  }
+  const handleCheckboxChange2 = (estadoLivro) => {
+    setEstadosSelecionados(estadoLivro)
+  };
 
   function handleCheckboxChange3(tipoAnuncio) {
     if (tipoAnuncioSelecionados.includes(tipoAnuncio)) {
@@ -80,11 +83,23 @@ function Anunciar3() {
   }
 
   function coletarDados() {
-    console.log(estadosSelecionados, tipoAnuncioSelecionados,generosSelecionados);
+    console.log('Dados crus: ', estadosSelecionados, tipoAnuncioSelecionados,generosSelecionados);
+
+    let arrayId = []
+    let arrayNome = []
+
+    generosSelecionados.map(generosSelecionados => {
+      arrayNome.push(generosSelecionados.nome)
+      arrayId.push(generosSelecionados.id)
+    })
+
+    console.log('ArrayNome', arrayNome);
+    console.log('ArrayId', arrayId);
+
     localStorage.setItem('tipoAnuncioSelecionados', tipoAnuncioSelecionados)
     localStorage.setItem('estadosSelecionados', estadosSelecionados)
-    localStorage.setItem('generosSelecionados', generosSelecionados)  
-    
+    localStorage.setItem('generosSelecionados', arrayNome)  
+    localStorage.setItem('generosSelecionadosId', arrayId)  
   }
 
   return (
@@ -99,35 +114,35 @@ function Anunciar3() {
       <div className="dadosPersonalizados">
         <p>Selecione os gêneros que seu livro mais se encaixa:</p>
         <div className="dadosGenero">
-          {generos.map(genero => (
-            <label key={genero}>
-              <input
-                type="checkbox"
-                value={genero}
-                className='check'
-                onChange={() => handleCheckboxChange(genero)}
-              />
-              {genero}
-            </label>
-          ))}
-        </div>
+  {generos.map(genero => (
+    <label key={genero.id}>
+      <input
+        type="checkbox"
+        value={genero.id}
+        className='check'
+        onChange={() => handleCheckboxChange(genero)}
+      />
+      {genero.nome}
+    </label>
+  ))}
+</div>
       </div>
       <div className="dadosPersonalizados">
-        <p>Selecione as condições do livro:</p>
-        <div className="dadosGenero">
-          {estadoLivro.map(estado => (
-            <label key={estado}>
-              <input
-                type="checkbox"
-                className='check'
-                value={estado}
-                onChange={() => handleCheckboxChange2(estado)}
-              />
-              {estado}
-            </label>
-          ))}
-        </div>
-      </div>
+  <p>Selecione as condições do livro:</p>
+  <div className="dadosGenero">
+    {estadoLivro.map(estado => (
+      <label key={estado}>
+        <input
+          type="radio"
+          name="estadosSelecionados"
+          value={estado}
+          onChange={(event) => handleCheckboxChange2(event.target.value)}
+        />
+        {estado}
+      </label>
+    ))}
+  </div>
+</div>
       <div className="dadosPersonalizados">
         <p>Que tipo de negociação será feita com o livro:</p>
         <div className="dadosGenero">
