@@ -26,6 +26,8 @@ function Anunciar4() {
 
   let estadosSelecionados = localStorage.getItem('estadosSelecionados');
   let generosSelecionados = localStorage.getItem('generosSelecionados');
+  let generosSelecionadosId = localStorage.getItem('generosSelecionadosId');
+  console.log('generosId', generosSelecionadosId);
   let tipoAnuncioSelecionados = localStorage.getItem('tipoAnuncioSelecionados');
 
   let nomeUsuario = localStorage.getItem('nomeUsuario')
@@ -42,6 +44,11 @@ console.log('Estados selecionados: ', estadosSelecionados);
 if (estadosSelecionados) {
   estadosSelecionados = estadosSelecionados.split(','); 
   estadosString = estadosSelecionados.join(',');
+}
+if(generosSelecionadosId){
+  generosSelecionadosId = generosSelecionadosId.split(',');
+  generosSelecionadosId = generosSelecionadosId.map(id => parseInt(id));
+  console.log(generosSelecionadosId);
 }
 if (generosSelecionados) {
   generosSelecionados = generosSelecionados.split(','); 
@@ -81,9 +88,7 @@ const publicarLivro = () => {
         2,
         3
     ],
-    "generos": [
-        6
-    ], 
+    "generos": generosSelecionadosId, 
     "autores": [
         {
             "status_autor": false,
