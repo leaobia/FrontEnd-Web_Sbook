@@ -38,7 +38,10 @@ export async function FetchEstadoLivro() {
 export async function FetchTipoAnuncio() {
   try {
     const response = await axios.get(`${baseUrl}v1/sbook/tipo-anuncio`);
-    const tipo_anuncio = response.data.tipos.map(tipos => tipos.tipo); 
+    const tipo_anuncio = response.data.tipos.map(tipos => ({
+      id: tipos.id,
+      tipo: tipos.tipo
+    })); 
     return tipo_anuncio;
   } catch (error) {
     console.error('Erro ao obter dados do tipo de anuncio:', error);

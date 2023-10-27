@@ -25,10 +25,13 @@ function Anunciar4() {
 
 
   let estadosSelecionados = localStorage.getItem('estadosSelecionados');
+  let estadosSelecionadosId = localStorage.getItem('estadosSelecionadosId');
+
   let generosSelecionados = localStorage.getItem('generosSelecionados');
   let generosSelecionadosId = localStorage.getItem('generosSelecionadosId');
-  console.log('generosId', generosSelecionadosId);
+
   let tipoAnuncioSelecionados = localStorage.getItem('tipoAnuncioSelecionados');
+  let tipoAnuncioSelecionadosId = localStorage.getItem('tipoAnuncioSelecionadosId');
 
   let nomeUsuario = localStorage.getItem('nomeUsuario')
   let perfilFoto = localStorage.getItem('fotoUsuarioHome')
@@ -40,15 +43,23 @@ function Anunciar4() {
   let generosString = ''
   let tipoAnuncioString = ''
 
-console.log('Estados selecionados: ', estadosSelecionados);
+//console.log('Estados selecionados: ', estadosSelecionados);
+
 if (estadosSelecionados) {
   estadosSelecionados = estadosSelecionados.split(','); 
   estadosString = estadosSelecionados.join(',');
 }
+
+if(estadosSelecionadosId){
+  estadosSelecionadosId= estadosSelecionadosId.split(',');
+  estadosSelecionadosId = estadosSelecionadosId.map(id => parseInt(id));
+  console.log('estado id:',estadosSelecionadosId);
+}
+
 if(generosSelecionadosId){
   generosSelecionadosId = generosSelecionadosId.split(',');
   generosSelecionadosId = generosSelecionadosId.map(id => parseInt(id));
-  console.log(generosSelecionadosId);
+  console.log('genero id:',generosSelecionadosId);
 }
 if (generosSelecionados) {
   generosSelecionados = generosSelecionados.split(','); 
@@ -59,10 +70,16 @@ if (tipoAnuncioSelecionados) {
   tipoAnuncioString = tipoAnuncioSelecionados.join(',');
 }
 
+if(tipoAnuncioSelecionadosId){
+  tipoAnuncioSelecionadosId= tipoAnuncioSelecionadosId.split(',');
+  tipoAnuncioSelecionadosId= tipoAnuncioSelecionadosId.map(id => parseInt(id));
+  console.log('tipo id:',tipoAnuncioSelecionadosId);
+}
+
 const publicarLivro = () => {
   if(cidadeUsuario && keyDoAutorCadastro && nomeDoLivroCadastro && idiomaKey && textAreaCadastro
     && isbnValue && anoValue && pagValue && edicaoValue && editoraKey && imgLivro && imgLivro2 
-    && imgLivro3 && estadosSelecionados && generosSelecionados && tipoAnuncioSelecionados && nomeUsuario && perfilFoto ){
+    && imgLivro3 && estadosSelecionados && generosSelecionadosId && tipoAnuncioSelecionadosId && nomeUsuario && perfilFoto ){
 
       const credentials = {
         "nome": nomeDoLivroCadastro,

@@ -91,9 +91,17 @@ function Anunciar3() {
     let arrayIdEstado = []
     let arrayNomeEstado = []
 
+    let arrayIdTipo = []
+    let arrayNomeTipo = []
+
     generosSelecionados.map(generosSelecionados => {
       arrayNome.push(generosSelecionados.nome)
       arrayId.push(generosSelecionados.id)
+    })
+
+    tipoAnuncioSelecionados.map(tipo => {
+      arrayNomeTipo.push(tipo.tipo)
+      arrayIdTipo.push(tipo.id)
     })
 
 
@@ -101,13 +109,8 @@ function Anunciar3() {
       arrayIdEstado.push(estadosSelecionados.id)
 
 
-    console.log('ArrayNome', arrayNome);
-    console.log('ArrayId', arrayId);
-
-    console.log('ArrayNomeEstado', arrayNomeEstado);
-    console.log('ArrayIdEstado', arrayIdEstado);
-
-    localStorage.setItem('tipoAnuncioSelecionados', tipoAnuncioSelecionados)
+    localStorage.setItem('tipoAnuncioSelecionados', arrayNomeTipo)
+    localStorage.setItem('tipoAnuncioSelecionadosId', arrayIdTipo)
 
     localStorage.setItem('estadosSelecionados', arrayNomeEstado)
     localStorage.setItem('estadosSelecionadosId', arrayIdEstado)  
@@ -161,15 +164,15 @@ function Anunciar3() {
         <p>Que tipo de negociação será feita com o livro:</p>
         <div className="dadosGenero">
           {tipoAnuncio.map(tipo => (
-            <label key={tipo}>
-              <input
-                type="checkbox"
-                className='check'
-                value={tipo}
-                onChange={() => handleCheckboxChange3(tipo)}
-              />
-              {tipo}
-            </label>
+           <label key={tipo.id}>
+           <input
+             type="checkbox"
+             value={tipo.id}
+             className='check'
+             onChange={() => handleCheckboxChange3(tipo)}
+           />
+           {tipo.tipo}
+         </label>
           ))}
         </div>
       </div>
