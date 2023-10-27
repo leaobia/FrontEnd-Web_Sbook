@@ -88,16 +88,30 @@ function Anunciar3() {
     let arrayId = []
     let arrayNome = []
 
+    let arrayIdEstado = []
+    let arrayNomeEstado = []
+
     generosSelecionados.map(generosSelecionados => {
       arrayNome.push(generosSelecionados.nome)
       arrayId.push(generosSelecionados.id)
     })
 
+
+      arrayNomeEstado.push(estadosSelecionados.estado)
+      arrayIdEstado.push(estadosSelecionados.id)
+
+
     console.log('ArrayNome', arrayNome);
     console.log('ArrayId', arrayId);
 
+    console.log('ArrayNomeEstado', arrayNomeEstado);
+    console.log('ArrayIdEstado', arrayIdEstado);
+
     localStorage.setItem('tipoAnuncioSelecionados', tipoAnuncioSelecionados)
-    localStorage.setItem('estadosSelecionados', estadosSelecionados)
+
+    localStorage.setItem('estadosSelecionados', arrayNomeEstado)
+    localStorage.setItem('estadosSelecionadosId', arrayIdEstado)  
+
     localStorage.setItem('generosSelecionados', arrayNome)  
     localStorage.setItem('generosSelecionadosId', arrayId)  
   }
@@ -131,15 +145,15 @@ function Anunciar3() {
   <p>Selecione as condições do livro:</p>
   <div className="dadosGenero">
     {estadoLivro.map(estado => (
-      <label key={estado}>
-        <input
+       <label key={estado.id}>
+       <input
           type="radio"
           name="estadosSelecionados"
-          value={estado}
-          onChange={(event) => handleCheckboxChange2(event.target.value)}
+          value={estado.estado}
+          onChange={(event) => handleCheckboxChange2(estado)}
         />
-        {estado}
-      </label>
+       {estado.estado}
+     </label>
     ))}
   </div>
 </div>

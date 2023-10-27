@@ -23,7 +23,10 @@ export async function FetchGeneros() {
 export async function FetchEstadoLivro() {
   try {
     const response = await axios.get(`${baseUrl}v1/sbook/estado-livro`);
-    const estados = response.data.estados.map(estado => estado.estado); 
+    const estados = response.data.estados.map(estado => ({
+      id: estado.id,
+      estado: estado.estado
+    })); 
     return estados;
   } catch (error) {
     console.error('Erro ao obter dados do estado do livro:', error);
