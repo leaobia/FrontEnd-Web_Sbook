@@ -43,6 +43,9 @@ function Anunciar4() {
   let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
   let estadoUsuario = localStorage.getItem('estadoUsuarioHome')
 
+  let precoLivro = localStorage.getItem('precoLivro')
+  let idUsuario = localStorage.getItem('id_usuarioLogin') 
+
   let estadosString = ''
   let generosString = ''
   let tipoAnuncioString = ''
@@ -92,8 +95,8 @@ const publicarLivro = () => {
         "descricao": textAreaCadastro,
         "edicao": edicaoValue, 
         "isbn": isbnValue, 
-        "preco": null,
-        "id_usuario": 1,
+        "preco": precoLivro,
+        "id_usuario": idUsuario,
         "id_estado_livro": parseInt(estadosSelecionadosId), 
         "id_idioma": parseInt(idiomaKey), 
         "id_editora": {

@@ -15,6 +15,8 @@ function Anunciar3() {
 
   const [cidadeUsuario, setCidadeUsuario] = useState('');
 
+  const [precoLivroValor, setPrecoLivro] = useState('');
+
 
   let precoLivro = document.getElementById('precoLivro')
 
@@ -23,8 +25,10 @@ function Anunciar3() {
       tipoAnuncioSelecionados.map(tipo => {
   if (tipo.tipo.includes('Venda')) {
         precoLivro.classList.remove("dadoInvisivel");
+        setPrecoLivro(precoLivro.value)
       } else {
         precoLivro.classList.add("dadoInvisivel");
+        setPrecoLivro('')
       }
       })
     
@@ -126,6 +130,8 @@ function Anunciar3() {
 
     localStorage.setItem('estadosSelecionados', arrayNomeEstado)
     localStorage.setItem('estadosSelecionadosId', arrayIdEstado)  
+
+    localStorage.setItem('precoLivro', precoLivroValor)
 
     localStorage.setItem('generosSelecionados', arrayNome)  
     localStorage.setItem('generosSelecionadosId', arrayId)  
