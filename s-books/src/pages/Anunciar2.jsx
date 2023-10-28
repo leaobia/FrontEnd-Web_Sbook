@@ -7,8 +7,7 @@ import { Link } from "react-router-dom"
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { baseUrl } from '../url';
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage } from "../adapters/firebase";
+
 
 let cidadeUsuario = localStorage.getItem('cidadeUsuario')
 
@@ -52,73 +51,6 @@ function Anunciar2() {
           });
       });
 
-      const handleUpload = () => {
-        
-        const file = localStorage.getItem('dataImage')
-
-        console.log('file', file);
-        const file2 = localStorage.getItem('dataImage2')
-        const file3 = localStorage.getItem('dataImage3')
-
-        console.log('fileName', file.name);
-        console.log(file2);
-
-        if(!file || !file2 || !file3){
-           return;
-        }
-
-    const storageRef = ref(storage, `images/${file.name}`)
-    const uploadTask = uploadBytesResumable(storageRef, file)
-
-    const storageRef2 = ref(storage, `images/${file2}`);
-    const uploadTask2 = uploadBytesResumable(storageRef2, file2);
-  
-    const storageRef3 = ref(storage, `images/${file3}`);
-    const uploadTask3 = uploadBytesResumable(storageRef3, file3);
-
-    uploadTask.on(
-        "state_changed",
-        snapshot => {
-
-        }, 
-        error => {
-            alert(error)
-        },
-        () => {
-            getDownloadURL(uploadTask.snapshot.ref).then(url => {
-                localStorage.setItem('dataImageURL', url)
-            })
-        }
-    )
-    uploadTask2.on(
-        "state_changed",
-        snapshot => {
-
-        }, 
-        error => {
-            alert(error)
-        },
-        () => {
-            getDownloadURL(uploadTask2.snapshot.ref).then(url => {
-                localStorage.setItem('dataImageURL2', url)
-            })
-        }
-    )
-    uploadTask3.on(
-        "state_changed",
-        snapshot => {
-
-        }, 
-        error => {
-            alert(error)
-        },
-        () => {
-            getDownloadURL(uploadTask3.snapshot.ref).then(url => {
-                localStorage.setItem('dataImageURL3', url)
-            })
-        }
-    )
-      }
 
     function coletarDados(){
         localStorage.setItem('anoValue', anoValue)
@@ -127,15 +59,15 @@ function Anunciar2() {
         localStorage.setItem('edicaoValue', edicaoValue)
         localStorage.setItem('editoraValue', editoraValue)
 
-        const file = localStorage.getItem('dataImage')
-        const file2 = localStorage.getItem('dataImage2')
-        const file3 = localStorage.getItem('dataImage3')
+        // const file = localStorage.getItem('dataImage')
+        // const file2 = localStorage.getItem('dataImage2')
+        // const file3 = localStorage.getItem('dataImage3')
 
-        if(file && file2 && file3){
-            handleUpload()
-        }else{
-            alert('preencha todas as imagens')
-        }
+        // if(file && file2 && file3){
+        //     handleUpload()
+        // }else{
+        //     alert('preencha todas as imagens')
+        // }
        
     }
 

@@ -1,25 +1,48 @@
 import React from 'react';
 
+import { ref, uploadBytesResumable, getDownloadURL, getFileBlob } from "firebase/storage";
+import { storage } from "../adapters/firebase";
+
 function Upload() {
+
   function mudarFoto(e) {
+
     const inputFile = e.target;
+
     const pictureImage = document.querySelector(".picture__image");
 
     const file = inputFile.files[0];
-    console.log(file);
-    localStorage.setItem('dataImage', file);
 
+    
     if (file) {
       const img = document.createElement("img");
 
-
-      // Atribui a URL da imagem diretamente ao src
       img.src = URL.createObjectURL(file);
-   
+         
       img.classList.add("picture__img");
 
       pictureImage.textContent = "";
       pictureImage.appendChild(img);
+
+      const storageRef = ref(storage, `images/${file.name}`)
+const uploadTask = uploadBytesResumable(storageRef, file)
+
+uploadTask.on(
+  "state_changed",
+  snapshot => {
+
+  }, 
+  error => {
+      alert(error)
+  },
+  () => {
+      getDownloadURL(uploadTask.snapshot.ref).then(url => {
+        console.log(url);
+          localStorage.setItem('dataImageURL', url)
+      })
+  }
+)
+
     } else {
       pictureImage.textContent = "";
     }

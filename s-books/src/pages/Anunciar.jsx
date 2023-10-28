@@ -58,7 +58,7 @@ useEffect(() => {
       console.error('Erro ao obter dados dos autores', error);
     });
 });
-    let cidadeUsuario = localStorage.getItem('cidadeUsuario')
+    let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
 
 
     const pegarValores = () => {
@@ -105,7 +105,7 @@ console.log(autorKey);
    }
 
    let idioma = localStorage.getItem('idiomakey')
-   //console.log('idiomaId', idioma);
+   console.log('idiomaId');
 
 
     if(!idUsuario){

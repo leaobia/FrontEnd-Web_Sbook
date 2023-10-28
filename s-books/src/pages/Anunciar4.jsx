@@ -1,5 +1,6 @@
 import '../components/css/Anunciar.css'
 import { Link } from "react-router-dom"
+import { baseUrl } from '../url'
 function Anunciar4() {
 
   let nomeDoLivroCadastro = localStorage.getItem('nomeDoLivroCadastro')
@@ -23,15 +24,13 @@ function Anunciar4() {
   let editoraKey = localStorage.getItem('editorakey')
   console.log('keyEditora',editoraKey);
 
-  let imgLivro = localStorage.getItem('dataImage')
-  let imgLivro2 = localStorage.getItem('dataImage2')
-  let imgLivro3 = localStorage.getItem('dataImage3')
-
   let imgLivroURL = localStorage.getItem('dataImageURL')
   let imgLivro2URL = localStorage.getItem('dataImageURL2')
   let imgLivro3URL = localStorage.getItem('dataImageURL3')
 
-  console.log(imgLivro2URL);
+  let precoLiVRO = localStorage.getItem('precoLivro')
+console.log(precoLiVRO);
+
 
 
   let estadosSelecionados = localStorage.getItem('estadosSelecionados');
@@ -90,9 +89,10 @@ if(tipoAnuncioSelecionadosId){
 }
 
 const publicarLivro = () => {
-  // if(cidadeUsuario && keyDoAutorCadastro && nomeDoLivroCadastro && idiomaKey && textAreaCadastro
-  //   && isbnValue && anoValue && pagValue && edicaoValue && editoraKey && imgLivro && imgLivro2 
-  //   && imgLivro3 && estadosSelecionadosId && generosSelecionadosId && tipoAnuncioSelecionadosId && nomeUsuario && perfilFoto ){
+
+  if(keyDoAutorCadastro && nomeDoLivroCadastro && idiomaKey && textAreaCadastro
+    && isbnValue && anoValue && pagValue && edicaoValue && editoraKey && imgLivroURL && imgLivro2URL
+    && imgLivro3URL && estadosSelecionadosId && generosSelecionadosId && tipoAnuncioSelecionadosId && precoLiVRO == ''){
 
       const credentials = {
         "nome": nomeDoLivroCadastro,
@@ -102,7 +102,7 @@ const publicarLivro = () => {
         "edicao": edicaoValue, 
         "isbn": isbnValue, 
         "preco": precoLivro,
-        "id_usuario": idUsuario,
+        "id_usuario": parseInt(idUsuario) ,
         "id_estado_livro": parseInt(estadosSelecionadosId), 
         "id_idioma": parseInt(idiomaKey), 
         "id_editora": {
@@ -126,9 +126,27 @@ const publicarLivro = () => {
 
     console.log(credentials);
 
-  // }else{
-  //   alert('falta dados')
-  // }
+    const url = `${baseUrl}v1/sbook/publicar-anuncio`;
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(credentials)
+    })
+        .then(response => response.json())
+        .then(data => {
+
+            console.log(data);
+        })
+        .finally(() => {
+          //window.location.href = '/meusAnuncios';
+        })
+        .catch(error => {
+            console.error("Erro ao publicar livro:", error);
+        });
+
+}
 }
 
 
@@ -177,7 +195,7 @@ const publicarLivro = () => {
         <h3 className='titleContainerDesc'>Informações:</h3>
         <div className="dadosLivro">
           <div className="dadoLivro">
-            <h3>Ano de edição</h3>
+            <h3>Número de edição</h3>
             <p>{edicaoValue}</p>
           </div>
           <div className="dadoLivro">
