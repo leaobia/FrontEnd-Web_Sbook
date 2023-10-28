@@ -27,6 +27,10 @@ function Anunciar4() {
   let imgLivro2 = localStorage.getItem('dataImage2')
   let imgLivro3 = localStorage.getItem('dataImage3')
 
+  let imgLivroURL = localStorage.getItem('dataImageURL')
+  let imgLivro2URL = localStorage.getItem('dataImageURL2')
+  let imgLivro3URL = localStorage.getItem('dataImageURL3')
+
 
   let estadosSelecionados = localStorage.getItem('estadosSelecionados');
   let estadosSelecionadosId = localStorage.getItem('estadosSelecionadosId');
@@ -104,9 +108,9 @@ const publicarLivro = () => {
         "id_editora": parseInt(editoraKey)
         }, 
         "fotos": [
-          imgLivro,
-          imgLivro2,
-          imgLivro3
+          imgLivroURL,
+          imgLivro2URL,
+          imgLivro3URL
       ], 
       "tipos_anuncio": tipoAnuncioSelecionadosId,
     "generos": generosSelecionadosId, 
