@@ -98,7 +98,7 @@ function Anunciar2() {
   <option value=""></option>
   <option value="outro">Adicionar outro</option>
   {editoraArray.map(editora => (
-    <option id={editora.id} value={editora.id}>{editora.nome}</option>
+    <option id={editora.id} value={editora.nome}>{editora.nome}</option>
   ))}
 </select>
                     </div>

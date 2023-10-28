@@ -66,9 +66,8 @@ useEffect(() => {
        let nomeDoLivroCadastro = document.getElementById('nomeDoLivroCadastro').value
        let nomeDoAutorCadastro = autorValue
        let idiomas = idiomaValue
-       let idiomaNome = document.getElementById('idiomas').textContent
-       console.log(idiomaNome);
-       console.log('idiomas;',idiomas);
+      // let idiomaNome = document.getElementById('idiomas').textContent
+
        let textAreaCadastro = document.getElementById('textAreaCadastro').value
 
        console.log(nomeDoLivroCadastro,nomeDoAutorCadastro,idiomas,textAreaCadastro);
@@ -104,6 +103,9 @@ localStorage.setItem('idiomakey', autorKey)
 
 console.log(autorKey);
    }
+
+   let idioma = localStorage.getItem('idiomakey')
+   //console.log('idiomaId', idioma);
 
 
     if(!idUsuario){

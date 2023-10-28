@@ -5,10 +5,13 @@ function Anunciar4() {
   let nomeDoLivroCadastro = localStorage.getItem('nomeDoLivroCadastro')
 
   let nomeDoAutorCadastro = localStorage.getItem('nomeDoAutorCadastroLivro')
-  let keyDoAutorCadastro = localStorage.getItem('autorKey')
+  let keyDoAutorCadastro = localStorage.getItem('autorkey')
+
+  console.log('keyAutor',keyDoAutorCadastro);
 
   let idiomas = localStorage.getItem('idiomas')
-  let idiomaKey = localStorage.getItem('idiomaKey')
+  let idiomaKey = localStorage.getItem('idiomakey')
+  console.log('keyIdioma',idiomaKey);
 
   let textAreaCadastro = localStorage.getItem('textAreaCadastro')
   let isbnValue = localStorage.getItem('isbnValue')
@@ -17,7 +20,8 @@ function Anunciar4() {
   let edicaoValue = localStorage.getItem('edicaoValue')
 
   let editoraValue = localStorage.getItem('editoraValue')
-  let editoraKey = localStorage.getItem('editoraKey')
+  let editoraKey = localStorage.getItem('editorakey')
+  console.log('keyEditora',editoraKey);
 
   let imgLivro = localStorage.getItem('dataImage')
   let imgLivro2 = localStorage.getItem('dataImage2')
@@ -77,9 +81,9 @@ if(tipoAnuncioSelecionadosId){
 }
 
 const publicarLivro = () => {
-  if(cidadeUsuario && keyDoAutorCadastro && nomeDoLivroCadastro && idiomaKey && textAreaCadastro
-    && isbnValue && anoValue && pagValue && edicaoValue && editoraKey && imgLivro && imgLivro2 
-    && imgLivro3 && estadosSelecionados && generosSelecionadosId && tipoAnuncioSelecionadosId && nomeUsuario && perfilFoto ){
+  // if(cidadeUsuario && keyDoAutorCadastro && nomeDoLivroCadastro && idiomaKey && textAreaCadastro
+  //   && isbnValue && anoValue && pagValue && edicaoValue && editoraKey && imgLivro && imgLivro2 
+  //   && imgLivro3 && estadosSelecionadosId && generosSelecionadosId && tipoAnuncioSelecionadosId && nomeUsuario && perfilFoto ){
 
       const credentials = {
         "nome": nomeDoLivroCadastro,
@@ -90,7 +94,7 @@ const publicarLivro = () => {
         "isbn": isbnValue, 
         "preco": null,
         "id_usuario": 1,
-        "id_estado_livro": 1, 
+        "id_estado_livro": parseInt(estadosSelecionadosId), 
         "id_idioma": parseInt(idiomaKey), 
         "id_editora": {
           "status_editora": false,
@@ -101,10 +105,7 @@ const publicarLivro = () => {
           imgLivro2,
           imgLivro3
       ], 
-      "tipos_anuncio": [
-        2,
-        3
-    ],
+      "tipos_anuncio": tipoAnuncioSelecionadosId,
     "generos": generosSelecionadosId, 
     "autores": [
         {
@@ -116,9 +117,9 @@ const publicarLivro = () => {
 
     console.log(credentials);
 
-  }else{
-    alert('falta dados')
-  }
+  // }else{
+  //   alert('falta dados')
+  // }
 }
 
 
