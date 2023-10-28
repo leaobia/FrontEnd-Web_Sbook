@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FetchEstadoLivro, FetchGeneros, FetchTipoAnuncio } from '../module/Funcoes';
 
-// import RadioGroup from "@mui/material/RadioGroup";
-// import Radio from "@mui/material/Radio";
 
 function Anunciar3() {
 
@@ -12,14 +10,27 @@ function Anunciar3() {
   const [tipoAnuncio, setTipoAnuncio] = useState([]);
 
   const [generosSelecionados, setGenerosSelecionados] = useState([]);
-  // const [generosSelecionadosId, setGenerosSelecionadosId] = useState([]);
-  // const [generosSelecionadosNome, setGenerosSelecionadosNome] = useState([]);
   const [estadosSelecionados, setEstadosSelecionados] = useState([]);
   const [tipoAnuncioSelecionados, setTipoAnuncioSelecionados] = useState([]);
 
   const [cidadeUsuario, setCidadeUsuario] = useState('');
 
 
+  let precoLivro = document.getElementById('precoLivro')
+
+  useEffect(() => {
+    if(precoLivro){
+      tipoAnuncioSelecionados.map(tipo => {
+  if (tipo.tipo.includes('Venda')) {
+        precoLivro.classList.remove("dadoInvisivel");
+      } else {
+        precoLivro.classList.add("dadoInvisivel");
+      }
+      })
+    
+    }
+
+  })
 
   useEffect(() => {
 
@@ -77,13 +88,14 @@ function Anunciar3() {
   function handleCheckboxChange3(tipoAnuncio) {
     if (tipoAnuncioSelecionados.includes(tipoAnuncio)) {
       setTipoAnuncioSelecionados(tipoAnuncioSelecionados.filter(item => item !== tipoAnuncio));
+     
     } else {
+      
       setTipoAnuncioSelecionados([...tipoAnuncioSelecionados, tipoAnuncio]);
     }
   }
 
   function coletarDados() {
-    console.log('Dados crus: ', estadosSelecionados, tipoAnuncioSelecionados,generosSelecionados);
 
     let arrayId = []
     let arrayNome = []
@@ -176,12 +188,12 @@ function Anunciar3() {
           ))}
         </div>
       </div>
+      <div className="dadoAnuncio">
+                        <input type="number" name="precoLivro" className='dadoDoAnuncio  personalizeDado dadoInvisivel' id='precoLivro' placeholder='  digite o preco do livro'/>
+                        </div>
       <Link id='continuarAnuncio' to='/anunciar4'><button onClick={coletarDados}>Continuar</button></Link>
     </div>
   );
 }
 
 export default Anunciar3;
-
-
-
