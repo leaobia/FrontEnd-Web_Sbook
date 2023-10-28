@@ -91,7 +91,7 @@ if(tipoAnuncioSelecionadosId){
 const publicarLivro = () => {
 
   if(keyDoAutorCadastro && nomeDoLivroCadastro && idiomaKey && textAreaCadastro
-    && isbnValue && anoValue && pagValue && edicaoValue && editoraKey && imgLivroURL && imgLivro2URL
+    && isbnValue && anoValue && pagValue && edicaoValue && nomeDoAutorCadastro && editoraKey && editoraValue && imgLivroURL && imgLivro2URL
     && imgLivro3URL && estadosSelecionadosId && generosSelecionadosId && tipoAnuncioSelecionadosId && precoLiVRO == ''){
 
       const credentials = {
@@ -107,6 +107,7 @@ const publicarLivro = () => {
         "id_idioma": parseInt(idiomaKey), 
         "id_editora": {
           "status_editora": false,
+          "nome_editora": editoraValue,
         "id_editora": parseInt(editoraKey)
         }, 
         "fotos": [
@@ -119,6 +120,7 @@ const publicarLivro = () => {
     "autores": [
         {
             "status_autor": false,
+            "nome_autor": nomeDoAutorCadastro,
             "id_autor": parseInt(keyDoAutorCadastro)
         }
     ]
