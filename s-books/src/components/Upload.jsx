@@ -6,15 +6,16 @@ function Upload() {
     const pictureImage = document.querySelector(".picture__image");
 
     const file = inputFile.files[0];
+    console.log(file);
+    localStorage.setItem('dataImage', file);
 
     if (file) {
       const img = document.createElement("img");
 
-      console.log('oi');
 
       // Atribui a URL da imagem diretamente ao src
       img.src = URL.createObjectURL(file);
-      localStorage.setItem('dataImage', img.src);
+   
       img.classList.add("picture__img");
 
       pictureImage.textContent = "";

@@ -55,14 +55,19 @@ function Anunciar2() {
       const handleUpload = () => {
         
         const file = localStorage.getItem('dataImage')
+
+        console.log('file', file);
         const file2 = localStorage.getItem('dataImage2')
         const file3 = localStorage.getItem('dataImage3')
+
+        console.log('fileName', file.name);
+        console.log(file2);
 
         if(!file || !file2 || !file3){
            return;
         }
 
-    const storageRef = ref(storage, `images/${file}`)
+    const storageRef = ref(storage, `images/${file.name}`)
     const uploadTask = uploadBytesResumable(storageRef, file)
 
     const storageRef2 = ref(storage, `images/${file2}`);

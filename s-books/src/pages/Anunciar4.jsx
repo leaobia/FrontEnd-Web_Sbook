@@ -31,6 +31,8 @@ function Anunciar4() {
   let imgLivro2URL = localStorage.getItem('dataImageURL2')
   let imgLivro3URL = localStorage.getItem('dataImageURL3')
 
+  console.log(imgLivro2URL);
+
 
   let estadosSelecionados = localStorage.getItem('estadosSelecionados');
   let estadosSelecionadosId = localStorage.getItem('estadosSelecionadosId');
@@ -142,9 +144,9 @@ const publicarLivro = () => {
       <button className='publicarButton' onClick={publicarLivro}>Publicar</button>
       <div className="anuncioDados">
         <div className="fotos">
-        <img src={imgLivro} alt="foto do anuncio" className='fotoAnuncio' />
-        <img src={imgLivro2} alt="foto do anuncio" className='fotoAnuncio' />
-        <img src={imgLivro3} alt="foto do anuncio" className='fotoAnuncio' />
+        <img src={imgLivroURL} alt="foto do anuncio" className='fotoAnuncio' />
+        <img src={imgLivro2URL} alt="foto do anuncio" className='fotoAnuncio' />
+        <img src={imgLivro3URL} alt="foto do anuncio" className='fotoAnuncio' />
         </div>
         
         <div className="dadosAnuncioPrincipal">
