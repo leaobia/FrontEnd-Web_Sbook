@@ -106,8 +106,7 @@ const publicarLivro = () => {
         "id_estado_livro": parseInt(estadosSelecionadosId), 
         "id_idioma": parseInt(idiomaKey), 
         "id_editora": {
-          "status_editora": false,
-          "nome_editora": editoraValue,
+          "status_editora": true,
         "id_editora": parseInt(editoraKey)
         }, 
         "fotos": [
@@ -119,8 +118,7 @@ const publicarLivro = () => {
     "generos": generosSelecionadosId, 
     "autores": [
         {
-            "status_autor": false,
-            "nome_autor": nomeDoAutorCadastro,
+            "status_autor": true,
             "id_autor": parseInt(keyDoAutorCadastro)
         }
     ]
