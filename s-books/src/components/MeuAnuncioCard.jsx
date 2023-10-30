@@ -28,7 +28,7 @@ function MeuAnuncioCard({ anuncio, autor, tipo, endereco, foto }) {
         <p>{tipo.tipo}</p>
       </div>
       <button className='botaoLinkLivro'>
-        <Link to='/livro'>
+        <Link to='/meuLivro'>
           <button className='botaoContainer' onClick={pegarIdAnuncio}>
             {tipo.tipo === 'Doação' ? 'Analisar' :
               tipo.tipo === 'Troca' ? 'Trocar' : 'Comprar'}

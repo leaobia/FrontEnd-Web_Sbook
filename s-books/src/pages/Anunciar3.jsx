@@ -22,12 +22,14 @@ function Anunciar3() {
 
   useEffect(() => {
     if(precoLivro){
+      setPrecoLivro(precoLivro.value)
       tipoAnuncioSelecionados.map(tipo => {
   if (tipo.tipo.includes('Venda')) {
         precoLivro.classList.remove("dadoInvisivel");
         setPrecoLivro(precoLivro.value)
       } else {
         precoLivro.classList.add("dadoInvisivel");
+        precoLivro.value = ''
         setPrecoLivro('')
       }
       })
@@ -131,7 +133,13 @@ function Anunciar3() {
     localStorage.setItem('estadosSelecionados', arrayNomeEstado)
     localStorage.setItem('estadosSelecionadosId', arrayIdEstado)  
 
-    localStorage.setItem('precoLivro', precoLivroValor)
+    console.log('precoLivroValue coletar', precoLivro.value);
+
+    setPrecoLivro(precoLivro.value)
+
+    let precoLivroValue = precoLivro.value
+
+    localStorage.setItem('precoLivro', precoLivroValue)
 
     localStorage.setItem('generosSelecionados', arrayNome)  
     localStorage.setItem('generosSelecionadosId', arrayId)  

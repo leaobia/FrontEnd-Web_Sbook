@@ -17,6 +17,7 @@ function Anunciar4() {
   let textAreaCadastro = localStorage.getItem('textAreaCadastro')
   let isbnValue = localStorage.getItem('isbnValue')
   let anoValue = localStorage.getItem('anoValue')
+  console.log('anoValue', anoValue);
   let pagValue = localStorage.getItem('pagValue')
   let edicaoValue = localStorage.getItem('edicaoValue')
 
@@ -51,9 +52,9 @@ console.log(precoLiVRO);
   let precoLivro = localStorage.getItem('precoLivro')
   let idUsuario = localStorage.getItem('id_usuarioLogin') 
 
-  let estadosString = ''
-  let generosString = ''
-  let tipoAnuncioString = ''
+  let estadosString = ""
+  let generosString = ""
+  let tipoAnuncioString = ""
 
 //console.log('Estados selecionados: ', estadosSelecionados);
 
@@ -90,10 +91,67 @@ if(tipoAnuncioSelecionadosId){
 
 const publicarLivro = () => {
 
-  if(keyDoAutorCadastro && nomeDoLivroCadastro && idiomaKey && textAreaCadastro
-    && isbnValue && anoValue && pagValue && edicaoValue && nomeDoAutorCadastro && editoraKey && editoraValue && imgLivroURL && imgLivro2URL
-    && imgLivro3URL && estadosSelecionadosId && generosSelecionadosId && tipoAnuncioSelecionadosId && precoLiVRO == ''){
 
+  if(precoLiVRO === "" || precoLiVRO === null || precoLiVRO === undefined){
+    console.log('preco');
+  
+    const credentials = {
+      "nome": nomeDoLivroCadastro,
+      "numero_paginas": parseInt(pagValue),
+      "ano_lancamento": parseInt(anoValue), 
+      "descricao": textAreaCadastro,
+      "edicao": edicaoValue, 
+      "isbn": isbnValue, 
+      "preco": null,
+      "id_usuario": parseInt(idUsuario) ,
+      "id_estado_livro": parseInt(estadosSelecionadosId), 
+      "id_idioma": parseInt(idiomaKey), 
+      "id_editora": {
+        "status_editora": true,
+      "id_editora": parseInt(editoraKey)
+      }, 
+      "fotos": [
+        imgLivroURL,
+        imgLivro2URL,
+        imgLivro3URL
+    ], 
+    "tipos_anuncio": tipoAnuncioSelecionadosId,
+  "generos": generosSelecionadosId, 
+  "autores": [
+      {
+          "status_autor": true,
+          "id_autor": parseInt(keyDoAutorCadastro)
+      }
+  ]
+}
+
+console.log(credentials);
+
+const url = `${baseUrl}v1/sbook/publicar-anuncio`;
+fetch(url, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(credentials)
+})
+    .then(response => response.json())
+    .then(data => {
+
+        console.log(data);
+    })
+    .finally(() => {
+      window.location.href = '/meusAnuncios';
+    })
+    .catch(error => {
+        console.error("Erro ao publicar livro2:", error);
+    });
+
+
+}else if(keyDoAutorCadastro && nomeDoLivroCadastro && idiomaKey && textAreaCadastro
+    && isbnValue && anoValue && pagValue && edicaoValue && nomeDoAutorCadastro && editoraKey && editoraValue && imgLivroURL && imgLivro2URL
+    && imgLivro3URL && estadosSelecionadosId && generosSelecionadosId && tipoAnuncioSelecionadosId){
+console.log('certo');
       const credentials = {
         "nome": nomeDoLivroCadastro,
         "numero_paginas": parseInt(pagValue),
@@ -101,7 +159,7 @@ const publicarLivro = () => {
         "descricao": textAreaCadastro,
         "edicao": edicaoValue, 
         "isbn": isbnValue, 
-        "preco": precoLivro,
+        "preco": parseFloat(precoLiVRO),
         "id_usuario": parseInt(idUsuario) ,
         "id_estado_livro": parseInt(estadosSelecionadosId), 
         "id_idioma": parseInt(idiomaKey), 
@@ -140,14 +198,22 @@ const publicarLivro = () => {
             console.log(data);
         })
         .finally(() => {
-          //window.location.href = '/meusAnuncios';
+          window.location.href = '/meusAnuncios';
         })
         .catch(error => {
             console.error("Erro ao publicar livro:", error);
         });
 
+}else{
+  console.log('certamente um erro');
 }
 }
+
+
+
+
+
+
 
 
   return (

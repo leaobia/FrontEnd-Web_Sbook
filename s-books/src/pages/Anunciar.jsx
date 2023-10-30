@@ -92,7 +92,7 @@ const autorKey = autores.options[autores.selectedIndex].id
 
 localStorage.setItem('autorkey', autorKey)
 
-console.log(autorKey);
+//console.log(autorKey);
    }
 
    const pegarIdIdiomas= () => {
@@ -101,11 +101,11 @@ const autorKey = autores.options[autores.selectedIndex].id
 
 localStorage.setItem('idiomakey', autorKey)
 
-console.log(autorKey);
+//console.log(autorKey);
    }
 
    let idioma = localStorage.getItem('idiomakey')
-   console.log('idiomaId');
+   //console.log('idiomaId');
 
 
     if(!idUsuario){

@@ -15,6 +15,7 @@ import Anunciar2 from './pages/Anunciar2';
 import Anunciar4 from './pages/Anunciar4';
 import Anunciar3 from './pages/Anunciar3';
 import MeusAnuncios from './pages/MeusAnuncios';
+import MeuLivro from './pages/MeuLivro';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="/anunciar3" element={<Anunciar3 />} />
             <Route path="/anunciar4" element={<Anunciar4 />} />
             <Route path="/meusAnuncios" element={<MeusAnuncios />} />
+            <Route path="/meuLivro" element={<MeuLivro />} />
           </Routes>
         </div>
 
