@@ -17,10 +17,37 @@ import { Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, Mo
   Textarea,
   Stack, ButtonGroup, Input } from '@chakra-ui/react';
 
+
+  import {
+    Alert,
+    AlertIcon,
+    AlertTitle,
+    AlertDescription,
+  } from '@chakra-ui/react'
+
  // import { FaEye} from 'react-icons/fa';
 import { EditIcon } from '@chakra-ui/icons';
 
 function MeuLivro() {
+
+  const selectElement = document.getElementById('editora');
+const currentYear = new Date().getFullYear();
+const startYear = 1900; // Ano inicial desejado
+
+// Crie um array de anos a partir do ano atual até 1800
+const years = [];
+for (let year = currentYear; year >= startYear; year--) {
+    years.push(year);
+}
+
+// Adicione as opções ao elemento select
+years.forEach(year => {
+    const option = document.createElement('option');
+    option.value = year;
+    option.textContent = year;
+    selectElement.appendChild(option);
+});
+
 
   let cidadeUsuario = localStorage.getItem('cidadeUsuario')
   let idPegarAnuncio = parseInt(localStorage.getItem('getAnuncioById'))
@@ -63,8 +90,6 @@ function MeuLivro() {
 
     axios.get(`${baseUrl}v1/sbook/usuario/${anunciante}`)
       .then(response => {
-        console.log(response);
-        console.log(response);
         localStorage.setItem('nome_anunciante', response.data.dados.nome)
         localStorage.setItem('perfilFotoAnunciante', response.data.dados.foto )
 
@@ -78,22 +103,49 @@ function MeuLivro() {
   let anuncianteNome = localStorage.getItem('nome_anunciante')
   let perfilFotoAnunciante = localStorage.getItem('perfilFotoAnunciante')
 
-  const Form = ({ firstFieldRef, onCancel }) => {
-    return (
-      <Stack spacing={4}>
-        <Input
-          id='nome-anuncio'
-          ref={firstFieldRef}
-          defaultValue={anuncio.anuncio.nome}
-        />
-        <ButtonGroup display='flex' justifyContent='flex-end'>
-          <Button colorScheme='teal'>
-            Save
-          </Button>
-        </ButtonGroup>
-      </Stack>
-    )
-  }
+  const excluirAnuncio = () => {
+    const url = `${baseUrl}v1/sbook/anuncio/${idPegarAnuncio}`;
+
+    fetch(url, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => {
+        console.log(response.status);
+        if(response.status === 200){
+          window.location.href = '/meusAnuncios'
+        }
+    })
+    .catch(error => {
+        if(error){
+          console.log(error);
+          return(
+            <div className="queroAnunciar componenteErro">  
+            <Alert
+        status='error'
+        variant='subtle'
+        flexDirection='column'
+        alignItems='center'
+        justifyContent='center'
+        textAlign='center'
+        height='45vh'
+        width='40vw'
+        borderRadius='20'
+      >
+        <AlertIcon boxSize='40px' mr={0} />
+        <AlertTitle mt={4} mb={1} fontSize='lg'>
+          Erro!
+        </AlertTitle>
+        <AlertDescription maxWidth='sm'>
+          Ocorreu um erro ao excluir o anuncio
+        </AlertDescription>
+      </Alert></div>
+          )
+        }
+    });
+}
 
   if (anuncio.length === 0) {
     return (
@@ -119,7 +171,7 @@ function MeuLivro() {
            <p>Tem certeza de que deseja excluir esse anúncio? Essa ação é irreversível.</p>
           </ModalBody>
           <ModalFooter>
-            <Button>Excluir</Button>
+            <Button onClick={excluirAnuncio}>Excluir</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
@@ -142,10 +194,6 @@ function MeuLivro() {
 
 <select id="editora" className='dadoDoAnuncio'>
   <option value={anuncio.anuncio.ano_lancamento}>{anuncio.anuncio.ano_lancamento}</option>
-  <option value="2023">2023</option>
-  <option value="2022">2022</option>
-  <option value="2021">2021</option>
-  <option value="2020">2020</option>
 </select>
          </div>
 

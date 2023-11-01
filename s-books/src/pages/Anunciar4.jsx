@@ -128,24 +128,35 @@ const publicarLivro = () => {
 console.log(credentials);
 
 const url = `${baseUrl}v1/sbook/publicar-anuncio`;
-fetch(url, {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(credentials)
-})
-    .then(response => response.json())
-    .then(data => {
+// Variável de controle para evitar solicitações redundantes
+let isRequestInProgress = false;
 
-        console.log(data);
+// Verifique se já existe uma solicitação em andamento antes de enviar outra
+if (!isRequestInProgress) {
+    isRequestInProgress = true;
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(credentials)
     })
-    .finally(() => {
-      window.location.href = '/meusAnuncios';
-    })
-    .catch(error => {
-        console.error("Erro ao publicar livro2:", error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.status === 201) {
+                window.location.href = '/meusAnuncios';
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao publicar livro:", error);
+        })
+        .finally(() => {
+            isRequestInProgress = false;
+        });
+}
+
 
 
 }else if(keyDoAutorCadastro && nomeDoLivroCadastro && idiomaKey && textAreaCadastro
@@ -185,6 +196,13 @@ console.log('certo');
     console.log(credentials);
 
     const url = `${baseUrl}v1/sbook/publicar-anuncio`;
+// Variável de controle para evitar solicitações redundantes
+let isRequestInProgress = false;
+
+// Verifique se já existe uma solicitação em andamento antes de enviar outra
+if (!isRequestInProgress) {
+    isRequestInProgress = true;
+
     fetch(url, {
         method: "POST",
         headers: {
@@ -194,15 +212,19 @@ console.log('certo');
     })
         .then(response => response.json())
         .then(data => {
-
             console.log(data);
-        })
-        .finally(() => {
-          window.location.href = '/meusAnuncios';
+            if (data.status === 201) {
+                window.location.href = '/meusAnuncios';
+            }
         })
         .catch(error => {
             console.error("Erro ao publicar livro:", error);
+        })
+        .finally(() => {
+            isRequestInProgress = false;
         });
+}
+
 
 }else{
   console.log('certamente um erro');
