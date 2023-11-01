@@ -41,12 +41,15 @@ for (let year = currentYear; year >= startYear; year--) {
 }
 
 // Adicione as opções ao elemento select
-years.forEach(year => {
+if(selectElement){
+  years.forEach(year => {
     const option = document.createElement('option');
     option.value = year;
     option.textContent = year;
     selectElement.appendChild(option);
 });
+}
+
 
 
   let cidadeUsuario = localStorage.getItem('cidadeUsuario')
