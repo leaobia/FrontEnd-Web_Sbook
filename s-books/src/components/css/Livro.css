@@ -89,6 +89,24 @@
     color: #7E7D7A;
 }
 
+.editortrashicon{
+    width: 50%;
+}
+.botoesEditarMenuLocalContainer{
+    display: flex;
+    width: 7vw;
+    justify-content: space-between ;
+}
+
+.botoesEditarMenuLocalContainer button{
+    width: 4vw;
+}
+
+.dadosEditar{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
 @media (max-width:700px) {
     .dadosAnuncioPrincipal{
         flex-direction: column;
@@ -109,5 +127,17 @@
         height: 30vh;
         margin-left: 25vw;
         margin-bottom: 4vh;
+    }
+
+    .botoesEditarMenuLocalContainer{
+        display: flex;
+        width: 20vw;
+        justify-content: space-between ;
+    }
+    .botoesEditarMenuLocalContainer button{
+        width: 20vw;
+    }
+    .editortrashicon{
+        width: 80%;
     }
 }

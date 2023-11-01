@@ -7,6 +7,18 @@ import { baseUrl } from '../url';
 import axios from 'axios';
 import '../components/css/Livro.css'
 import { Spinner } from '@chakra-ui/react'
+import excluirIcon from '../components/img/excluir.png'
+import editarIcon from '../components/img/editar.png'
+
+import { Calendar } from 'primereact/calendar';
+
+import { Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter,
+   Drawer, DrawerBody, DrawerCloseButton, DrawerHeader, DrawerOverlay, DrawerContent,
+  Textarea,
+  Stack, ButtonGroup, Input } from '@chakra-ui/react';
+
+ // import { FaEye} from 'react-icons/fa';
+import { EditIcon } from '@chakra-ui/icons';
 
 function MeuLivro() {
 
@@ -16,6 +28,12 @@ function MeuLivro() {
  
   const [anuncio, setAnuncio] = useState([]);
   const [generos, setGeneros] = useState([]);
+ // const [nomeAnuncio, setNomeAnuncio] = useState(anuncio.anuncio.nome);
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen: isOpen2, onOpen: onOpen2, onClose: onClose2 } = useDisclosure();
+  const { isOpen: isOpen3, onOpen: onOpen3, onClose: onClose3 } = useDisclosure();
+  //const firstFieldRef = React.useRef(null)
 
 
   let anunciante = localStorage.getItem('id_anunciante')
@@ -60,6 +78,22 @@ function MeuLivro() {
   let anuncianteNome = localStorage.getItem('nome_anunciante')
   let perfilFotoAnunciante = localStorage.getItem('perfilFotoAnunciante')
 
+  const Form = ({ firstFieldRef, onCancel }) => {
+    return (
+      <Stack spacing={4}>
+        <Input
+          id='nome-anuncio'
+          ref={firstFieldRef}
+          defaultValue={anuncio.anuncio.nome}
+        />
+        <ButtonGroup display='flex' justifyContent='flex-end'>
+          <Button colorScheme='teal'>
+            Save
+          </Button>
+        </ButtonGroup>
+      </Stack>
+    )
+  }
 
   if (anuncio.length === 0) {
     return (
@@ -75,9 +109,58 @@ function MeuLivro() {
   }else{
      return (
     <div className='livroContainer'>
+
+<Modal onClose={onClose} isOpen={isOpen} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Excluir anúncio</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+           <p>Tem certeza de que deseja excluir esse anúncio? Essa ação é irreversível.</p>
+          </ModalBody>
+          <ModalFooter>
+            <Button>Excluir</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      <Drawer onClose={onClose2} isOpen={isOpen2} size={'xl'}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Editar anúncio</DrawerHeader>
+          <DrawerBody>
+         
+         <div className="dadosEditar">
+         <Input
+          id='nome-anuncio'
+          placeholder='nome do anuncio'
+          defaultValue={anuncio.anuncio.nome}
+        />
+
+<Textarea placeholder='Descrição do anúncio'  defaultValue={anuncio.anuncio.descricao} />
+
+<select id="editora" className='dadoDoAnuncio'>
+  <option value={anuncio.anuncio.ano_lancamento}>{anuncio.anuncio.ano_lancamento}</option>
+  <option value="2023">2023</option>
+  <option value="2022">2022</option>
+  <option value="2021">2021</option>
+  <option value="2020">2020</option>
+</select>
+         </div>
+
+        
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
                    <div className="sideBarContainer">
                 <Link to='/'>&larr;</Link>
                 <div className="menuLocalContainer">
+                  <div className="botoesEditarMenuLocalContainer">
+                  <button onClick={onOpen2}><img src={editarIcon} alt="icone de editar" className='editortrashicon'/></button>
+                  <button onClick={onOpen
+                  }><img src={excluirIcon} alt="icone de exclusao" className='editortrashicon' /></button>
+                  </div>
                     <span className='nomeDaCidade'>{cidadeUsuario}</span>
                 </div>
             </div>
