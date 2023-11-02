@@ -30,25 +30,31 @@ import { EditIcon } from '@chakra-ui/icons';
 
 function MeuLivro() {
 
-  const selectElement = document.getElementById('editora');
+  //const selectElement = document.getElementById('editora');
 const currentYear = new Date().getFullYear();
-const startYear = 1900; // Ano inicial desejado
+const startYear = 1900; 
 
-// Crie um array de anos a partir do ano atual até 1800
+
 const years = [];
 for (let year = currentYear; year >= startYear; year--) {
     years.push(year);
 }
 
-// Adicione as opções ao elemento select
-if(selectElement){
-  years.forEach(year => {
-    const option = document.createElement('option');
-    option.value = year;
-    option.textContent = year;
-    selectElement.appendChild(option);
-});
-}
+
+
+const [selectElement, setSelectElement] = useState(null);
+
+useEffect(() => {
+  if (selectElement) {
+    years.forEach(year => {
+      const option = document.createElement('option');
+      option.value = year;
+      option.textContent = year;
+      selectElement.appendChild(option);
+    });
+  }
+}, [years]);
+
 
 
 
@@ -195,7 +201,7 @@ if(selectElement){
 
 <Textarea placeholder='Descrição do anúncio'  defaultValue={anuncio.anuncio.descricao} />
 
-<select id="editora" className='dadoDoAnuncio'>
+<select id="editora" className='dadoDoAnuncio' ref={setSelectElement}>
   <option value={anuncio.anuncio.ano_lancamento}>{anuncio.anuncio.ano_lancamento}</option>
 </select>
          </div>

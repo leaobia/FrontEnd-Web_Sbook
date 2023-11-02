@@ -127,7 +127,7 @@ const publicarLivro = () => {
 
 console.log(credentials);
 
-const url = `${baseUrl}v1/sbook/publicar-anuncio`;
+const url = `${baseUrl}v1/sbook/anuncio`;
 // Variável de controle para evitar solicitações redundantes
 let isRequestInProgress = false;
 
@@ -195,7 +195,7 @@ console.log('certo');
 
     console.log(credentials);
 
-    const url = `${baseUrl}v1/sbook/publicar-anuncio`;
+    const url = `${baseUrl}v1/sbook/anuncio`;
 // Variável de controle para evitar solicitações redundantes
 let isRequestInProgress = false;
 
