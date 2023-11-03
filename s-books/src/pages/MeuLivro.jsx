@@ -43,6 +43,7 @@ for (let year = currentYear; year >= startYear; year--) {
 
 
 const [selectElement, setSelectElement] = useState(null);
+const [selectElementIdiomas, setSelectElementIdiomas] = useState(null);
 
 useEffect(() => {
   if (selectElement) {
@@ -55,7 +56,23 @@ useEffect(() => {
   }
 }, [years]);
 
-
+useEffect(() => {
+  
+  axios.get(`${baseUrl}v1/sbook/idiomas`)
+    .then(response => {
+              let idiomas = response.data.idiomas
+              idiomas.forEach(idioma => {
+                const option = document.createElement('option');
+      option.value = idioma.id;
+      option.textContent = idioma.nome;
+      selectElementIdiomas.appendChild(option);
+              })
+             
+    })
+    .catch(error => {
+      console.error('Erro ao obter dados dos idiomas', error);
+    });
+});
 
 
   let cidadeUsuario = localStorage.getItem('cidadeUsuario')
@@ -203,6 +220,9 @@ useEffect(() => {
 
 <select id="editora" className='dadoDoAnuncio' ref={setSelectElement}>
   <option value={anuncio.anuncio.ano_lancamento}>{anuncio.anuncio.ano_lancamento}</option>
+</select>
+<select id="idiomas" className='dadoDoAnuncio' ref={setSelectElementIdiomas}>
+  <option value={anuncio.anuncio.idioma}>{anuncio.idioma.nome}</option>
 </select>
          </div>
 

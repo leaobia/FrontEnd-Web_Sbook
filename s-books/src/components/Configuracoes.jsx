@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Sidebar } from 'primereact/sidebar';
 import iconSidebar from '../components/img/sidebarClick.png'
 import '../components/css/Perfil.css'
@@ -25,12 +26,34 @@ function Configuracoes() {
     let nomeUsuario = localStorage.getItem('nomeUsuario')
     let perfilFoto = localStorage.getItem('perfilFoto')
     let cidadeUsuario = localStorage.getItem('cidadeUsuario')
-    //let estadoUsuario = localStorage.getItem('estadoUsuario')
-    // let logradouroUsuario = localStorage.getItem('logradouroUsuario')
     let data_nascimento = localStorage.getItem('data_nascimento')
     let formattedDate;
-    //let email = localStorage.getItem('email')
     let cepUsuario = localStorage.getItem('cepUsuario')
+
+    let idUsuario = localStorage.getItem('id_usuarioLogin') 
+
+
+    const [nameValue, setNameValue] = useState('');
+    const [cepValue, setCepValue] = useState(cepUsuario);
+
+    useEffect(() => {
+        axios.get(`${baseUrl}v1/sbook/usuario/${idUsuario}`)
+          .then(response => {
+            let bairro = response.data.dados.bairro
+            let cidade = response.data.dados.cidade
+            let estado = response.data.dados.estado
+            let foto = response.data.dados.foto
+            let logradouro = response.data.dados.logradouro
+            let email = response.data.dados.email
+            let data_nascimento = response.data.dados.data_nascimento
+
+console.log('oi');
+           setNameValue(response.data.dados.nome)
+          })
+          .catch(error => {
+            console.error('Erro ao obter dados do usuario:', error);
+          })
+      }, [idUsuario]);
 
 
     if (data_nascimento) {
@@ -48,11 +71,9 @@ function Configuracoes() {
     }
 
 
+
+
     const [dateValue, setDateValue] = useState(formattedDate);
-    const [nameValue, setNameValue] = useState(nomeUsuario);
-    const [cepValue, setCepValue] = useState(cepUsuario);
-
-
 
     const fecharPerguntasEditar = () => {
         const desejaEditarDiv = document.getElementById('desejaEditarDiv')
@@ -145,14 +166,53 @@ function Configuracoes() {
         })
             .then(response => {
                 console.log('Response:', response);
-                //window.location.reload()
+       
                 const desejaEditarDiv = document.getElementById('desejaEditarDiv')
                 desejaEditarDiv.classList.remove('d-flex')
                 desejaEditarDiv.classList.add('d-none')
+
+              if(response.status === 200){
+                window.location.reload()
+              }
             })
             .catch(error => {
                 console.error(error);
             });
+        const url2 = `${baseUrl}v1/sbook/atualizar-foto-usuario`;
+        let urlPerfil = localStorage.getItem('dataImageURLPerfil')
+        if(urlPerfil){
+            const dados2 = {
+                "id": parseInt(id_usuario),
+                "foto": urlPerfil
+            };
+    
+            console.log(dados2);
+    
+            fetch(`${url2}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `x-acccess-token ${tokenJWT}`
+                },
+                body: JSON.stringify(dados2)
+            })
+                .then(response => {
+                    console.log('Response:', response);
+           
+                    const desejaEditarDiv = document.getElementById('desejaEditarDiv')
+                    desejaEditarDiv.classList.remove('d-flex')
+                    desejaEditarDiv.classList.add('d-none')
+    
+                  
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+       
+
+
+
 
     }
 
@@ -247,7 +307,7 @@ function Configuracoes() {
                     <div className="userContainerDireita">
                         <p>PERFIL</p>
                         <img src={perfilFoto} alt="foto do usuário" className='fotoUser' />
-                        <p>{nomeUsuario}</p>
+                        <p>{nameValue}</p>
                     </div>
                     <div className="userContainerDireitaLink">
                         <Link>Categorias ➔ </Link>
