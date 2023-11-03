@@ -36,7 +36,7 @@ function Configuracoes() {
     const [nameValue, setNameValue] = useState('');
     const [dataNasc, setDataNascValue] = useState('');
     const [perfilFotoValue, setPerfilFotoValue] = useState('');
-    const [cepValue, setCepValue] = useState(cepUsuario);
+    const [cepValue, setCepValue] = useState('');
 
     useEffect(() => {
         axios.get(`${baseUrl}v1/sbook/usuario/${idUsuario}`)
@@ -45,16 +45,15 @@ function Configuracoes() {
             let cidade = response.data.dados.cidade
             let estado = response.data.dados.estado
             let foto = response.data.dados.foto
+          let cep = response.data.dados.cep
             let logradouro = response.data.dados.logradouro
             let email = response.data.dados.email
             let data_nascimento = response.data.dados.data_nascimento
 
-            console.log(dataNasc);
-            console.log(data_nascimento);
-
            setNameValue(response.data.dados.nome)
            setPerfilFotoValue(foto)
            setDataNascValue(data_nascimento)
+           setCepValue(cep)
          //  localStorage.setItem('perfilFotoConfig', foto)
           })
           .catch(error => {
@@ -73,7 +72,6 @@ function Configuracoes() {
 
             formattedDate = `${year}-${month}-${day}`;
 
-            console.log(formattedDate);
         } else {
             console.error('Invalid date format in localStorage');
         }

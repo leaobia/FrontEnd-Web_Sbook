@@ -12,7 +12,6 @@ import SecaoLivroProximo from '../components/SecaoLivroProximo';
 
 function Home() {
 
-console.log('home');
 
     // function formatarNumero(numero) {
     //     if (numero < 1000) {

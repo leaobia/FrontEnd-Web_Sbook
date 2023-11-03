@@ -25,7 +25,14 @@ function Perfil() {
 
     const [visibleLeft, setVisibleLeft] = useState(false);
     const idUser = localStorage.getItem('id_usuarioLogin')
-    console.log(idUser);
+         
+    const [nomeUsuario, setNomeUsuario] = useState('');
+    const [estadoUsuario, setEstadoUsuario] = useState('');
+    const [cidadeUsuario, setCidadeUsuario] = useState('');
+    const [fotoUsuario, setFotoUsuario] = useState('');
+    const [emailUsuario, setEmailUsuario] = useState('');
+    const [nascUsuario, setNascUsuario] = useState('');
+    const [logradouroUsuario, setLogradouroUsuario] = useState('');
     
 
     useEffect(() => {
@@ -35,20 +42,19 @@ function Perfil() {
                     let nomeUser = response.data.dados.nome
                     let perfilFoto = response.data.dados.foto
                     let estadoUsuario = response.data.dados.estado
-                    let cepUsuario = response.data.dados.cep
                     let logradouroUsuario = response.data.dados.logradouro
                     let data_nascimento = response.data.dados.data_nascimento
                     let email = response.data.dados.email
                     let cidadeUsuario = response.data.dados.cidade
 
-                    localStorage.setItem('nomeUsuario', nomeUser )
-                    localStorage.setItem('perfilFoto', perfilFoto )
-                    localStorage.setItem('estadoUsuario', estadoUsuario )
-                    localStorage.setItem('logradouroUsuario', logradouroUsuario)
-                    localStorage.setItem('data_nascimento', data_nascimento)
-                    localStorage.setItem('email', email)
-                    localStorage.setItem('cidadeUsuario', cidadeUsuario)
-                    localStorage.setItem('cepUsuario', cepUsuario)
+                    setNomeUsuario(nomeUser)
+                    setCidadeUsuario(cidadeUsuario)
+                    setEstadoUsuario(estadoUsuario)
+                    setFotoUsuario(perfilFoto)
+                    setEmailUsuario(email)
+                    setNascUsuario(data_nascimento)
+                    setLogradouroUsuario(logradouroUsuario)
+                 
           })
           .catch(error => {
             console.error('Erro ao obter dados do usuario', error);
@@ -83,13 +89,13 @@ function Perfil() {
 
       }, [idUser]);
 
-      let nomeUsuario = localStorage.getItem('nomeUsuario')
-      let perfilFoto = localStorage.getItem('fotoUsuarioHome')
-      let estadoUsuario = localStorage.getItem('estadoUsuarioHome')
-      let logradouroUsuario = localStorage.getItem('logradouroUsuarioHome')
-      let data_nascimento = localStorage.getItem('dataNascUsuarioHome')
-      let email = localStorage.getItem('emailUsuarioHome')
-      let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
+
+    //   let perfilFoto = localStorage.getItem('fotoUsuarioHome')
+    //   let estadoUsuario = localStorage.getItem('estadoUsuarioHome')
+    //   let logradouroUsuario = localStorage.getItem('logradouroUsuarioHome')
+    //   let data_nascimento = localStorage.getItem('dataNascUsuarioHome')
+    //   let email = localStorage.getItem('emailUsuarioHome')
+    //   let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
 
       
     return (
@@ -103,7 +109,7 @@ function Perfil() {
                     <div className="dadosUserSideBar">
                         <div className="nomeFotoUser">
                         <p>{nomeUsuario}</p>
-                    <img src={perfilFoto} alt="foto de perfil do usuário"  className='fotoUser'/>
+                    <img src={fotoUsuario} alt="foto de perfil do usuário"  className='fotoUser'/>
                         </div>
                         <div className="sideBarConfig">
                             <span className='titleConfigSidebar'>PERFIL</span>
@@ -124,14 +130,14 @@ function Perfil() {
                     <div className="resumoPerfil">
                         <h3>Resumo do seu perfil</h3>
                         <div className="perfilUsuario">
-                            <img src={perfilFoto} alt="foto de perfil do usuário" className='fotoUser'/>
+                            <img src={fotoUsuario} alt="foto de perfil do usuário" className='fotoUser'/>
                             <p>{nomeUsuario}</p>
                         </div>
                         <div className="dadosUser">
-                            <span> <img src={mundoIcon} alt="icone do planeta Terra" /> {estadoUsuario}</span>
+                            <span> <img src={mundoIcon} alt="icone do planeta Terra" /> {cidadeUsuario},{estadoUsuario}</span>
                             <span> <img src={localIcon} alt="icone de localizacao" />{logradouroUsuario}</span>
-                            <span> <img src={emailIcon} alt="icone de email" />{email}</span>
-                            <span><img src={boloIcon} alt="icone de bolo" />{data_nascimento}</span>
+                            <span> <img src={emailIcon} alt="icone de email" />{emailUsuario}</span>
+                            <span><img src={boloIcon} alt="icone de bolo" />{nascUsuario}</span>
                         </div>
                     </div>
                     <div className="generoDiv">
