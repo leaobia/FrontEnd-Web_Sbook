@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { ref, uploadBytesResumable, getDownloadURL, getFileBlob } from "firebase/storage";
 import { storage } from "../adapters/firebase";
+import { baseUrl } from '../url';
 
 function UploadFotoPerfil() {
-    let perfilFoto = localStorage.getItem('perfilFoto')
-  const [imagem, setImagem] = useState(perfilFoto);
+    let perfilFoto = localStorage.getItem('perfilFotoConfig')
+    let idUsuario = localStorage.getItem('id_usuarioLogin') 
+  const [imagem, setImagem] = useState('');
+
+
+  useEffect(() => {
+    axios.get(`${baseUrl}v1/sbook/usuario/${idUsuario}`)
+      .then(response => {
+      
+        let foto = response.data.dados.foto
+
+
+       setImagem(foto)
+     //  localStorage.setItem('perfilFotoConfig', foto)
+      })
+      .catch(error => {
+        console.error('Erro ao obter dados do usuario:', error);
+      })
+  }, [idUsuario]);
 
   function mudarFoto(e) {
 
@@ -39,6 +58,7 @@ uploadTask.on(
   () => {
       getDownloadURL(uploadTask.snapshot.ref).then(url => {
         console.log(url);
+        setImagem(url)
           localStorage.setItem('dataImageURLPerfil', url)
       })
   }

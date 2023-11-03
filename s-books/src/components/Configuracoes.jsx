@@ -34,6 +34,8 @@ function Configuracoes() {
 
 
     const [nameValue, setNameValue] = useState('');
+    const [dataNasc, setDataNascValue] = useState('');
+    const [perfilFotoValue, setPerfilFotoValue] = useState('');
     const [cepValue, setCepValue] = useState(cepUsuario);
 
     useEffect(() => {
@@ -47,8 +49,13 @@ function Configuracoes() {
             let email = response.data.dados.email
             let data_nascimento = response.data.dados.data_nascimento
 
-console.log('oi');
+            console.log(dataNasc);
+            console.log(data_nascimento);
+
            setNameValue(response.data.dados.nome)
+           setPerfilFotoValue(foto)
+           setDataNascValue(data_nascimento)
+         //  localStorage.setItem('perfilFotoConfig', foto)
           })
           .catch(error => {
             console.error('Erro ao obter dados do usuario:', error);
@@ -56,8 +63,8 @@ console.log('oi');
       }, [idUsuario]);
 
 
-    if (data_nascimento) {
-        const parts = data_nascimento.split('-');
+    if (dataNasc) {
+        const parts = dataNasc.split('-');
 
         if (parts.length === 3) {
             const day = parts[0];
@@ -65,15 +72,22 @@ console.log('oi');
             const year = parts[2];
 
             formattedDate = `${year}-${month}-${day}`;
+
+            console.log(formattedDate);
         } else {
             console.error('Invalid date format in localStorage');
         }
     }
 
 
-
-
     const [dateValue, setDateValue] = useState(formattedDate);
+
+    useEffect(() => {
+        setDateValue(formattedDate);
+      }, [formattedDate]);
+      
+
+
 
     const fecharPerguntasEditar = () => {
         const desejaEditarDiv = document.getElementById('desejaEditarDiv')
@@ -173,6 +187,8 @@ console.log('oi');
 
               if(response.status === 200){
                 window.location.reload()
+                window.location.reload('/');
+               // window.location.assign('/perfil')
               }
             })
             .catch(error => {
@@ -198,6 +214,13 @@ console.log('oi');
             })
                 .then(response => {
                     console.log('Response:', response);
+
+                    if(response.status === 200){
+                        window.location.reload()
+                        window.location.reload('/UploadFotoPerfil')
+                        window.location.reload('/');
+                      
+                      }
            
                     const desejaEditarDiv = document.getElementById('desejaEditarDiv')
                     desejaEditarDiv.classList.remove('d-flex')
@@ -250,8 +273,8 @@ console.log('oi');
                 <Sidebar className='sideBar perfilLateral' visible={visibleLeft} position="left" onHide={() => setVisibleLeft(false)}>
                     <div className="dadosUserSideBar">
                         <div className="nomeFotoUser">
-                            <p>{nomeUsuario}</p>
-                            <img src={perfilFoto} alt="foto de perfil do usuário" className='fotoUser' />
+                            <p>{nameValue}</p>
+                            <img src={perfilFotoValue} alt="foto de perfil do usuário" className='fotoUser' />
                         </div>
                         <div className="sideBarConfig">
                             <span className='titleConfigSidebar'>PERFIL</span>
@@ -306,7 +329,7 @@ console.log('oi');
                 <div className="contentUserDireita">
                     <div className="userContainerDireita">
                         <p>PERFIL</p>
-                        <img src={perfilFoto} alt="foto do usuário" className='fotoUser' />
+                        <img src={perfilFotoValue} alt="foto do usuário" className='fotoUser' />
                         <p>{nameValue}</p>
                     </div>
                     <div className="userContainerDireitaLink">
