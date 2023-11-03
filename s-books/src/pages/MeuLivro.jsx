@@ -30,6 +30,8 @@ import { EditIcon } from '@chakra-ui/icons';
 
 function MeuLivro() {
 
+  const [isLoading, setIsLoading] = useState(false); 
+
   //const selectElement = document.getElementById('editora');
 const currentYear = new Date().getFullYear();
 const startYear = 1900; 
@@ -89,7 +91,7 @@ useEffect(() => {
   //const firstFieldRef = React.useRef(null)
 
 
-  let anunciante = localStorage.getItem('id_anunciante')
+
 
   useEffect(() => {
 
@@ -110,21 +112,39 @@ useEffect(() => {
       
   }, [idPegarAnuncio]);
 
-
+  let anunciante = localStorage.getItem('id_anunciante')
+  const [idAnunciante, setIdAnunciante] = useState(anunciante)
 
   useEffect(() => {
 
-    axios.get(`${baseUrl}v1/sbook/usuario/${anunciante}`)
+    setIsLoading(true);
+
+    if(idAnunciante){
+
+      axios.get(`${baseUrl}v1/sbook/usuario/${idAnunciante}`)
       .then(response => {
         localStorage.setItem('nome_anunciante', response.data.dados.nome)
-        localStorage.setItem('perfilFotoAnunciante', response.data.dados.foto )
-
+        localStorage.setItem('perfilFotoAnunciante', response.data.dados.foto)
+        setTimeout(() => {
+          console.log(idAnunciante);
+          setIsLoading(false);
+        }, 100); 
       })
       .catch(error => {
         console.error('Erro ao obter dados do usuario:', error);
-      });
+       
+      })
+    }else{
+      setTimeout(() => {
       
-  }, [idPegarAnuncio,anunciante]);
+       window.location.reload()
+       setIsLoading(true);
+      }, 1000); 
+    }
+
+
+  
+  }, [idPegarAnuncio], [idAnunciante])
   
   let anuncianteNome = localStorage.getItem('nome_anunciante')
   let perfilFotoAnunciante = localStorage.getItem('perfilFotoAnunciante')
@@ -173,7 +193,9 @@ useEffect(() => {
     });
 }
 
-  if (anuncio.length === 0) {
+
+
+  if (anuncio.length === 0 || isLoading) {
     return (
       <div className="spinnerContainer2">
       <Spinner
@@ -187,6 +209,7 @@ useEffect(() => {
   }else{
      return (
     <div className='livroContainer'>
+      
 
 <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />

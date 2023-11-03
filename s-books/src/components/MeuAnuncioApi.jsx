@@ -20,9 +20,6 @@ function MeuAnuncioApi() {
 
           let anuncio = response.data.anuncios
 
-          console.log('meu anunco', response);
-
-          console.log('foi');
   
           setAnuncios(anuncio);
           setTimeout(() => {
