@@ -5,6 +5,9 @@
     flex-direction: column;
 }
 
+.imgLivroDiv{
+    display: flex;
+}
 .descricaoContainer{
     margin-left: 4vw;
     gap: 2vh;

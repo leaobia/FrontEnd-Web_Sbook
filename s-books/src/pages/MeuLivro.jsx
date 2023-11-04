@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-//import Slider from 'react-slick';
+import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link } from "react-router-dom"
@@ -10,12 +10,10 @@ import { Spinner } from '@chakra-ui/react'
 import excluirIcon from '../components/img/excluir.png'
 import editarIcon from '../components/img/editar.png'
 
-import { Calendar } from 'primereact/calendar';
 
 import { Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter,
    Drawer, DrawerBody, DrawerCloseButton, DrawerHeader, DrawerOverlay, DrawerContent,
-  Textarea,
-  Stack, ButtonGroup, Input } from '@chakra-ui/react';
+  Textarea, Input } from '@chakra-ui/react';
 
 
   import {
@@ -24,15 +22,14 @@ import { Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, Mo
     AlertTitle,
     AlertDescription,
   } from '@chakra-ui/react'
+import { set } from 'lodash';
 
- // import { FaEye} from 'react-icons/fa';
-import { EditIcon } from '@chakra-ui/icons';
+
 
 function MeuLivro() {
 
   const [isLoading, setIsLoading] = useState(false); 
 
-  //const selectElement = document.getElementById('editora');
 const currentYear = new Date().getFullYear();
 const startYear = 1900; 
 
@@ -46,6 +43,8 @@ for (let year = currentYear; year >= startYear; year--) {
 
 const [selectElement, setSelectElement] = useState(null);
 const [selectElementIdiomas, setSelectElementIdiomas] = useState(null);
+const [selectElementAutores, setSelectElementAutores] = useState(null);
+const [selectElementEditora, setSelectElementEditora] = useState(null);
 
 useEffect(() => {
   if (selectElement) {
@@ -75,9 +74,43 @@ useEffect(() => {
       console.error('Erro ao obter dados dos idiomas', error);
     });
 });
+useEffect(() => {
+  
+  axios.get(`${baseUrl}v1/sbook/autores`)
+    .then(response => {
+              let idiomas = response.data.autores
+              idiomas.forEach(idioma => {
+                const option = document.createElement('option');
+      option.value = idioma.id;
+      option.textContent = idioma.nome;
+      selectElementAutores.appendChild(option);
+              })
+             
+    })
+    .catch(error => {
+      console.error('Erro ao obter dados dos idiomas', error);
+    });
+});
+useEffect(() => {
+  
+  axios.get(`${baseUrl}v1/sbook/editoras`)
+    .then(response => {
+              let idiomas = response.data.editoras
+              idiomas.forEach(idioma => {
+                const option = document.createElement('option');
+      option.value = idioma.id;
+      option.textContent = idioma.nome;
+      selectElementEditora.appendChild(option);
+              })
+             
+    })
+    .catch(error => {
+      console.error('Erro ao obter dados dos idiomas', error);
+    });
+});
 
 
-  let cidadeUsuario = localStorage.getItem('cidadeUsuario')
+  let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
   let idPegarAnuncio = parseInt(localStorage.getItem('getAnuncioById'))
 
  
@@ -247,6 +280,12 @@ useEffect(() => {
 <select id="idiomas" className='dadoDoAnuncio' ref={setSelectElementIdiomas}>
   <option value={anuncio.anuncio.idioma}>{anuncio.idioma.nome}</option>
 </select>
+<select id="autores" className='dadoDoAnuncio' ref={setSelectElementAutores}>
+ <option value={anuncio.autores[0].nome}>{anuncio.autores[0].nome}</option>
+</select>
+<select id="editora" className='dadoDoAnuncio' ref={setSelectElementEditora}>
+  <option value={anuncio.editora.nome}>{anuncio.editora.nome}</option>
+</select>
          </div>
 
         
@@ -264,15 +303,17 @@ useEffect(() => {
                     <span className='nomeDaCidade'>{cidadeUsuario}</span>
                 </div>
             </div>
-      {/* <Slider {...settings}>
-        {images.map((imageUrl, index) => (
-          <div key={index}>
-            <img src={imageUrl} alt={`Imagem ${index + 1}`} />
-          </div>
-        ))}
+      {/* <Slider>
+    <div className='div1'> <img src={anuncio.foto[0].foto} alt="foto do anuncio" className='fotoAnuncio' /></div> 
+       <div><img src={anuncio.foto[1].foto} alt="foto do anuncio" className='fotoAnuncio' /></div> 
+       <div><img src={anuncio.foto[2].foto} alt="foto do anuncio" className='fotoAnuncio' /></div> 
       </Slider> */}
       <div className="anuncioDados">
+        <div className="imgLivroDiv">
         <img src={anuncio.foto[0].foto} alt="foto do anuncio" className='fotoAnuncio' />
+        <img src={anuncio.foto[1].foto} alt="foto do anuncio" className='fotoAnuncio' />
+        <img src={anuncio.foto[2].foto} alt="foto do anuncio" className='fotoAnuncio' />
+        </div>
         <div className="dadosAnuncioPrincipal">
           <div className="esquerdaDadosAnuncio">
           <p>{anuncio.anuncio.nome}</p>
