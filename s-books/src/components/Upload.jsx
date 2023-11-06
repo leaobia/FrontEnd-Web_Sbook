@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ref, uploadBytesResumable, getDownloadURL, getFileBlob } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../adapters/firebase";
 
 function Upload() {

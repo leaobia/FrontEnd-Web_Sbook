@@ -13,7 +13,9 @@ function MeuAnuncioApi() {
   console.log(idUser);
 
     useEffect(() => {
-      setIsLoading(true);
+
+
+      setIsLoading(false);
     
       axios.get(`${baseUrl}v1/sbook/anuncio-usuario/${idUser}`)
         .then(response => {
@@ -24,7 +26,7 @@ function MeuAnuncioApi() {
           setAnuncios(anuncio);
           setTimeout(() => {
             setIsLoading(false);
-          }, 100); 
+          }, 0); 
         })
         .catch(error => {
           console.error('Erro ao obter dados do anúncio pelo seu propio id: ', error);
@@ -32,7 +34,7 @@ function MeuAnuncioApi() {
 
           setTimeout(() => {
             setIsLoading(false);
-          }, 100); 
+          }, 0); 
         });
     }, [idUser]);
     

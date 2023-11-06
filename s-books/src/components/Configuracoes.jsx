@@ -184,9 +184,7 @@ function Configuracoes() {
                 desejaEditarDiv.classList.add('d-none')
 
               if(response.status === 200){
-                window.location.reload()
-                window.location.reload('/');
-               // window.location.assign('/perfil')
+               window.location.reload()
               }
             })
             .catch(error => {
@@ -215,8 +213,6 @@ function Configuracoes() {
 
                     if(response.status === 200){
                         window.location.reload()
-                        window.location.reload('/UploadFotoPerfil')
-                        window.location.reload('/');
                       
                       }
            

@@ -111,7 +111,29 @@
     gap: 1vh;
 }
 
+.containerUpload {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2vh;
+}
+.containerUpload div{
+    margin-left: 0;
+}
+.editarAnuncioButton{
+    background-color: #FF902B;
+    display: grid;
+    place-self: end;
+    width: 10vw;
+    color: aliceblue;
+    padding: 1% 0%;
+    font-weight: bold;
+    transition: .4s ease-in-out;
+    letter-spacing: 3px;
+}
 
+.editarAnuncioButton:hover{
+    scale: .8;
+}
   
 @media (max-width:700px) {
     .dadosAnuncioPrincipal{

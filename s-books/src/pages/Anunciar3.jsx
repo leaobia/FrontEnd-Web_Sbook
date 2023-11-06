@@ -133,7 +133,7 @@ function Anunciar3() {
     localStorage.setItem('estadosSelecionados', arrayNomeEstado)
     localStorage.setItem('estadosSelecionadosId', arrayIdEstado)  
 
-    console.log('precoLivroValue coletar', precoLivro.value);
+    //console.log('precoLivroValue coletar', precoLivro.value);
 
     setPrecoLivro(precoLivro.value)
 

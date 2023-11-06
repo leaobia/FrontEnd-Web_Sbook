@@ -9,11 +9,13 @@ import '../components/css/Livro.css'
 import { Spinner } from '@chakra-ui/react'
 import excluirIcon from '../components/img/excluir.png'
 import editarIcon from '../components/img/editar.png'
-
+import { FetchEstadoLivro, FetchGeneros, FetchTipoAnuncio } from '../module/Funcoes'; 
 
 import { Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter,
    Drawer, DrawerBody, DrawerCloseButton, DrawerHeader, DrawerOverlay, DrawerContent,
   Textarea, Input } from '@chakra-ui/react';
+
+  import Upload from '../components/Upload';
 
 
   import {
@@ -22,8 +24,6 @@ import { Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, Mo
     AlertTitle,
     AlertDescription,
   } from '@chakra-ui/react'
-import { set } from 'lodash';
-
 
 
 function MeuLivro() {
@@ -45,6 +45,10 @@ const [selectElement, setSelectElement] = useState(null);
 const [selectElementIdiomas, setSelectElementIdiomas] = useState(null);
 const [selectElementAutores, setSelectElementAutores] = useState(null);
 const [selectElementEditora, setSelectElementEditora] = useState(null);
+
+const [estadoLivro, setEstadoLivro] = useState([]);
+const [generosLivro, setGenerosLivro] = useState([]);
+const [tipoAnuncio, setTipoAnuncio] = useState([]);
 
 useEffect(() => {
   if (selectElement) {
@@ -226,7 +230,37 @@ useEffect(() => {
     });
 }
 
+async function fetchDataEstadoLivro() {
+  try {
+    const estadoData = await FetchEstadoLivro();
+    setEstadoLivro(estadoData);
+  } catch (error) {
+    console.error('Erro ao buscar estados do livro:', error);
+  }
+}
 
+async function fetchDataGenero() {
+  try {
+    const generosData = await FetchGeneros();
+    setGenerosLivro(generosData);
+  } catch (error) {
+    console.error('Erro ao buscar gêneros:', error);
+  }
+}
+
+
+async function fetchDataTipoLivro() {
+  try {
+    const tipoAnuncioData = await FetchTipoAnuncio();
+    setTipoAnuncio(tipoAnuncioData);
+  } catch (error) {
+    console.error('Erro ao buscar gêneros:', error);
+  }
+}
+
+fetchDataEstadoLivro()
+fetchDataGenero();
+fetchDataTipoLivro()
 
   if (anuncio.length === 0 || isLoading) {
     return (
@@ -286,8 +320,90 @@ useEffect(() => {
 <select id="editora" className='dadoDoAnuncio' ref={setSelectElementEditora}>
   <option value={anuncio.editora.nome}>{anuncio.editora.nome}</option>
 </select>
+
+<div className="dadosGenero">
+<p>Condição do livro:</p>
+  {estadoLivro.map(estado => (
+    <label id={estado.id} htmlFor="estadosSelecionados" key={estado.id}>
+      <input
+        type="radio"
+        name="estadosSelecionados"
+        value={estado.estado}
+        checked={estado.estado === anuncio.estado_livro.estado}
+      />
+      {estado.estado}
+    </label>
+  ))}
+</div>
+
+
+<div className="dadosGenero">
+<p>Gêneros:</p>
+  {generosLivro.map(tipo => (
+    <label key={tipo.id}>
+      <input
+        type="checkbox"
+        value={tipo.id}
+        className='check'
+        checked={generos.includes(tipo.nome)}
+      />
+      {tipo.nome}
+    </label>
+  ))}
+</div>
+
+
+        <div className="dadosGenero">
+          <p>Tipo de negociação:</p>
+          {tipoAnuncio.map(tipo => (
+           <label key={tipo.id}>
+           <input
+             type="checkbox"
+             value={tipo.id}
+             className='check'
+             checked={anuncio.tipo_anuncio[0].tipo.includes(tipo.tipo)}
+           />
+           {tipo.tipo}
+         </label>
+          ))}
+        </div>
+
+        <div className="containerUpload">
+<div className="uploadContainer ">
+      <label className="picture" htmlFor="picture__input" tabIndex="0">
+        <span className="picture__image">
+          <img src={anuncio.foto[0].foto} alt="foto do anuncio" />
+        </span>
+      </label>
+
+      <input type="file" name="picture__input" id="picture__input"></input>
+    </div>
+    <div className="uploadContainer ">
+      <label className="picture" htmlFor="picture__input" tabIndex="0">
+        <span className="picture__image">
+        <img src={anuncio.foto[1].foto} alt="foto do anuncio" />
+        </span>
+      </label>
+
+      <input type="file" name="picture__input" id="picture__input"></input>
+    </div>
+    <div className="uploadContainer ">
+      <label className="picture" htmlFor="picture__input" tabIndex="0">
+        <span className="picture__image">
+        <img src={anuncio.foto[2].foto} alt="foto do anuncio" />
+        </span>
+      </label>
+
+      <input type="file" name="picture__input" id="picture__input"></input>
+    </div>
+</div>
+
+<button className='editarAnuncioButton'>editar</button>
+
          </div>
 
+
+       
         
           </DrawerBody>
         </DrawerContent>

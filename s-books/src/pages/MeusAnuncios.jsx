@@ -16,7 +16,7 @@ import { Link } from "react-router-dom"
 
 let nomeUsuario = localStorage.getItem('nomeUsuario')
 let perfilFoto = localStorage.getItem('perfilFoto')
-let cidadeUsuario = localStorage.getItem('cidadeUsuario')
+let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
 
 function MeusAnuncios() {
 
