@@ -17,6 +17,8 @@ import { Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, Mo
 
   import Upload from '../components/Upload';
 
+  import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "../adapters/firebase";
 
   import {
     Alert,
@@ -33,6 +35,7 @@ function MeuLivro() {
 const currentYear = new Date().getFullYear();
 const startYear = 1900; 
 
+const [fotoAnuncio1, setFotoAnuncio1] = useState('');
 
 const years = [];
 for (let year = currentYear; year >= startYear; year--) {
@@ -50,6 +53,7 @@ const [estadoLivro, setEstadoLivro] = useState([]);
 const [generosLivro, setGenerosLivro] = useState([]);
 const [tipoAnuncio, setTipoAnuncio] = useState([]);
 
+
 useEffect(() => {
   if (selectElement) {
     years.forEach(year => {
@@ -61,57 +65,57 @@ useEffect(() => {
   }
 }, [years]);
 
-useEffect(() => {
+// useEffect(() => {
   
-  axios.get(`${baseUrl}v1/sbook/idiomas`)
-    .then(response => {
-              let idiomas = response.data.idiomas
-              idiomas.forEach(idioma => {
-                const option = document.createElement('option');
-      option.value = idioma.id;
-      option.textContent = idioma.nome;
-      selectElementIdiomas.appendChild(option);
-              })
+//   axios.get(`${baseUrl}v1/sbook/idiomas`)
+//     .then(response => {
+//               let idiomas = response.data.idiomas
+//               idiomas.forEach(idioma => {
+//                 const option = document.createElement('option');
+//       option.value = idioma.id;
+//       option.textContent = idioma.nome;
+//       selectElementIdiomas.appendChild(option);
+//               })
              
-    })
-    .catch(error => {
-      console.error('Erro ao obter dados dos idiomas', error);
-    });
-});
-useEffect(() => {
+//     })
+//     .catch(error => {
+//       console.error('Erro ao obter dados dos idiomas', error);
+//     });
+// });
+// useEffect(() => {
   
-  axios.get(`${baseUrl}v1/sbook/autores`)
-    .then(response => {
-              let idiomas = response.data.autores
-              idiomas.forEach(idioma => {
-                const option = document.createElement('option');
-      option.value = idioma.id;
-      option.textContent = idioma.nome;
-      selectElementAutores.appendChild(option);
-              })
+//   axios.get(`${baseUrl}v1/sbook/autores`)
+//     .then(response => {
+//               let idiomas = response.data.autores
+//               idiomas.forEach(idioma => {
+//                 const option = document.createElement('option');
+//       option.value = idioma.id;
+//       option.textContent = idioma.nome;
+//       selectElementAutores.appendChild(option);
+//               })
              
-    })
-    .catch(error => {
-      console.error('Erro ao obter dados dos idiomas', error);
-    });
-});
-useEffect(() => {
+//     })
+//     .catch(error => {
+//       console.error('Erro ao obter dados dos idiomas', error);
+//     });
+// });
+// useEffect(() => {
   
-  axios.get(`${baseUrl}v1/sbook/editoras`)
-    .then(response => {
-              let idiomas = response.data.editoras
-              idiomas.forEach(idioma => {
-                const option = document.createElement('option');
-      option.value = idioma.id;
-      option.textContent = idioma.nome;
-      selectElementEditora.appendChild(option);
-              })
+//   axios.get(`${baseUrl}v1/sbook/editoras`)
+//     .then(response => {
+//               let idiomas = response.data.editoras
+//               idiomas.forEach(idioma => {
+//                 const option = document.createElement('option');
+//       option.value = idioma.id;
+//       option.textContent = idioma.nome;
+//       selectElementEditora.appendChild(option);
+//               })
              
-    })
-    .catch(error => {
-      console.error('Erro ao obter dados dos idiomas', error);
-    });
-});
+//     })
+//     .catch(error => {
+//       console.error('Erro ao obter dados dos idiomas', error);
+//     });
+// });
 
 
   let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
@@ -136,6 +140,7 @@ useEffect(() => {
       .then(response => {
         const anuncioData = response.data.anuncios;
         setAnuncio(anuncioData);
+        setFotoAnuncio1(anuncioData.foto[1].foto)
         let generos = anuncioData.generos;
         localStorage.setItem('id_anunciante', anuncioData.anuncio.anunciante);
         const generosArray = generos.map((genero) => genero.nome);
@@ -262,6 +267,48 @@ fetchDataEstadoLivro()
 fetchDataGenero();
 fetchDataTipoLivro()
 
+
+function mudarFoto(e) {
+
+  const inputFile = e.target;
+
+  const pictureImage = document.getElementById('fotoAnuncio1')
+
+  const file = inputFile.files[0];
+
+  
+  if (file) {
+  
+
+    pictureImage.src = URL.createObjectURL(file);
+
+
+
+    const storageRef = ref(storage, `images/${file.name}`)
+const uploadTask = uploadBytesResumable(storageRef, file)
+
+uploadTask.on(
+"state_changed",
+snapshot => {
+
+}, 
+error => {
+    alert(error)
+},
+() => {
+    getDownloadURL(uploadTask.snapshot.ref).then(url => {
+      console.log(url);
+        localStorage.setItem('dataImageURLEdit', url)
+    })
+}
+)
+
+  } else {
+    pictureImage.textContent = "";
+   }
+}
+
+
   if (anuncio.length === 0 || isLoading) {
     return (
       <div className="spinnerContainer2">
@@ -372,11 +419,11 @@ fetchDataTipoLivro()
 <div className="uploadContainer ">
       <label className="picture" htmlFor="picture__input" tabIndex="0">
         <span className="picture__image">
-          <img src={anuncio.foto[0].foto} alt="foto do anuncio" />
+          <img src={fotoAnuncio1} alt="foto do anuncio" id='fotoAnuncio1'/>
         </span>
       </label>
 
-      <input type="file" name="picture__input" id="picture__input"></input>
+      <input type="file" name="picture__input" id="picture__input" onBlur={mudarFoto}></input>
     </div>
     <div className="uploadContainer ">
       <label className="picture" htmlFor="picture__input" tabIndex="0">
@@ -484,5 +531,6 @@ fetchDataTipoLivro()
   }
  
 }
+
 
 export default MeuLivro;
