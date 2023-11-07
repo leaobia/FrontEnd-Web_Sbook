@@ -271,6 +271,7 @@ fetchDataTipoLivro()
 function mudarFoto(e) {
 
   const inputFile = e.target;
+  console.log(inputFile);
 
   const pictureImage = document.getElementById('fotoAnuncio1')
 
@@ -307,6 +308,161 @@ error => {
     pictureImage.textContent = "";
    }
 }
+
+function mudarFoto2(e) {
+
+  const inputFile2 = e.target;
+
+
+  const pictureImage = document.getElementById('fotoAnuncio2')
+
+  const file2 = inputFile2.files[0];
+
+  
+  if (file2) {
+  
+
+    pictureImage.src = URL.createObjectURL(file2);
+
+
+
+    const storageRef = ref(storage, `images/${file2.name}`)
+const uploadTask = uploadBytesResumable(storageRef, file2)
+
+uploadTask.on(
+"state_changed",
+snapshot => {
+
+}, 
+error => {
+    alert(error)
+},
+() => {
+    getDownloadURL(uploadTask.snapshot.ref).then(url => {
+      console.log(url);
+        localStorage.setItem('dataImageURLEdit2', url)
+    })
+}
+)
+
+  } else {
+    pictureImage.textContent = "";
+   }
+}
+
+function mudarFoto3(e) {
+
+  
+    const inputFile2 = e.target;
+  
+  
+    const pictureImage = document.getElementById('fotoAnuncio3')
+  
+    const file2 = inputFile2.files[0];
+  
+    
+    if (file2) {
+    
+  
+      pictureImage.src = URL.createObjectURL(file2);
+  
+  
+  
+      const storageRef = ref(storage, `images/${file2.name}`)
+  const uploadTask = uploadBytesResumable(storageRef, file2)
+  
+  uploadTask.on(
+  "state_changed",
+  snapshot => {
+  
+  }, 
+  error => {
+      alert(error)
+  },
+  () => {
+      getDownloadURL(uploadTask.snapshot.ref).then(url => {
+        console.log(url);
+          localStorage.setItem('dataImageURLEdit3', url)
+      })
+  }
+  )
+  
+    } else {
+      pictureImage.textContent = "";
+     }
+  }
+
+  const editarAnuncioFuction = () => {
+    let img1 = anuncio.foto[0].foto
+    let img2 = anuncio.foto[1].foto
+    let img3 = anuncio.foto[2].foto
+
+    let dataImageURLEdit = localStorage.getItem('dataImageURLEdit')
+    let dataImageURLEdit2 = localStorage.getItem('dataImageURLEdit2')
+    let dataImageURLEdit3 = localStorage.getItem('dataImageURLEdit3')
+
+    if(dataImageURLEdit){
+      img1 = dataImageURLEdit
+    }
+    if(dataImageURLEdit2){
+      img2 = dataImageURLEdit2
+    }
+    if(dataImageURLEdit3){
+      img3 = dataImageURLEdit3
+    }
+
+    const credentials = {
+        "id_anuncio": idPegarAnuncio,
+        "nome": anuncio.anuncio.nome,
+        "numero_paginas": anuncio.anuncio.numero_paginas,
+        "ano_lancamento": anuncio.anuncio.ano_lancamento,
+        "descricao": anuncio.anuncio.descricao,
+        "edicao": anuncio.anuncio.edicao,
+        "isbn": "8506055652",
+        "preco": anuncio.anuncio.preco,
+        "id_editora": anuncio.editora.id,
+        "id_estado_livro": anuncio.estado_livro.id,
+        "id_idioma": anuncio.idioma.id,
+        "fotos": [
+            img1,
+            img2,
+            img3
+        ],
+        "tipos_anuncio": [
+          anuncio.tipo_anuncio[0].id
+        ],
+        "generos": [
+            generos
+        ],
+        "autores": [
+          anuncio.autores[0].id
+        ]
+    }
+
+    const url = `${baseUrl}v1/sbook/anuncio`;
+
+    fetch(`${url}`, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json"
+    },
+      body: JSON.stringify(credentials)
+  })
+      .then(response => {
+          console.log('Response:', response);
+
+          if(response.status === 200){
+              window.location.reload()
+            
+            }
+
+        
+      })
+      .catch(error => {
+          console.error(error);
+      });
+
+  }
 
 
   if (anuncio.length === 0 || isLoading) {
@@ -425,27 +581,31 @@ error => {
 
       <input type="file" name="picture__input" id="picture__input" onBlur={mudarFoto}></input>
     </div>
+
+
     <div className="uploadContainer ">
-      <label className="picture" htmlFor="picture__input" tabIndex="0">
-        <span className="picture__image">
-        <img src={anuncio.foto[1].foto} alt="foto do anuncio" />
+      <label className="picture" htmlFor="picture__input2" tabIndex="2">
+        <span className="picture__image2">
+        <img src={anuncio.foto[1].foto} alt="foto do anuncio" id='fotoAnuncio2' />
         </span>
       </label>
 
-      <input type="file" name="picture__input" id="picture__input"></input>
+      <input type="file" name="picture__input2" id="picture__input2" onBlur={mudarFoto2}></input>
     </div>
+
+
     <div className="uploadContainer ">
-      <label className="picture" htmlFor="picture__input" tabIndex="0">
-        <span className="picture__image">
-        <img src={anuncio.foto[2].foto} alt="foto do anuncio" />
+      <label className="picture" htmlFor="picture__input3" tabIndex="1">
+        <span className="picture__image3">
+        <img src={anuncio.foto[2].foto} alt="foto do anuncio" id='fotoAnuncio3'/>
         </span>
       </label>
 
-      <input type="file" name="picture__input" id="picture__input"></input>
+      <input type="file" name="picture__input3" id="picture__input3" onBlur={mudarFoto3}></input>
     </div>
 </div>
 
-<button className='editarAnuncioButton'>editar</button>
+<button className='editarAnuncioButton' onClick={editarAnuncioFuction}>editar</button>
 
          </div>
 

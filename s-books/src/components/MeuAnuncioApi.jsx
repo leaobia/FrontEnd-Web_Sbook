@@ -10,12 +10,12 @@ function MeuAnuncioApi() {
     let idPegarAnuncio = parseInt(localStorage.getItem('getAnuncioById'))
       
   const idUser = localStorage.getItem('id_usuarioLogin')
-  console.log(idUser);
+
 
     useEffect(() => {
 
 
-      setIsLoading(false);
+      setIsLoading(true);
     
       axios.get(`${baseUrl}v1/sbook/anuncio-usuario/${idUser}`)
         .then(response => {
@@ -26,15 +26,15 @@ function MeuAnuncioApi() {
           setAnuncios(anuncio);
           setTimeout(() => {
             setIsLoading(false);
-          }, 0); 
+          }, 50); 
         })
         .catch(error => {
           console.error('Erro ao obter dados do anúncio pelo seu propio id: ', error);
           
 
           setTimeout(() => {
-            setIsLoading(false);
-          }, 0); 
+            setIsLoading(true);
+          }, 50); 
         });
     }, [idUser]);
     
