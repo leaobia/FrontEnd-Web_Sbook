@@ -13,7 +13,7 @@
     gap: 2vh;
 }
 .fotoAnuncio{
-    width: 10%;
+    width: 3%;
     height: 30vh;
     margin-left: 4vw;
     margin-bottom: 4vh;
@@ -134,6 +134,40 @@
 .editarAnuncioButton:hover{
     scale: .8;
 }
+
+
+.divLivroCarrossel{
+    display: flex ;
+    width: 30%;
+    margin-left: 4vw;
+    justify-content: space-between;
+    margin-bottom: 2vh;
+}
+.showLivro{
+    padding: 4%;
+    border: .8px solid #929292;
+    border-radius: 8px;
+    width: 25vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imgBtn{
+    height: 100px;
+    height: 100px;
+}
+
+.livrosAparecer{
+    display: flex;
+    gap: 2vh;
+    flex-direction: column;
+}
+
+.imgGrande{
+    width: 15vw;
+    height: 35vh;
+}
+
   
 @media (max-width:700px) {
     .dadosAnuncioPrincipal{

@@ -76,6 +76,8 @@ ul{
 
 .logo{
     padding-left: 1vw;
+    width: 5vw;
+    height: 93%;
 }
 
 .botaoMenu img{
@@ -83,7 +85,9 @@ ul{
 }
 @media (max-width:520px) {
     .logo{
-        padding-left: 0;
+        padding-left: 1vw;
+        width: 15vw;
+    height: 93%;
     }
     .userMenuContainer .userMenu{
         padding-right: 0;

@@ -25,7 +25,7 @@ function Configuracoes() {
 
     let nomeUsuario = localStorage.getItem('nomeUsuario')
     let perfilFoto = localStorage.getItem('perfilFoto')
-    let cidadeUsuario = localStorage.getItem('cidadeUsuario')
+    let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
     let data_nascimento = localStorage.getItem('data_nascimento')
     let formattedDate;
     let cepUsuario = localStorage.getItem('cepUsuario')
