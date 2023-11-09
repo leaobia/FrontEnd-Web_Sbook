@@ -439,7 +439,7 @@ function MeuLivro() {
       ]
     }
 
-    const url = `${baseUrl}v1/sbook/anuncio`;
+    const url = `${baseUrl}v1/sbook/anuncio-put`;
 
     console.log(credentials);
 
@@ -454,7 +454,7 @@ function MeuLivro() {
         console.log('Response:', response);
 
         if (response.status === 200) {
-          window.location.reload()
+         // window.location.reload()
 
         } else {
 
