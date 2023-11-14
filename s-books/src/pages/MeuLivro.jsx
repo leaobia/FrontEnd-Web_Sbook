@@ -142,6 +142,8 @@ function MeuLivro() {
         setAnuncio(anuncioData);
         setFotoAnuncio1(anuncioData.foto[1].foto)
         let generos = anuncioData.generos;
+        console.log('anunciodata', anuncioData);
+        console.log('generos', generos);
         localStorage.setItem('id_anunciante', anuncioData.anuncio.anunciante);
         const generosArray = generos.map((genero) => genero.nome);
         const generosString = generosArray.join(', ');
@@ -393,6 +395,8 @@ function MeuLivro() {
   }
 
   function editarAnuncioFuction () {
+
+    console.log('editaranuncio');
     let img1 = anuncio.foto[0].foto
     let img2 = anuncio.foto[1].foto
     let img3 = anuncio.foto[2].foto
@@ -582,7 +586,7 @@ function MeuLivro() {
                   <div className="uploadContainer ">
                     <label className="picture" htmlFor="picture__input" tabIndex="0">
                       <span className="picture__image">
-                        <img src={fotoAnuncio1} alt="foto do anuncio" id='fotoAnuncio1' />
+                        <img src={anuncio.foto[0].foto} alt="foto do anuncio" id='fotoAnuncio1' />
                       </span>
                     </label>
 

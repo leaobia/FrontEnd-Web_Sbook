@@ -30,7 +30,6 @@ function Anunciar4() {
   let imgLivro3URL = localStorage.getItem('dataImageURL3')
 
   let precoLiVRO = localStorage.getItem('precoLivro')
-console.log(precoLiVRO);
 
 
 
