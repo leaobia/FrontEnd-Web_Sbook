@@ -105,10 +105,7 @@ const publicarLivro = () => {
       "id_usuario": parseInt(idUsuario) ,
       "id_estado_livro": parseInt(estadosSelecionadosId), 
       "id_idioma": parseInt(idiomaKey), 
-      "id_editora": {
-        "status_editora": true,
-      "id_editora": parseInt(editoraKey)
-      }, 
+      "id_editora": parseInt(editoraKey), 
       "fotos": [
         imgLivroURL,
         imgLivro2URL,
@@ -126,7 +123,7 @@ const publicarLivro = () => {
 
 console.log(credentials);
 
-const url = `${baseUrl}v1/sbook/anuncio`;
+const url = `${baseUrl}v1/sbook/anuncio-post`;
 // Variável de controle para evitar solicitações redundantes
 let isRequestInProgress = false;
 
@@ -173,10 +170,7 @@ console.log('certo');
         "id_usuario": parseInt(idUsuario) ,
         "id_estado_livro": parseInt(estadosSelecionadosId), 
         "id_idioma": parseInt(idiomaKey), 
-        "id_editora": {
-          "status_editora": true,
-        "id_editora": parseInt(editoraKey)
-        }, 
+        "id_editora": parseInt(editoraKey), 
         "fotos": [
           imgLivroURL,
           imgLivro2URL,
@@ -194,7 +188,7 @@ console.log('certo');
 
     console.log(credentials);
 
-    const url = `${baseUrl}v1/sbook/anuncio`;
+    const url = `${baseUrl}v1/sbook/anuncio-post`;
 // Variável de controle para evitar solicitações redundantes
 let isRequestInProgress = false;
 

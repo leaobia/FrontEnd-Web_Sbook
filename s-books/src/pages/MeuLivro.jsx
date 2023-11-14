@@ -53,6 +53,7 @@ function MeuLivro() {
   const [tipoAnuncio, setTipoAnuncio] = useState([]);
 
 
+
   useEffect(() => {
     if (selectElement) {
       years.forEach(year => {
@@ -123,6 +124,8 @@ function MeuLivro() {
 
   const [anuncio, setAnuncio] = useState([]);
   const [generos, setGeneros] = useState([]);
+
+  const [imgGrande, setImgGrade] = useState(null);
   // const [nomeAnuncio, setNomeAnuncio] = useState(anuncio.anuncio.nome);
 
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -141,6 +144,7 @@ function MeuLivro() {
         const anuncioData = response.data.anuncios;
         setAnuncio(anuncioData);
         setFotoAnuncio1(anuncioData.foto[1].foto)
+        setImgGrade(anuncioData.foto[0].foto)
         let generos = anuncioData.generos;
         console.log('anunciodata', anuncioData);
         console.log('generos', generos);
@@ -475,6 +479,11 @@ function MeuLivro() {
 
   }
 
+  const mudarImagemCarrossel = (event) => {
+    let img = event.target.src
+    setImgGrade(img)
+  }
+
 
   if (anuncio.length === 0 || isLoading) {
     return (
@@ -647,11 +656,11 @@ function MeuLivro() {
 
 
           <div className="divLivroCarrossel">
-            <div className="showLivro"><img src={anuncio.foto[0].foto} alt="foto do anuncio" className='imgGrande'/></div>
+            <div className="showLivro"><img src={imgGrande} alt="foto do anuncio" className='imgGrande'/></div>
             <div className="livrosAparecer">
-              <button><img src={anuncio.foto[0].foto} alt="foto do anuncio" className='imgBtn'/></button>
-              <button><img src={anuncio.foto[1].foto} alt="foto do anuncio" className='imgBtn'/></button>
-              <button><img src={anuncio.foto[2].foto} alt="foto do anuncio" className='imgBtn'/></button>
+              <button ><img src={anuncio.foto[0].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
+              <button  ><img src={anuncio.foto[1].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel}/></button>
+              <button ><img src={anuncio.foto[2].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
             </div>
           </div>
           <div className="dadosAnuncioPrincipal">

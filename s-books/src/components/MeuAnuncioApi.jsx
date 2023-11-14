@@ -22,7 +22,7 @@ function MeuAnuncioApi() {
 
           let anuncio = response.data.anuncios
 
-  
+          console.log(anuncio);
           setAnuncios(anuncio);
           setTimeout(() => {
             setIsLoading(false);
