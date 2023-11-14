@@ -638,21 +638,12 @@ function MeuLivro() {
         <div className="sideBarContainer">
           <Link to='/'>&larr;</Link>
           <div className="menuLocalContainer">
-            <div className="botoesEditarMenuLocalContainer">
-              <button onClick={onOpen2}><img src={editarIcon} alt="icone de editar" className='editortrashicon' /></button>
-              <button onClick={onOpen
-              }><img src={excluirIcon} alt="icone de exclusao" className='editortrashicon' /></button>
-            </div>
             <span className='nomeDaCidade'>{cidadeUsuario}</span>
           </div>
         </div>
        
-        <div className="anuncioDados">
-          {/* <div className="imgLivroDiv">
-            <img src={anuncio.foto[0].foto} alt="foto do anuncio" className='fotoAnuncio' />
-            <img src={anuncio.foto[1].foto} alt="foto do anuncio" className='fotoAnuncio' />
-            <img src={anuncio.foto[2].foto} alt="foto do anuncio" className='fotoAnuncio' />
-          </div> */}
+        <div className="anuncioDados dadosDoAnuncio">
+       
 
 
           <div className="divLivroCarrossel">
@@ -665,19 +656,17 @@ function MeuLivro() {
           </div>
           <div className="dadosAnuncioPrincipal">
             <div className="esquerdaDadosAnuncio">
+              <div>
               <p>{anuncio.anuncio.nome}</p>
-              <p>Disponivel para: {anuncio.tipo_anuncio[0].tipo}</p>
+              <p className='disponivelPara'>Disponivel para: {anuncio.tipo_anuncio[0].tipo}</p>
               <p>{generos}</p>
-            </div>
-            <div className="direitaDadosAnuncio">
-              <Link to='/chat'><button className='messageButton'>Enviar mensagem</button></Link>
-              <div className="anuncianteDados">
-                <img src={perfilFotoAnunciante} alt="foto perfil do anunciante" className='fotoUser' />
-                <div className="nomeAnunciante">
-                  <p>{anuncianteNome}</p>
-                  <p>{anuncio.endereco.cidade}, {anuncio.endereco.estado}</p>
-                </div>
               </div>
+             
+              <div className="butonContainerMeuAnuncio">
+              <button onClick={onOpen2}>Editar</button>
+              <button onClick={onOpen}>Excluir</button>
+              </div>
+           
             </div>
 
           </div>
