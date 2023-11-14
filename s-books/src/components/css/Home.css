@@ -40,17 +40,12 @@
     border-radius: 8px;
     padding: 10px;
     justify-content: space-between;
-    width: 15vw;
+    width: 280px;
     -webkit-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
     -moz-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
     box-shadow: 0 0 20px 0px rgba(211, 211, 211, 1);
-    height: 48vh;
+    height: 460px;
 }
-
-.sobreLivro h2{
-    text-transform: uppercase;
-}
-
 
 .imgLivro{
     display: flex;
@@ -61,18 +56,34 @@
 }
 
 .imgLivro img{
-    height: 100%;
-    width: 60%;
+    width: 140px;
+    height: 215px;
 }
 
 .autorAno{
+    color: #9F9898;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
     display: flex;
-    gap: 3%
+    gap: 8px;
 }
 
 .dataLancamento{
     border-left: 1px solid  darkgray;
-    padding-left: 3%;
+    padding-left: 8px;
+    color: #DDA35D;
+}
+
+.tipo{
+    color: #AA6231;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 .botaoLinkLivro{
@@ -81,7 +92,6 @@
     display: grid;
     place-self: end;
     font-weight: 600;
-    color: #ffff;
     transition: .4s ease-in-out;
 }
 .botaoContainer{
@@ -90,14 +100,21 @@
   justify-content: space-around;
   padding: 10px 20px;
   width: 100%;
+  color: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.56px;
 }
 .botaoLinkLivro:hover{
     scale: .9;
 }
 
 .sobreLivro{
-    display: grid;
-    place-self: start;
+    font-size: 16px;
 }
 
 .livrosContainer{
@@ -120,10 +137,24 @@
 }
 
 .containerEnderecoFav{
+    margin-top: 8px;
     border-top: 1px solid darkgray;
-    padding: 2%;
     display: flex;
     justify-content: space-between;
+}
+
+.containerEnderecoFav p{
+    margin-top: 8px;
+    color: #808080;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.containerEnderecoFav img{
+    margin-top: 8px;
 }
 
 .nenhumFav{

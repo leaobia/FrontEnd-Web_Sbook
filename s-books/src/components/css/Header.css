@@ -14,7 +14,7 @@
     justify-content: space-between;
     align-items: center;
     height: 100%;
-       font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 .imgHeader{
@@ -75,9 +75,9 @@ ul{
 }
 
 .logo{
-    padding-left: 1vw;
-    width: 5vw;
-    height: 93%;
+    width: 82px;
+    height: 82px;
+    margin-left: 24px;
 }
 
 .botaoMenu img{

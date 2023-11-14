@@ -63,31 +63,22 @@ function Filtragem() {
         document.getElementById('secaoLivro').textContent = ''
     }
 
+    const sidebarFunction = () => {
+        setVisibleLeft(true)
+        let container = document.querySelector('.App')
+        container.classList.add('privarRolagem')
+    }
+
     return (
         <div className="Filtragem">
             <div className="menuLocalContainer">
-                <button className='botaoMenu' onClick={() => setVisibleLeft(true)}><img src={slider} alt='ícone do botao de menu' /></button>
+                <button className='botaoMenu' onClick={sidebarFunction }><img src={slider} alt='ícone do botao de menu' /></button>
                 {/* <span className='nomeDaCidade'>Carapicuíba</span> */}
             </div>
 
             <Sidebar className='sideBar' visible={visibleLeft} position="left" onHide={() => setVisibleLeft(false)}>
                 <div className="filtragemContainer">
                     <h1>Filtragem</h1>
-                    <Stack spacing={5} className='stackDigitarLocal'>
-                        <h4 className='titleSection'>Localização</h4>
-                        <InputGroup >
-                            <InputRightElement pointerEvents='none'>
-                                <img src={Local} alt="icone de localização" className='iconLocal' />
-                            </InputRightElement>
-                            <Input
-                                id='enderecoValor'
-                                placeholder='Digite seu estado ou cidade'
-                                h='48px'
-                                className='inputField'
-                                fontSize={['sm', 'md', 'lg']}
-                            />
-                        </InputGroup>
-                    </Stack>
                 </div>
                 <div className="livrosContainerSidebar">
                     <h4 className='titleSection'>Livros</h4>
@@ -142,7 +133,7 @@ function Filtragem() {
                     </Stack>
                 </div>
                 <div className="limparContainer">
-                    <button title='Clique aqui para Enviar os dados' onClick={filtrar} >Filtrar</button>
+                    <button title='Clique aqui para Enviar os dados' onClick={filtrar} >Limpar</button>
                     {/* <button title='Clique aqui para limpar os dados'>Limpar</button> */}
                 </div>
             </Sidebar>

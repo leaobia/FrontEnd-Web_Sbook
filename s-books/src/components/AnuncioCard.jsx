@@ -110,7 +110,7 @@ function AnuncioCard({ anuncio, autor, tipo, endereco, foto }) {
           <p>{autor}</p>
           <p className='dataLancamento'>{anuncio.ano_lancamento}</p>
         </div>
-        <p>{tipo.tipo}</p>
+        <p className='tipo'>{tipo.tipo}</p>
       </div>
       <button className='botaoLinkLivro'>
         <Link to='/livro'>

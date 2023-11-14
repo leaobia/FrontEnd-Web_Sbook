@@ -35,25 +35,35 @@
 .inputGroupSearch{
     margin-right: 4vw;
 }
-
+.privarRolagem{
+    overflow-y: hidden;
+}
 .sideBar{
     background-color: #FFFF;
     position: absolute;
     left: 0;
     top: 8vh;
-    height: 100vh;
-    overflow-y: auto;
+    min-height: calc(100vh - 108.4px);
+    max-height: auto;
     width: 20vw;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-
-.stackDigitarLocal{
-    width: 70%;
+.p-sidebar-content{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
-.filtragemContainer, .livrosContainerSidebar, .generoContainer, .anoDoLivroContainer, .limparContainer{
-    padding: 5%;
+.filtragemContainer{
+    padding: 16px;
     display: flex;
     flex-direction: column;
     gap: 5vh;
+}
+.livrosContainerSidebar, .generoContainer, .anoDoLivroContainer, .limparContainer{
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     border-bottom: .4px solid gray;
 }
 
@@ -87,13 +97,14 @@
 .listaDeGeneros{
     display: flex;
     flex-direction: column;
+    gap: 24px;
 }
 
 .botaoQuantidadeListaGenero{
-    width: fit-content;
-    display: grid;
-    place-self: end;
-    grid-template-columns: 1fr .4fr;
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
 }
 
 .opcaoChecagem{
