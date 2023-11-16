@@ -1,3 +1,4 @@
+import React, {  useState } from 'react';
 import '../components/css/Anunciar.css'
 import { Link } from "react-router-dom"
 import { baseUrl } from '../url'
@@ -225,8 +226,11 @@ if (!isRequestInProgress) {
 }
 
 
-
-
+const [imgGrande, setImgGrade] = useState(imgLivroURL);
+const mudarImagemCarrossel = (event) => {
+  let img = event.target.src
+  setImgGrade(img)
+}
 
 
 
@@ -241,33 +245,39 @@ if (!isRequestInProgress) {
       </div>
       <h1>Agora confira as informações do livro antes de publicar! </h1> 
       <button className='publicarButton' onClick={publicarLivro}>Publicar</button>
-      <div className="anuncioDados">
-        <div className="fotos">
-        <img src={imgLivroURL} alt="foto do anuncio" className='fotoAnuncio' />
-        <img src={imgLivro2URL} alt="foto do anuncio" className='fotoAnuncio' />
-        <img src={imgLivro3URL} alt="foto do anuncio" className='fotoAnuncio' />
-        </div>
+      <div className="anuncioDados dadosDoAnuncio"> 
+      <div className="divLivroCarrossel">
+         <div className="showLivro"><img src={imgGrande} alt="foto do anuncio" className='imgGrande'/></div>
+         <div className="livrosAparecer">
+           <button ><img src={imgLivroURL} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
+           <button  ><img src={imgLivro2URL} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel}/></button>
+           <button ><img src={imgLivro3URL} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
+         </div>
+       </div>
+       <div className="dadosAnuncioPrincipal dadoAnunciante">
+         <div className="">
+           <div>
+           <p className='anuncioNome'>{nomeDoLivroCadastro}</p>
+           <p className='disponivelPara'>Disponivel para:  {tipoAnuncioString}</p>
+           <p>{generosString}</p>
+           </div>
+          
+           <div className="direitaDadosAnuncio">
+        <Link to='/chat'><button className='messageButton'>Enviar mensagem</button></Link> 
+        <div className="anuncianteDados">
+          <img src={perfilFoto} alt="foto perfil do anunciante" className='fotoUser' />
+          <div className="nomeAnunciante">
+            <p>{nomeUsuario}</p>
+            <p>{cidadeUsuario}, {estadoUsuario}</p>
+          </div> 
+          </div>
         
-        <div className="dadosAnuncioPrincipal">
-          <div className="esquerdaDadosAnuncio">
-            <p>{nomeDoLivroCadastro}</p>
-            <p>{nomeDoAutorCadastro} | {anoValue}</p>
-            <p>Disponivel para: {tipoAnuncioString}</p>
-          </div>
-          <div className="direitaDadosAnuncio">
-            <Link to='/chat'><button className='messageButton'>Enviar mensagem</button></Link>
-            <div className="anuncianteDados">
-              <img src={perfilFoto} alt="foto perfil do anunciante" className='fotoUser' />
-              <div className="nomeAnunciante">
-                <p>{nomeUsuario}</p>
-                <p>{cidadeUsuario},{estadoUsuario}</p>
-              </div>
-            </div>
-          </div>
+         </div>
 
-        </div>
-
+     </div>
       </div>
+    
+     </div>
       <div className="descricaoContainer">
         <h3 className='titleContainerDesc'>Descrição:</h3>
         <p>{textAreaCadastro}</p>

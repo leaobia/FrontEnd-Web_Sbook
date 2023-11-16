@@ -8,6 +8,7 @@ function CardAnuncioAnunciante() {
     const [anuncios, setAnuncios] = useState([]);
     const [isLoading, setIsLoading] = useState(false); 
     const anunciante = localStorage.getItem('id_anunciante');
+   // console.log(anunciante);
     let idPegarAnuncio = parseInt(localStorage.getItem('getAnuncioById'))
 
     useEffect(() => {
@@ -17,6 +18,8 @@ function CardAnuncioAnunciante() {
         .then(response => {
 
           let anuncio = response.data.anuncios
+          console.log('anuncio do anunciante:', anuncio);
+          console.log('anuncio do anunciante2:', anuncio[0].autores[0].nome);
   
           setAnuncios(anuncio);
           setTimeout(() => {
@@ -33,6 +36,7 @@ function CardAnuncioAnunciante() {
         });
     }, [anunciante]);
     
+    console.log(anuncios);
 
     return (
   
@@ -48,15 +52,15 @@ function CardAnuncioAnunciante() {
     </div>
 ) :  Array.isArray(anuncios) ? (
   anuncios
-      .filter((anuncio) => anuncio.anuncio.id !== idPegarAnuncio)
+      //.filter((anuncio) => anuncio.anuncio.id !== idPegarAnuncio)
       .map((anuncio) => (
           <AnuncioCardAnunciante
               key={anuncio.anuncio.id}
               anuncio={anuncio.anuncio}
-              autor={anuncio.autores[0].nome}
-              tipo={anuncio.tipo_anuncio[0]}
+              autor={anuncio.autores && anuncio.autores.length > 0 ? anuncio.autores[0].nome : 'Nome não disponível'}
+              tipo={anuncio.tipo_anuncio && anuncio.tipo_anuncio.length > 0 ? anuncio.tipo_anuncio[0] : 'Tipo não disponível'}
               endereco={anuncio.endereco}
-              foto={anuncio.foto[0].foto}
+              foto={anuncio.foto && anuncio.foto.length > 0 ? anuncio.foto[0].foto : 'URL da foto não disponível'}
               cidade={anuncio.endereco.cidade}
               estado={anuncio.endereco.estado}
           />

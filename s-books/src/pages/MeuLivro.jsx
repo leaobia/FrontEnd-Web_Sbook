@@ -6,8 +6,6 @@ import { baseUrl } from '../url';
 import axios from 'axios';
 import '../components/css/Livro.css'
 import { Spinner } from '@chakra-ui/react'
-import excluirIcon from '../components/img/excluir.png'
-import editarIcon from '../components/img/editar.png'
 import { FetchEstadoLivro, FetchGeneros, FetchTipoAnuncio } from '../module/Funcoes';
 
 import {
@@ -198,7 +196,7 @@ function MeuLivro() {
   let perfilFotoAnunciante = localStorage.getItem('perfilFotoAnunciante')
 
   const excluirAnuncio = () => {
-    const url = `${baseUrl}v1/sbook/anuncio/${idPegarAnuncio}`;
+    const url = `${baseUrl}v1/sbook/anuncio-delete/${idPegarAnuncio}`;
 
     fetch(url, {
       method: 'DELETE',
@@ -207,6 +205,7 @@ function MeuLivro() {
       }
     })
       .then(response => {
+        console.log(response);
         console.log(response.status);
         if (response.status === 200) {
           window.location.href = '/meusAnuncios'

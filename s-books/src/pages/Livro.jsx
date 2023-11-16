@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link } from "react-router-dom"
@@ -11,7 +10,7 @@ import SecaoLivroAnunciante from '../components/SecaolivroAnunciante';
 
 function Livro() {
 
-  let cidadeUsuario = localStorage.getItem('cidadeUsuario')
+  let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
   let idPegarAnuncio = parseInt(localStorage.getItem('getAnuncioById'))
 
  
@@ -26,6 +25,7 @@ function Livro() {
     axios.get(`${baseUrl}v1/sbook/anuncio/${idPegarAnuncio}`)
       .then(response => {
         const anuncioData = response.data.anuncios;
+        setImgGrade(anuncioData.foto[0].foto)
         setAnuncio(anuncioData);
         let generos = anuncioData.generos;
         localStorage.setItem('id_anunciante', anuncioData.anuncio.anunciante);
@@ -61,6 +61,12 @@ function Livro() {
   let anuncianteNome = localStorage.getItem('nome_anunciante')
   let perfilFotoAnunciante = localStorage.getItem('perfilFotoAnunciante')
 
+  const [imgGrande, setImgGrade] = useState(null);
+
+  const mudarImagemCarrossel = (event) => {
+    let img = event.target.src
+    setImgGrade(img)
+  }
 
   if (anuncio.length === 0) {
     return (
@@ -89,28 +95,41 @@ function Livro() {
           </div>
         ))}
       </Slider> */}
-      <div className="anuncioDados">
-        <img src={anuncio.foto[0].foto} alt="foto do anuncio" className='fotoAnuncio' />
-        <div className="dadosAnuncioPrincipal">
-          <div className="esquerdaDadosAnuncio">
-          <p>{anuncio.anuncio.nome}</p>
-         <p>Disponivel para: {anuncio.tipo_anuncio[0].tipo}</p>
-         <p>{generos}</p>
-          </div>
-          <div className="direitaDadosAnuncio">
+            <div className="anuncioDados dadosDoAnuncio">
+       
+
+
+       <div className="divLivroCarrossel">
+         <div className="showLivro"><img src={imgGrande} alt="foto do anuncio" className='imgGrande'/></div>
+         <div className="livrosAparecer">
+           <button ><img src={anuncio.foto[0].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
+           <button  ><img src={anuncio.foto[1].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel}/></button>
+           <button ><img src={anuncio.foto[2].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
+         </div>
+       </div>
+       <div className="dadosAnuncioPrincipal dadoAnunciante">
+         <div className="">
+           <div>
+           <p className='anuncioNome'>{anuncio.anuncio.nome}</p>
+           <p className='disponivelPara'>Disponivel para: {anuncio.tipo_anuncio[0].tipo}</p>
+           <p>{generos}</p>
+           </div>
+          
+           <div className="direitaDadosAnuncio">
         <Link to='/chat'><button className='messageButton'>Enviar mensagem</button></Link> 
         <div className="anuncianteDados">
           <img src={perfilFotoAnunciante} alt="foto perfil do anunciante" className='fotoUser' />
           <div className="nomeAnunciante">
             <p>{anuncianteNome}</p>
             <p>{anuncio.endereco.cidade}, {anuncio.endereco.estado}</p>
+          </div> 
           </div>
-        </div>
-          </div>
-       
-        </div>
         
-      </div>
+         </div>
+
+     </div>
+     </div>
+     </div>
       <div className="descricaoContainer">
         <h3 className='titleContainerDesc'>Descrição:</h3>
         <p>{anuncio.anuncio.descricao}</p>

@@ -30,7 +30,7 @@
 .dadosAnuncioPrincipal{
     background-color: #ffff;
     width: 20%;
-    height: 25vh;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     border-radius: 8px;
@@ -40,6 +40,9 @@
     margin-right: 10%;
 }
 
+.dadoAnunciante{
+    height: fit-content;
+}
 .esquerdaDadosAnuncio{
     width: 100%;
     display: flex;
@@ -217,9 +220,32 @@
     font-weight: bold;
     font-size: clamp(1rem, -0.0274rem + 13.6986vw, 1.625rem);
 }
+
+.messageButton{
+    border-radius: 3px;
+    transition: .3s ease-in-out;
+    font-size: clamp(0.875rem, 0.25rem + 2vw, 1.375rem);
+}
+
+.messageButton:hover{
+    scale: .9;
+}
+
+.anuncioNome{
+    font-weight: 700;
+    border-bottom: .3px solid #706f6f;
+    width: 100%;
+    margin-bottom: 2%;
+    font-size: clamp(1rem, -0.0274rem + 13.6986vw, 1.625rem);
+    padding-bottom: 1%;
+}
 @media (max-width:700px) {
+    .anuncioDados{
+        flex-direction: column;
+    }
     .dadosAnuncioPrincipal{
         flex-direction: column;
+        width: 100%;
     }
     .direitaDadosAnuncio, .esquerdaDadosAnuncio{
         width: 100%;
@@ -249,5 +275,22 @@
     }
     .editortrashicon{
         width: 80%;
+    }
+
+    .divLivroCarrossel{
+        width: 95%;
+    }
+    .showLivro{
+        padding: 4%;
+        border: .8px solid #929292;
+        border-radius: 8px;
+        width: 65vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .imgGrande{
+        width: 30vw;
+        height: 35vh;
     }
 }
