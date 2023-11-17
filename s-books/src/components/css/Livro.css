@@ -27,6 +27,11 @@
     font-size: clamp(1rem, -0.0274rem + 13.6986vw, 1.625rem);
 }
 
+.precoLivro{
+    color: #AA6231;
+    font-weight: 600;
+}
+
 .dadosAnuncioPrincipal{
     background-color: #ffff;
     width: 20%;

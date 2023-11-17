@@ -92,8 +92,7 @@ if(tipoAnuncioSelecionadosId){
 const publicarLivro = () => {
 
 
-  if(precoLiVRO === "" || precoLiVRO === null || precoLiVRO === undefined){
-    console.log('preco');
+  if(precoLiVRO === "" && keyDoAutorCadastro ){
   
     const credentials = {
       "nome": nomeDoLivroCadastro,
@@ -123,6 +122,7 @@ const publicarLivro = () => {
 }
 
 console.log(credentials);
+console.log('preco vazio e id true');
 
 const url = `${baseUrl}v1/sbook/anuncio-post`;
 // Variável de controle para evitar solicitações redundantes
@@ -156,10 +156,8 @@ if (!isRequestInProgress) {
 
 
 
-}else if(keyDoAutorCadastro && nomeDoLivroCadastro && idiomaKey && textAreaCadastro
-    && isbnValue && anoValue && pagValue && edicaoValue && nomeDoAutorCadastro && editoraKey && editoraValue && imgLivroURL && imgLivro2URL
-    && imgLivro3URL && estadosSelecionadosId && generosSelecionadosId && tipoAnuncioSelecionadosId){
-console.log('certo');
+}else if(keyDoAutorCadastro && precoLiVRO){
+
       const credentials = {
         "nome": nomeDoLivroCadastro,
         "numero_paginas": parseInt(pagValue),
@@ -188,8 +186,71 @@ console.log('certo');
     }
 
     console.log(credentials);
+    console.log('os dois vindo');
 
     const url = `${baseUrl}v1/sbook/anuncio-post`;
+
+let isRequestInProgress = false;
+
+
+if (!isRequestInProgress) {
+    isRequestInProgress = true;
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(credentials)
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.status === 201) {
+                window.location.href = '/meusAnuncios';
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao publicar livro:", error);
+        })
+        .finally(() => {
+            isRequestInProgress = false;
+        });
+}
+
+
+}else if(keyDoAutorCadastro === "" && precoLiVRO === ""){
+  const credentials = {
+    "nome": nomeDoLivroCadastro,
+    "numero_paginas": parseInt(pagValue),
+    "ano_lancamento": parseInt(anoValue), 
+    "descricao": textAreaCadastro,
+    "edicao": edicaoValue, 
+    "isbn": isbnValue, 
+    "preco": null,
+    "id_usuario": parseInt(idUsuario) ,
+    "id_estado_livro": parseInt(estadosSelecionadosId), 
+    "id_idioma": parseInt(idiomaKey), 
+    "id_editora": parseInt(editoraKey), 
+    "fotos": [
+      imgLivroURL,
+      imgLivro2URL,
+      imgLivro3URL
+  ], 
+  "tipos_anuncio": tipoAnuncioSelecionadosId,
+"generos": generosSelecionadosId, 
+"autores": [
+    {
+        "status_autor": false,
+        "id_autor": nomeDoAutorCadastro
+    }
+]
+}
+
+console.log(credentials);
+
+const url = `${baseUrl}v1/sbook/anuncio-post`;
+
 // Variável de controle para evitar solicitações redundantes
 let isRequestInProgress = false;
 
@@ -220,12 +281,69 @@ if (!isRequestInProgress) {
 }
 
 
-}else{
-  console.log('certamente um erro');
+}else if (precoLiVRO && keyDoAutorCadastro ===""){
+  const credentials = {
+    "nome": nomeDoLivroCadastro,
+    "numero_paginas": parseInt(pagValue),
+    "ano_lancamento": parseInt(anoValue), 
+    "descricao": textAreaCadastro,
+    "edicao": edicaoValue, 
+    "isbn": isbnValue, 
+    "preco": parseInt(precoLiVRO),
+    "id_usuario": parseInt(idUsuario) ,
+    "id_estado_livro": parseInt(estadosSelecionadosId), 
+    "id_idioma": parseInt(idiomaKey), 
+    "id_editora": parseInt(editoraKey), 
+    "fotos": [
+      imgLivroURL,
+      imgLivro2URL,
+      imgLivro3URL
+  ], 
+  "tipos_anuncio": tipoAnuncioSelecionadosId,
+"generos": generosSelecionadosId, 
+"autores": [
+    {
+        "status_autor": false,
+        "id_autor": nomeDoAutorCadastro
+    }
+]
+}
+
+console.log(credentials);
+
+const url = `${baseUrl}v1/sbook/anuncio-post`;
+
+// Variável de controle para evitar solicitações redundantes
+let isRequestInProgress = false;
+
+// Verifique se já existe uma solicitação em andamento antes de enviar outra
+if (!isRequestInProgress) {
+    isRequestInProgress = true;
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(credentials)
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.status === 201) {
+                window.location.href = '/meusAnuncios';
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao publicar livro:", error);
+        })
+        .finally(() => {
+            isRequestInProgress = false;
+        });
 }
 }
 
-
+}
 const [imgGrande, setImgGrade] = useState(imgLivroURL);
 const mudarImagemCarrossel = (event) => {
   let img = event.target.src
