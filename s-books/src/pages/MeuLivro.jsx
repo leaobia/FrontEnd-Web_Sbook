@@ -16,6 +16,7 @@ import {
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../adapters/firebase";
+import { set } from 'lodash';
 
 
 function MeuLivro() {
@@ -34,7 +35,9 @@ function MeuLivro() {
 
 
 
-  const [selectElement, setSelectElement] = useState(null);
+  // const [selectElement, setSelectElement] = useState(null);
+
+  // setSelectElement(years)
 
   const [selectIdiomas, setSelectIdiomas] = useState(null);
   const [selectElementAutores, setSelectElementAutores] = useState(null);
@@ -44,16 +47,16 @@ function MeuLivro() {
   const [generosLivro, setGenerosLivro] = useState([]);
   const [tipoAnuncio, setTipoAnuncio] = useState([]);
 
-  useEffect(() => {
-    if (selectElement) {
-      years.forEach(year => {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        selectElement.appendChild(option);
-      });
-    }
-  }, [years]);
+  // useEffect(() => {
+  //   if (selectElement) {
+  //     years.forEach(year => {
+  //       const option = document.createElement('option');
+  //       option.value = year;
+  //       option.textContent = year;
+  //       selectElement.appendChild(option);
+  //     });
+  //   }
+  // }, [years]);
 
 
   useEffect(() => {
@@ -327,6 +330,15 @@ function MeuLivro() {
     let img2 = anuncio.foto[1].foto
     let img3 = anuncio.foto[2].foto
 
+    let nomeAnuncio = document.getElementById('nome-anuncio').value
+    let descricaoAnuncio = document.getElementById('descricaoAnuncio').value
+    let anoLancamentoSelect = document.getElementById('anoLancamentoSelect').value
+    let idiomasSelect = parseInt(document.getElementById('idiomas').value)
+    let autoresSelect = parseInt(document.getElementById('autores').value)
+    let editoraSelect = parseInt(document.getElementById('editora').value)
+
+    console.log(typeof editoraSelect);
+
     let dataImageURLEdit = localStorage.getItem('dataImageURLEdit')
     let dataImageURLEdit2 = localStorage.getItem('dataImageURLEdit2')
     let dataImageURLEdit3 = localStorage.getItem('dataImageURLEdit3')
@@ -343,16 +355,16 @@ function MeuLivro() {
 
     const credentials = {
       "id_anuncio": idPegarAnuncio,
-      "nome": anuncio.anuncio.nome,
+      "nome": nomeAnuncio,
       "numero_paginas": anuncio.anuncio.numero_paginas,
-      "ano_lancamento": anuncio.anuncio.ano_lancamento,
-      "descricao": anuncio.anuncio.descricao,
+      "ano_lancamento": anoLancamentoSelect,
+      "descricao": descricaoAnuncio,
       "edicao": anuncio.anuncio.edicao,
       "isbn": "8506055652",
       "preco": anuncio.anuncio.preco,
-      "id_editora": anuncio.editora.id,
+      "id_editora": editoraSelect,
       "id_estado_livro": anuncio.estado_livro.id,
-      "id_idioma": anuncio.idioma.id,
+      "id_idioma": idiomasSelect,
       "fotos": [
         img1,
         img2,
@@ -363,7 +375,7 @@ function MeuLivro() {
       ],
       "generos": generosId,
       "autores": [
-        anuncio.autores[0].id
+      autoresSelect
       ]
     }
 
@@ -497,13 +509,18 @@ function MeuLivro() {
                   defaultValue={anuncio.anuncio.nome}
                 />
 
-                <Textarea placeholder='Descrição do anúncio' defaultValue={anuncio.anuncio.descricao} />
+                <Textarea placeholder='Descrição do anúncio' defaultValue={anuncio.anuncio.descricao} id='descricaoAnuncio'/>
 
-                <select className='dadoDoAnuncio' ref={setSelectElement}>
+                <select className='dadoDoAnuncio' id='anoLancamentoSelect'>
                   <option value={anuncio.anuncio.ano_lancamento}>{anuncio.anuncio.ano_lancamento}</option>
+                  {years.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
                 </select>
                 <select id="idiomas" className='dadoDoAnuncio'>
-                  <option value={anuncio.anuncio.idioma}>{anuncio.idioma.nome}</option>
+                  <option value={anuncio.idioma.id}>{anuncio.idioma.nome}</option>
                   {selectIdiomas.map((idioma) => (
                     <option key={idioma.id} value={idioma.id}>
                       {idioma.nome}
@@ -511,7 +528,7 @@ function MeuLivro() {
                   ))}
                 </select>
                 <select id="autores" className='dadoDoAnuncio'>
-                  <option value={anuncio.autores[0].nome}>{anuncio.autores[0].nome}</option>
+                  <option value={anuncio.autores[0].id}>{anuncio.autores[0].nome}</option>
                   {selectElementAutores.map((autor) => (
                     <option key={autor.id} value={autor.id}>
                       {autor.nome}
@@ -519,7 +536,7 @@ function MeuLivro() {
                   ))}
                 </select>
                 <select id="editora" className='dadoDoAnuncio'>
-                  <option value={anuncio.editora.nome}>{anuncio.editora.nome}</option>
+                  <option value={anuncio.editora.id}>{anuncio.editora.nome}</option>
                   {selectElementEditora.map((editora) => (
                     <option key={editora.id} value={editora.id}>
                       {editora.nome}
@@ -622,7 +639,7 @@ function MeuLivro() {
           </DrawerContent>
         </Drawer>
         <div className="sideBarContainer">
-          <Link to='/'>&larr;</Link>
+          <Link to='/meusAnuncios'>&larr;</Link>
           <div className="menuLocalContainer">
             <span className='nomeDaCidade'>{cidadeUsuario}</span>
           </div>

@@ -29,7 +29,7 @@ function MeuAnuncioApi() {
           }, 50); 
         })
         .catch(error => {
-          console.error('Erro ao obter dados do anúncio pelo seu propio id: ', error);
+          console.error('Erro ao obter dados do anúncio pelo seu proprio id: ', error);
           
 
           setTimeout(() => {
@@ -52,9 +52,9 @@ function MeuAnuncioApi() {
             />
           </div>
         ) : (
-          Array.isArray(anuncios) && anuncios.length > 0 ? (
+          anuncios.length > 0 ? (
             anuncios
-              .filter((anuncio) => anuncio.anuncio.id !== idPegarAnuncio)
+              //.filter((anuncio) => anuncio.anuncio.id !== idPegarAnuncio)
               .map((anuncio) => (
                 <MeuAnuncioCard
                   key={anuncio.anuncio.id}

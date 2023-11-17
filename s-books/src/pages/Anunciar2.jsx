@@ -109,7 +109,6 @@ function Anunciar2() {
                         <label htmlFor="edicaoLivro">Digite a editora do livro:</label>
                         <select id="editora" className='dadoDoAnuncio' value={editoraValue} onChange={(e) => setEditoraValue(e.target.value)} onBlur= {pegarIdEditora}>
   <option value=""></option>
-  <option value="outro">Adicionar outro</option>
   {editoraArray.map(editora => (
     <option id={editora.id} value={editora.nome}>{editora.nome}</option>
   ))}

@@ -65,6 +65,7 @@ useEffect(() => {
 
        let nomeDoLivroCadastro = document.getElementById('nomeDoLivroCadastro').value
        let nomeDoAutorCadastro = autorValue
+       let autorCadastro2 = document.getElementById('autorCadastro2').textContent
        let idiomas = idiomaValue
       // let idiomaNome = document.getElementById('idiomas').textContent
 
@@ -72,8 +73,13 @@ useEffect(() => {
 
        console.log(nomeDoLivroCadastro,nomeDoAutorCadastro,idiomas,textAreaCadastro);
 
+       if(nomeDoAutorCadastro === 'outro'){
+        localStorage.setItem('nomeDoAutorCadastroLivro', autorCadastro2)
+       }else{
+        localStorage.setItem('nomeDoAutorCadastroLivro', nomeDoAutorCadastro)
+       }
+
        localStorage.setItem('nomeDoLivroCadastro', nomeDoLivroCadastro)
-       localStorage.setItem('nomeDoAutorCadastroLivro', nomeDoAutorCadastro)
        localStorage.setItem('idiomas', idiomas)
        localStorage.setItem('textAreaCadastro', textAreaCadastro)
     } 
