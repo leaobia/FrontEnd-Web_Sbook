@@ -101,6 +101,7 @@ function MeuLivro() {
 
   const [anuncio, setAnuncio] = useState([]);
   const [generos, setGeneros] = useState([]);
+  const [generosId, setGenerosId] = useState([]);
 
   const [imgGrande, setImgGrade] = useState(null);
 
@@ -122,7 +123,14 @@ function MeuLivro() {
         const generosArray = generos.map((genero) => genero.nome);
         const generosString = generosArray.join(', ');
 
+        const generosArray2 = generos.map((genero) => parseInt(genero.id));
+        //const generosString2 = generosArray2.join(', ');
+
+        console.log(typeof generosArray2);
+        console.log(generosArray2);
+
         setGeneros(generosString);
+        setGenerosId(generosArray2);
       })
       .catch(error => {
         console.error('Erro ao obter dados do anúncio pelo id:', error);
@@ -353,9 +361,7 @@ function MeuLivro() {
       "tipos_anuncio": [
         anuncio.tipo_anuncio[0].id
       ],
-      "generos": [
-        generos
-      ],
+      "generos": generosId,
       "autores": [
         anuncio.autores[0].id
       ]
