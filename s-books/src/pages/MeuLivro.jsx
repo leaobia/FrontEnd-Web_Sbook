@@ -397,6 +397,56 @@ function MeuLivro() {
   }
 
 
+
+  async function fetchDataEstadoLivro() {
+    try {
+      const estadoData = await FetchEstadoLivro();
+      setEstadoLivro(estadoData);
+    } catch (error) {
+      console.error('Erro ao buscar estados do livro:', error);
+    }
+  }
+
+  async function fetchDataGenero() {
+    try {
+      const generosData = await FetchGeneros();
+      setGenerosLivro(generosData);
+    } catch (error) {
+      console.error('Erro ao buscar gêneros:', error);
+    }
+  }
+
+
+  async function fetchDataTipoLivro() {
+    try {
+      const tipoAnuncioData = await FetchTipoAnuncio();
+      setTipoAnuncio(tipoAnuncioData);
+    } catch (error) {
+      console.error('Erro ao buscar gêneros:', error);
+    }
+  }
+
+  fetchDataEstadoLivro()
+  fetchDataGenero();
+  fetchDataTipoLivro()
+
+  const [estadoSelecionado, setEstadoSelecionado] = useState('');
+  const [generoSelecionado, setGeneroSelecionado] = useState('');
+  const [tipoSelecionado, setTipoSelecionado] = useState('');
+  const handleEstadoChange = (event) => {
+    // Atualiza o estado quando um estado é selecionado
+    setEstadoSelecionado(event.target.value);
+  };
+  const handleEstadoChange2 = (event) => {
+    // Atualiza o estado quando um estado é selecionado
+    setGeneroSelecionado(event.target.value);
+  };
+  const handleEstadoChange3 = (event) => {
+    // Atualiza o estado quando um estado é selecionado
+    setTipoSelecionado(event.target.value);
+  };
+
+
   if (anuncio.length === 0 || isLoading) {
     return (
       <div className="spinnerContainer2">
@@ -480,6 +530,7 @@ function MeuLivro() {
                         name="estadosSelecionados"
                         value={estado.estado}
                         checked={estado.estado === anuncio.estado_livro.estado}
+                        onChange={handleEstadoChange}
                       />
                       {estado.estado}
                     </label>
@@ -496,6 +547,7 @@ function MeuLivro() {
                         value={tipo.id}
                         className='check'
                         checked={generos.includes(tipo.nome)}
+                        onChange={handleEstadoChange2}
                       />
                       {tipo.nome}
                     </label>
@@ -512,6 +564,7 @@ function MeuLivro() {
                         value={tipo.id}
                         className='check'
                         checked={anuncio.tipo_anuncio[0].tipo.includes(tipo.tipo)}
+                        onChange={handleEstadoChange3}
                       />
                       {tipo.tipo}
                     </label>
