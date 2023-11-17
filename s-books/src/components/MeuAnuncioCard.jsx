@@ -25,9 +25,8 @@ function MeuAnuncioCard({ anuncio, autor, tipo, endereco, foto }) {
           <p>{autor}</p>
           <p className='dataLancamento'>{anuncio.ano_lancamento}</p>
         </div>
-        <p>{tipo.tipo}</p>
-        <p className="precoLivro">{tipo.tipo === 'Doação' ? '' :
-              tipo.tipo === 'Troca' ? '' : 'R$ ' + anuncio.preco}</p>
+        <p className='tipo'>{tipo.tipo === 'Doação' ? tipo.tipo :
+              tipo.tipo === 'Troca' ? tipo.tipo : 'R$ ' + anuncio.preco}</p>
       </div>
       <button className='botaoLinkLivro'>
         <Link to='/meuLivro'>

@@ -49,7 +49,8 @@ function AnuncioCardFav({ anuncio, autor, tipo, cidade, estado , foto}) {
           <p>{autor}</p>
           <p className='dataLancamento'>{anuncio.ano_lancamento}</p>
         </div>
-        <p>{tipo.tipo}</p>
+        <p className='tipo'>{tipo.tipo === 'Doação' ? tipo.tipo :
+              tipo.tipo === 'Troca' ? tipo.tipo : 'R$ ' + anuncio.preco}</p>
       </div>
       <Link to='/livro' className='botaoLinkLivro'>
         <button className='botaoContainer'>Comprar <img src={imagemCarrinho} alt='icone de carrinho' /></button>
