@@ -14,9 +14,9 @@ import { logOut } from '../url';
 
 import { Link } from "react-router-dom"
 
-let nomeUsuario = localStorage.getItem('nomeUsuario')
-let perfilFoto = localStorage.getItem('perfilFoto')
-let cidadeUsuario = localStorage.getItem('cidadeUsuario')
+let nomeUsuario = localStorage.getItem('nomeUsuarioHome')
+let perfilFoto = localStorage.getItem('fotoUsuarioHome')
+let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
 
 function Favoritos() {
 

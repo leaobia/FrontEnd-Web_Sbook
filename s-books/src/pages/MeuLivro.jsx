@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link } from "react-router-dom"
@@ -16,13 +16,6 @@ import {
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../adapters/firebase";
-
-import {
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-} from '@chakra-ui/react'
 
 
 function MeuLivro() {
@@ -42,15 +35,14 @@ function MeuLivro() {
 
 
   const [selectElement, setSelectElement] = useState(null);
-  const [selectElementIdiomas, setSelectElementIdiomas] = useState(null);
+
+  const [selectIdiomas, setSelectIdiomas] = useState(null);
   const [selectElementAutores, setSelectElementAutores] = useState(null);
   const [selectElementEditora, setSelectElementEditora] = useState(null);
 
   const [estadoLivro, setEstadoLivro] = useState([]);
   const [generosLivro, setGenerosLivro] = useState([]);
   const [tipoAnuncio, setTipoAnuncio] = useState([]);
-
-
 
   useEffect(() => {
     if (selectElement) {
@@ -63,58 +55,45 @@ function MeuLivro() {
     }
   }, [years]);
 
-  // useEffect(() => {
 
-  //   axios.get(`${baseUrl}v1/sbook/idiomas`)
-  //     .then(response => {
-  //               let idiomas = response.data.idiomas
-  //               idiomas.forEach(idioma => {
-  //                 const option = document.createElement('option');
-  //       option.value = idioma.id;
-  //       option.textContent = idioma.nome;
-  //       selectElementIdiomas.appendChild(option);
-  //               })
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}v1/sbook/autores`);
+        setSelectElementAutores(response.data.autores);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  //     })
-  //     .catch(error => {
-  //       console.error('Erro ao obter dados dos idiomas', error);
-  //     });
-  // });
-  // useEffect(() => {
+    fetchData();
+  }, []);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}v1/sbook/idiomas`);
+        setSelectIdiomas(response.data.idiomas);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  //   axios.get(`${baseUrl}v1/sbook/autores`)
-  //     .then(response => {
-  //               let idiomas = response.data.autores
-  //               idiomas.forEach(idioma => {
-  //                 const option = document.createElement('option');
-  //       option.value = idioma.id;
-  //       option.textContent = idioma.nome;
-  //       selectElementAutores.appendChild(option);
-  //               })
+    fetchData();
+  }, []);
 
-  //     })
-  //     .catch(error => {
-  //       console.error('Erro ao obter dados dos idiomas', error);
-  //     });
-  // });
-  // useEffect(() => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}v1/sbook/editoras`);
+        setSelectElementEditora(response.data.editoras);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  //   axios.get(`${baseUrl}v1/sbook/editoras`)
-  //     .then(response => {
-  //               let idiomas = response.data.editoras
-  //               idiomas.forEach(idioma => {
-  //                 const option = document.createElement('option');
-  //       option.value = idioma.id;
-  //       option.textContent = idioma.nome;
-  //       selectElementEditora.appendChild(option);
-  //               })
-
-  //     })
-  //     .catch(error => {
-  //       console.error('Erro ao obter dados dos idiomas', error);
-  //     });
-  // });
-
+    fetchData();
+  }, []);
 
   let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
   let idPegarAnuncio = parseInt(localStorage.getItem('getAnuncioById'))
@@ -124,16 +103,10 @@ function MeuLivro() {
   const [generos, setGeneros] = useState([]);
 
   const [imgGrande, setImgGrade] = useState(null);
-  // const [nomeAnuncio, setNomeAnuncio] = useState(anuncio.anuncio.nome);
+
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isOpen: isOpen2, onOpen: onOpen2, onClose: onClose2 } = useDisclosure();
-
-  //const { isOpen: isOpen3, onOpen: onOpen3, onClose: onClose3 } = useDisclosure();
-  //const firstFieldRef = React.useRef(null)
-
-
-
 
   useEffect(() => {
 
@@ -145,7 +118,6 @@ function MeuLivro() {
         setImgGrade(anuncioData.foto[0].foto)
         let generos = anuncioData.generos;
         console.log('anunciodata', anuncioData);
-        console.log('generos', generos);
         localStorage.setItem('id_anunciante', anuncioData.anuncio.anunciante);
         const generosArray = generos.map((genero) => genero.nome);
         const generosString = generosArray.join(', ');
@@ -192,9 +164,6 @@ function MeuLivro() {
 
   }, [idPegarAnuncio], [idAnunciante])
 
-  let anuncianteNome = localStorage.getItem('nome_anunciante')
-  let perfilFotoAnunciante = localStorage.getItem('perfilFotoAnunciante')
-
   const excluirAnuncio = () => {
     const url = `${baseUrl}v1/sbook/anuncio-delete/${idPegarAnuncio}`;
 
@@ -214,63 +183,9 @@ function MeuLivro() {
       .catch(error => {
         if (error) {
           console.log(error);
-          return (
-            <div className="queroAnunciar componenteErro">
-              <Alert
-                status='error'
-                variant='subtle'
-                flexDirection='column'
-                alignItems='center'
-                justifyContent='center'
-                textAlign='center'
-                height='45vh'
-                width='40vw'
-                borderRadius='20'
-              >
-                <AlertIcon boxSize='40px' mr={0} />
-                <AlertTitle mt={4} mb={1} fontSize='lg'>
-                  Erro!
-                </AlertTitle>
-                <AlertDescription maxWidth='sm'>
-                  Ocorreu um erro ao excluir o anuncio
-                </AlertDescription>
-              </Alert></div>
-          )
         }
       });
   }
-
-  async function fetchDataEstadoLivro() {
-    try {
-      const estadoData = await FetchEstadoLivro();
-      setEstadoLivro(estadoData);
-    } catch (error) {
-      console.error('Erro ao buscar estados do livro:', error);
-    }
-  }
-
-  async function fetchDataGenero() {
-    try {
-      const generosData = await FetchGeneros();
-      setGenerosLivro(generosData);
-    } catch (error) {
-      console.error('Erro ao buscar gêneros:', error);
-    }
-  }
-
-
-  async function fetchDataTipoLivro() {
-    try {
-      const tipoAnuncioData = await FetchTipoAnuncio();
-      setTipoAnuncio(tipoAnuncioData);
-    } catch (error) {
-      console.error('Erro ao buscar gêneros:', error);
-    }
-  }
-
-  fetchDataEstadoLivro()
-  fetchDataGenero();
-  fetchDataTipoLivro()
 
 
   function mudarFoto(e) {
@@ -397,7 +312,7 @@ function MeuLivro() {
     }
   }
 
-  function editarAnuncioFuction () {
+  function editarAnuncioFuction() {
 
     console.log('editaranuncio');
     let img1 = anuncio.foto[0].foto
@@ -461,8 +376,7 @@ function MeuLivro() {
         console.log('Response:', response);
 
         if (response.status === 200) {
-         // window.location.reload()
-
+           window.location.reload()
         } else {
 
           console.log("body:" + response.body);
@@ -472,7 +386,6 @@ function MeuLivro() {
 
       })
       .catch(error => {
-        console.log('oi');
         console.error(error);
       });
 
@@ -530,17 +443,32 @@ function MeuLivro() {
 
                 <Textarea placeholder='Descrição do anúncio' defaultValue={anuncio.anuncio.descricao} />
 
-                <select id="editora" className='dadoDoAnuncio' ref={setSelectElement}>
+                <select className='dadoDoAnuncio' ref={setSelectElement}>
                   <option value={anuncio.anuncio.ano_lancamento}>{anuncio.anuncio.ano_lancamento}</option>
                 </select>
-                <select id="idiomas" className='dadoDoAnuncio' ref={setSelectElementIdiomas}>
+                <select id="idiomas" className='dadoDoAnuncio'>
                   <option value={anuncio.anuncio.idioma}>{anuncio.idioma.nome}</option>
+                  {selectIdiomas.map((idioma) => (
+                    <option key={idioma.id} value={idioma.id}>
+                      {idioma.nome}
+                    </option>
+                  ))}
                 </select>
-                <select id="autores" className='dadoDoAnuncio' ref={setSelectElementAutores}>
+                <select id="autores" className='dadoDoAnuncio'>
                   <option value={anuncio.autores[0].nome}>{anuncio.autores[0].nome}</option>
+                  {selectElementAutores.map((autor) => (
+                    <option key={autor.id} value={autor.id}>
+                      {autor.nome}
+                    </option>
+                  ))}
                 </select>
-                <select id="editora" className='dadoDoAnuncio' ref={setSelectElementEditora}>
+                <select id="editora" className='dadoDoAnuncio'>
                   <option value={anuncio.editora.nome}>{anuncio.editora.nome}</option>
+                  {selectElementEditora.map((editora) => (
+                    <option key={editora.id} value={editora.id}>
+                      {editora.nome}
+                    </option>
+                  ))}
                 </select>
 
                 <div className="dadosGenero">
@@ -640,32 +568,32 @@ function MeuLivro() {
             <span className='nomeDaCidade'>{cidadeUsuario}</span>
           </div>
         </div>
-       
+
         <div className="anuncioDados dadosDoAnuncio">
-       
+
 
 
           <div className="divLivroCarrossel">
-            <div className="showLivro"><img src={imgGrande} alt="foto do anuncio" className='imgGrande'/></div>
+            <div className="showLivro"><img src={imgGrande} alt="foto do anuncio" className='imgGrande' /></div>
             <div className="livrosAparecer">
               <button ><img src={anuncio.foto[0].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
-              <button  ><img src={anuncio.foto[1].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel}/></button>
+              <button  ><img src={anuncio.foto[1].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
               <button ><img src={anuncio.foto[2].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
             </div>
           </div>
           <div className="dadosAnuncioPrincipal">
             <div className="esquerdaDadosAnuncio">
               <div>
-              <p>{anuncio.anuncio.nome}</p>
-              <p className='disponivelPara'>Disponivel para: {anuncio.tipo_anuncio[0].tipo}</p>
-              <p>{generos}</p>
+                <p>{anuncio.anuncio.nome}</p>
+                <p className='disponivelPara'>Disponivel para: {anuncio.tipo_anuncio[0].tipo}</p>
+                <p>{generos}</p>
               </div>
-             
+
               <div className="butonContainerMeuAnuncio">
-              <button onClick={onOpen2}>Editar</button>
-              <button onClick={onOpen}>Excluir</button>
+                <button onClick={onOpen2}>Editar</button>
+                <button onClick={onOpen}>Excluir</button>
               </div>
-           
+
             </div>
 
           </div>

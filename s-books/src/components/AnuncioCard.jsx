@@ -5,6 +5,8 @@ import imagemCoracao from './img/coracaoIcon.png';
 import imagemCoracaoPreenchido from './img/coracaoPreenchido.png';
 import { baseUrl } from '../url';
 
+
+
 function AnuncioCard({ anuncio, autor, tipo, endereco, foto }) {
 
 
@@ -22,9 +24,17 @@ function AnuncioCard({ anuncio, autor, tipo, endereco, foto }) {
     localStorage.setItem('getAnuncioById', idAnuncio)
     console.log(anuncioId);
    }
+ 
 
   const preencher = () => {
-    setCoracaoPreenchido(true);
+
+    if(idUser){
+      setCoracaoPreenchido(true);
+    }else{
+      document.getElementById('botaoLogin').click()
+      document.body.scrollTop = 0; // Para navegadores da web
+    document.documentElement.scrollTop = 0; // Para o Internet Explorer, Firefox, Chrome, etc.
+    }
 
     const dados = {
       id_usuario: idUser,
