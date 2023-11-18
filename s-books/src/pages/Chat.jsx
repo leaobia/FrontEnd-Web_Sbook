@@ -80,12 +80,7 @@ function Chat(socket) {
         </ModalContent>
       </Modal>
 
-            <div className="listachats">
-                <div className="headerChats">
-                    <p>Chats</p>
-                </div>
-                <ChatItemComponent />
-            </div>
+         <ChatItemComponent/>
             <div className="imagemPadraoDiv"></div>
             <div className="chatMessage d-none">
                 <div className="headerChatMessage">
