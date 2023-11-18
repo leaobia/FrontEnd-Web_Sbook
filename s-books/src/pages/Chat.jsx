@@ -1,18 +1,25 @@
 import ChatItemComponent from "../components/ChatItem"
 import '../components/css/Chat.css'
-import { MessageBox } from "react-chat-elements";
 import enviarIcon from '../components/img/enviarbutton.png'
 import galeriaIcon from '../components/img/verImagensGaleria.png'
 import menuDropdownIcon from '../components/img/menuDropdownIcon.png'
 import menuDropdownIcon2 from '../components/img/mais.png'
 import { Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter  } from '@chakra-ui/react';
+import ChatBoxEnviada from "../components/ChatMessageEnviada";
+import ChatBoxRecebida from "../components/ChatMessageRecebida";
 
-function Chat() {
+import React, {useRef,useState, useEffect} from 'react'
+
+function Chat(socket) {
 
 
 
+    // const socket = io();
 
-
+    // socket.on('receive_contacts', (listContacts) => {
+    //   // Faz algo com a lista de contatos
+    //   console.log(listContacts);
+    // });
      
     
         setTimeout(() => {
@@ -78,25 +85,6 @@ function Chat() {
                     <p>Chats</p>
                 </div>
                 <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
-                <ChatItemComponent />
             </div>
             <div className="imagemPadraoDiv"></div>
             <div className="chatMessage d-none">
@@ -111,63 +99,20 @@ function Chat() {
         </ul>
                 </div>
                 <div className="containerMensagens">
-                    <MessageBox
-                    className="mensagemRecebida"
-                        position='left'
-                        type='text'
-                        text="Hi there !"
-                        date={Date.now()}
-                    />
-                    <div className="enviadaContainer">
-                        {/* <button className="buttonCancelarMensagem d-none" onClick={onOpen2} onBlur={sumirDaTela}>Cancelar mensagem</button> */}
-                    <div className="enviada" onClick={onOpen2}>
-                        <button className="verCancelado iconEditarMensagem">...</button>
-                    <MessageBox
-                    className="mensagemEnviada"
-                        position='right'
-                        type='text'
-                        text="Oieee ghygxuwsx xwhjgbsxkw sxwhwvxkw xhbwkbxw bxkwbsx!"
-                        date={Date.now()}
-                    />
-                    </div>
-                    </div>
-
-                    
-                   
-                   
-<MessageBox
+                <ChatBoxRecebida/>
+                   <ChatBoxEnviada/>
+                    </div>               
+{/* <MessageBox
   position={"left"}
   type={"photo"}
   data={{
       uri: "https://picsum.photos/200/200",
   }}
   
-/>
-
-<MessageBox
-                    className="mensagemRecebida"
-                        position='left'
-                        type='text'
-                        text="szxgwfvzsw wwszgwjs2 agqfa2 ga2gnfa2 av2jgay2 af2fa2 safs2qyj"
-                        date={Date.now()}
-                    />
-
-<div className="enviadaContainer">
-                    <div className="enviada" onClick={onOpen2}>
-                        <button className="verCancelado iconEditarMensagem">...</button>
-                    <MessageBox
-                    className="mensagemEnviada"
-                        position='right'
-                        type='text'
-                        text="Oieee teste aqqqqq!"
-                        date={Date.now()}
-                    />
-                    </div>
-                    </div>
+/> */}
 
 
-                </div>
-                <div className="mensagemEnviarContainer">
+<div className="mensagemEnviarContainer">
                  <input type="text" placeholder="type here..." className="inputChat"/>
                  <button><img src={enviarIcon} alt="icone de enviar mensagem" /></button>
                  <label  htmlFor="galeriaFile" tabIndex="0">
@@ -176,8 +121,8 @@ function Chat() {
                 
                  <input type="file" name="galeriaFile" id="galeriaFile" />
                 </div>
-               
-            </div>
+                </div>
+                
         </div>
     )
 }
