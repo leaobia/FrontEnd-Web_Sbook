@@ -42,6 +42,28 @@ const ChatItemComponent = () => {
     });
   }, []);
 
+  const handleChatItemClick = (chatId) => {
+    console.log('ChatItem clicked! Id:', chatId);
+    console.log('contatoTrocaMensagem.foto', contatoTrocaMensagem.foto);
+    console.log('contatoTrocaMensagem.nome', contatoTrocaMensagem.nome);
+
+    localStorage.setItem('chatClickedId', chatId)
+    localStorage.setItem('chatPersonName', contatoTrocaMensagem.nome )
+    localStorage.setItem('chatPersonFoto', contatoTrocaMensagem.foto )
+
+    document.getElementById('nomeUsuarioTrocaMensagem').textContent = contatoTrocaMensagem.nome
+    document.getElementById('fotoUsuarioTrocaMensagem').src = contatoTrocaMensagem.foto
+
+      document.querySelector('.chatMessage').classList.remove('d-none');
+      document.querySelector('.chatMessage').classList.add('d-flex');
+      document.querySelector('.imagemPadraoDiv').classList.add('d-none');
+      document.querySelector('.imagemPadraoDiv').classList.remove('d-flex');
+
+
+
+  };
+  
+
   return (
     <div className="listachats">
       <div className="headerChats">
@@ -57,7 +79,7 @@ const ChatItemComponent = () => {
            date={''}
           // unread={0}
           className="chatClique"
-          id={contato.id_chat}
+          onClick={() => handleChatItemClick(contato.id_chat)}
         />
       ))}
     </div>
