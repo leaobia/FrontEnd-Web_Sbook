@@ -167,6 +167,37 @@
     font-weight: bold;
 }
 
+
+
+.mensagemRecebida {
+    background-color: #F7F7F7;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    max-width: 30%;
+    display: flex;
+    align-items: end;
+  }
+
+  .mensagemRecebida p{
+    width: 90%;
+  }
+  .mensagemEnviada p{
+    width: 90%;
+  }
+  
+
+  .mensagemEnviada {
+    background-color: #DDA35D;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    max-width: 30%;
+    float: right;
+  }
+  
+
 @media (max-width:600px) {
     .listachats{
         width: 15%;

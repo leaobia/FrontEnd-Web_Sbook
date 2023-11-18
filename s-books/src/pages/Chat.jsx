@@ -6,6 +6,7 @@ import menuDropdownIcon from '../components/img/menuDropdownIcon.png'
 import menuDropdownIcon2 from '../components/img/mais.png'
 import { Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter } from '@chakra-ui/react';
 import ChatBoxEnviada from "../components/ChatMessageEnviada";
+import { MessageBox } from "react-chat-elements";
 import ChatBoxRecebida from "../components/ChatMessageRecebida";
 
 import React, { useRef, useState, useEffect } from 'react'
@@ -13,13 +14,14 @@ import React, { useRef, useState, useEffect } from 'react'
 function Chat() {
 
 
-    // let [nomeMensagemTroca, setNomeMensagemTroca] = useState('')
+    //  let [mensagemLista, setMensagemLISTA] = useState([])
    
+    //  console.log(mensagemLista);
    
     // useEffect(() => {
-    //     let nomeQuemTrocaMensagem = localStorage.getItem('chatPersonName');
-    //     setNomeMensagemTroca(nomeQuemTrocaMensagem);
-    //   }, [localStorage.getItem('chatPersonName')]);
+    //     let lista = localStorage.getItem('ListaMensagem');
+    //     setMensagemLISTA(lista)
+    //   }, [localStorage.getItem('ListaMensagem')]);
   
 
     // setTimeout(() => {
@@ -95,9 +97,9 @@ function Chat() {
                         </ul>
                     </ul>
                 </div>
-                <div className="containerMensagens">
-                    <ChatBoxRecebida />
-                    <ChatBoxEnviada />
+                <div className="containerMensagens" id="containerMensagens">
+                    {/* <ChatBoxRecebida />
+                    <ChatBoxEnviada /> */}
                 </div>
                 {/* <MessageBox
   position={"left"}

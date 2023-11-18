@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import "react-chat-elements/dist/main.css";
 import { ChatItem } from "react-chat-elements";
 import { socket } from '../socket.ts';
+import ChatBoxRecebida from "../components/ChatMessageRecebida";
+import ReactDOM from 'react-dom';
+import { MessageBox } from "react-chat-elements";
 
 const ChatItemComponent = () => {
   const [socketInstance] = useState(socket());
@@ -53,6 +56,56 @@ const ChatItemComponent = () => {
 
     document.getElementById('nomeUsuarioTrocaMensagem').textContent = contatoTrocaMensagem.nome
     document.getElementById('fotoUsuarioTrocaMensagem').src = contatoTrocaMensagem.foto
+
+
+
+
+      socketInstance.emit('listMessages', chatId);
+ 
+  
+      socketInstance.on('receive_message', (lista) => {
+
+        console.log('mensagem', lista.mensagens);
+
+        localStorage.setItem('ListaMensagem', lista.mensagens)
+
+        lista.mensagens.forEach((mensagem) => {
+
+          let mensagemDiv = document.createElement('div')
+          mensagemDiv.id = mensagem._id
+
+          let spanHora = document.createElement('span')
+          spanHora.textContent = mensagem.hora_criacao.split(':').slice(0, 2).join(':')
+
+
+          let mensagemTexto = document.createElement('p')
+          mensagemTexto.textContent = mensagem.message 
+          mensagemDiv.append(mensagemTexto, spanHora)
+
+          if(mensagem.messageBy !== idUsuario){
+            mensagemDiv.classList.add('mensagemRecebida')
+          }else{
+            mensagemDiv.classList.add('mensagem')
+          }
+
+          // mensagemDiv.append(
+          //   <ChatBoxRecebida
+          //   key={mensagem._id} 
+          //   position={mensagem.messageBy !== idUsuario ? 'left' : 'right'}
+          //   text={mensagem.message}
+          //   date={mensagem.data_criacao}
+          // />
+          // )
+
+          document.getElementById('containerMensagens').textContent = ''
+          document.getElementById('containerMensagens').append(mensagemDiv)
+
+        })
+
+         
+
+      });
+
 
       document.querySelector('.chatMessage').classList.remove('d-none');
       document.querySelector('.chatMessage').classList.add('d-flex');
