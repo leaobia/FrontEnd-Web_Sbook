@@ -38,13 +38,14 @@
 .privarRolagem{
     overflow-y: hidden;
 }
+
 .sideBar{
     background-color: #FFFF;
     position: absolute;
     left: 0;
     top: 8vh;
-    min-height: calc(100vh - 108.4px);
-    max-height: auto;
+    max-height: calc(100vh - 74.47px);
+    overflow-y: auto;
     width: 20vw;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }

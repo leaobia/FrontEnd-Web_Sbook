@@ -48,6 +48,7 @@ function Favoritos() {
                     </div>
                 </Sidebar>
             </div>
+            <p className='meuAnuncioTitle'>Favoritos</p>
             <SecaoLivroFav/>
         </div>
     )

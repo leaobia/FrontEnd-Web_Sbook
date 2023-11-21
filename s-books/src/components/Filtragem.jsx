@@ -65,9 +65,13 @@ function Filtragem() {
 
     const sidebarFunction = () => {
         setVisibleLeft(true)
-        let container = document.querySelector('.App')
-        container.classList.add('privarRolagem')
+        document.body.classList.add('privarRolagem');
     }
+    
+    const hideSidebar = () => {
+        setVisibleLeft(false);
+        document.body.classList.remove('privarRolagem');
+    };
 
     return (
         <div className="Filtragem">
