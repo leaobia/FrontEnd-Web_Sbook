@@ -63,8 +63,16 @@ function Chat() {
         let  chatId = localStorage.getItem('chatId')
         let image = ''
         console.log(mensagemTexto, idConversante, idUsuario, chatId);
+
+        const credentials = {
+            "messageBy": idUsuario,
+            "messageTo": idConversante,
+            "message": mensagemTexto,
+            "image": image,
+            "chatId": chatId
+        }
      
-            socketInstance.emit('message', idUsuario, idConversante, mensagemTexto, image, chatId );
+            socketInstance.emit('message', credentials);
      
     
             socketInstance.on('receive_message', (lista) => {

@@ -65,7 +65,8 @@ useEffect(() => {
 
        let nomeDoLivroCadastro = document.getElementById('nomeDoLivroCadastro').value
        let nomeDoAutorCadastro = autorValue
-       let autorCadastro2 = document.getElementById('autorCadastro2').textContent
+       let autorCadastro2 = document.getElementById('autorCadastro2').value
+       console.log('oi', autorCadastro2);
        let idiomas = idiomaValue
       // let idiomaNome = document.getElementById('idiomas').textContent
 

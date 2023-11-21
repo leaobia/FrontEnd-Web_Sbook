@@ -193,8 +193,10 @@
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 8px;
+    margin-left: 90%;
     max-width: 30%;
-    float: right;
+    display: flex;
+    align-items: end;
   }
   
 

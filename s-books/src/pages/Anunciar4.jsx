@@ -7,6 +7,7 @@ function Anunciar4() {
   let nomeDoLivroCadastro = localStorage.getItem('nomeDoLivroCadastro')
 
   let nomeDoAutorCadastro = localStorage.getItem('nomeDoAutorCadastroLivro')
+  console.log(nomeDoAutorCadastro);
   let keyDoAutorCadastro = localStorage.getItem('autorkey')
 
   console.log('keyAutor',keyDoAutorCadastro);
@@ -281,7 +282,7 @@ if (!isRequestInProgress) {
 }
 
 
-}else if (precoLiVRO && keyDoAutorCadastro ===""){
+}else if (precoLiVRO && keyDoAutorCadastro === ""){
   const credentials = {
     "nome": nomeDoLivroCadastro,
     "numero_paginas": parseInt(pagValue),

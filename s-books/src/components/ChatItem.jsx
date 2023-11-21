@@ -80,17 +80,18 @@ const ChatItemComponent = () => {
           mensagemDiv.id = mensagem._id
 
           let spanHora = document.createElement('span')
-       //   spanHora.textContent = mensagem.hora_criacao.split(':').slice(0, 2).join(':')
+         spanHora.textContent = mensagem.hora_criacao.split(':').slice(0, 2).join(':')
 
 
           let mensagemTexto = document.createElement('p')
           mensagemTexto.textContent = mensagem.message 
           mensagemDiv.append(mensagemTexto, spanHora)
 
-          if(mensagem.messageBy !== idUsuario){
+          if(mensagem.messageBy !== parseInt(idUsuario)){
+            console.log('entrou');
             mensagemDiv.classList.add('mensagemRecebida')
           }else{
-            mensagemDiv.classList.add('mensagem')
+            mensagemDiv.classList.add('mensagemEnviada')
           }
 
           // mensagemDiv.append(
