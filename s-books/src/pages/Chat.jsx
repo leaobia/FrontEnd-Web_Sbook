@@ -8,11 +8,13 @@ import { Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, Mo
 import ChatBoxEnviada from "../components/ChatMessageEnviada";
 import { MessageBox } from "react-chat-elements";
 import ChatBoxRecebida from "../components/ChatMessageRecebida";
+import { socket } from '../socket.ts';
 
 import React, { useRef, useState, useEffect } from 'react'
 
 function Chat() {
 
+    const [socketInstance] = useState(socket());
 
     //  let [mensagemLista, setMensagemLISTA] = useState([])
    
@@ -53,6 +55,25 @@ function Chat() {
     let foto = localStorage.getItem('fotoUsuarioHome')
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isOpen: isOpen2, onOpen: onOpen2, onClose: onClose2 } = useDisclosure();
+
+    const enviarMensagem = () => {
+        let mensagemTexto = document.getElementById('inputChat').value
+        let idConversante = parseInt(localStorage.getItem('idConversante'))
+        let idUsuario = parseInt(localStorage.getItem('id_usuarioLogin'));
+        let  chatId = localStorage.getItem('chatId')
+        let image = ''
+        console.log(mensagemTexto, idConversante, idUsuario, chatId);
+     
+            socketInstance.emit('message', idUsuario, idConversante, mensagemTexto, image, chatId );
+     
+    
+            socketInstance.on('receive_message', (lista) => {
+            
+                console.log(lista);
+             
+            });
+      
+    }
     return (
         <div className="chat">
             <Modal onClose={onClose} isOpen={isOpen} isCentered>
@@ -112,8 +133,8 @@ function Chat() {
 
 
                 <div className="mensagemEnviarContainer">
-                    <input type="text" placeholder="type here..." className="inputChat" />
-                    <button><img src={enviarIcon} alt="icone de enviar mensagem" /></button>
+                    <input type="text" placeholder="type here..." className="inputChat" id="inputChat"/>
+                    <button onClick={enviarMensagem}><img src={enviarIcon} alt="icone de enviar mensagem" /></button>
                     <label htmlFor="galeriaFile" tabIndex="0">
                         <img src={galeriaIcon} alt="icone de ver a galeria" />
                     </label>

@@ -36,6 +36,7 @@ const ChatItemComponent = () => {
 
         if(posicoes.id !== intId){
           setContatoTrocaMensagem(posicoes)
+          localStorage.setItem('idConversante', posicoes.id)
         }
        })
        
@@ -47,6 +48,7 @@ const ChatItemComponent = () => {
 
   const handleChatItemClick = (chatId) => {
     console.log('ChatItem clicked! Id:', chatId);
+    localStorage.setItem('chatId', chatId)
     console.log('contatoTrocaMensagem.foto', contatoTrocaMensagem.foto);
     console.log('contatoTrocaMensagem.nome', contatoTrocaMensagem.nome);
 
@@ -75,7 +77,7 @@ const ChatItemComponent = () => {
           mensagemDiv.id = mensagem._id
 
           let spanHora = document.createElement('span')
-          spanHora.textContent = mensagem.hora_criacao.split(':').slice(0, 2).join(':')
+       //   spanHora.textContent = mensagem.hora_criacao.split(':').slice(0, 2).join(':')
 
 
           let mensagemTexto = document.createElement('p')
