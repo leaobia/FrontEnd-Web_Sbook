@@ -67,6 +67,9 @@ const ChatItemComponent = () => {
   
       socketInstance.on('receive_message', (lista) => {
 
+        
+        document.getElementById('containerMensagens').textContent = ''
+
         console.log('mensagem', lista.mensagens);
 
         localStorage.setItem('ListaMensagem', lista.mensagens)
@@ -99,7 +102,6 @@ const ChatItemComponent = () => {
           // />
           // )
 
-          document.getElementById('containerMensagens').textContent = ''
           document.getElementById('containerMensagens').append(mensagemDiv)
 
         })
