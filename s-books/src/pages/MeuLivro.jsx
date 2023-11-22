@@ -286,6 +286,8 @@ function MeuLivro() {
 
     const inputFile2 = e.target;
 
+    console.log('eeee',inputFile2);
+
 
     const pictureImage = document.getElementById('fotoAnuncio3')
 

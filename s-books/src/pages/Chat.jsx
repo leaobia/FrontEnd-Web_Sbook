@@ -11,10 +11,13 @@ import ChatBoxRecebida from "../components/ChatMessageRecebida";
 import { socket } from '../socket.ts';
 
 import React, { useRef, useState, useEffect } from 'react'
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "../adapters/firebase";
 
 function Chat() {
 
     const [socketInstance] = useState(socket());
+    const [chatMessage, setChatMessage] = useState('')
 
     //  let [mensagemLista, setMensagemLISTA] = useState([])
    
@@ -61,7 +64,7 @@ function Chat() {
         let idConversante = parseInt(localStorage.getItem('idConversante'))
         let idUsuario = parseInt(localStorage.getItem('id_usuarioLogin'));
         let  chatId = localStorage.getItem('chatId')
-        let image = ''
+        let image = chatMessage
         console.log(mensagemTexto, idConversante, idUsuario, chatId);
 
         const credentials = {
@@ -80,7 +83,43 @@ function Chat() {
                 console.log(lista);
              
             });
+
+
+            document.getElementById('inputChat').value = ''
+            setChatMessage('')
       
+    }
+
+    const pegarFoto = (e) => {
+        const inputFile = e.target;
+
+        const file = inputFile.files[0];
+
+        console.log(file);
+
+        const storageRef = ref(storage, `images/${file.name}`)
+      const uploadTask = uploadBytesResumable(storageRef, file)
+
+      if(file){
+
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+
+        },
+        error => {
+          alert(error)
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(url => {
+            console.log(url);
+            setChatMessage(url)
+            //localStorage.setItem('fotoChatMessage', url)
+          })
+        }
+      )
+      }
+
     }
     return (
         <div className="chat">
@@ -140,15 +179,21 @@ function Chat() {
 /> */}
 
 
+                <div className="footerMensagens">
+
                 <div className="mensagemEnviarContainer">
-                    <input type="text" placeholder="type here..." className="inputChat" id="inputChat"/>
+                    <input type="text" placeholder="digite sua mensagem" className="inputChat" id="inputChat"/>
                     <button onClick={enviarMensagem}><img src={enviarIcon} alt="icone de enviar mensagem" /></button>
-                    <label htmlFor="galeriaFile" tabIndex="0">
+                   
+                </div>
+                <label htmlFor="galeriaFile" tabIndex="0">
                         <img src={galeriaIcon} alt="icone de ver a galeria" />
                     </label>
 
-                    <input type="file" name="galeriaFile" id="galeriaFile" />
+                    <input type="file" name="galeriaFile" id="galeriaFile" onChange={pegarFoto}/>
                 </div>
+
+               
             </div>
 
         </div>

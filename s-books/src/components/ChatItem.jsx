@@ -82,10 +82,21 @@ const ChatItemComponent = () => {
           let spanHora = document.createElement('span')
          spanHora.textContent = mensagem.hora_criacao.split(':').slice(0, 2).join(':')
 
+         let imagemMensagem = '';
+         if(mensagem.image !== ''){
+          imagemMensagem = document.createElement('img')
+          imagemMensagem.classList.add('fotoDaMensagem')
+          imagemMensagem.src = mensagem.image
+        }
 
           let mensagemTexto = document.createElement('p')
           mensagemTexto.textContent = mensagem.message 
-          mensagemDiv.append(mensagemTexto, spanHora)
+
+          let divTextoHora = document.createElement('div')
+          divTextoHora.classList.add('divTextoHora')
+
+          divTextoHora.append(mensagemTexto, spanHora)
+          mensagemDiv.append( imagemMensagem, divTextoHora)
 
           if(mensagem.messageBy !== parseInt(idUsuario)){
             console.log('entrou');
