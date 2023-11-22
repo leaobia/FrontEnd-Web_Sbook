@@ -7,8 +7,14 @@ import axios from 'axios';
 import '../components/css/Livro.css'
 import { Spinner } from '@chakra-ui/react'
 import SecaoLivroAnunciante from '../components/SecaolivroAnunciante';
+import { useNavigate } from 'react-router-dom';
+import { socket } from '../socket.ts';
+
 
 function Livro() {
+
+  const navigate = useNavigate();
+  const [socketInstance] = useState(socket());
 
   let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
   let idPegarAnuncio = parseInt(localStorage.getItem('getAnuncioById'))
@@ -68,6 +74,45 @@ function Livro() {
     setImgGrade(img)
   }
 
+
+  const pegarIdAnunciante = () => {
+     let idAnuncianteChat = parseInt(anunciante)
+     localStorage.setItem('anuncianteChatInit', idAnuncianteChat)
+
+     const idUser = parseInt(localStorage.getItem('id_usuarioLogin'))
+
+     let nomeAnunciante = localStorage.getItem('nome_anunciante')
+     let fotoAnunciante = localStorage.getItem('perfilFotoAnunciante')
+
+     let fotoEu = localStorage.getItem('fotoUsuarioHome')
+     let meuNome = localStorage.getItem('nomeUsuarioHome')
+
+     const credentials = {
+      "users": [
+        {"id": idUser, 
+        "nome": meuNome,
+        "foto": fotoEu
+        },
+        {
+        "id": parseInt(anunciante), 
+        "nome": nomeAnunciante,
+        "foto": fotoAnunciante
+        }
+      ]
+     }
+
+
+     console.log(credentials);
+
+     socketInstance.emit('createRooom', credentials);
+ 
+  
+     socketInstance.on('newChat', (novoChat) => {
+      console.log(novoChat);
+      navigate('/chat');
+     });
+  }
+
   if (anuncio.length === 0) {
     return (
       <div className="spinnerContainer2">
@@ -102,9 +147,9 @@ function Livro() {
        <div className="divLivroCarrossel">
          <div className="showLivro"><img src={imgGrande} alt="foto do anuncio" className='imgGrande'/></div>
          <div className="livrosAparecer">
-           <button ><img src={anuncio.foto[0].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
+           {/* <button ><img src={anuncio.foto[0].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
            <button  ><img src={anuncio.foto[1].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel}/></button>
-           <button ><img src={anuncio.foto[2].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
+           <button ><img src={anuncio.foto[2].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button> */}
          </div>
        </div>
        <div className="dadosAnuncioPrincipal dadoAnunciante">
@@ -116,7 +161,7 @@ function Livro() {
            </div>
           
            <div className="direitaDadosAnuncio">
-        <Link to='/chat'><button className='messageButton'>Enviar mensagem</button></Link> 
+       <button className='messageButton' onClick={pegarIdAnunciante}>Enviar mensagem</button>
         <div className="anuncianteDados">
           <img src={perfilFotoAnunciante} alt="foto perfil do anunciante" className='fotoUser' />
           <div className="nomeAnunciante">

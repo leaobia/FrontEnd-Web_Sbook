@@ -51,6 +51,7 @@ function Home() {
                 let logradouro = response.data.dados.logradouro
                 let email = response.data.dados.email
                 let data_nascimento = response.data.dados.data_nascimento
+                let nome = response.data.dados.nome
 
                 localStorage.setItem('bairroUsuarioHome', bairro)
                 localStorage.setItem('cidadeUsuarioHome', cidade)
@@ -59,7 +60,7 @@ function Home() {
                 localStorage.setItem('logradouroUsuarioHome', logradouro)
                 localStorage.setItem('emailUsuarioHome', email)
                 localStorage.setItem('dataNascUsuarioHome', data_nascimento)
-
+                localStorage.setItem('nomeUsuarioHome', nome)
 
                setNomeUsuario(response.data.dados.nome)
               })

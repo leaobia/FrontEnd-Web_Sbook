@@ -18,6 +18,8 @@ function Chat() {
 
     const [socketInstance] = useState(socket());
     const [chatMessage, setChatMessage] = useState('')
+    let anuncianteChatInit = localStorage.getItem('anuncianteChatInit')
+    console.log('anuncioChatInit', anuncianteChatInit);
 
     //  let [mensagemLista, setMensagemLISTA] = useState([])
    

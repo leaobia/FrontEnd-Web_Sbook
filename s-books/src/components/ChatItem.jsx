@@ -18,6 +18,7 @@ const ChatItemComponent = () => {
 
   useEffect(() => {
     socketInstance.on('receive_contacts', (lista) => {
+      console.log('lista:', lista);
       console.log('listContacts:', lista.users);
       console.log('listContacts:', lista.users[0].users);
 
@@ -105,20 +106,9 @@ const ChatItemComponent = () => {
             mensagemDiv.classList.add('mensagemEnviada')
           }
 
-          // mensagemDiv.append(
-          //   <ChatBoxRecebida
-          //   key={mensagem._id} 
-          //   position={mensagem.messageBy !== idUsuario ? 'left' : 'right'}
-          //   text={mensagem.message}
-          //   date={mensagem.data_criacao}
-          // />
-          // )
-
           document.getElementById('containerMensagens').append(mensagemDiv)
 
         })
-
-         
 
       });
 
