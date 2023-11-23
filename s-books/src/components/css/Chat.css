@@ -223,6 +223,11 @@
     justify-content: space-between;
     align-items: center;
 }
+.btnDeletarMensagem{
+    margin-left: 83%;
+    font-size: 1.5rem;
+    opacity: 1;
+}
 @media (max-width:600px) {
     .listachats{
         width: 15%;

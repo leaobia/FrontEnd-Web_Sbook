@@ -59,7 +59,7 @@ function Chat() {
 
     let foto = localStorage.getItem('fotoUsuarioHome')
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { isOpen: isOpen2, onOpen: onOpen2, onClose: onClose2 } = useDisclosure();
+  
 
     const enviarMensagem = () => {
         let mensagemTexto = document.getElementById('inputChat').value
@@ -139,19 +139,7 @@ function Chat() {
                 </ModalContent>
             </Modal>
 
-            <Modal onClose={onClose2} isOpen={isOpen2} isCentered>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>Excluir mensagem</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                        <p>Isso removerá a mensagem para todos, mas as pessoas talvez já a tenham visto.</p>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button>Excluir</Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
+          
 
             <ChatItemComponent />
 
