@@ -1,0 +1,20 @@
+.container-page {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    justify-content: flex-end;
+    padding-right: 24px;
+}
+
+.seta_contrario {
+    transform: rotate(180deg);
+}
+
+.container-page img {
+    cursor: pointer;
+}
+
+.img-cinza {
+    pointer-events: none;
+}

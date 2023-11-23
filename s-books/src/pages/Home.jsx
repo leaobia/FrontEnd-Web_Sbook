@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import { Button  } from '@chakra-ui/react';
 import { baseUrl } from '../url';
 import SecaoLivroProximo from '../components/SecaoLivroProximo';
+import Pages from '../components/Pages';
 
 
 function Home() {

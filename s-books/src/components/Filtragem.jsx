@@ -80,7 +80,7 @@ function Filtragem() {
                 {/* <span className='nomeDaCidade'>Carapicuíba</span> */}
             </div>
 
-            <Sidebar className='sideBar' visible={visibleLeft} position="left" onHide={() => setVisibleLeft(false)}>
+            <Sidebar className='sideBar' visible={visibleLeft} onClick={hideSidebar} position="left" onHide={() => setVisibleLeft(false)}>
                 <div className="filtragemContainer">
                     <h1>Filtragem</h1>
                 </div>
