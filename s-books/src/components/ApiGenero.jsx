@@ -5,9 +5,7 @@ import { baseUrl } from '../url';
 
 import seta from './img/seta.png';
 
-function ApiGenero() {
-
-
+function ApiGenero({ setGeneros }) {
   const [nomes, setNomes] = useState([]);
   const [selecionados, setSelecionados] = useState([]);
   const [mostrarTodos, setMostrarTodos] = useState(false);
@@ -21,30 +19,42 @@ function ApiGenero() {
   };
 
   useEffect(() => {
-  
     axios.get(`${baseUrl}v1/sbook/generos`)
       .then(response => {
         const personagensData = response.data.dados;
         const nomesDosPersonagens = personagensData.map(personagem => personagem.nome);
         setNomes(nomesDosPersonagens);
-
-        // Obter os gêneros selecionados do localStorage
-        const generosSelecionados = JSON.parse(localStorage.getItem('gênerosSelecionados')) || [];
+  
+        const generosSelecionados = JSON.parse(localStorage.getItem('generosSelecionados')) || [];
         setSelecionados(generosSelecionados);
+  
+        setGeneros(generosSelecionados);
       })
       .catch(error => {
         console.error('Erro ao obter dados dos generos:', error);
       });
-  }, []);
+  }, [setGeneros]);
+  
+  useEffect(() => {
+    localStorage.setItem('generosSelecionados', JSON.stringify(selecionados));
+    setGeneros(selecionados);
+  }, [selecionados, setGeneros]);
+  
 
   const toggleMostrarTodos = () => {
     setMostrarTodos(!mostrarTodos);
   };
 
-  // Salvar os gêneros selecionados no localStorage sempre que houver alterações
+  const limparGeneros = () => {
+    setSelecionados([]);
+    setGeneros([]);
+  };
+
   useEffect(() => {
     localStorage.setItem('gênerosSelecionados', JSON.stringify(selecionados));
-  }, [selecionados]);
+
+    setGeneros(selecionados);
+  }, [selecionados, setGeneros]);
 
   return (
     <>
@@ -70,6 +80,7 @@ function ApiGenero() {
       {mostrarTodos && nomes.length > 8 && (
         <button onClick={() => setMostrarTodos(false)} className='botaoQuantidadeListaGenero'>Mostrar Menos</button>
       )}
+      <button onClick={limparGeneros} id="botaoLimparGenerosId" className='botaoLimparGeneros'></button>
     </>
   );
 }
