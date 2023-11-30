@@ -93,6 +93,8 @@ function Chat() {
     }
 
     const pegarFoto = (e) => {
+      
+        
         const inputFile = e.target;
 
         const file = inputFile.files[0];
@@ -114,8 +116,11 @@ function Chat() {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(url => {
-            console.log(url);
             setChatMessage(url)
+            document.querySelector('.divPreviewImage').classList.remove('d-none')
+            document.querySelector('.divPreviewImage').classList.add('d-flex')
+            let img = document.querySelector('.imgChatPreview')
+            img.src = url
             //localStorage.setItem('fotoChatMessage', url)
           })
         }
@@ -123,6 +128,12 @@ function Chat() {
       }
 
     }
+
+    const fecharPreview = () => {
+        document.querySelector('.divPreviewImage').classList.add('d-none')
+        document.querySelector('.divPreviewImage').classList.remove('d-flex')
+    }
+
     return (
         <div className="chat">
             <Modal onClose={onClose} isOpen={isOpen} isCentered>
@@ -148,12 +159,6 @@ function Chat() {
                 <div className="headerChatMessage">
                     <img  src={foto} alt="perfil usuario" className="fotoUsuarioChat" id="fotoUsuarioTrocaMensagem"/>
                     <p id="nomeUsuarioTrocaMensagem"></p>
-                    <ul className="menu">
-                        <li><button className="menuDropdownIcon"><img src={menuDropdownIcon} alt="menu Dropdown Icon" /></button></li>
-                        <ul className="listaDropdown">
-                            <button onClick={onOpen}><li>excluir chat</li></button>
-                        </ul>
-                    </ul>
                 </div>
                 <div className="containerMensagens" id="containerMensagens">
                     {/* <ChatBoxRecebida />
@@ -168,6 +173,10 @@ function Chat() {
   
 /> */}
 
+<div className="divPreviewImage d-none">
+                        <button onClick={fecharPreview}>X</button>
+                        <img src="" alt="imagemChat" className="imgChatPreview" />
+                    </div>
 
                 <div className="footerMensagens">
 

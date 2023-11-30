@@ -101,10 +101,7 @@ function Livro() {
       ]
      }
 
-
-     console.log(credentials);
-
-     socketInstance.emit('createRooom', credentials);
+     socketInstance.emit('createRooom', JSON.stringify(credentials));
  
   
      socketInstance.on('newChat', (novoChat) => {

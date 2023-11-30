@@ -32,7 +32,7 @@
     padding: 1%;
     padding-right: 5%;
     display: flex;
-    justify-content: space-between;
+    gap: 43%;
     height: 11vh;
     border-bottom: 1.5px solid #E0E0E0;
 }
@@ -228,6 +228,45 @@
     font-size: 1.5rem;
     opacity: 1;
 }
+
+.chat{
+    z-index: 0;
+}
+
+.divPreviewImage{
+    z-index: 2;
+    background-color: #AA6231;
+    height: 30vh;
+    width: 15vw;
+    margin-top: 31.9%;
+    margin-left: 59%;
+    position: fixed;
+    padding: .5%;
+    border-radius: 20px;
+    flex-direction: column;
+}
+
+.divPreviewImage button{
+    background-color: #F8F8FF;
+    width: fit-content;
+    font-weight: bold;
+    padding: 4% 6%;
+    border-radius: 50%;
+    transition: all .3s ease-in-out;
+    opacity: .5;
+}
+
+.divPreviewImage button:hover{
+   scale: .9;
+   opacity: 1;
+}
+
+.imgChatPreview{
+    height: 90%;
+    border-radius: 8px;
+}
+
+
 @media (max-width:600px) {
     .listachats{
         width: 15%;
