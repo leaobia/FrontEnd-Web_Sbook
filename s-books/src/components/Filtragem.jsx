@@ -2,7 +2,9 @@ import './css/Filtragem.css';
 import React, { useState, useEffect } from 'react';
 import { Sidebar } from 'primereact/sidebar';
 import slider from './img/Slider.png';
-import { Stack, Checkbox, Input, InputGroup } from '@chakra-ui/react';  // Importando Input e InputGroup
+import { Stack, Checkbox, Input, InputGroup } from '@chakra-ui/react';
+import axios from 'axios';
+import { baseUrl } from '../url';
 import ApiGenero from './ApiGenero';
 
 function Filtragem() {
@@ -10,6 +12,7 @@ function Filtragem() {
     const [livrosSelecionados, setLivrosSelecionados] = useState([]);
     const [anoLivroValue, setAnoLivroValue] = useState('');
     const [generos, setGeneros] = useState([]);
+    const [anuncios, setAnuncios] = useState([]);
 
     const handleCheckboxChange = (name) => {
         setLivrosSelecionados((prevSelected) => {
@@ -26,17 +29,23 @@ function Filtragem() {
     };
 
     const filtrar = () => {
-        // useEffect(() => {
-        //     axios.get(`${baseUrl}v1/sbook/anuncios-favoritados/${idUser}`)
-        //         .then(response => {
-        //             const anunciosData = response.data.anuncios;
-        //             setAnuncios(anunciosData);
-        //             console.log(anunciosData[0]);
-        //         })
-        //         .catch(error => {
-        //             console.error('Erro ao obter dados dos anúncios:', error);
-        //         });
-        // }, [idUser]);
+
+        let url = `${baseUrl}v1/sbook/anuncios-filtros?`;
+
+        if (livrosSelecionados.length > 0) {
+            url += `array_estado_livro=[${livrosSelecionados}]&array_generos=[${generos}]`;
+        }
+
+        axios.get(`${baseUrl}v1/sbook/anuncios-filtros?${url}`)
+        .then(response => {
+            const anunciosData = response.data.anuncios;
+            setAnuncios(anunciosData);
+        })
+        .catch(error => {
+            console.error('Erro ao obter dados dos anúncios:', error);
+        });
+
+
         console.log('Filtros aplicados:');
 
         if (anoLivroValue) {

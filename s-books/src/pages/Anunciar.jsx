@@ -64,6 +64,8 @@ useEffect(() => {
     const pegarValores = () => {
 
        let nomeDoLivroCadastro = document.getElementById('nomeDoLivroCadastro').value
+       console.log(nomeDoLivroCadastro)
+       console.log("oi")
        let nomeDoAutorCadastro = autorValue
        let autorCadastro2 = document.getElementById('autorCadastro2').value
        console.log('oi', autorCadastro2);
