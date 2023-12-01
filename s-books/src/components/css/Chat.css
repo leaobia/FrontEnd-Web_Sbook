@@ -235,19 +235,22 @@
 
 .divPreviewImage{
     z-index: 2;
-    background-color: #AA6231;
+    background-color: #F8F8FF;
     height: 30vh;
     width: 15vw;
-    margin-top: 31.9%;
     margin-left: 59%;
     position: fixed;
     padding: .5%;
+    gap: 1vh;
+    margin-top: 28.5%;
     border-radius: 20px;
+    border: .8px solid #E7E7E7;
     flex-direction: column;
 }
 
 .divPreviewImage button{
-    background-color: #F8F8FF;
+    background-color: #E7E7E7;
+    color: #45362E;
     width: fit-content;
     font-weight: bold;
     padding: 4% 6%;
@@ -294,6 +297,18 @@
 
     .imagemPadraoDiv{
         width: 85%;
+    }
+
+    .mensagemRecebida {
+        width: 90%;
+    }
+
+    .mensagemEnviada {
+        width: 90%;
+    }
+
+    .divTextoHora{
+        width: 100%;
     }
     
 }
