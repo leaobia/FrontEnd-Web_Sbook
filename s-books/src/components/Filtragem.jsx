@@ -33,18 +33,25 @@ function Filtragem() {
         let url = `${baseUrl}v1/sbook/anuncios-filtros?`;
 
         if (livrosSelecionados.length > 0) {
-            url += `array_estado_livro=[${livrosSelecionados}]&array_generos=[${generos}]`;
+            url += `array_estado_livro=[${livrosSelecionados}]`;
         }
 
-        axios.get(`${baseUrl}v1/sbook/anuncios-filtros?${url}`)
-        .then(response => {
+        if (generos.length > 0 && livrosSelecionados.length > 0) {
+            url += `&array_generos=[${generos}]`;
+        } else if (generos.length > 0) {
+            url += `array_generos=[${generos}]`;
+        }
+
+        console.log('URL:', url);
+
+        axios.get(url).then(response => {
             const anunciosData = response.data.anuncios;
             setAnuncios(anunciosData);
+            console.log(anunciosData);
         })
         .catch(error => {
             console.error('Erro ao obter dados dos anúncios:', error);
         });
-
 
         console.log('Filtros aplicados:');
 
@@ -70,6 +77,7 @@ function Filtragem() {
     };
 
     useEffect(() => {
+        filtrar()
     }, [anoLivroValue, livrosSelecionados, generos]);
 
     const sidebarFunction = () => {
@@ -81,8 +89,6 @@ function Filtragem() {
         setVisibleLeft(false);
         document.body.classList.remove('privarRolagem');
     };
-
-    filtrar()
 
     return (
         <div className="Filtragem">
@@ -101,8 +107,8 @@ function Filtragem() {
                             colorScheme='gray'
                             className='opcaoChecagem'
                             name='Novos'
-                            onChange={() => handleCheckboxChange('Novos')}
-                            isChecked={livrosSelecionados.includes('Novos')}
+                            onChange={() => handleCheckboxChange('Novo')}
+                            isChecked={livrosSelecionados.includes('Novo')}
                         >
                             Novos
                         </Checkbox>
@@ -110,8 +116,8 @@ function Filtragem() {
                             colorScheme='gray'
                             className='opcaoChecagem'
                             name='Seminovos'
-                            onChange={() => handleCheckboxChange('Seminovos')}
-                            isChecked={livrosSelecionados.includes('Seminovos')}
+                            onChange={() => handleCheckboxChange('Seminovo')}
+                            isChecked={livrosSelecionados.includes('Seminovo')}
                         >
                             Seminovos
                         </Checkbox>
@@ -119,8 +125,8 @@ function Filtragem() {
                             colorScheme='gray'
                             className='opcaoChecagem'
                             name='Usados'
-                            onChange={() => handleCheckboxChange('Usados')}
-                            isChecked={livrosSelecionados.includes('Usados')}
+                            onChange={() => handleCheckboxChange('Usado')}
+                            isChecked={livrosSelecionados.includes('Usado')}
                         >
                             Usados
                         </Checkbox>
