@@ -62,6 +62,11 @@ function Chat() {
   
 
     const enviarMensagem = () => {
+
+         document.getElementById('galeriaFile').value = ''
+          document.querySelector('.divPreviewImage').classList.add('d-none')
+        document.querySelector('.divPreviewImage').classList.remove('d-flex')
+
         let mensagemTexto = document.getElementById('inputChat').value
         let idConversante = parseInt(localStorage.getItem('idConversante'))
         let idUsuario = parseInt(localStorage.getItem('id_usuarioLogin'));
@@ -130,8 +135,13 @@ function Chat() {
     }
 
     const fecharPreview = () => {
+
+        document.getElementById('inputChat').value = ''
+        setChatMessage('')
+
         document.querySelector('.divPreviewImage').classList.add('d-none')
         document.querySelector('.divPreviewImage').classList.remove('d-flex')
+
     }
 
     return (

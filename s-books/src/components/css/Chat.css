@@ -265,9 +265,30 @@
 }
 
 .imgChatPreview{
-    height: 90%;
     border-radius: 8px;
+    height: 80%;
 }
+
+.scroll-to-bottom {
+    animation: scrollAnimation 1s ease forwards;
+  }
+
+.checkboxesgeneros{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 2vh;
+}
+
+.checkGroup{
+    display: flex;
+    gap: 1vw;
+}
+  
+  @keyframes scrollAnimation {
+    to {
+      scrollTop: 50vh; 
+    }
+  }
 
 
 @media (max-width:600px) {

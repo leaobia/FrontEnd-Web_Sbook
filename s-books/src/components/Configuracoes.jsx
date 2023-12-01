@@ -10,18 +10,25 @@ import configIcon from '../components/img/ConfigIcon.png'
 import sairIcon from '../components/img/sairIcon.png'
 import { baseUrl } from '../url';
 import UploadFotoPerfil from './UploadFotoPerfil';
+import {
+    Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter,
+    Drawer, DrawerBody, DrawerCloseButton, DrawerHeader, DrawerOverlay, DrawerContent,
+    Textarea, Input
+  } from '@chakra-ui/react';
+
 
 import { logOut } from '../url';
 
 import { Link } from "react-router-dom"
 
 
-import { Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter  } from '@chakra-ui/react';
-
-
 function Configuracoes() {
+
+
+
     const [visibleLeft, setVisibleLeft] = useState(false);
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen: isOpen2, onOpen: onOpen2, onClose: onClose2 } = useDisclosure();
 
     let nomeUsuario = localStorage.getItem('nomeUsuario')
     let perfilFoto = localStorage.getItem('perfilFoto')
@@ -37,6 +44,19 @@ function Configuracoes() {
     const [dataNasc, setDataNascValue] = useState('');
     const [perfilFotoValue, setPerfilFotoValue] = useState('');
     const [cepValue, setCepValue] = useState('');
+    let [generosValue, setGenerosValue] = useState([]);
+
+
+
+      axios.get(`${baseUrl}v1/sbook/generos`)
+      .then(response => {
+    let generos = response.data.dados
+    setGenerosValue(generos)
+      
+      })
+      .catch(error => {
+        console.error('Erro ao obter dados do usuario:', error);
+      })
 
     useEffect(() => {
         axios.get(`${baseUrl}v1/sbook/usuario/${idUsuario}`)
@@ -57,7 +77,7 @@ function Configuracoes() {
          //  localStorage.setItem('perfilFotoConfig', foto)
           })
           .catch(error => {
-            console.error('Erro ao obter dados do usuario:', error);
+            console.error('Erro ao obter dados do genero:', error);
           })
       }, [idUsuario]);
 
@@ -225,16 +245,44 @@ function Configuracoes() {
                 .catch(error => {
                     console.error(error);
                 });
-        }
-       
-
-
-
+            }
 
     }
 
+    const editandoCategorias = () => {
+
+    }
+    
     return (
         <div className='configContainer'>
+
+<Drawer onClose={onClose2} isOpen={isOpen2} size={'xl'}>
+  <DrawerOverlay />
+  <DrawerContent>
+    <DrawerCloseButton />
+    <DrawerBody>
+        <div className="contentEditGeneros">
+            <h1 className='editCategorias'>Editar categorias</h1>
+        <div className="checkboxesgeneros">
+        {generosValue.map((genero) => (
+        <div className='checkGroup'>
+          <input
+            type="checkbox"
+            id={`checkbox-${genero.id}`}
+            value={genero.nome}
+          />
+          <label htmlFor={`checkbox-${genero.id}`}>{genero.nome}</label>
+        </div>
+      ))}
+        </div>
+        <button className='editGenCateg' onClick={editandoCategorias}>Editar</button>
+        </div>
+    </DrawerBody>
+  </DrawerContent>
+</Drawer>
+
+
+
                     <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
@@ -327,7 +375,7 @@ function Configuracoes() {
                         <p>{nameValue}</p>
                     </div>
                     <div className="userContainerDireitaLink">
-                        <Link>Categorias ➔ </Link>
+                       <button onClick={onOpen2}>Categorias</button>
                     </div>
                     {/* <div className="userContainerDireitaLink excluirButton">
                         <button>Excluir conta </button>

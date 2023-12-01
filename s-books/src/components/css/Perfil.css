@@ -412,6 +412,44 @@
     margin-left: 12px;
 }
 
+.editarCategoria{
+    z-index: 2;
+    position: fixed;
+    margin:4% 15%;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.contentEditGeneros{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.editCategorias{
+    font-size: clamp(1rem, -0.0938rem + 3.5vw, 1.875rem);
+    color: #282830;
+}
+
+.editGenCateg{
+    background-color: #FF902B;
+    width: fit-content;
+    display: grid;
+    place-self: center;
+    padding: 1% 10%;
+    font-weight: bold;
+    color: #F5F5F5;
+    border-radius: 8px;
+    transition: all .3s ease-in-out;
+}
+
+.editGenCateg:hover{
+    scale: .9;
+}
+
 @media (max-width:1500px) {
         .tabelaConfigDados{
             height: 75vh;

@@ -51,9 +51,15 @@ const ChatItemComponent = () => {
     });
   }, []);
 
+  function scrollToBottom() {
+    var container = document.getElementById('containerMensagens');
+    container.scrollTop = container.scrollHeight;
+  }
+
   const handleChatItemClick = (chatId, foto, nome) => {
 
-    //alert('oii')
+
+
 
     localStorage.setItem('chatId', chatId)
     console.log(chatId);
@@ -71,8 +77,7 @@ const ChatItemComponent = () => {
     socketInstance.on('receive_message', (lista) => {
 
       console.log('lista1', lista);
-
-
+      if(lista.id_chat == chatId){
       document.getElementById('containerMensagens').textContent = ''
 
       localStorage.setItem('ListaMensagem', lista.mensagens)
@@ -113,10 +118,6 @@ const ChatItemComponent = () => {
             btnDelete.textContent = '...'
             btnDelete.classList.add('d-none')
 
-            btnDelete.addEventListener('click', () => {
-              onOpen2()
-            })
-          }
 
           mensagemDiv.addEventListener('click', () => {
             btnDelete.classList.remove('d-none')
@@ -130,11 +131,22 @@ const ChatItemComponent = () => {
             }, 1500);
           })
 
+            btnDelete.addEventListener('click', () => {
+              onOpen2()
+            })
+          }
+
+
 
 
           document.getElementById('containerMensagens').append(btnDelete, mensagemDiv)
+         
 
         })
+
+        scrollToBottom()
+       
+      }
       }
 
     });
@@ -148,6 +160,10 @@ const ChatItemComponent = () => {
 
 
   };
+  
+
+
+
 
   const excluirMensagem = () => {
     socketInstance.emit('deleteMessage', mensagemId);
