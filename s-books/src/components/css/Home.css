@@ -121,6 +121,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 64px;
+    min-height: 45.15vh;
 }
 
 .secaoLivro{
