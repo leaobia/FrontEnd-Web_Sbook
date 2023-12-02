@@ -1,15 +1,14 @@
 .queroAnunciar{
-   height: 100vh;
     display: flex;
     flex-direction: column;
     gap: 5vh;
+    padding-bottom: 32px;
     font-family: 'Inter', sans-serif;
 }
 .queroAnunciar3{
-   height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-bottom: 5vh;
+    padding-bottom: 32px;
     gap: 5vh;
     font-family: 'Inter', sans-serif;
 }
@@ -55,6 +54,7 @@
     height: 5vh;
     border-radius: 5px;
     border: 1px solid #CECECE;
+    padding: 0px 12px;
 }
 
 .sinopseAnuncio{
@@ -138,7 +138,7 @@
     width: 300px;
     height: 350px;
     aspect-ratio: 16/9;
-    background: #ddd;
+    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;

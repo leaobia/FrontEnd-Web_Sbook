@@ -317,6 +317,7 @@
     flex-direction: column;
     padding-top: 5vh;
     font-size: clamp(0.875rem, 0.4063rem + 1.5vw, 1.25rem);
+    width: 300px;
 }
 
 .inputGroup input{
