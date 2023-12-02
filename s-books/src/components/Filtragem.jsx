@@ -7,7 +7,7 @@ import axios from 'axios';
 import { baseUrl } from '../url';
 import ApiGenero from './ApiGenero';
 
-function Filtragem() {
+function Filtragem({ onFilterChange }) {
     const [visibleLeft, setVisibleLeft] = useState(false);
     const [livrosSelecionados, setLivrosSelecionados] = useState([]);
     const [anoLivroValue, setAnoLivroValue] = useState('');
@@ -48,10 +48,12 @@ function Filtragem() {
             const anunciosData = response.data.anuncios;
             setAnuncios(anunciosData);
             console.log(anunciosData);
+            onFilterChange(anunciosData);
         })
         .catch(error => {
             console.error('Erro ao obter dados dos anúncios:', error);
         });
+        
 
         console.log('Filtros aplicados:');
 
@@ -66,6 +68,7 @@ function Filtragem() {
         if (livrosSelecionados.length > 0) {
             console.log('Livros Selecionados:', livrosSelecionados);
         }
+        
 
     };
 
@@ -78,6 +81,7 @@ function Filtragem() {
 
     useEffect(() => {
         filtrar()
+        onFilterChange(anuncios);
     }, [anoLivroValue, livrosSelecionados, generos]);
 
     const sidebarFunction = () => {

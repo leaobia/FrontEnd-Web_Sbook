@@ -1,12 +1,10 @@
-// CardLivro.jsx
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
 import AnuncioCard from './AnuncioCard';
 import { baseUrl } from '../url';
 import { Spinner } from '@chakra-ui/react';
-import Pages from './Pages';  // Importa o componente Pages
+import Pages from './Pages';
 
 import {
   Alert,
@@ -15,30 +13,60 @@ import {
   AlertDescription,
 } from '@chakra-ui/react';
 
-function CardLivro() {
+function CardLivro({ filteredAds }) {
   const [anuncios, setAnuncios] = useState([]);
   const [termoPesquisa, setTermoPesquisa] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);  // Adiciona o estado currentPage
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);  // Atualiza o estado da página ao receber uma mudança do componente Pages
+    setCurrentPage(newPage);
   };
+
+  // useEffect(() => {
+  //   setIsLoading(true);
+
+  //   if (filteredAds.length > 0) {
+  //     // Se houver anúncios filtrados, use-os
+  //     setAnuncios(filteredAds);
+  //     setIsLoading(false);
+  //   } else {
+  //     // Se não houver anúncios filtrados, faça a busca normalmente
+  //     axios.get(`${baseUrl}v1/sbook/anuncio?page=${currentPage}`)
+  //       .then(response => {
+  //         const anunciosData = response.data.anuncios;
+  //         setAnuncios(anunciosData);
+  //       })
+  //       .catch(error => {
+  //         console.error('Erro ao obter dados dos anúncios:', error);
+  //       })
+  //       .finally(() => {
+  //         setIsLoading(false);
+  //       });
+  //   }
+  // }, [currentPage, filteredAds]);  // Adiciona currentPage como dependência
 
   useEffect(() => {
     setIsLoading(true);
-    axios.get(`${baseUrl}v1/sbook/anuncio?page=${currentPage}`)
-      .then(response => {
-        const anunciosData = response.data.anuncios;
-        setAnuncios(anunciosData);
-      })
-      .catch(error => {
-        console.error('Erro ao obter dados dos anúncios:', error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [currentPage]);  // Adiciona currentPage como dependência
+
+    if (filteredAds.length > 0) {
+      setAnuncios(filteredAds);
+      setIsLoading(false);
+    } else {
+      axios
+        .get(`${baseUrl}v1/sbook/anuncio?page=${currentPage}`)
+        .then((response) => {
+          const anunciosData = response.data.anuncios;
+          setAnuncios(anunciosData);
+        })
+        .catch((error) => {
+          console.error('Erro ao obter dados dos anúncios:', error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [currentPage, filteredAds]);
 
   const handlePesquisaChange = _.debounce(event => {
     setTermoPesquisa(event.target.value);
@@ -95,8 +123,6 @@ function CardLivro() {
           })()
         )}
       </div>
-
-      {/* Renderiza o componente Pages e passa a função de callback para mudanças de página */}
       <Pages onPageChange={handlePageChange} />
     </div>
   );
