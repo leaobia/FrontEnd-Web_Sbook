@@ -34,7 +34,7 @@
 
 .dadosAnuncioPrincipal{
     background-color: #ffff;
-    width: 30%;
+    width: 25%;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -75,13 +75,12 @@
     flex-direction: column;
     width: 100%;
     gap: 2vh;
-    padding: 2%;
 }
 
 .messageButton{
     background-color: #FF902B;
     width: 100%;
-    padding: 1% 10%;
+    height: 48px;
 }
 
 .anuncianteDados{

@@ -8,7 +8,12 @@
     align-items: center;
 }
 
-
+.p-sidebar-header{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 24px 24px 0px;
+}
 
 .menuLocalContainer{
     display: flex;
