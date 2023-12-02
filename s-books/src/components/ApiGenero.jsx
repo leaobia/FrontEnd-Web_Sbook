@@ -7,7 +7,9 @@ import seta from './img/seta.png';
 
 function ApiGenero({ setGeneros }) {
   const [nomes, setNomes] = useState([]);
-  const [selecionados, setSelecionados] = useState([]);
+  const [selecionados, setSelecionados] = useState(
+    JSON.parse(localStorage.getItem('generosSelecionados')) || []
+  );
   const [mostrarTodos, setMostrarTodos] = useState(false);
 
   const toggleSelecionado = (nome) => {
@@ -19,27 +21,26 @@ function ApiGenero({ setGeneros }) {
   };
 
   useEffect(() => {
-    axios.get(`${baseUrl}v1/sbook/generos`)
-      .then(response => {
+    axios
+      .get(`${baseUrl}v1/sbook/generos`)
+      .then((response) => {
         const personagensData = response.data.dados;
-        const nomesDosPersonagens = personagensData.map(personagem => personagem.nome);
+        const nomesDosPersonagens = personagensData.map((personagem) => personagem.nome);
         setNomes(nomesDosPersonagens);
-  
-        const generosSelecionados = JSON.parse(localStorage.getItem('generosSelecionados')) || [];
-        setSelecionados(generosSelecionados);
-  
-        setGeneros(generosSelecionados);
+
+        // Remova a linha abaixo para não utilizar setGeneros diretamente
+        // setGeneros(generosSelecionados);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Erro ao obter dados dos generos:', error);
       });
-  }, [setGeneros]);
-  
+  }, []);
+
   useEffect(() => {
     localStorage.setItem('generosSelecionados', JSON.stringify(selecionados));
+    // Use setGeneros passado como propriedade para enviar os dados de gêneros para Filtragem.jsx
     setGeneros(selecionados);
   }, [selecionados, setGeneros]);
-  
 
   const toggleMostrarTodos = () => {
     setMostrarTodos(!mostrarTodos);
@@ -47,14 +48,7 @@ function ApiGenero({ setGeneros }) {
 
   const limparGeneros = () => {
     setSelecionados([]);
-    setGeneros([]);
   };
-
-  useEffect(() => {
-    localStorage.setItem('gênerosSelecionados', JSON.stringify(selecionados));
-
-    setGeneros(selecionados);
-  }, [selecionados, setGeneros]);
 
   return (
     <>
@@ -75,12 +69,16 @@ function ApiGenero({ setGeneros }) {
         ))}
       </ul>
       {!mostrarTodos && (
-        <button onClick={toggleMostrarTodos} className='botaoQuantidadeListaGenero'>Mostrar Mais <img src={seta} alt="icone de seta" /></button>
+        <button onClick={toggleMostrarTodos} className='botaoQuantidadeListaGenero'>
+          Mostrar Mais <img src={seta} alt='icone de seta' />
+        </button>
       )}
       {mostrarTodos && nomes.length > 8 && (
-        <button onClick={() => setMostrarTodos(false)} className='botaoQuantidadeListaGenero'>Mostrar Menos</button>
+        <button onClick={() => setMostrarTodos(false)} className='botaoQuantidadeListaGenero'>
+          Mostrar Menos
+        </button>
       )}
-      <button onClick={limparGeneros} id="botaoLimparGenerosId" className='botaoLimparGeneros'></button>
+      <button onClick={limparGeneros} id='botaoLimparGenerosId' className='botaoLimparGeneros'></button>
     </>
   );
 }
