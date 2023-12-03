@@ -1136,6 +1136,7 @@ function Header() {
                         <li><Link to='/' className='link'>Home</Link></li>
                         {/* <li><Link to='/anuncios' className='link'> Anúncios Próximos</Link></li> */}
                         <li><Link to='/anunciar' className='link'>Quero anunciar</Link></li>
+                        <li><Link to='/doacoes' className='link'>Doações</Link></li>
                     </ul>
                 </nav>
                 <div className='userMenuContainer'>
