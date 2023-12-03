@@ -27,7 +27,7 @@ function CardLivroDoacao() {
         setIsLoading(true);
 
         axios
-            .get(`${baseUrl}v1/sbook/anuncio?page=${currentPage}`)
+            .get(`${baseUrl}v1/sbook/anuncio-doacao-web?page=${currentPage}`)
             .then((response) => {
                 const anunciosData = response.data.anuncios;
                 setAnuncios(anunciosData);

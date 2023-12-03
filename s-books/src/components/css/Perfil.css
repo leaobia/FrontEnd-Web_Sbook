@@ -19,6 +19,23 @@
     1%;
 }
 
+.container-endereco{
+    border-bottom: 1px solid #7E7D7A;
+    padding-top: 48px;
+}
+
+.title-endereco{
+    color: #455A64;
+    font-size: clamp(0.875rem, 0.4063rem + 1.5vw, 1.25rem);
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.info-endereco{
+    font-size: 1rem;
+}
+
 .card-favorito{
     width: 500px;
     height: 300px;

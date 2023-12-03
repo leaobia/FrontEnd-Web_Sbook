@@ -25,7 +25,11 @@ import { Link } from "react-router-dom"
 function Configuracoes() {
 
 
-
+    let cep = localStorage.getItem('cepEdit')
+    let cidade = localStorage.getItem('cidadeEdit')
+    let logradouro = localStorage.getItem('logradouroEdit')
+    let estado = localStorage.getItem('estadoEdit')
+    let bairro = localStorage.getItem('bairroEdit')
     const [visibleLeft, setVisibleLeft] = useState(false);
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isOpen: isOpen2, onOpen: onOpen2, onClose: onClose2 } = useDisclosure();
@@ -157,11 +161,6 @@ function Configuracoes() {
     }
 
     function editarUsuario() {
-        let cep = localStorage.getItem('cepEdit')
-        let cidade = localStorage.getItem('cidadeEdit')
-        let logradouro = localStorage.getItem('logradouroEdit')
-        let estado = localStorage.getItem('estadoEdit')
-        let bairro = localStorage.getItem('bairroEdit')
 
         let id_endereco = localStorage.getItem('id_endereco')
         let id_usuario = localStorage.getItem('id_usuarioLogin')
@@ -345,6 +344,10 @@ function Configuracoes() {
                             <div className="inputGroup">
                                 CEP:
                                 <input type="number" id='pegarCEPEdit' onBlur={fetchViaCep} value={cepValue} onChange={(e) => setCepValue(e.target.value)} />
+                            </div>
+                            <div className='container-endereco'>
+                                <p className='title-endereco'>{logradouro}</p>
+                                <p className='info-endereco'>{cidade}, {estado}</p>
                             </div>
                         </div>
                         <div className="inputContainer2">

@@ -51,7 +51,7 @@ function Filtragem({ onFilterChange }) {
                     console.log('entrou 2');
                     const anunciosData = response.data.anuncios;
                     setAnuncios(anunciosData);
-                    onFilterChange(anunciosData);
+                    onFilterChange(anunciosData); // Comentar para caso queira ver a paginação
                 })
                 .catch((error) => {
                     console.error('Erro ao obter dados dos anúncios:', error);
@@ -61,7 +61,7 @@ function Filtragem({ onFilterChange }) {
                 const anunciosData = response.data.anuncios;
                 setAnuncios(anunciosData);
                 console.log(anunciosData);
-                onFilterChange(anunciosData);
+                onFilterChange(anunciosData); // Comentar para caso queira ver a paginação
             })
                 .catch(error => {
                     console.error('Erro ao obter dados dos anúncios:', error);
