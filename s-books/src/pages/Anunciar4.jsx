@@ -374,7 +374,7 @@ const mudarImagemCarrossel = (event) => {
          </div>
        </div>
        <div className="dadosAnuncioPrincipal dadoAnunciante">
-         <div className="">
+         <div className="card_perfil">
            <div>
            <p className='anuncioNome'>{nomeDoLivroCadastro}</p>
            <p className='disponivelPara'>Disponivel para:  {tipoAnuncioString}</p>
