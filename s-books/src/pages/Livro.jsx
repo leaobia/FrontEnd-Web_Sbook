@@ -145,9 +145,9 @@ function Livro() {
           <div className="divLivroCarrossel">
             <div className="showLivro"><img src={imgGrande} alt="foto do anuncio" className='imgGrande' /></div>
             <div className="livrosAparecer">
-                {/* <button ><img src={anuncio.foto[0].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
+                <button ><img src={anuncio.foto[0].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
                 <button  ><img src={anuncio.foto[1].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel}/></button>
-                <button ><img src={anuncio.foto[2].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button> */}
+                <button ><img src={anuncio.foto[2].foto} alt="foto do anuncio" className='imgBtn' onClick={mudarImagemCarrossel} /></button>
             </div>
           </div>
           <div className="dadosAnuncioPrincipal dadoAnunciante">

@@ -123,7 +123,7 @@ function CardLivro({ filteredAds }) {
           })()
         )}
       </div>
-      <Pages onPageChange={handlePageChange} />
+      <Pages onPageChange={handlePageChange}/>
     </div>
   );
 }

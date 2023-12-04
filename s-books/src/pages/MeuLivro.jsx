@@ -442,6 +442,7 @@ function MeuLivro() {
   const handleEstadoChange3 = (event) => {
     // Atualiza o estado quando um estado é selecionado
     setTipoSelecionado(event.target.value);
+    console.log(event)
   };
 
 

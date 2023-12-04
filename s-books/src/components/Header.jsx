@@ -369,16 +369,8 @@ function Header() {
 
     function validarEmail() {
 
-        hideElement('containerLogin');
-        hideElement('resetSenha');
-        hideElement('containerCadastro');
-        hideElement('codigoRecuperacao');
-        hideElement('senhaRedefinida');
-        hideElement('trocarSenha');
-        hideElement('resetSenha');
-        hideElement('containerCadastroContinuacao');
 
-        showElement('codigoValidacaoEmail');
+       abrirContainerCadastroContinuacao()
     }
 
 
@@ -487,31 +479,31 @@ function Header() {
 
     }
 
-    const checkPin2 = () => {
-        const emailCadastro = document.getElementById('emailCadastro').value;
+    // const checkPin2 = () => {
+    //     const emailCadastro = document.getElementById('emailCadastro').value;
 
-        const storedCorrectPin = JSON.parse(localStorage.getItem('correctPinCadastro'));
+    //     const storedCorrectPin = JSON.parse(localStorage.getItem('correctPinCadastro'));
 
-        const enteredPin = [pin1Cadastro, pin2Cadastro, pin3Cadastro, pin4Cadastro];
+    //     const enteredPin = [pin1Cadastro, pin2Cadastro, pin3Cadastro, pin4Cadastro];
 
-        if (!storedCorrectPin || storedCorrectPin.length !== 4) {
-            setIsValidCadastro(false);
-            document.getElementById('pinValidarMessage').textContent = 'PIN inválido';
-            return;
-        }
+    //     if (!storedCorrectPin || storedCorrectPin.length !== 4) {
+    //         setIsValidCadastro(false);
+    //         document.getElementById('pinValidarMessage').textContent = 'PIN inválido';
+    //         return;
+    //     }
 
-        const isPinValid = enteredPin.every((value, index) => value === storedCorrectPin[index]);
+    //     const isPinValid = enteredPin.every((value, index) => value === storedCorrectPin[index]);
 
-        setIsValidCadastro(isPinValid);
+    //     setIsValidCadastro(isPinValid);
 
-        if (isPinValid) {
-            abrirContainerCadastroContinuacao();
-            localStorage.setItem('emailCadastro', emailCadastro)
-            document.getElementById('pinValidarMessage').textContent = '';
-        } else {
-            document.getElementById('pinValidarMessage').textContent = 'PIN inválido';
-        }
-    };
+    //     if (isPinValid) {
+    //         abrirContainerCadastroContinuacao();
+    //         localStorage.setItem('emailCadastro', emailCadastro)
+    //         document.getElementById('pinValidarMessage').textContent = '';
+    //     } else {
+    //         document.getElementById('pinValidarMessage').textContent = 'PIN inválido';
+    //     }
+    // };
 
 
 
@@ -618,7 +610,9 @@ function Header() {
 
 
         const nomeUsuario = localStorage.getItem('nomeUserCadastro')
+
         const email = localStorage.getItem('emailCadastro')
+        const email2 = document.getElementById('emailCadastro').value;
         const dataNascimento = localStorage.getItem('dateCadastro')
         const cpf = localStorage.getItem('cpfCadastro')
         const senha = localStorage.getItem('cadastroSenha')
@@ -633,9 +627,11 @@ function Header() {
                 "nome_usuario": nomeUsuario,
                 "cpf_usuario": cpf,
                 "data_nascimento_usuario": dataNascimento,
-                "email_usuario": email,
+                "email_usuario": email2,
                 "senha_usuario": senha
             };
+
+            console.log(credentials);
             const url = `${baseUrl}v1/sbook/registro-usuario`;
             fetch(url, {
                 method: "POST",
@@ -930,6 +926,19 @@ function Header() {
                                         fontSize={['sm', 'md', 'lg']}
                                     />
                                 </InputGroup>
+
+                                <InputGroup >
+                                    <Input
+                                        type='email'
+                                        placeholder='Email'
+                                        w={[250, 350, 400]}
+                                        id='emailCadastro'
+                                        h='48px'
+                                        className='inputField'
+                                        fontSize={['sm', 'md', 'lg']}
+                                    />
+                                </InputGroup>
+                                
                                 <InputGroup >
                                     <Input
                                         type='number'
@@ -963,7 +972,7 @@ function Header() {
                     <button onClick={closeModalPai} className='botaoFecharModalCadastro'>X</button>
                 </div>
 
-                <div className="d-none" id='codigoValidacaoEmail'>
+                {/* <div className="d-none" id='codigoValidacaoEmail'>
 
                     <div className="imgEsqueciSenha">
                         <img src={imagemCodigoRecuperacao} alt="imagem de uma mulher com a mão na cabeça e com dúvidas" />
@@ -1012,7 +1021,7 @@ function Header() {
                         </div>
                     </div>
 
-                </div>
+                </div> */}
 
                 <div className="containerCadastro d-none" id='containerCadastroContinuacao'>
                     <div className="containerLeft">
@@ -1101,7 +1110,7 @@ function Header() {
                         </div>
                         <button className='buttonLogar' onClick={pegarEnderecosDados}>Entrar</button>
                     </div>
-                    <button onClick={validarEmail} className='botaoFecharModalCadastro'>back</button>
+                    <button onClick={abrirContainerCadastro} className='botaoFecharModalCadastro'>back</button>
                     <button onClick={closeModalPai} className='botaoFecharModalCadastro'>X</button>
                 </div>
 

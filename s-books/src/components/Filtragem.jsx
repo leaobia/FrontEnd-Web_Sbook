@@ -13,7 +13,14 @@ function Filtragem({ onFilterChange }) {
     const [anoLivroValue, setAnoLivroValue] = useState('');
     const [generos, setGeneros] = useState([]);
     const [anuncios, setAnuncios] = useState([]);
+
+
     const [currentPage, setCurrentPage] = useState(1);
+
+    const handlePageChange = (newPage) => {
+        console.log('oi');
+      setCurrentPage(newPage);
+    };
 
     const handleCheckboxChange = (name) => {
         setLivrosSelecionados((prevSelected) => {
@@ -48,10 +55,10 @@ function Filtragem({ onFilterChange }) {
             axios
                 .get(`${baseUrl}v1/sbook/anuncio?page=${currentPage}`)
                 .then((response) => {
-                    console.log('entrou 2');
                     const anunciosData = response.data.anuncios;
                     setAnuncios(anunciosData);
                     onFilterChange(anunciosData); // Comentar para caso queira ver a paginação
+                 
                 })
                 .catch((error) => {
                     console.error('Erro ao obter dados dos anúncios:', error);
@@ -61,7 +68,7 @@ function Filtragem({ onFilterChange }) {
                 const anunciosData = response.data.anuncios;
                 setAnuncios(anunciosData);
                 console.log(anunciosData);
-                onFilterChange(anunciosData); // Comentar para caso queira ver a paginação
+                onFilterChange(anunciosData); 
             })
                 .catch(error => {
                     console.error('Erro ao obter dados dos anúncios:', error);
