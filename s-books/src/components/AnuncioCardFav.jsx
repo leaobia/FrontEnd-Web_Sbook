@@ -12,32 +12,30 @@ function AnuncioCardFav({ anuncio, autor, tipo, cidade, estado , foto}) {
   const idUser = localStorage.getItem('id_usuarioLogin')
 
   const despreencher = () => {
-    const dados = {
-      id_usuario: parseInt(idUser),
-      id_anuncio: anuncioId
-  };
 
-  console.log(dados);
 
-  const url = `${baseUrl}v1/sbook/remover-favorito`;
+    const url = `${baseUrl}v1/sbook/remover-favorito/${idUser}/${anuncioId}`;
 
-        fetch(url, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(dados)
-        })
-            .then(response => response.json())
-            .then(data => {
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
 
-                console.log(data);
-                window.location.reload()
+        console.log(data);
+        if(data.status === 200){
+          window.location.reload()
+        }
 
-            })
-            .catch(error => {
-                console.error("Erro ao desfavoritar:", error);
-            });
+      })
+      .catch(error => {
+        console.error("Erro ao desfavoritar:", error);
+      });
+
+
   }
 
   return (
@@ -76,12 +74,12 @@ function AnuncioCardFav({ anuncio, autor, tipo, cidade, estado , foto}) {
           </div>
             <div>
                 <p className='tipo_favorito'>{tipo.tipo === 'Doação' ? tipo.tipo : tipo.tipo === 'Troca' ? tipo.tipo : 'R$ ' + anuncio.preco}</p>
-                <Link to='/livro' className='botaoLinkLivro_favorito'>
-                  <button className='botaoContainer_favorito'>Comprar <img src={imagemCarrinho} alt='icone de carrinho' /></button>
+                <div className='botaoLinkLivro_favorito'>
+                  <Link to='/livro'><button className='botaoContainer_favorito'>Comprar <img src={imagemCarrinho} alt='icone de carrinho' /></button></Link>
                   <div className="coracoesFav">
                       <button id='coracaoFav' onClick={despreencher}><img src={imagemCoracaoPreenchido} alt='coração preenchido' id='corPreenchido' /></button>
                   </div>
-                </Link>
+                </div>
             </div>
         </div>
     </div>

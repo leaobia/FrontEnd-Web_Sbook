@@ -16,8 +16,6 @@ import {
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../adapters/firebase";
-import { set } from 'lodash';
-
 
 function MeuLivro() {
 
@@ -33,12 +31,6 @@ function MeuLivro() {
     years.push(year);
   }
 
-
-
-  // const [selectElement, setSelectElement] = useState(null);
-
-  // setSelectElement(years)
-
   const [selectIdiomas, setSelectIdiomas] = useState(null);
   const [selectElementAutores, setSelectElementAutores] = useState(null);
   const [selectElementEditora, setSelectElementEditora] = useState(null);
@@ -46,17 +38,7 @@ function MeuLivro() {
   const [estadoLivro, setEstadoLivro] = useState([]);
   const [generosLivro, setGenerosLivro] = useState([]);
   const [tipoAnuncio, setTipoAnuncio] = useState([]);
-
-  // useEffect(() => {
-  //   if (selectElement) {
-  //     years.forEach(year => {
-  //       const option = document.createElement('option');
-  //       option.value = year;
-  //       option.textContent = year;
-  //       selectElement.appendChild(option);
-  //     });
-  //   }
-  // }, [years]);
+  const [precolivro, setPrecoLivro] = useState(null);
 
 
   useEffect(() => {
@@ -121,16 +103,12 @@ function MeuLivro() {
         setFotoAnuncio1(anuncioData.foto[1].foto)
         setImgGrade(anuncioData.foto[0].foto)
         let generos = anuncioData.generos;
-        console.log('anunciodata', anuncioData);
+        setPrecoLivro(anuncioData.anuncio.preco)
         localStorage.setItem('id_anunciante', anuncioData.anuncio.anunciante);
         const generosArray = generos.map((genero) => genero.nome);
         const generosString = generosArray.join(', ');
 
         const generosArray2 = generos.map((genero) => parseInt(genero.id));
-        //const generosString2 = generosArray2.join(', ');
-
-        console.log(typeof generosArray2);
-        console.log(generosArray2);
 
         setGeneros(generosString);
         setGenerosId(generosArray2);
@@ -684,6 +662,15 @@ function MeuLivro() {
         <div className="descricaoContainer">
           <h3 className='titleContainerDesc'>Informações:</h3>
           <div className="dadosLivro">
+          <div className="dadosLivro">
+   {precolivro && (
+      <div className="dadoLivro">
+         <h3>Preço do Livro</h3>
+         <p>{precolivro}</p>
+      </div>
+   )}
+</div>
+
             <div className="dadoLivro">
               <h3>Ano de edição</h3>
               <p>{anuncio.anuncio.ano_lancamento}</p>

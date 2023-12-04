@@ -188,6 +188,56 @@
     padding-top: 10%;
 }
 
+.fotos{
+    height: 30vh;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.fotos img{
+    width: 100%;
+    height: 100%;
+}
+.slider{
+    font-size: clamp(1rem, -0.4844rem + 4.75vw, 3.5875rem);
+}
+
+
+.fotos {
+    position: relative;
+  }
+  
+  .slide-item {
+    position: relative;
+  }
+  
+  .fotos h1 {
+    position: absolute;
+    top: 80%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    color: #FFFF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  
+/* .foto1{
+    background: url('../img/background-your-welcome.png');
+}
+
+.foto2{
+    background: url('../img/biblioteca1.avif');
+}
+
+.foto3{
+    background: url('../img/biblioteca-universitaria.jpg');
+}
+
+.foto4{
+    background: url('../img/bibliotecaEscura.jpeg');
+} */
+
 
 @media (max-width:1200px) {
     .personagem-card{

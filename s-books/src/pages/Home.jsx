@@ -9,25 +9,9 @@ import { Button } from '@chakra-ui/react';
 import { baseUrl } from '../url';
 import SecaoLivroProximo from '../components/SecaoLivroProximo';
 import Pages from '../components/Pages';
-
+import SimpleSlider from '../components/SimpleSlider';
 
 function Home() {
-
-
-  // function formatarNumero(numero) {
-  //     if (numero < 1000) {
-  //       return numero.toString();
-  //     } else if (numero < 1000000) {
-  //       return (numero / 1000).toFixed(0) + " mil";
-  //     } else if (numero < 1000000000) {
-  //       return (numero / 1000000).toFixed(0) + " milhões";
-  //     } else {
-  //       return numero.toString();
-  //     }
-  //   }
-
-  //   var quantidadeDeLivros = localStorage.getItem('quantidadeLivros');
-  //   var quantidadeFormatada = formatarNumero(quantidadeDeLivros);
 
 
   const [nomeUsuario, setNomeUsuario] = useState('');
@@ -89,9 +73,10 @@ function Home() {
   return (
     <div className="Home">
       <Filtragem onFilterChange={setAnunciosFiltrados} />
-      <div className="welcome-group">
+      {/* <div className="welcome-group">
         <h1>Bem-Vindo, {nomeBemVindo}</h1>
-      </div>
+      </div> */}
+      <SimpleSlider usuario = {nomeBemVindo}/>
       <div className="apresentacaoLivros">
         <p>Livros usados, seminovos e novos em todo o Brasil</p>
         {mostrarMais ? (
