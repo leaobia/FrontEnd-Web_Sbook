@@ -9,6 +9,7 @@ import ChatBoxEnviada from "../components/ChatMessageEnviada";
 import { MessageBox } from "react-chat-elements";
 import ChatBoxRecebida from "../components/ChatMessageRecebida";
 import { socket } from '../socket.ts';
+import axios from 'axios';
 
 import React, { useRef, useState, useEffect } from 'react'
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -121,11 +122,55 @@ function Chat() {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(url => {
-            setChatMessage(url)
-            document.querySelector('.divPreviewImage').classList.remove('d-none')
-            document.querySelector('.divPreviewImage').classList.add('d-flex')
-            let img = document.querySelector('.imgChatPreview')
-            img.src = url
+          
+            const key = '2cd580a43d674328bff821cb0c9d6ed0'
+            const subscriptionKey = key;
+            const endpoint = 'https://sbook.cognitiveservices.azure.com/vision/v3.2/analyze'; 
+            
+            const imageUrl = url;
+            
+            const headers = new Headers({
+              'Content-Type': 'application/json',
+              'Ocp-Apim-Subscription-Key': subscriptionKey
+            });
+            
+            const body = JSON.stringify({
+              url: imageUrl
+            });
+            
+            const requestOptions = {
+              method: 'POST',
+              headers: headers,
+              body: body
+            };
+            
+            fetch(endpoint, requestOptions)
+              .then(response => response.json())
+              .then(data => {
+
+                let categorias = data.categories;
+
+                categorias.forEach(categoria => {
+                  if (categoria.name === 'people' || categoria.name === 'people_portrait') {
+                    alert('Foi encontrado um conteúdo de imagem não apropiado para fins da aplicação web.')
+                    setChatMessage('')
+                    document.querySelector('.divPreviewImage').classList.add('d-none')
+                    document.querySelector('.divPreviewImage').classList.remove('d-flex')
+                  } else {
+                    setChatMessage(url)
+                    document.querySelector('.divPreviewImage').classList.remove('d-none')
+                    document.querySelector('.divPreviewImage').classList.add('d-flex')
+                    let img = document.querySelector('.imgChatPreview')
+                    img.src = url
+                  }
+                });
+                
+             
+              })
+              .catch(error => {
+                console.error('Erro na solicitação:', error);
+              });
+            
             //localStorage.setItem('fotoChatMessage', url)
           })
         }
