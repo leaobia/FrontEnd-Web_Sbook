@@ -7,7 +7,6 @@ import { Spinner } from '@chakra-ui/react'
 function MeuAnuncioApi() {
     const [anuncios, setAnuncios] = useState([]);
     const [isLoading, setIsLoading] = useState(false); 
-    let idPegarAnuncio = parseInt(localStorage.getItem('getAnuncioById'))
       
   const idUser = localStorage.getItem('id_usuarioLogin')
 

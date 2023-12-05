@@ -168,9 +168,33 @@
     color: #9F9898;
     font-size: clamp(1rem, -0.4844rem + 4.75vw, 2.1875rem);
 }
+.nenhumFav2{
+    height: fit-content;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    color: #9F9898;
+    font-size: clamp(1rem, -0.4844rem + 4.75vw, 2.1875rem);
+}
 
 .nenhumFav p:nth-child(1){
   color: #AA6231;
+}
+.nenhumFav2 p:nth-child(2){
+  color: #AA6231;
+  text-align: center;
+}
+.nenhumFav2 p:nth-child(1){
+    margin-top: 4vh;
+  text-align: center;
+}
+.nenhumFav2 p{
+    text-align: center;
+}
+
+.nenhumFav2 p:nth-child(2) span{
+    text-decoration: underline;
 }
 
 .maisProximos, .mostrarMenos{

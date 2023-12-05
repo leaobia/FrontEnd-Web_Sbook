@@ -15,10 +15,20 @@
     {
       "src": "/favicon-16x16.png",
       "sizes": "16x16"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#2196f3",
-  "background_color": "#2196f3"
+  "background_color": "#D77317"
 }

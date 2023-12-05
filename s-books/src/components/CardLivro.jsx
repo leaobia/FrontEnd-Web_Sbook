@@ -58,7 +58,7 @@ function CardLivro({ filteredAds }) {
         .get(`${baseUrl}v1/sbook/anuncio?page=${currentPage}`)
         .then((response) => {
           const anunciosData = response.data.anuncios;
-          console.log(anunciosData);
+          console.log('anuncioPadrao',anunciosData);
           setAnuncios(anunciosData);
         })
         .catch((error) => {

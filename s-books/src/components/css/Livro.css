@@ -248,6 +248,11 @@
     font-size: clamp(1rem, -0.0274rem + 13.6986vw, 1.625rem);
     padding-bottom: 1%;
 }
+
+.titleContainerDesc2{
+    margin-left: -3vw;
+    font-size: clamp(1rem, -0.0274rem + 13.6986vw, 1.625rem);
+}
 @media (max-width:700px) {
     .anuncioDados{
         flex-direction: column;

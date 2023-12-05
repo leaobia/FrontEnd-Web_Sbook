@@ -23,6 +23,7 @@ CardAnuncioProximoApi() {
   let estado =   localStorage.getItem('estadoUsuarioHome')
 
   let idUsuario = localStorage.getItem('id_usuarioLogin') 
+  const idUser = localStorage.getItem('id_usuarioLogin')
 
   useEffect(() => {
 
@@ -117,8 +118,16 @@ CardAnuncioProximoApi() {
    </div>
   ) : termoPesquisa === '' ? (
     anuncios.map((anuncio) => (
-      <AnuncioCardProximos key={anuncio.anuncio.id} anuncio={anuncio.anuncio} autor={anuncio.autores[0].nome} tipo={anuncio.tipo_anuncio[0]} endereco={anuncio.endereco} foto={anuncio.foto[0].foto} />
-    ))
+      anuncio.anuncio.anunciante !== parseInt(idUser) && (
+        <AnuncioCardProximos
+          key={anuncio.anuncio.id}
+          anuncio={anuncio.anuncio}
+          autor={anuncio.autores[0].nome}
+          tipo={anuncio.tipo_anuncio[0]}
+          endereco={anuncio.endereco}
+          foto={anuncio.foto[0].foto}
+        />
+      )))
   ) : (
     (() => {
       const filteredAnuncios = anuncios.filter((anuncio) =>
