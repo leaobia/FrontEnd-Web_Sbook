@@ -171,7 +171,6 @@ function Chat() {
                 console.error('Erro na solicitação:', error);
               });
             
-            //localStorage.setItem('fotoChatMessage', url)
           })
         }
       )

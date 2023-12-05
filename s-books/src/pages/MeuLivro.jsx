@@ -42,18 +42,17 @@ function MeuLivro() {
 
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${baseUrl}v1/sbook/autores`);
-        setSelectElementAutores(response.data.autores);
-      } catch (error) {
-        console.log(error);
-      }
-    };
 
-    fetchData();
-  }, []);
-  
+    axios.get(`${baseUrl}v1/sbook/autores`)
+      .then(response => {
+        setSelectElementAutores(response.data.autores);
+      })
+      .catch(error => {
+        console.error('Erro ao obter dados do anúncio pelo id:', error);
+      });
+
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -395,38 +394,35 @@ function MeuLivro() {
   }
 
 
+ 
 
-  async function fetchDataEstadoLivro() {
-    try {
-      const estadoData = await FetchEstadoLivro();
-      setEstadoLivro(estadoData);
-    } catch (error) {
-      console.error('Erro ao buscar estados do livro:', error);
-    }
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [generosResponse, tipoAnuncioResponse, estadoLivroResponse] = await Promise.all([
+          axios.get(`${baseUrl}v1/sbook/generos`),
+          axios.get(`${baseUrl}v1/sbook/tipo-anuncio`),
+          axios.get(`${baseUrl}v1/sbook/estado-livro`)
+        ]);
+  
+        const generosData = generosResponse.data.dados;
+        const tipoAnuncioData = tipoAnuncioResponse.data.tipos;
+        const estadoLivroData = estadoLivroResponse.data.estados;
+  
+        setGenerosLivro(generosData);
+        setTipoAnuncio(tipoAnuncioData);
+        setEstadoLivro(estadoLivroData);
+      } catch (error) {
+        console.error('Erro ao obter dados:', error);
+      }
+    };
+  
+    fetchData();
+  }, [baseUrl]); // Certifique-se de incluir baseUrl como dependência se ele pode mudar
+  
 
-  async function fetchDataGenero() {
-    try {
-      const generosData = await FetchGeneros();
-      setGenerosLivro(generosData);
-    } catch (error) {
-      console.error('Erro ao buscar gêneros:', error);
-    }
-  }
 
 
-  async function fetchDataTipoLivro() {
-    try {
-      const tipoAnuncioData = await FetchTipoAnuncio();
-      setTipoAnuncio(tipoAnuncioData);
-    } catch (error) {
-      console.error('Erro ao buscar gêneros:', error);
-    }
-  }
-
-  fetchDataEstadoLivro()
-  fetchDataGenero();
-  fetchDataTipoLivro()
 
   const [estadoSelecionado, setEstadoSelecionado] = useState('');
   const [generoSelecionado, setGeneroSelecionado] = useState('');
