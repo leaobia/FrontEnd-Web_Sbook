@@ -22,9 +22,12 @@ function Livro() {
 
   const [anuncio, setAnuncio] = useState([]);
   const [generos, setGeneros] = useState([]);
+  let [id_anunciante, setId] = useState('');
+  let [anuncianteNome, setAnuncianteNome] = useState('');
+  let [perfilFotoAnunciante, setPerfilFotoAnunciante] = useState('');
 
 
-  let anunciante = localStorage.getItem('id_anunciante')
+  console.log(id_anunciante);
 
   useEffect(() => {
 
@@ -34,7 +37,7 @@ function Livro() {
         setImgGrade(anuncioData.foto[0].foto)
         setAnuncio(anuncioData);
         let generos = anuncioData.generos;
-        localStorage.setItem('id_anunciante', anuncioData.anuncio.anunciante);
+        setId(anuncioData.anuncio.anunciante)
         const generosArray = generos.map((genero) => genero.nome);
         const generosString = generosArray.join(', ');
 
@@ -47,25 +50,26 @@ function Livro() {
   }, [idPegarAnuncio]);
 
 
-
   useEffect(() => {
 
-    axios.get(`${baseUrl}v1/sbook/usuario/${anunciante}`)
+    axios.get(`${baseUrl}v1/sbook/usuario/${id_anunciante}`)
       .then(response => {
         console.log(response);
         console.log(response);
-        localStorage.setItem('nome_anunciante', response.data.dados.nome)
-        localStorage.setItem('perfilFotoAnunciante', response.data.dados.foto)
+        // localStorage.setItem('nome_anunciante', )
+        // localStorage.setItem('perfilFotoAnunciante', )
+        setAnuncianteNome(response.data.dados.nome)
+        setPerfilFotoAnunciante(response.data.dados.foto)
 
       })
       .catch(error => {
         console.error('Erro ao obter dados do usuario:', error);
       });
 
-  }, [idPegarAnuncio, anunciante]);
+  }, [idPegarAnuncio, id_anunciante]);
 
-  let anuncianteNome = localStorage.getItem('nome_anunciante')
-  let perfilFotoAnunciante = localStorage.getItem('perfilFotoAnunciante')
+  // let anuncianteNome = localStorage.getItem('nome_anunciante')
+  // let perfilFotoAnunciante = localStorage.getItem('perfilFotoAnunciante')
 
   const [imgGrande, setImgGrade] = useState(null);
 
@@ -76,7 +80,7 @@ function Livro() {
 
 
   const pegarIdAnunciante = () => {
-    let idAnuncianteChat = parseInt(anunciante)
+    let idAnuncianteChat = parseInt(id_anunciante)
     localStorage.setItem('anuncianteChatInit', idAnuncianteChat)
 
     const idUser = parseInt(localStorage.getItem('id_usuarioLogin'))
@@ -95,7 +99,7 @@ function Livro() {
           "foto": fotoEu
         },
         {
-          "id": parseInt(anunciante),
+          "id": parseInt(id_anunciante),
           "nome": nomeAnunciante,
           "foto": fotoAnunciante
         }
