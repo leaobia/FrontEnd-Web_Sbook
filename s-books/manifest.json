@@ -1,0 +1,16 @@
+{
+    "theme_color": "#2196f3",
+    "background_color": "#2196f3",
+    "display": "browser",
+    "description": "Realize troca, venda e doações de livro de uma maneira mais prática.",
+    "icons": [
+        {
+          "src": "/Logo.png",
+          "sizes": "301x301",
+          "type": "image/png",
+          "purpose": "any maskable"
+        }
+      ],
+    "scope": "/",
+    "start_url": "/"
+  }
