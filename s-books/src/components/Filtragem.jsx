@@ -13,6 +13,7 @@ function Filtragem({ onFilterChange }) {
     const [anoLivroValue, setAnoLivroValue] = useState('');
     const [generos, setGeneros] = useState([]);
     const [anuncios, setAnuncios] = useState([]);
+    const [anunciosData, setAnunciosData] = useState('');
 
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -57,7 +58,8 @@ function Filtragem({ onFilterChange }) {
                 .then((response) => {
                     const anunciosData = response.data.anuncios;
                     setAnuncios(anunciosData);
-                    onFilterChange(anunciosData); // Comentar para caso queira ver a paginação
+                    setAnunciosData(anunciosData)
+                   // onFilterChange(anunciosData); // Comentar para caso queira ver a paginação
                  
                 })
                 .catch((error) => {
@@ -67,6 +69,7 @@ function Filtragem({ onFilterChange }) {
             axios.get(url).then(response => {
                 const anunciosData = response.data.anuncios;
                 setAnuncios(anunciosData);
+                setAnunciosData(anunciosData)
                 console.log(anunciosData);
                 onFilterChange(anunciosData); 
             })
@@ -111,6 +114,15 @@ function Filtragem({ onFilterChange }) {
 
     const hideSidebar = () => {
         setVisibleLeft(false);
+
+        if (anoLivroValue || livrosSelecionados.length || generos.length) {
+            console.log(anoLivroValue, livrosSelecionados, generos);
+            onFilterChange(anunciosData);
+            document.querySelector('.container-page').classList.add('d-none')
+        }else{
+            window.location.reload()
+        }
+        
         document.body.classList.remove('privarRolagem');
     };
 

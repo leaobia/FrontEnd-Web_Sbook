@@ -45,7 +45,8 @@ function CardLivro({ filteredAds }) {
   //       });
   //   }
   // }, [currentPage, filteredAds]);  // Adiciona currentPage como dependência
-
+  const idUser = localStorage.getItem('id_usuarioLogin')
+  
   useEffect(() => {
     setIsLoading(true);
 
@@ -57,6 +58,7 @@ function CardLivro({ filteredAds }) {
         .get(`${baseUrl}v1/sbook/anuncio?page=${currentPage}`)
         .then((response) => {
           const anunciosData = response.data.anuncios;
+          console.log(anunciosData);
           setAnuncios(anunciosData);
         })
         .catch((error) => {
@@ -86,8 +88,16 @@ function CardLivro({ filteredAds }) {
           </div>
         ) : termoPesquisa === '' ? (
           anuncios.map((anuncio) => (
-            <AnuncioCard key={anuncio.anuncio.id} anuncio={anuncio.anuncio} autor={anuncio.autores[0].nome} tipo={anuncio.tipo_anuncio[0]} endereco={anuncio.endereco} foto={anuncio.foto[0].foto} />
-          ))
+            anuncio.anuncio.anunciante !== parseInt(idUser) && (
+              <AnuncioCard
+                key={anuncio.anuncio.id}
+                anuncio={anuncio.anuncio}
+                autor={anuncio.autores[0].nome}
+                tipo={anuncio.tipo_anuncio[0]}
+                endereco={anuncio.endereco}
+                foto={anuncio.foto[0].foto}
+              />
+            )))
         ) : (
           (() => {
             const filteredAnuncios = anuncios.filter((anuncio) =>

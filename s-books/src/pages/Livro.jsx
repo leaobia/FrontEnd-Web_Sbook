@@ -85,9 +85,6 @@ function Livro() {
 
     const idUser = parseInt(localStorage.getItem('id_usuarioLogin'))
 
-    let nomeAnunciante = localStorage.getItem('nome_anunciante')
-    let fotoAnunciante = localStorage.getItem('perfilFotoAnunciante')
-
     let fotoEu = localStorage.getItem('fotoUsuarioHome')
     let meuNome = localStorage.getItem('nomeUsuarioHome')
 
@@ -100,11 +97,13 @@ function Livro() {
         },
         {
           "id": parseInt(id_anunciante),
-          "nome": nomeAnunciante,
-          "foto": fotoAnunciante
+          "nome": anuncianteNome,
+          "foto": perfilFotoAnunciante
         }
       ]
     }
+
+    console.log(credentials);
 
     socketInstance.emit('createRooom', JSON.stringify(credentials));
 
