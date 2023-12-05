@@ -214,8 +214,9 @@
   
   .fotos h1 {
     position: absolute;
+    width: 100%;
     top: 80%;
-    left: 35%;
+    left: 55%;
     transform: translate(-50%, -50%);
     color: #FFFF;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
