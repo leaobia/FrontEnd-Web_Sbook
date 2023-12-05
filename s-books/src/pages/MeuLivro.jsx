@@ -418,7 +418,7 @@ function MeuLivro() {
     };
   
     fetchData();
-  }, [baseUrl]); // Certifique-se de incluir baseUrl como dependência se ele pode mudar
+  }, [baseUrl]);
   
 
 
@@ -529,7 +529,7 @@ function MeuLivro() {
                         type="radio"
                         name="estadosSelecionados"
                         value={estado.estado}
-                        checked={estado.estado === anuncio.estado_livro.estado}
+                        //checked={estado.estado === anuncio.estado_livro.estado}
                         onChange={handleEstadoChange}
                       />
                       {estado.estado}
@@ -546,7 +546,7 @@ function MeuLivro() {
                         type="checkbox"
                         value={tipo.id}
                         className='check'
-                        checked={generos.includes(tipo.nome)}
+                        //checked={generos.includes(tipo.nome)}
                         onChange={handleEstadoChange2}
                       />
                       {tipo.nome}
@@ -563,7 +563,7 @@ function MeuLivro() {
                         type="checkbox"
                         value={tipo.id}
                         className='check'
-                        checked={anuncio.tipo_anuncio[0].tipo.includes(tipo.tipo)}
+                        //checked={anuncio.tipo_anuncio[0].tipo.includes(tipo.tipo)}
                         onChange={handleEstadoChange3}
                       />
                       {tipo.tipo}
