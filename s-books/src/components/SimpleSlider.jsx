@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import foto1 from '../components/img/biblioteca.jpeg'
 import foto2 from '../components/img/biblioteca-universitaria.jpg'
-import foto3 from '../components/img/biblioteca1.avif'
+import foto3 from '../components/img/biblioteca1.webp.crdownload'
 import foto4 from '../components/img/3016.jpg'
 
 class SimpleSlider extends Component {
