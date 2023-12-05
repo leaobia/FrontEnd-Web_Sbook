@@ -4,20 +4,20 @@
   "description": "Realize a troca, venda e doação de livros com mais praticidade.",
   "icons": [
     {
-      "src": "Logo",
+      "src": "Logo.svg",
       "sizes": "48x48",
-      "type": "svg"
+      "type": "image/svg"
     },
     {
-      "src": "Logo",
+      "src": "Logo.svg",
       "sizes": "48x48"
     },
     {
-      "src": "Logo",
+      "src": "Logo.svg",
       "sizes": "72x72 96x96 128x128 256x256 512x512"
     },
     {
-      "src": "Logo",
+      "src": "Logo.svg",
       "sizes": "any"
     }
   ],
