@@ -213,8 +213,8 @@
 .fotoDaMensagem{
     display: grid;
     place-self: center;
-    width: 90%;
-    height: 20vh;
+    /* width: 90%; */
+    /* height: 20vh; */
     background-color: #AA6231;
 }
 .divTextoHora{
@@ -236,13 +236,13 @@
 .divPreviewImage{
     z-index: 2;
     background-color: #F8F8FF;
-    height: 30vh;
-    width: 15vw;
-    margin-left: 59%;
+    /* height: 30vh; */
+    /* width: 15vw; */
+    margin-left: 60%;
     position: fixed;
     padding: .5%;
     gap: 1vh;
-    margin-top: 28.5%;
+    margin-top: 18.3%;
     border-radius: 20px;
     border: .8px solid #E7E7E7;
     flex-direction: column;
@@ -266,7 +266,8 @@
 
 .imgChatPreview{
     border-radius: 8px;
-    height: 80%;
+    height: 350px;
+    width: 250px;
 }
 
 .scroll-to-bottom {
