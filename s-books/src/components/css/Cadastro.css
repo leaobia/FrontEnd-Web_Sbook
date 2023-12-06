@@ -189,8 +189,7 @@
 
 .containerLeft {
     height: 100%;
-    width: 60%;
-    width: 40%;
+    width: 50%;
 }
 
 .formCategoria{
@@ -225,7 +224,7 @@
     flex-wrap: wrap;
     gap: 24px;
     text-align: center;
-    width: 38vw;
+    width: 32vw;
     height: 28vh;
     overflow-y: auto;
     padding: 12px;

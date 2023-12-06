@@ -14,7 +14,7 @@ import {
     Button, Modal, ModalOverlay, useDisclosure, ModalBody, ModalContent, ModalHeader, ModalCloseButton, ModalFooter,
     Drawer, DrawerBody, DrawerCloseButton, DrawerHeader, DrawerOverlay, DrawerContent,
     Textarea, Input
-  } from '@chakra-ui/react';
+} from '@chakra-ui/react';
 
 
 import { logOut } from '../url';
@@ -41,7 +41,7 @@ function Configuracoes() {
     let formattedDate;
     let cepUsuario = localStorage.getItem('cepUsuario')
 
-    let idUsuario = localStorage.getItem('id_usuarioLogin') 
+    let idUsuario = localStorage.getItem('id_usuarioLogin')
 
 
     const [nameValue, setNameValue] = useState('');
@@ -52,38 +52,38 @@ function Configuracoes() {
 
 
 
-      axios.get(`${baseUrl}v1/sbook/generos`)
-      .then(response => {
-    let generos = response.data.dados
-    setGenerosValue(generos)
-      
-      })
-      .catch(error => {
-        console.error('Erro ao obter dados do usuario:', error);
-      })
+    axios.get(`${baseUrl}v1/sbook/generos`)
+        .then(response => {
+            let generos = response.data.dados
+            setGenerosValue(generos)
+
+        })
+        .catch(error => {
+            console.error('Erro ao obter dados do usuario:', error);
+        })
 
     useEffect(() => {
         axios.get(`${baseUrl}v1/sbook/usuario/${idUsuario}`)
-          .then(response => {
-            let bairro = response.data.dados.bairro
-            let cidade = response.data.dados.cidade
-            let estado = response.data.dados.estado
-            let foto = response.data.dados.foto
-          let cep = response.data.dados.cep
-            let logradouro = response.data.dados.logradouro
-            let email = response.data.dados.email
-            let data_nascimento = response.data.dados.data_nascimento
+            .then(response => {
+                let bairro = response.data.dados.bairro
+                let cidade = response.data.dados.cidade
+                let estado = response.data.dados.estado
+                let foto = response.data.dados.foto
+                let cep = response.data.dados.cep
+                let logradouro = response.data.dados.logradouro
+                let email = response.data.dados.email
+                let data_nascimento = response.data.dados.data_nascimento
 
-           setNameValue(response.data.dados.nome)
-           setPerfilFotoValue(foto)
-           setDataNascValue(data_nascimento)
-           setCepValue(cep)
-         //  localStorage.setItem('perfilFotoConfig', foto)
-          })
-          .catch(error => {
-            console.error('Erro ao obter dados do genero:', error);
-          })
-      }, [idUsuario]);
+                setNameValue(response.data.dados.nome)
+                setPerfilFotoValue(foto)
+                setDataNascValue(data_nascimento)
+                setCepValue(cep)
+                //  localStorage.setItem('perfilFotoConfig', foto)
+            })
+            .catch(error => {
+                console.error('Erro ao obter dados do genero:', error);
+            })
+    }, [idUsuario]);
 
 
     if (dataNasc) {
@@ -106,8 +106,8 @@ function Configuracoes() {
 
     useEffect(() => {
         setDateValue(formattedDate);
-      }, [formattedDate]);
-      
+    }, [formattedDate]);
+
 
 
 
@@ -197,28 +197,28 @@ function Configuracoes() {
         })
             .then(response => {
                 console.log('Response:', response);
-       
+
                 const desejaEditarDiv = document.getElementById('desejaEditarDiv')
                 desejaEditarDiv.classList.remove('d-flex')
                 desejaEditarDiv.classList.add('d-none')
 
-              if(response.status === 200){
-               window.location.reload()
-              }
+                if (response.status === 200) {
+                    window.location.reload()
+                }
             })
             .catch(error => {
                 console.error(error);
             });
         const url2 = `${baseUrl}v1/sbook/atualizar-foto-usuario`;
         let urlPerfil = localStorage.getItem('dataImageURLPerfil')
-        if(urlPerfil){
+        if (urlPerfil) {
             const dados2 = {
                 "id": parseInt(id_usuario),
                 "foto": urlPerfil
             };
-    
+
             console.log(dados2);
-    
+
             fetch(`${url2}`, {
                 method: 'PUT',
                 headers: {
@@ -230,82 +230,82 @@ function Configuracoes() {
                 .then(response => {
                     console.log('Response:', response);
 
-                    if(response.status === 200){
+                    if (response.status === 200) {
                         window.location.reload()
-                      
-                      }
-           
+
+                    }
+
                     const desejaEditarDiv = document.getElementById('desejaEditarDiv')
                     desejaEditarDiv.classList.remove('d-flex')
                     desejaEditarDiv.classList.add('d-none')
-    
-                  
+
+
                 })
                 .catch(error => {
                     console.error(error);
                 });
-            }
+        }
 
     }
 
     const editandoCategorias = () => {
 
     }
-    
+
     return (
         <div className='configContainer'>
 
-<Drawer onClose={onClose2} isOpen={isOpen2} size={'xl'}>
-  <DrawerOverlay />
-  <DrawerContent>
-    <DrawerCloseButton />
-    <DrawerBody>
-        <div className="contentEditGeneros">
-            <h1 className='editCategorias'>Editar categorias</h1>
-        <div className="checkboxesgeneros">
-        {generosValue.map((genero) => (
-        <div className='checkGroup'>
-          <input
-            type="checkbox"
-            id={`checkbox-${genero.id}`}
-            value={genero.nome}
-          />
-          <label htmlFor={`checkbox-${genero.id}`}>{genero.nome}</label>
-        </div>
-      ))}
-        </div>
-        <button className='editGenCateg' onClick={editandoCategorias}>Editar</button>
-        </div>
-    </DrawerBody>
-  </DrawerContent>
-</Drawer>
+            <Drawer onClose={onClose2} isOpen={isOpen2} size={'xl'}>
+                <DrawerOverlay />
+                <DrawerContent>
+                    <DrawerCloseButton />
+                    <DrawerBody>
+                        <div className="contentEditGeneros">
+                            <h1 className='editCategorias'>Editar categorias</h1>
+                            <div className="checkboxesgeneros">
+                                {generosValue.map((genero) => (
+                                    <div className='checkGroup'>
+                                        <input
+                                            type="checkbox"
+                                            id={`checkbox-${genero.id}`}
+                                            value={genero.nome}
+                                        />
+                                        <label htmlFor={`checkbox-${genero.id}`}>{genero.nome}</label>
+                                    </div>
+                                ))}
+                            </div>
+                            <button className='editGenCateg' onClick={editandoCategorias}>Editar</button>
+                        </div>
+                    </DrawerBody>
+                </DrawerContent>
+            </Drawer>
 
 
 
-                    <Modal onClose={onClose} isOpen={isOpen} isCentered>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Excluir conta</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-           <p>Tem certeza de que deseja excluir sua conta? Ficaríamos gratos se você pudesse nos dizer o motivo para nos ajudar a melhorar. Por favor, compartilhe seus comentários antes de prosseguir com a exclusão.</p>
-           <select id="motivo" name="motivo">
-  <option value="mudanca-plataforma">Mudança de plataforma</option>
-  <option value="problemas-privacidade">Problemas de privacidade</option>
-  <option value="nao-interessado">Não estou mais interessado</option>
-  <option value="problemas-tecnicos">Problemas técnicos</option>
-  <option value="preocupacoes-seguranca">Preocupações de segurança</option>
-  <option value="alternativa-melhor">Encontrei uma alternativa melhor</option>
-  <option value="excesso-notificacoes">Excesso de notificações</option>
-  <option value="problemas-usabilidade">Problemas de usabilidade</option>
-  <option value="outro">Outro (por favor, especifique)</option>
-</select>
-          </ModalBody>
-          <ModalFooter>
-            <Button>Excluir</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+            <Modal onClose={onClose} isOpen={isOpen} isCentered>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Excluir conta</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <p>Tem certeza de que deseja excluir sua conta? Ficaríamos gratos se você pudesse nos dizer o motivo para nos ajudar a melhorar. Por favor, compartilhe seus comentários antes de prosseguir com a exclusão.</p>
+                        <select id="motivo" name="motivo">
+                            <option value="mudanca-plataforma">Mudança de plataforma</option>
+                            <option value="problemas-privacidade">Problemas de privacidade</option>
+                            <option value="nao-interessado">Não estou mais interessado</option>
+                            <option value="problemas-tecnicos">Problemas técnicos</option>
+                            <option value="preocupacoes-seguranca">Preocupações de segurança</option>
+                            <option value="alternativa-melhor">Encontrei uma alternativa melhor</option>
+                            <option value="excesso-notificacoes">Excesso de notificações</option>
+                            <option value="problemas-usabilidade">Problemas de usabilidade</option>
+                            <option value="outro">Outro (por favor, especifique)</option>
+                        </select>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button>Excluir</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
             <div className="sideBarContainer">
                 <button className='botaoMenu' onClick={() => setVisibleLeft(true)}><img src={iconSidebar} alt='ícone do botao de menu' /></button>
                 <div className="menuLocalContainer">
@@ -356,7 +356,7 @@ function Configuracoes() {
                                 <input type="date" value={dateValue} id='dateEdit' onChange={(e) => setDateValue(e.target.value)} />
                             </div>
                             <div className="inputGroup">
-                            <UploadFotoPerfil/>
+                                <UploadFotoPerfil />
                             </div>
 
                         </div>
@@ -378,14 +378,14 @@ function Configuracoes() {
                         <p>{nameValue}</p>
                     </div>
                     <div className="userContainerDireitaLink">
-                       <button onClick={onOpen2}>Categorias</button>
+                        <button onClick={onOpen2}>Categorias</button>
                     </div>
                     {/* <div className="userContainerDireitaLink excluirButton">
                         <button>Excluir conta </button>
                     </div> */}
                 </div>
 
-                <Button onClick={onOpen}>Excluir conta</Button>
+                {/* <Button onClick={onOpen}>Excluir conta</Button> */}
 
 
             </div>
