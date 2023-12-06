@@ -34,12 +34,11 @@ function Configuracoes() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isOpen: isOpen2, onOpen: onOpen2, onClose: onClose2 } = useDisclosure();
 
-    let nomeUsuario = localStorage.getItem('nomeUsuario')
-    let perfilFoto = localStorage.getItem('perfilFoto')
+
     let cidadeUsuario = localStorage.getItem('cidadeUsuarioHome')
-    let data_nascimento = localStorage.getItem('data_nascimento')
+
     let formattedDate;
-    let cepUsuario = localStorage.getItem('cepUsuario')
+
 
     let idUsuario = localStorage.getItem('id_usuarioLogin')
 
@@ -65,13 +64,13 @@ function Configuracoes() {
     useEffect(() => {
         axios.get(`${baseUrl}v1/sbook/usuario/${idUsuario}`)
             .then(response => {
-                let bairro = response.data.dados.bairro
-                let cidade = response.data.dados.cidade
-                let estado = response.data.dados.estado
+                // let bairro = response.data.dados.bairro
+                // let cidade = response.data.dados.cidade
+                // let estado = response.data.dados.estado
                 let foto = response.data.dados.foto
                 let cep = response.data.dados.cep
-                let logradouro = response.data.dados.logradouro
-                let email = response.data.dados.email
+                // let logradouro = response.data.dados.logradouro
+                // let email = response.data.dados.email
                 let data_nascimento = response.data.dados.data_nascimento
 
                 setNameValue(response.data.dados.nome)

@@ -47,19 +47,19 @@ function Chat() {
     // }, 1000);
 
 
-    const abrirMensagemConfig = () => {
-        document.querySelector('.buttonCancelarMensagem').classList.add('d-flex')
-        document.querySelector('.buttonCancelarMensagem').classList.remove('d-none')
-    }
+    // const abrirMensagemConfig = () => {
+    //     document.querySelector('.buttonCancelarMensagem').classList.add('d-flex')
+    //     document.querySelector('.buttonCancelarMensagem').classList.remove('d-none')
+    // }
 
-    const sumirDaTela = () => {
-        document.querySelector('.buttonCancelarMensagem').classList.remove('d-flex')
-        document.querySelector('.buttonCancelarMensagem').classList.add('d-none')
-    }
+    // const sumirDaTela = () => {
+    //     document.querySelector('.buttonCancelarMensagem').classList.remove('d-flex')
+    //     document.querySelector('.buttonCancelarMensagem').classList.add('d-none')
+    // }
 
 
     let foto = localStorage.getItem('fotoUsuarioHome')
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen,  onClose } = useDisclosure()
   
 
     const enviarMensagem = () => {

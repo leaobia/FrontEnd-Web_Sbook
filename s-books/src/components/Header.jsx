@@ -446,38 +446,38 @@ function Header() {
     };
 
 
-    const [pin1Cadastro, setPin1Cadastro] = useState('');
-    const [pin2Cadastro, setPin2Cadastro] = useState('');
-    const [pin3Cadastro, setPin3Cadastro] = useState('');
-    const [pin4Cadastro, setPin4Cadastro] = useState('');
-    const [isValidCadastro, setIsValidCadastro] = useState(true);
+    // const [pin1Cadastro, setPin1Cadastro] = useState('');
+    // const [pin2Cadastro, setPin2Cadastro] = useState('');
+    // const [pin3Cadastro, setPin3Cadastro] = useState('');
+    // const [pin4Cadastro, setPin4Cadastro] = useState('');
+    // const [isValidCadastro, setIsValidCadastro] = useState(true);
 
 
 
-    const verifiqueEmail = () => {
-        const emailCadastro = document.getElementById('emailCadastro').value;
-        const pinValidarMessage = document.getElementById('pinValidarMessage');
+    // const verifiqueEmail = () => {
+    //     const emailCadastro = document.getElementById('emailCadastro').value;
+    //     const pinValidarMessage = document.getElementById('pinValidarMessage');
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        if (!emailRegex.test(emailCadastro)) {
-            pinValidarMessage.textContent = 'Email inválido';
-            return;
-        }
+    //     if (!emailRegex.test(emailCadastro)) {
+    //         pinValidarMessage.textContent = 'Email inválido';
+    //         return;
+    //     }
 
-        enviarPin();
-        pinValidarMessage.textContent = '';
-    };
-
-
+    //     enviarPin();
+    //     pinValidarMessage.textContent = '';
+    // };
 
 
-    const enviarPin = () => {
-        const pinCorreto = ['1', '2', '3', '4'];
 
-        localStorage.setItem('correctPinCadastro', JSON.stringify(pinCorreto));
 
-    }
+    // const enviarPin = () => {
+    //     const pinCorreto = ['1', '2', '3', '4'];
+
+    //     localStorage.setItem('correctPinCadastro', JSON.stringify(pinCorreto));
+
+    // }
 
     // const checkPin2 = () => {
     //     const emailCadastro = document.getElementById('emailCadastro').value;

@@ -23,8 +23,7 @@ const ChatItemComponent = () => {
   useEffect(() => {
     socketInstance.on('receive_contacts', (lista) => {
       console.log('lista:', lista);
-      // console.log('listContacts:', lista.users);
-      // console.log('listContacts:', lista.users[0].users);
+
 
       if (lista.id_user == idUsuario) {
         setListaContatos(lista.users);

@@ -10,10 +10,8 @@ function CardAnuncioAnunciante() {
     const [isLoading, setIsLoading] = useState(false); 
     let [id_anunciante, setId] = useState('');
     
-   // console.log(anunciante);
     let idPegarAnuncio = parseInt(localStorage.getItem('getAnuncioById'))
 
-    console.log(id_anunciante);
 
     useEffect(() => {
   

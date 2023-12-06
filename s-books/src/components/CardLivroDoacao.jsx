@@ -41,9 +41,9 @@ function CardLivroDoacao() {
 
     }, [currentPage]);
 
-    const handlePesquisaChange = _.debounce(event => {
-        setTermoPesquisa(event.target.value);
-    }, 100);
+    // const handlePesquisaChange = _.debounce(event => {
+    //     setTermoPesquisa(event.target.value);
+    // }, 100);
 
     return (
         <div>

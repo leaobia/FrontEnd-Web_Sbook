@@ -113,7 +113,7 @@ function Anunciar() {
     //console.log(autorKey);
   }
 
-  let idioma = localStorage.getItem('idiomakey')
+  //let idioma = localStorage.getItem('idiomakey')
   //console.log('idiomaId');
 
 

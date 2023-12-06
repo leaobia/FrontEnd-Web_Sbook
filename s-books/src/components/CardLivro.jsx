@@ -23,28 +23,6 @@ function CardLivro({ filteredAds }) {
     setCurrentPage(newPage);
   };
 
-  // useEffect(() => {
-  //   setIsLoading(true);
-
-  //   if (filteredAds.length > 0) {
-  //     // Se houver anúncios filtrados, use-os
-  //     setAnuncios(filteredAds);
-  //     setIsLoading(false);
-  //   } else {
-  //     // Se não houver anúncios filtrados, faça a busca normalmente
-  //     axios.get(`${baseUrl}v1/sbook/anuncio?page=${currentPage}`)
-  //       .then(response => {
-  //         const anunciosData = response.data.anuncios;
-  //         setAnuncios(anunciosData);
-  //       })
-  //       .catch(error => {
-  //         console.error('Erro ao obter dados dos anúncios:', error);
-  //       })
-  //       .finally(() => {
-  //         setIsLoading(false);
-  //       });
-  //   }
-  // }, [currentPage, filteredAds]);  // Adiciona currentPage como dependência
   const idUser = localStorage.getItem('id_usuarioLogin')
   
   useEffect(() => {
@@ -70,9 +48,7 @@ function CardLivro({ filteredAds }) {
     }
   }, [currentPage, filteredAds]);
 
-  const handlePesquisaChange = _.debounce(event => {
-    setTermoPesquisa(event.target.value);
-  }, 100);
+
 
   return (
     <div>
