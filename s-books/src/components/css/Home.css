@@ -284,11 +284,15 @@
         align-items: center;
         justify-content: center;
     }
+
+
 }
 @media (max-width:400px) {
     .personagem-card{
         width: 80vw;
     }
+
+
 
 
 }

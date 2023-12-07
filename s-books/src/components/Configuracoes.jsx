@@ -26,10 +26,10 @@ function Configuracoes() {
 
 
     let cep = localStorage.getItem('cepEdit')
-    let cidade = localStorage.getItem('cidadeEdit')
-    let logradouro = localStorage.getItem('logradouroEdit')
-    let estado = localStorage.getItem('estadoEdit')
-    let bairro = localStorage.getItem('bairroEdit')
+    // let cidade = localStorage.getItem('cidadeEdit')
+    // let logradouro = localStorage.getItem('logradouroEdit')
+    // let estado = localStorage.getItem('estadoEdit')
+    // let bairro = localStorage.getItem('bairroEdit')
     const [visibleLeft, setVisibleLeft] = useState(false);
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isOpen: isOpen2, onOpen: onOpen2, onClose: onClose2 } = useDisclosure();
@@ -47,6 +47,10 @@ function Configuracoes() {
     const [dataNasc, setDataNascValue] = useState('');
     const [perfilFotoValue, setPerfilFotoValue] = useState('');
     const [cepValue, setCepValue] = useState('');
+    const [logradouroValue, setLogradouroValue] = useState('');
+    const [bairroValue, setBairroValue] = useState('');
+    const [cidadeValue, setCidadeValue] = useState('');
+    const [estadoValue, setEstadoValue] = useState('');
     let [generosValue, setGenerosValue] = useState([]);
 
 
@@ -64,12 +68,12 @@ function Configuracoes() {
     useEffect(() => {
         axios.get(`${baseUrl}v1/sbook/usuario/${idUsuario}`)
             .then(response => {
-                // let bairro = response.data.dados.bairro
-                // let cidade = response.data.dados.cidade
-                // let estado = response.data.dados.estado
+                 let bairro = response.data.dados.bairro
+                 let cidade = response.data.dados.cidade
+                 let estado = response.data.dados.estado
                 let foto = response.data.dados.foto
                 let cep = response.data.dados.cep
-                // let logradouro = response.data.dados.logradouro
+                 let logradouro = response.data.dados.logradouro
                 // let email = response.data.dados.email
                 let data_nascimento = response.data.dados.data_nascimento
 
@@ -77,6 +81,10 @@ function Configuracoes() {
                 setPerfilFotoValue(foto)
                 setDataNascValue(data_nascimento)
                 setCepValue(cep)
+                setEstadoValue(estado)
+                setBairroValue(bairro)
+                setCidadeValue(cidade)
+                setLogradouroValue(logradouro)
                 //  localStorage.setItem('perfilFotoConfig', foto)
             })
             .catch(error => {
@@ -135,11 +143,11 @@ function Configuracoes() {
                     let logradouro = data.logradouro
                     let estado = data.uf
 
-                    localStorage.setItem('cepEdit', cep)
-                    localStorage.setItem('cidadeEdit', cidade)
-                    localStorage.setItem('bairroEdit', bairro)
-                    localStorage.setItem('logradouroEdit', logradouro)
-                    localStorage.setItem('estadoEdit', estado)
+                   setCepValue(cep)
+                   setCidadeValue(cidade)
+                   setBairroValue(bairro)
+                   setLogradouroValue(logradouro)
+                   setEstadoValue(estado)
 
                 })
                 .catch(error => {
@@ -171,11 +179,11 @@ function Configuracoes() {
         const dados = {
             "id_usuario": parseInt(id_usuario),
             "id_endereco": parseInt(id_endereco),
-            "logradouro_endereco": logradouro,
-            "bairro_endereco": bairro,
-            "cidade_endereco": cidade,
-            "estado_endereco": estado,
-            "cep_endereco": cep,
+            "logradouro_endereco": logradouroValue,
+            "bairro_endereco": bairroValue,
+            "cidade_endereco": cidadeValue,
+            "estado_endereco": estadoValue,
+            "cep_endereco": cepValue,
             "nome_usuario": nomeEdit,
             "data_nascimento_usuario": dateEdit
         };
@@ -345,8 +353,8 @@ function Configuracoes() {
                                 <input type="number" id='pegarCEPEdit' onBlur={fetchViaCep} value={cepValue} onChange={(e) => setCepValue(e.target.value)} />
                             </div>
                             <div className='container-endereco'>
-                                <p className='title-endereco'>{logradouro}</p>
-                                <p className='info-endereco'>{cidade}, {estado}</p>
+                                <p className='title-endereco'>{logradouroValue}</p>
+                                <p className='info-endereco'>{cidadeValue}, {estadoValue}</p>
                             </div>
                         </div>
                         <div className="inputContainer2">

@@ -519,4 +519,21 @@
     .contentUserDireita{
         height: 25vh;
     }
+
+    .configContent{
+        min-height: fit-content;
+        display: flex;
+        padding: 5vh 5vw 0 5vw;
+        gap: 2vh;
+    }
+
+    .tabelaConfigDados{
+       
+     height: fit-content;
+    }
+
+    .editarConfig{
+        margin-top: -10vh;
+        margin-bottom: 2vh;
+    }
 }
