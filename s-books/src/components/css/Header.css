@@ -43,7 +43,7 @@
     display: grid;
     place-self: center;
     width: fit-content;
-    padding-right: 1vw;
+    padding-left: 5px;
 }
 
 .grid-colun2{
@@ -83,9 +83,22 @@ ul{
 .botaoMenu img{
     padding-left: 1vw;
 }
+    .componenteErro{
+    margin-top: 15%;
+}
 @media (max-width:520px) {
+
+    .userMenuContainer .userMenu{
+        display: grid;
+        place-self: center;
+        width: fit-content;
+        padding-left: 5px;
+    }
+    .userMenuIcons{
+        margin-left: -1.5vw;
+    }
     .logo{
-        padding-left: 1vw;
+        margin-left: 0;
         width: 15vw;
     height: 93%;
     }
@@ -103,5 +116,9 @@ ul{
 
     .userProfileButton{
         width: fit-content;
+    }
+
+    .componenteErro{
+       margin-top: 50%;
     }
 }

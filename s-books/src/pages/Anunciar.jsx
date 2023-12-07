@@ -121,25 +121,28 @@ function Anunciar() {
     return (
       <div className="queroAnunciar componenteErro">
         <Alert
-          status='error'
-          variant='subtle'
-          flexDirection='column'
-          alignItems='center'
-          justifyContent='center'
-          textAlign='center'
-          height='45vh'
-          width='40vw'
-          borderRadius='20'
-        >
-          <AlertIcon boxSize='40px' mr={0} />
-          <AlertTitle mt={4} mb={1} fontSize='lg'>
-            Erro!
-          </AlertTitle>
-          <AlertDescription maxWidth='sm'>
-            Você ainda não fez o login
-          </AlertDescription>
-          <button className='fazerLoginButton' onClick={abrirLogin}>Fazer Login</button>
-        </Alert></div>
+        status='error'
+        variant='subtle'
+        flexDirection='column'
+        alignItems='center'
+        justifyContent='center'
+        textAlign='center'
+        height='auto'
+        width='80vw'  // Ajuste conforme necessário
+        borderRadius='xl'  // 'xl' é uma boa opção para cantos arredondados
+      >
+        <AlertIcon boxSize='40px' mr={0} />
+        <AlertTitle mt={4} mb={1} fontSize='lg'>
+          Erro!
+        </AlertTitle>
+        <AlertDescription maxWidth='sm'>
+          Você ainda não fez o login
+        </AlertDescription>
+        <button className='fazerLoginButton' onClick={abrirLogin}>
+          Fazer Login
+        </button>
+      </Alert>
+      </div>
     )
   }
   return (
