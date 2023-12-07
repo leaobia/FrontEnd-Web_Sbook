@@ -151,12 +151,13 @@ function Chat() {
                 let categorias = data.categories;
 
                 categorias.forEach(categoria => {
-                  if (categoria.name === 'people' || categoria.name === 'people_portrait') {
+                  if (categoria.name === 'people' || categoria.name === 'people_portrait' || categoria.name === 'people_') {
                     alert('Foi encontrado um conteúdo de imagem não apropiado para fins da aplicação web.')
                     setChatMessage('')
                     document.querySelector('.divPreviewImage').classList.add('d-none')
                     document.querySelector('.divPreviewImage').classList.remove('d-flex')
                   } else {
+                    console.log(categoria);
                     setChatMessage(url)
                     document.querySelector('.divPreviewImage').classList.remove('d-none')
                     document.querySelector('.divPreviewImage').classList.add('d-flex')
