@@ -149,9 +149,10 @@ function Chat() {
               .then(data => {
 
                 let categorias = data.categories;
+                console.log(categorias);
 
                 categorias.forEach(categoria => {
-                  if (categoria.name === 'people' || categoria.name === 'people_portrait' || categoria.name === 'people_') {
+                  if (categoria.name === 'people' || categoria.name === 'people_portrait' || categoria.name === 'people_' || categoria.name === 'people_young') {
                     alert('Foi encontrado um conteúdo de imagem não apropiado para fins da aplicação web.')
                     setChatMessage('')
                     document.querySelector('.divPreviewImage').classList.add('d-none')
