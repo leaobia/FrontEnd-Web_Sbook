@@ -99,6 +99,8 @@ function Chat() {
     }
 
     const pegarFoto = (e) => {
+
+      console.log('oi');
       
         
         const inputFile = e.target;
@@ -153,10 +155,12 @@ function Chat() {
 
                 categorias.forEach(categoria => {
                   if (categoria.name === 'people' || categoria.name === 'people_portrait' || categoria.name === 'people_' || categoria.name === 'people_young') {
-                    alert('Foi encontrado um conteúdo de imagem não apropiado para fins da aplicação web.')
                     setChatMessage('')
+                    fecharPreview()
+                    document.getElementById('inputChat').value = ''
                     document.querySelector('.divPreviewImage').classList.add('d-none')
                     document.querySelector('.divPreviewImage').classList.remove('d-flex')
+                    alert('Foi encontrado um conteúdo de imagem não apropiado para fins da aplicação web.')
                   } else {
                     console.log(categoria);
                     setChatMessage(url)
