@@ -44,7 +44,7 @@
     -webkit-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
     -moz-box-shadow: 0 0 0px 0px rgba(211, 211, 211, 1);
     box-shadow: 0 0 20px 0px rgba(211, 211, 211, 1);
-    height: 460px;
+    /* height: 460px; */
 }
 
 .imgLivro{
@@ -290,6 +290,7 @@
 @media (max-width:400px) {
     .personagem-card{
         width: 80vw;
+        gap: 15px;
     }
 
 
