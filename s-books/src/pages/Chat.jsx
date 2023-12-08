@@ -151,10 +151,10 @@ function Chat() {
               .then(data => {
 
                 let categorias = data.categories;
-                console.log(categorias);
 
                 categorias.forEach(categoria => {
-                  if (categoria.name === 'people' || categoria.name === 'people_portrait' || categoria.name === 'people_' || categoria.name === 'people_young') {
+                  const categoryParts = categoria.name.split('_');
+                  if (categoryParts.includes('people') || categoryParts.includes('person')) {
                     setChatMessage('')
                     fecharPreview()
                     document.getElementById('inputChat').value = ''
