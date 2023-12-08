@@ -55,9 +55,9 @@ const ChatItemComponent = () => {
     container.scrollTop = container.scrollHeight;
   }
 
-  const handleChatItemClick = (chatId, foto, nome) => {
+  const handleChatItemClick = (chatId, foto, nome, idUser) => {
 
-
+    localStorage.setItem('idConversante', idUser)
 
 
     localStorage.setItem('chatId', chatId)
@@ -212,7 +212,7 @@ const ChatItemComponent = () => {
               title={usuarioDesejado.nome}
               date={''}
               className="chatClique"
-              onClick={() => handleChatItemClick(contato.id_chat, usuarioDesejado.foto, usuarioDesejado.nome)}
+              onClick={() => handleChatItemClick(contato.id_chat, usuarioDesejado.foto, usuarioDesejado.nome, usuarioDesejado.id)}
             />
           );
         }
