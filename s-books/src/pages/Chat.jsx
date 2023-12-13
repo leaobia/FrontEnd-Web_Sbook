@@ -99,90 +99,84 @@ function Chat() {
     }
 
     const pegarFoto = (e) => {
-
-      console.log('oi');
-      
-        
-        const inputFile = e.target;
-
-        const file = inputFile.files[0];
-
-        console.log(file);
-
-        const storageRef = ref(storage, `images/${file.name}`)
-      const uploadTask = uploadBytesResumable(storageRef, file)
-
-      if(file){
-
-      uploadTask.on(
-        "state_changed",
-        snapshot => {
-
-        },
-        error => {
-          alert(error)
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(url => {
-          
-            const key = '2cd580a43d674328bff821cb0c9d6ed0'
-            const subscriptionKey = key;
-            const endpoint = 'https://sbook.cognitiveservices.azure.com/vision/v3.2/analyze'; 
-            
-            const imageUrl = url;
-            
-            const headers = new Headers({
-              'Content-Type': 'application/json',
-              'Ocp-Apim-Subscription-Key': subscriptionKey
-            });
-            
-            const body = JSON.stringify({
-              url: imageUrl
-            });
-            
-            const requestOptions = {
-              method: 'POST',
-              headers: headers,
-              body: body
-            };
-            
-            fetch(endpoint, requestOptions)
-              .then(response => response.json())
-              .then(data => {
-
-                let categorias = data.categories;
-
-                categorias.forEach(categoria => {
-                  const categoryParts = categoria.name.split('_');
-                  if (categoryParts.includes('people') || categoryParts.includes('person')) {
-                    setChatMessage('')
-                    fecharPreview()
-                    document.getElementById('inputChat').value = ''
-                    document.querySelector('.divPreviewImage').classList.add('d-none')
-                    document.querySelector('.divPreviewImage').classList.remove('d-flex')
-                    alert('Foi encontrado um conteúdo de imagem não apropiado para fins da aplicação web.')
-                  } else {
-                    console.log(categoria);
-                    setChatMessage(url)
-                    document.querySelector('.divPreviewImage').classList.remove('d-none')
-                    document.querySelector('.divPreviewImage').classList.add('d-flex')
-                    let img = document.querySelector('.imgChatPreview')
-                    img.src = url
-                  }
-                });
-                
-             
-              })
-              .catch(error => {
-                console.error('Erro na solicitação:', error);
+      const inputFile = e.target;
+      const file = inputFile.files[0];
+    
+      console.log(file);
+    
+      const storageRef = ref(storage, `images/${file.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+    
+      if (file) {
+        uploadTask.on(
+          "state_changed",
+          snapshot => {
+            // Lógica para o estado da transferência
+          },
+          error => {
+            alert(error);
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then(url => {
+              const key = '1ee81b9e197e4a5ab365540d0311ff29';
+              const subscriptionKey = key;
+              const endpoint = 'https://computervisionsbook.cognitiveservices.azure.com/vision/v3.2/analyze';
+              const imageUrl = url;
+    
+              const headers = new Headers({
+                'Content-Type': 'application/json',
+                'Ocp-Apim-Subscription-Key': subscriptionKey
               });
-            
-          })
-        }
-      )
+    
+              const body = JSON.stringify({
+                url: imageUrl
+              });
+    
+              const requestOptions = {
+                method: 'POST',
+                headers: headers,
+                body: body
+              };
+    
+              fetch(endpoint, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                  let categorias = data.categories;
+                  let isContentInappropriate = false;
+    
+                  categorias.forEach(categoria => {
+                    const categoryParts = categoria.name.split('_');
+                    if (categoryParts.includes('people') || categoryParts.includes('person')) {
+                      isContentInappropriate = true;
+                    }
+                  });
+    
+                  if (isContentInappropriate) {
+                    setChatMessage('');
+                    fecharPreview();
+                    console.log(categorias);
+                    document.getElementById('inputChat').value = '';
+                    document.querySelector('.divPreviewImage').classList.add('d-none');
+                    document.querySelector('.divPreviewImage').classList.remove('d-flex');
+                    alert('Foi encontrado um conteúdo de imagem não apropriado para fins da aplicação web.');
+                  } else {
+                    console.log(categorias);
+                    setChatMessage(url);
+                    document.querySelector('.divPreviewImage').classList.remove('d-none');
+                    document.querySelector('.divPreviewImage').classList.add('d-flex');
+                    let img = document.querySelector('.imgChatPreview');
+                    img.src = url;
+                  }
+                })
+                .catch(error => {
+                  console.error('Erro na solicitação:', error);
+                });
+            });
+          }
+        );
       }
-
-    }
+    };
+    
 
     const fecharPreview = () => {
 
